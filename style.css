@@ -1,5 +1,21 @@
 #navbar {}
 
+/* Set --background-light to a #F1F0ED color */
+:root {
+  --background-light: #F1F0ED;
+  --background-dark: #333;
+  --text-color: #000;
+  --text-color-light: #fff;
+}
+
 footer {}
 
-img.nav-logo {}
+body {
+  background-color: var(--background-light);
+  color: var(--text-color);
+}
+
+img.nav-logo {
+  height: 20px;
+  width: auto;
+}
