@@ -65,6 +65,26 @@
         ]
       },
       {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "User Guides",
+            "pages": [
+              "guides/",
+              "guides/creating-custom-templates",
+              "guides/managing-your-account"
+            ]
+          },
+          {
+            "group": "Troubleshooting",
+            "pages": [
+              "guides/common-issues",
+              "guides/contact-support"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Workflows",
         "groups": [
           {
