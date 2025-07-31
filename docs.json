@@ -13,6 +13,10 @@
     "light": "/logo/qumis-light.png",
     "dark": "/logo/qumis-dark.png"
   },
+  "appearance": {
+    "default": "light",
+    "strict": true
+  },
   "navigation": {
     "tabs": [
       {
