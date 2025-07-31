@@ -8,6 +8,11 @@
   /* --text-color-light: #FFFFFF; */
 }
 
+#sidebar-content {
+  background-color: var(--background-light);
+  color: var(--text-color);
+}
+
 /* html:has([class*='light']) body { */
 /*   background-color: var(--background-light) !important; */
 /*   color: var(--text-color); */

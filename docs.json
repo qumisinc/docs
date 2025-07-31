@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "willow",
   "name": "Qumis Documentation",
   "description": "Expert AI built for the top minds in insurance. Attorney-trained AI that delivers clarity, speed, and legal-grade reasoning for the industry's most complex risks.",
   "colors": {
