@@ -8,7 +8,7 @@
     "light": "#242423",
     "dark": "#444444"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/images/favicon.png",
   "logo": {
     "light": "/logo/qumis-light.png",
     "dark": "/logo/qumis-dark.png"
