@@ -3,21 +3,20 @@
 /* Set --background-light to a #F1F0ED color */
 :root {
   --background-light: #F1F0ED;
-  --background-dark: #333;
+  --background-dark: #252525;
+  /* --text-color: #333333; */
+  /* --text-color-light: #FFFFFF; */
 }
 
-footer {}
-
-/* Set the background color of the body to --background-light if dark mode is not enabled */
-html:not([style='color-scheme: dark;']) body {
-  background-color: var(--background-light);
-}
-
-/* Set the background color of the body to --background-dark if dark mode is enabled */
-html[style='color-scheme: dark;'] body {
-  background-color: var(--background-dark);
-}
-
+/* html:has([class*='light']) body { */
+/*   background-color: var(--background-light) !important; */
+/*   color: var(--text-color); */
+/* } */
+/**/
+/* html:has([class*='dark']) body { */
+/*   background-color: var(--background-dark) !important; */
+/*   color: var(--text-color-light); */
+/* } */
 
 img.nav-logo {
   height: 20px;
