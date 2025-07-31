@@ -4,11 +4,15 @@
   "name": "Qumis Documentation",
   "description": "Expert AI built for the top minds in insurance. Attorney-trained AI that delivers clarity, speed, and legal-grade reasoning for the industry's most complex risks.",
   "colors": {
-    "primary": "#4C94FB",
+    "primary": "#252525",
     "light": "#242423",
     "dark": "#2B2B2A"
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/qumis-light.png",
+    "dark": "/logo/dark.svg"
+  },
   "navigation": {
     "tabs": [
       {
@@ -133,10 +137,6 @@
       ]
     }
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
   "navbar": {
     "links": [
       {
@@ -155,15 +155,13 @@
       "linkedin": "https://linkedin.com/company/qumis"
     }
   },
-  "backgroundPattern": "none",
-  "styling": {
-    "primaryFont": "Eina03-Regular",
-    "accentColor": "#4C94FB"
+  "search": {
+    "prompt": "Search documentation..."
   },
   "seo": {
-    "indexHiddenPages": false
+    "indexing": "navigable"
   },
-  "analytics": {
+  "integrations": {
     "gtm": {
       "tagId": "GTM-XXXXXXX"
     }
