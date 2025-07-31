@@ -92,36 +92,6 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              "api-reference/introduction",
-              "api-reference/authentication",
-              "api-reference/rate-limits"
-            ]
-          },
-          {
-            "group": "Document Operations",
-            "pages": [
-              "api-reference/documents/upload",
-              "api-reference/documents/analyze",
-              "api-reference/documents/compare",
-              "api-reference/documents/chat"
-            ]
-          },
-          {
-            "group": "Analysis Endpoints",
-            "pages": [
-              "api-reference/analysis/policy-analysis",
-              "api-reference/analysis/claims-assessment",
-              "api-reference/analysis/contract-review"
-            ]
-          }
-        ]
       }
     ],
     "global": {
