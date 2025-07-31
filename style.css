@@ -4,16 +4,20 @@
 :root {
   --background-light: #F1F0ED;
   --background-dark: #333;
-  --text-color: #000;
-  --text-color-light: #fff;
 }
 
 footer {}
 
-body {
+/* Set the background color of the body to --background-light if dark mode is not enabled */
+html:not([style='color-scheme: dark;']) body {
   background-color: var(--background-light);
-  color: var(--text-color);
 }
+
+/* Set the background color of the body to --background-dark if dark mode is enabled */
+html[style='color-scheme: dark;'] body {
+  background-color: var(--background-dark);
+}
+
 
 img.nav-logo {
   height: 20px;
