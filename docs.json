@@ -97,14 +97,14 @@
     "global": {
       "anchors": [
         {
+          "anchor": "Qumis.ai",
+          "href": "https://www.qumis.ai",
+          "icon": "globe"
+        },
+        {
           "anchor": "Request Demo",
           "href": "https://calendly.com/qumis-dan/demo?background_color=f1f0ed&text_color=242423&primary_color=4c94fb",
           "icon": "calendar"
-        },
-        {
-          "anchor": "Website",
-          "href": "https://www.qumis.ai",
-          "icon": "globe"
         },
         {
           "anchor": "Support",
