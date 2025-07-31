@@ -1,0 +1,20 @@
+---
+title: "Insurance Attorneys"
+description: "Legal-grade AI for complex insurance litigation and coverage disputes"
+---
+
+# Insurance Attorneys
+
+Legal-grade AI reasoning for complex insurance matters and coverage disputes.
+
+## Legal Analysis Features
+
+Content coming soon.
+
+## Case Research Tools
+
+Content coming soon.
+
+## Document Review
+
+Content coming soon.

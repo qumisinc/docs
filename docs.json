@@ -1,68 +1,113 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Qumis Documentation",
+  "description": "Expert AI built for the top minds in insurance. Attorney-trained AI that delivers clarity, speed, and legal-grade reasoning for the industry's most complex risks.",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#4C94FB",
+    "light": "#242423",
+    "dark": "#2B2B2A"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Platform Guide",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
               "index",
               "quickstart",
-              "development"
+              "platform-overview",
+              "security-privacy"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Core Features",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "features/chat-with-documents",
+              "features/compare-documents",
+              "features/policy-analysis",
+              "features/claims-assessment",
+              "features/contract-analysis"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Advanced Tools",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "tools/fill-in-checklist",
+              "tools/document-vault",
+              "tools/legal-search",
+              "tools/custom-reports"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Use Cases by Role",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "roles/insurance-brokers",
+              "roles/claims-professionals",
+              "roles/risk-professionals",
+              "roles/insurance-attorneys"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Workflows",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Broker Workflows",
             "pages": [
-              "api-reference/introduction"
+              "workflows/quote-evaluation",
+              "workflows/competitive-positioning",
+              "workflows/coverage-recommendations"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Claims Workflows",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "workflows/coverage-assessment",
+              "workflows/policy-interpretation",
+              "workflows/claims-resolution"
+            ]
+          },
+          {
+            "group": "Risk Management",
+            "pages": [
+              "workflows/policy-review",
+              "workflows/risk-assessment",
+              "workflows/compliance-verification"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "api-reference/introduction",
+              "api-reference/authentication",
+              "api-reference/rate-limits"
+            ]
+          },
+          {
+            "group": "Document Operations",
+            "pages": [
+              "api-reference/documents/upload",
+              "api-reference/documents/analyze",
+              "api-reference/documents/compare",
+              "api-reference/documents/chat"
+            ]
+          },
+          {
+            "group": "Analysis Endpoints",
+            "pages": [
+              "api-reference/analysis/policy-analysis",
+              "api-reference/analysis/claims-assessment",
+              "api-reference/analysis/contract-review"
             ]
           }
         ]
@@ -71,19 +116,19 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Request Demo",
+          "href": "https://calendly.com/qumis-dan/demo?background_color=f1f0ed&text_color=242423&primary_color=4c94fb",
+          "icon": "calendar"
         },
         {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "anchor": "Website",
+          "href": "https://www.qumis.ai",
+          "icon": "globe"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Support",
+          "href": "mailto:support@qumis.ai",
+          "icon": "headset"
         }
       ]
     }
@@ -95,21 +140,32 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Request Demo",
+        "href": "https://calendly.com/qumis-dan/demo?background_color=f1f0ed&text_color=242423&primary_color=4c94fb"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Launch Platform",
+      "href": "https://app.qumis.ai"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "linkedin": "https://linkedin.com/company/qumis"
+    }
+  },
+  "backgroundPattern": "none",
+  "styling": {
+    "primaryFont": "Eina03-Regular",
+    "accentColor": "#4C94FB"
+  },
+  "seo": {
+    "indexHiddenPages": false
+  },
+  "analytics": {
+    "gtm": {
+      "tagId": "GTM-XXXXXXX"
     }
   }
 }
