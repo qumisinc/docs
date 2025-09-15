@@ -112,6 +112,29 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Internal",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "internal/index"
+            ]
+          },
+          {
+            "group": "Engineering",
+            "pages": [
+              "internal/engineering/git-branching-strategies"
+            ]
+          },
+          {
+            "group": "Infrastructure",
+            "pages": [
+              "internal/infrastructure"
+            ]
+          }
+        ]
       }
     ],
     "global": {
