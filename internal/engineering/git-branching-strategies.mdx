@@ -5,7 +5,7 @@ icon: "git-branch"
 noindex: true
 ---
 
-<Accordion title="🟢 Quick Reference - Update Your Branch">
+<Accordion title="Quick Reference - Update Your Branch">
 
 ### Choose your update strategy:
 
@@ -35,7 +35,17 @@ If you see conflicts, you'll need to resolve them. See the [Troubleshooting](#tr
 
 ## The Core Problem
 
-Your feature branch is out of sync with `release`. Another engineer merged their changes while you were working. Now your PR shows their commits mixed with yours, making code review confusing.
+Since we are growing our engineering team and we will all merging PRs to the same branch asynchronously, we will regularly be out of sync.
+
+**If another engineer merged their PR to `release` while you were working, your feature branch will be behind `origin/release`**
+
+When your feature branch falls behind the remote release branch, creating a PR without updating causes:
+- Other people's commits appearing in your PR
+- Confused code reviewers
+- Hidden feature scope
+- Difficult merge conflicts
+- Misleading git blame history
+
 
 ### What This Looks Like
 
@@ -54,7 +64,7 @@ gitGraph
     commit id: "Z (your work)"
 ```
 
-### After Rebase (Clean History)
+###
 
 ```mermaid
 gitGraph
@@ -201,7 +211,7 @@ git merge release  # Try merge strategy instead
 ```
 </Accordion>
 
-<Accordion title="🔴 I accidentally pushed to the wrong branch">
+<Accordion title="I accidentally pushed to the wrong branch">
 ```bash
 # Undo the last commit (keep changes)
 git reset --soft HEAD~1
@@ -213,18 +223,18 @@ git push origin correct-branch-name
 ```
 </Accordion>
 
-<Accordion title="🔴 My PR still shows other people's commits">
+<Accordion title="My PR still shows other people's commits">
 You forgot to update your branch. Follow the [Quick Fix](#emergency-need-to-fix-your-branch-right-now) at the top of this guide.
 </Accordion>
 
-<Accordion title="🔴 Git says 'cannot push' after rebase">
+<Accordion title="Git says 'cannot push' after rebase">
 You need to force push after rebasing:
 ```bash
 git push --force-with-lease
 ```
 </Accordion>
 
-<Accordion title="🔴 I want to start over completely">
+<Accordion title="I want to start over completely">
 ```bash
 # Save your work first!
 git stash
