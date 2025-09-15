@@ -100,96 +100,13 @@ gitGraph
     commit id: "Z' (your work)"
 ```
 
-## Our Branching Model
+## Step-by-Step: Rebase (Recommended)
 
-```
-main (production)
-└─ release (staging)
-   ├─ erik/eng-983-feature-one
-   ├─ sarah/eng-984-feature-two
-   └─ alex/eng-985-feature-three
-```
-
-- **Branch naming**: `engineer-name/ticket-id-description`
-- **Base branch**: Always branch from `release`
-- **Target branch**: Always merge back to `release`
-
-## The Two Solutions
-
-### Quick Comparison
-
-| | Rebase (Recommended) | Merge (Alternative) |
-|---|---|---|
-| **Result** | Clean, linear history | Preserves exact timeline |
-| **Safety** | Requires `--force-with-lease` | Normal push |
-| **Best For** | Most feature work | Long-running branches |
-| **Complexity** | Moderate | Simple |
-
-<Info>
-**Our Recommendation**: Use **rebase** for feature branches. It keeps our Git history clean and makes code reviews easier. Only use merge if you're uncomfortable with rebase or working on a long-running feature.
-</Info>
-
-## FRAP Method - The Simplified Approach
-
-For a streamlined way to sync your feature branch with `release`, use the **FRAP** method:
-
-- **F**etch
-- **R**ebase
-- **A**I Resolve Conflicts
-- **P**ush
-
-<Info>
-**This should be done before submitting a PR for review.** It's also good practice for any feature branches that are behind `release`.
-</Info>
-
-### FRAP Workflow
-
-```bash
-# Checkout your feature branch if you aren't on it already
-git checkout erik/eng-123-my-feature
-
-# FRAP
-# ----
-
-# FETCH - Get latest release without changing branches
-git fetch origin release:release
-
-# REBASE - Rebase onto release from your branch
-git rebase release
-
-# AI RESOLVE - If you encounter merge conflicts
-claude "I'm currently in the middle of a rebase that has merge conflicts. Can you help me resolve them and finish the rebase?"
-
-# PUSH - After successful rebase, push your branch
-git push origin --force-with-lease
-
-# Done! Your feature branch is now 0 commits behind release.
-```
-
-### Making Rebasing Easier - Recommended Git Config
-
-These git configurations will make rebasing smoother and more automated:
-
-```bash
-# Remember how you resolved conflicts and reuse those resolutions
-git config --global rerere.enabled true
-git config --global rerere.autoUpdate true
-
-# Automatically move fixup commits to the right place
-git config --global rebase.autosquash true
-
-# Automatically stash and unstash changes during rebase
-git config --global rebase.autoStash true
-```
 
 <Tip>
-**What these settings do:**
-- `rerere` (REuse REcorded REsolution) remembers how you resolved conflicts and applies them automatically next time
-- `autosquash` automatically reorders commits marked with `fixup!` or `squash!`
-- `autoStash` stashes any uncommitted changes before rebasing and applies them after
+Claude Code makes rebase or merge conflicts much easier! [See the Claude Code](#claude-code-can-help-with-conflicts) section.
 </Tip>
 
-## Step-by-Step: Rebase (Recommended)
 
 ✅ **Use this for**: Regular feature branches, bug fixes, most daily work
 
@@ -240,17 +157,6 @@ git rebase --continue
 **Escape hatch**: If things go wrong, run `git rebase --abort` to undo everything.
 </Tip>
 
-### Claude Code Can Help With Conflicts
-
-If you encounter merge conflicts during a rebase, Claude Code can help you resolve them:
-
-```bash
-# When you hit conflicts during rebase, ask Claude:
-claude "I'm currently in the middle of a rebase that has merge conflicts. Can you help me resolve them and finish the rebase?"
-```
-
-Claude Code will analyze the conflicts, help you resolve them, and complete the rebase process.
-
 ## Step-by-Step: Merge (Alternative)
 
 ⚠️ **Use this for**: Long-running features, when rebase is too complex, or if you're not comfortable with force pushing
@@ -283,6 +189,70 @@ git push origin your-feature-branch
 ```
 
 </Steps>
+
+## Our Branching Model
+
+```
+main (production)
+└─ release (staging)
+   ├─ erik/eng-983-feature-one
+   ├─ sarah/eng-984-feature-two
+   └─ alex/eng-985-feature-three
+```
+
+- **Branch naming**: `engineer-name/ticket-id-description`
+- **Base branch**: Always branch from `release`
+- **Target branch**: Always merge back to `release`
+
+## The Two Solutions
+
+### Quick Comparison
+
+| | Rebase (Recommended) | Merge (Alternative) |
+|---|---|---|
+| **Result** | Clean, linear history | Preserves exact timeline |
+| **Safety** | Requires `--force-with-lease` | Normal push |
+| **Best For** | Most feature work | Long-running branches |
+| **Complexity** | Moderate | Simple |
+
+<Info>
+**Our Recommendation**: Use **rebase** for feature branches. It keeps our Git history clean and makes code reviews easier. Only use merge if you're uncomfortable with rebase or working on a long-running feature.
+</Info>
+
+### Claude Code Can Help With Conflicts
+
+If you encounter merge conflicts during a rebase, Claude Code can help you resolve them:
+
+```bash
+# When you hit conflicts during rebase, ask Claude:
+claude "I'm currently in the middle of a rebase that has merge conflicts. Can you help me resolve them and finish the rebase?"
+```
+
+Claude Code will analyze the conflicts, help you resolve them, and complete the rebase process.
+
+### Making Rebasing Easier - Recommended Git Config
+
+These git configurations will make rebasing smoother and more automated:
+
+```bash
+# Remember how you resolved conflicts and reuse those resolutions
+git config --global rerere.enabled true
+git config --global rerere.autoUpdate true
+
+# Automatically move fixup commits to the right place
+git config --global rebase.autosquash true
+
+# Automatically stash and unstash changes during rebase
+git config --global rebase.autoStash true
+```
+
+<Tip>
+**What these settings do:**
+- `rerere` (REuse REcorded REsolution) remembers how you resolved conflicts and applies them automatically next time
+- `autosquash` automatically reorders commits marked with `fixup!` or `squash!`
+- `autoStash` stashes any uncommitted changes before rebasing and applies them after
+</Tip>
+
 
 ## Troubleshooting
 
