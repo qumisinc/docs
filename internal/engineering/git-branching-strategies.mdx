@@ -5,7 +5,7 @@ icon: "git-branch"
 noindex: true
 ---
 
-<Accordion title="📋 Quick Reference - Update Your Branch">
+<Accordion title="🟢 Quick Reference - Update Your Branch">
 
 ### Choose your update strategy:
 
@@ -71,28 +71,12 @@ gitGraph
 
 ## Our Branching Model
 
-```mermaid
-flowchart TB
-    main["main (production)"]
-    release["release (staging)"]
-    feat1["erik/eng-983-feature-one"]
-    feat2["sarah/eng-984-feature-two"]
-    feat3["alex/eng-985-feature-three"]
-
-    main --> release
-    release --> feat1
-    release --> feat2
-    release --> feat3
-
-    feat1 -.->|PR & Merge| release
-    feat2 -.->|PR & Merge| release
-    feat3 -.->|PR & Merge| release
-
-    style main fill:#e1f5e1
-    style release fill:#fff3cd
-    style feat1 fill:#d1ecf1
-    style feat2 fill:#d1ecf1
-    style feat3 fill:#d1ecf1
+```
+main (production)
+└─ release (staging)
+   ├─ erik/eng-983-feature-one
+   ├─ sarah/eng-984-feature-two
+   └─ alex/eng-985-feature-three
 ```
 
 - **Branch naming**: `engineer-name/ticket-id-description`
@@ -100,28 +84,6 @@ flowchart TB
 - **Target branch**: Always merge back to `release`
 
 ## The Two Solutions
-
-### Decision Flowchart
-
-```mermaid
-flowchart TD
-    Start([Need to update your branch?])
-    Start --> Q1{Is it a long-running<br/>feature branch?}
-
-    Q1 -->|Yes| Q2{Comfortable with<br/>force push?}
-    Q1 -->|No| Rebase[Use Rebase<br/>✅ Clean history]
-
-    Q2 -->|Yes| Rebase
-    Q2 -->|No| Merge[Use Merge<br/>⚠️ Simpler but messier]
-
-    Rebase --> RebaseCmd[git rebase release<br/>git push --force-with-lease]
-    Merge --> MergeCmd[git merge release<br/>git push]
-
-    style Rebase fill:#d4edda
-    style Merge fill:#fff3cd
-    style RebaseCmd fill:#e7f3ff
-    style MergeCmd fill:#e7f3ff
-```
 
 ### Quick Comparison
 
@@ -277,31 +239,6 @@ git stash pop
 </AccordionGroup>
 
 ## Best Practices
-
-### Development Workflow
-
-```mermaid
-flowchart LR
-    Start([Start Work]) --> Branch[Create feature branch<br/>from release]
-    Branch --> Work[Make commits]
-    Work --> Update{Time to PR?}
-
-    Update -->|Yes| Sync[Update your branch<br/>rebase or merge]
-    Sync --> PR[Create Pull Request]
-    PR --> Review[Code Review]
-
-    Review -->|Changes Requested| Fix[Make fixes]
-    Fix --> Sync2[Update branch again<br/>if needed]
-    Sync2 --> Review
-
-    Review -->|Approved| Merge[Merge to release]
-    Merge --> End([Done])
-
-    style Start fill:#e7f3ff
-    style End fill:#d4edda
-    style Sync fill:#fff3cd
-    style Sync2 fill:#fff3cd
-```
 
 ### ✅ DO
 
