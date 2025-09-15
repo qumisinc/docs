@@ -46,10 +46,21 @@ When your feature branch falls behind the remote release branch, creating a PR w
 - Difficult merge conflicts
 - Misleading git blame history
 
+If you are out of sync, you will not reliably be able to ensure merging your feature branch will not introduce issues.
+
 
 ### What This Looks Like
 
+**Out of Sync:**
+
 ```mermaid
+---
+config:
+  logLevel: 'debug'
+  theme: 'default'
+  themeVariables:
+      'git1': '#F0BF00'
+---
 gitGraph
     commit id: "A"
     commit id: "B"
@@ -64,9 +75,19 @@ gitGraph
     commit id: "Z (your work)"
 ```
 
-###
+### What It Should Look Like
+
+
+**In Sync:**
 
 ```mermaid
+---
+config:
+  logLevel: 'debug'
+  theme: 'default'
+  themeVariables:
+      'git1': '#00ff00'
+---
 gitGraph
     commit id: "A"
     commit id: "B"
