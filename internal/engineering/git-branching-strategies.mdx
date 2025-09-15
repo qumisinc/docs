@@ -1,125 +1,88 @@
 ---
 title: "Git Branching Strategies"
-description: "A comprehensive guide to managing feature branches for the engineering team"
+description: "How to keep your feature branches in sync with the release branch"
 icon: "git-branch"
 noindex: true
 ---
 
-## Overview
+<Accordion title="🚨 EMERGENCY: Need to fix your branch RIGHT NOW?">
 
-This guide addresses a common challenge in our Git workflow: what to do when your local branches fall behind the remote `release` branch while you're working on a feature.
+### Quick Fix - Choose One:
 
-### Our Current Branch Structure
-
-```
-main
-└─ release
-   └─ <feature branches>
-```
-
-Feature branches follow the Linear naming convention:
-- **Format**: `engineer-name/ticket-id-description`
-- **Example**: `erik/eng-983-establish-minimal-prod`
-
-### Standard Workflow
-
-1. Branch off from `release`
-2. Make commits to your feature branch
-3. Create a Pull Request (PR) with `release` as the base branch
-4. Get approval from at least one other engineer
-5. Merge the PR into `release`
-
-## The Problem: Out-of-Sync Branches
-
-When another engineer merges their feature into `release` while you're still working, your local branches become out of sync with the remote.
-
-<Warning>
-Creating a PR without updating your branches first leads to several problems.
-</Warning>
-
-### What Happens When You Don't Update
-
-- Your PR shows other people's commits mixed with yours
-- Code reviewers see changes you didn't make, causing confusion
-- The true scope of your feature gets buried
-- Merge conflicts are harder to resolve
-- Attribution and `git blame` history become misleading
-
-### Example Scenario
-
-| Timeline | What Happens |
-|----------|-------------|
-| Day 1 | Engineer A and B both create feature branches from `release` |
-| Day 2 | Engineer A completes their feature and merges into `release` |
-| Day 3 | Engineer B creates a PR without updating—it shows A's commits! |
-
-This makes the code review confusing and can lead to rejecting valid PRs or approving problematic ones.
-
-## Solution 1: Rebase Strategy (Recommended)
-
-Rebasing creates a **clean, linear history** by moving your commits to the tip of the updated `release` branch. **This is our recommended approach**. It makes it appear as if you just started your work from the current state of `release`.
-
-<Steps>
-
-### Update your local release branch
-
+#### Option A: Rebase (Recommended - Clean History)
 ```bash
 git checkout release
 git pull origin release
-```
-
-### Switch back to your feature branch
-
-```bash
-git checkout erik/eng-984-your-feature
-```
-
-### Rebase your feature branch onto the updated release
-
-```bash
+git checkout your-feature-branch
 git rebase release
-```
-
-### Push with force (safely)
-
-```bash
 git push --force-with-lease
 ```
 
-</Steps>
+#### Option B: Merge (Safer - No Force Push)
+```bash
+git checkout release
+git pull origin release
+git checkout your-feature-branch
+git merge release
+git push
+```
 
-### Handling Rebase Conflicts
+<Warning>
+If you see conflicts, you'll need to resolve them. See the [Troubleshooting](#troubleshooting) section.
+</Warning>
 
-If conflicts occur, Git will pause:
+</Accordion>
 
-1. Edit the conflicted files to resolve the issues
-2. Add the resolved files: `git add <file-names>`
-3. Continue the rebase: `git rebase --continue`
-4. Repeat until all commits are processed
+## The Core Problem
 
-### Advantages & Disadvantages
+Your feature branch is out of sync with `release`. Another engineer merged their changes while you were working. Now your PR shows their commits mixed with yours, making code review confusing.
 
-<Columns>
-<Column title="✅ Rebase Advantages">
-- Creates clean, linear history
-- Easy to understand sequence of changes
-- No unnecessary merge commits
-- Your commits appear recent and relevant
-- Easier code review process
-</Column>
+### What This Looks Like
 
-<Column title="❌ Rebase Disadvantages">
-- Rewrites commit history
-- Can be intimidating for beginners
-- Requires force pushing
-- Need to resolve conflicts step by step
-- Potential to lose work if done incorrectly
-</Column>
-</Columns>
+```
+Before (Out of Sync):
+release:        A---B---C---D (other engineer's commits)
+                 \
+your-feature:     \---X---Y---Z (your commits)
 
-## Solution 2: Merge Strategy
+After Updating (Clean):
+release:        A---B---C---D
+                           \
+your-feature:               X'---Y'---Z' (your commits, rebased)
+```
 
-The merge strategy preserves the original history and creates explicit merge commits showing when branches were integrated. It creates a new commit that combines the changes from both branches.
+## Our Branching Model
+
+```
+main (production)
+└─ release (staging)
+   ├─ erik/eng-983-feature-one
+   ├─ sarah/eng-984-feature-two
+   └─ alex/eng-985-feature-three
+```
+
+- **Branch naming**: `engineer-name/ticket-id-description`
+- **Base branch**: Always branch from `release`
+- **Target branch**: Always merge back to `release`
+
+## The Two Solutions
+
+### Quick Comparison
+
+| | Rebase (Recommended) | Merge (Alternative) |
+|---|---|---|
+| **Result** | Clean, linear history | Preserves exact timeline |
+| **Safety** | Requires `--force-with-lease` | Normal push |
+| **Best For** | Most feature work | Long-running branches |
+| **Complexity** | Moderate | Simple |
+
+<Info>
+**Our Recommendation**: Use **rebase** for feature branches. It keeps our Git history clean and makes code reviews easier. Only use merge if you're uncomfortable with rebase or working on a long-running feature.
+</Info>
+
+## Step-by-Step: Rebase (Recommended)
+
+✅ **Use this for**: Regular feature branches, bug fixes, most daily work
 
 <Steps>
 
@@ -133,139 +96,173 @@ git pull origin release
 ### Switch to your feature branch
 
 ```bash
-git checkout erik/eng-984-your-feature
+git checkout your-feature-branch  # e.g., erik/eng-984-add-auth
 ```
 
-### Merge updated release into your feature branch
+### Rebase onto the updated release
+
+```bash
+git rebase release
+```
+
+### Force push safely
+
+```bash
+git push --force-with-lease
+```
+<Warning>
+Never use `--force` alone. Always use `--force-with-lease` for safety.
+</Warning>
+
+</Steps>
+
+### If You Hit Conflicts
+
+```bash
+# 1. Fix the conflicted files (your editor will show <<<< markers)
+# 2. Stage the fixed files
+git add .
+# 3. Continue rebasing
+git rebase --continue
+# 4. Repeat if more conflicts appear
+```
+
+<Tip>
+**Escape hatch**: If things go wrong, run `git rebase --abort` to undo everything.
+</Tip>
+
+## Step-by-Step: Merge (Alternative)
+
+⚠️ **Use this for**: Long-running features, when rebase is too complex, or if you're not comfortable with force pushing
+
+<Steps>
+
+### Update your local release branch
+
+```bash
+git checkout release
+git pull origin release
+```
+
+### Switch to your feature branch
+
+```bash
+git checkout your-feature-branch
+```
+
+### Merge release into your branch
 
 ```bash
 git merge release
 ```
 
-### Push normally (no force needed)
+### Push normally
 
 ```bash
-git push origin erik/eng-984-your-feature
+git push origin your-feature-branch
 ```
 
 </Steps>
 
-### Advantages & Disadvantages
+## Troubleshooting
 
-<Columns>
-<Column title="✅ Merge Advantages">
-- Preserves original development history
-- No history rewriting
-- Safer for inexperienced Git users
-- No force push required
-- Clear merge points in history
-</Column>
-
-<Column title="❌ Merge Disadvantages">
-- Creates additional merge commits
-- More complex branching history
-- Can be harder to follow development flow
-- "Noisy" commit graph
-- May require resolving the same conflicts twice
-</Column>
-</Columns>
-
-## Strategy Comparison
-
-Both strategies solve the problem, but with different trade-offs.
-
-| Aspect | Rebase | Merge | No Update |
-|--------|---------|--------|-----------|
-| **History** | Clean & Linear | Preserved but Complex | Confusing & Messy |
-| **PR Review** | Only your changes | Only your changes | Mixed changes |
-| **Safety** | Requires force push | Safe, normal push | Merge conflicts later |
-| **Learning Curve** | Moderate | Easy | Very Easy (but wrong) |
-
-### When to Use Each Strategy
+### Common Problems & Solutions
 
 <AccordionGroup>
 
-<Accordion title="Choose Rebase When:">
-- You want clean, linear project history
-- Your team values easy-to-follow commit graphs
-- You're working on small, focused features
-- Team members are comfortable with Git
+<Accordion title="🔴 I see merge conflicts">
+```bash
+# For rebase conflicts:
+# 1. Fix conflicts in your editor (look for <<<< markers)
+git add .
+git rebase --continue
+
+# Too many conflicts? Abort and try merge instead:
+git rebase --abort
+git merge release  # Try merge strategy instead
+```
 </Accordion>
 
-<Accordion title="Choose Merge When:">
-- You want to preserve the exact development history
-- The team includes junior developers
-- You're working on long-running feature branches
-- Compliance requires complete audit trails
+<Accordion title="🔴 I accidentally pushed to the wrong branch">
+```bash
+# Undo the last commit (keep changes)
+git reset --soft HEAD~1
+# Switch to correct branch
+git checkout -b correct-branch-name
+# Commit and push to right place
+git commit -m "your message"
+git push origin correct-branch-name
+```
+</Accordion>
+
+<Accordion title="🔴 My PR still shows other people's commits">
+You forgot to update your branch. Follow the [Quick Fix](#emergency-need-to-fix-your-branch-right-now) at the top of this guide.
+</Accordion>
+
+<Accordion title="🔴 Git says 'cannot push' after rebase">
+You need to force push after rebasing:
+```bash
+git push --force-with-lease
+```
+</Accordion>
+
+<Accordion title="🔴 I want to start over completely">
+```bash
+# Save your work first!
+git stash
+# Reset to match remote release
+git fetch origin
+git reset --hard origin/release
+# Apply your changes back
+git stash pop
+```
 </Accordion>
 
 </AccordionGroup>
 
-## Best Practices & Guidelines
+## Best Practices
 
-### Universal Best Practices
+### ✅ DO
 
-- **Update Frequently**: Pull from `origin/release` at least daily
-- **Communicate**: Know what others are working on
-- **Keep Features Small**: Shorter-lived branches lead to fewer conflicts
-- **Test After Updating**: Always verify your changes still work
-- **Use `--force-with-lease`**: It's safer than `--force` for rebasing
+- Update your branch **before** creating a PR
+- Use `--force-with-lease` (never just `--force`)
+- Pull from `release` at least once daily
+- Ask for help if confused (#engineering channel)
+- Test your code after updating
 
-<Tip>
-Choose one strategy as a team and stick to it. Mixed approaches create confusion and inconsistent history.
-</Tip>
+### 🛑 DON'T
 
-### What Never to Do
+- Create PRs without updating first
+- Force push to `main` or `release`
+- Rebase commits others are using
+- Mix rebase and merge randomly
+- Panic - everything in Git can be undone
 
-<Warning>
-Avoid these common mistakes:
-- **Never** create PRs without updating your branches first
-- **Never** force push to shared branches like `main` or `release`
-- **Never** rebase commits that have been pushed and are being used by others
-- **Never** mix strategies randomly within the team
-</Warning>
+## Command Reference
 
-## Quick Reference Guide
-
-### Command Cheat Sheet
-
-| Strategy | Commands |
-|----------|----------|
-| **Rebase** | `git checkout release`<br/>`git pull origin release`<br/>`git checkout your-feature-branch`<br/>`git rebase release`<br/>`git push --force-with-lease` |
-| **Merge** | `git checkout release`<br/>`git pull origin release`<br/>`git checkout your-feature-branch`<br/>`git merge release`<br/>`git push origin your-feature-branch` |
-
-### Emergency Procedures
-
-#### If Rebase Goes Wrong
-
-Abort the rebase to return to the original state:
+### Essential Commands
 
 ```bash
-git rebase --abort
+# Update your branch (Rebase)
+git checkout release && git pull
+git checkout your-branch
+git rebase release
+git push --force-with-lease
+
+# Update your branch (Merge)
+git checkout release && git pull
+git checkout your-branch
+git merge release
+git push
+
+# Emergency exits
+git rebase --abort      # Cancel a rebase
+git merge --abort       # Cancel a merge
+git reset --hard HEAD~1 # Undo last commit (destructive!)
 ```
 
-#### Fix a PR After It's Created
+### Getting Help
 
-You can still fix a PR that has already been created. The existing PR will update automatically.
-
-```bash
-git checkout release
-git pull origin release
-git checkout your-feature-branch
-git rebase release  # or git merge release
-git push --force-with-lease  # if you rebased
-```
-
-### Decision Tree
-
-<Info>
-**Quick Decision**: Want clean history and are comfortable with Git? → **Rebase**. Want it safe and simple? → **Merge**.
-
-Either way, **ALWAYS** update your branches before creating a PR!
-</Info>
-
-### Support Resources
-
-- **Slack**: Ask questions in the `#engineering` channel
-- **Pair Programming**: Work through conflicts with a colleague
-- **Git Docs**: [https://git-scm.com/docs](https://git-scm.com/docs)
+- **Slack**: `#engineering` channel
+- **Pair Programming**: Ask a teammate to screen-share
+- **Documentation**: This guide and [Git official docs](https://git-scm.com/docs)
