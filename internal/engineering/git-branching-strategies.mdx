@@ -239,9 +239,6 @@ These git configurations will make rebasing smoother and more automated:
 git config --global rerere.enabled true
 git config --global rerere.autoUpdate true
 
-# Automatically move fixup commits to the right place
-git config --global rebase.autosquash true
-
 # Automatically stash and unstash changes during rebase
 git config --global rebase.autoStash true
 ```
@@ -260,7 +257,7 @@ git config --global rebase.autoStash true
 
 <AccordionGroup>
 
-<Accordion title="🔴 I see merge conflicts">
+<Accordion title="I see merge conflicts">
 ```bash
 # For rebase conflicts:
 # 1. Fix conflicts in your editor (look for <<<< markers)
@@ -326,7 +323,7 @@ git stash pop
 - Force push to `main` or `release`
 - Rebase commits others are using
 - Mix rebase and merge randomly
-- Panic - everything in Git can be undone
+- Panic
 
 ## Command Reference
 
