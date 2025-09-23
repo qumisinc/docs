@@ -50,7 +50,8 @@
               "tools/fill-in-checklist",
               "tools/document-vault",
               "tools/legal-search",
-              "tools/custom-reports"
+              "tools/custom-reports",
+              "features/markdown-export"
             ]
           },
           {
