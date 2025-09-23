@@ -3,19 +3,25 @@
 /* Set --background-light to a #F1F0ED color */
 :root {
   /* Hex values for backward compatibility */
-  --background-light: #F1F0ED;
+  --background-light: #FFFFFF;
+  --background-light-shaded: #F1F0ED;
   --background-dark: #252525;
 
   /* RGB values for Tailwind CSS compatibility */
-  --background-light-rgb: 241, 240, 237;  /* RGB equivalent of #F1F0ED */
-  --background-dark-rgb: 37, 37, 37;      /* RGB equivalent of #252525 */
+  --background-light-rgb: 255, 255, 255;
+  --background-light-shaded-rgb: 241, 240, 237;
+  /* RGB equivalent of #F1F0ED */
+  --background-dark-rgb: 37, 37, 37;
+  /* RGB equivalent of #252525 */
 
-  /* --text-color: #333333; */
-  /* --text-color-light: #FFFFFF; */
+  --text-color: #252525;
+  --text-color-light: #F1F0ED;
+  --text-color-muted: #6B7280;
+  --text-color-muted-light: #9CA3AF;
 }
 
 #sidebar-content {
-  background-color: var(--background-light);
+  background-color: var(--background-light-shaded);
   color: var(--text-color);
 }
 
@@ -34,45 +40,13 @@ img.nav-logo {
   width: auto;
 }
 
-/* #sidebar { */
-/*   display: none !important; */
-/* } */
-
 /* Fix Tailwind background classes to use proper RGB values */
 .bg-background-light {
   --tw-bg-opacity: 1;
-  background-color: rgb(241 240 237 / var(--tw-bg-opacity)) !important;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
 }
 
 .dark .bg-background-dark {
   --tw-bg-opacity: 1;
   background-color: rgb(37 37 37 / var(--tw-bg-opacity)) !important;
-}
-
-/* Fix contextual menu background transparency */
-[data-radix-popper-content-wrapper] > div[role="menu"],
-.bg-background-light[role="menu"] {
-  background-color: #F1F0ED !important; /* Use the theme's light background */
-  opacity: 1 !important;
-}
-
-/* Dark mode support for contextual menu */
-html.dark [data-radix-popper-content-wrapper] > div[role="menu"],
-.dark .bg-background-dark[role="menu"] {
-  background-color: #252525 !important; /* Use the theme's dark background */
-  opacity: 1 !important;
-}
-
-/* Ensure menu items are readable */
-[data-radix-popper-content-wrapper] [role="menuitem"] {
-  background-color: transparent;
-}
-
-/* Hover state for menu items */
-[data-radix-popper-content-wrapper] [role="menuitem"]:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-html.dark [data-radix-popper-content-wrapper] [role="menuitem"]:hover {
-  background-color: rgba(255, 255, 255, 0.05);
 }
