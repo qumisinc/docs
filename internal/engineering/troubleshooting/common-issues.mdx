@@ -186,6 +186,124 @@ This guide provides solutions to common issues you might encounter while working
   </Accordion>
 </AccordionGroup>
 
+## ECS Issues
+
+<AccordionGroup>
+  <Accordion title="ECS service not starting">
+    **Symptoms**: Tasks failing to start, service stuck in pending
+
+    **Solutions**:
+    ```bash
+    # Check service events
+    aws ecs describe-services \
+      --cluster qumis-prod \
+      --services api \
+      --profile qumis_prod \
+      --query 'services[0].events[:10]'
+
+    # Check task failures
+    aws ecs list-tasks \
+      --cluster qumis-prod \
+      --service-name api \
+      --desired-status STOPPED \
+      --profile qumis_prod
+
+    # Get task failure reason
+    TASK_ARN=$(aws ecs list-tasks --cluster qumis-prod --service-name api --desired-status STOPPED --profile qumis_prod --query 'taskArns[0]' --output text)
+    aws ecs describe-tasks \
+      --cluster qumis-prod \
+      --tasks $TASK_ARN \
+      --profile qumis_prod \
+      --query 'tasks[0].stoppedReason'
+
+    # Common fixes:
+    # - Check container image exists in ECR
+    # - Verify IAM task execution role permissions
+    # - Check memory/CPU limits are sufficient
+    # - Review health check configuration
+    ```
+  </Accordion>
+
+  <Accordion title="Container keeps restarting">
+    **Symptoms**: Container health checks failing, continuous restarts
+
+    **Solutions**:
+    ```bash
+    # Check container logs
+    aws logs tail /ecs/qumis-prod/api --profile qumis_prod --follow
+
+    # Check health check configuration
+    aws ecs describe-task-definition \
+      --task-definition qumis-api-prod \
+      --profile qumis_prod \
+      --query 'taskDefinition.containerDefinitions[0].healthCheck'
+
+    # Monitor memory usage
+    aws cloudwatch get-metric-statistics \
+      --namespace AWS/ECS \
+      --metric-name MemoryUtilization \
+      --dimensions Name=ServiceName,Value=api Name=ClusterName,Value=qumis-prod \
+      --start-time $(date -u -d '1 hour ago' --iso-8601) \
+      --end-time $(date -u --iso-8601) \
+      --period 300 \
+      --statistics Average,Maximum \
+      --profile qumis_prod
+
+    # Solutions:
+    # - Increase health check grace period
+    # - Adjust memory/CPU limits
+    # - Fix application startup issues
+    # - Check for missing environment variables
+    ```
+  </Accordion>
+
+  <Accordion title="Sidekiq jobs not processing">
+    **Symptoms**: Jobs stuck in queue, Sidekiq not picking up work
+
+    **Solutions**:
+    ```bash
+    # Check Sidekiq service status
+    aws ecs describe-services \
+      --cluster qumis-prod \
+      --services sidekiq \
+      --profile qumis_prod \
+      --query 'services[0].[status,runningCount,desiredCount]'
+
+    # Check Sidekiq logs
+    aws logs tail /ecs/qumis-prod/sidekiq \
+      --profile qumis_prod \
+      --follow
+
+    # Check Redis connectivity
+    qumis services exec api \
+      --env prod \
+      --reason "Check Redis connection" \
+      --confirm prod \
+      -- rails runner "puts Sidekiq.redis { |c| c.ping }"
+
+    # Check queue sizes
+    qumis services exec api \
+      --env prod \
+      --reason "Check Sidekiq queues" \
+      --confirm prod \
+      -- rails runner "
+        require 'sidekiq/api'
+        stats = Sidekiq::Stats.new
+        puts 'Processed: ' + stats.processed.to_s
+        puts 'Failed: ' + stats.failed.to_s
+        puts 'Queues: ' + Sidekiq::Queue.all.map { |q| q.name + ': ' + q.size.to_s }.join(', ')
+      "
+
+    # Restart Sidekiq service if needed
+    aws ecs update-service \
+      --cluster qumis-prod \
+      --service sidekiq \
+      --force-new-deployment \
+      --profile qumis_prod
+    ```
+  </Accordion>
+</AccordionGroup>
+
 ## Deployment Issues
 
 ### Build Failures

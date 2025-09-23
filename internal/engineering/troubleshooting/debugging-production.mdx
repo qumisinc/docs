@@ -31,23 +31,34 @@ noindex: true
 # 1. Check service status
 curl -f https://api.qumis.ai/health || echo "Service unhealthy"
 
-# 2. Check recent errors (last 15 minutes)
-aws logs filter-log-events \
-  --log-group-name /aws/lambda/qumis-api-prod \
-  --start-time $(date -u -d '15 minutes ago' '+%s')000 \
-  --filter-pattern "ERROR" \
+# 2. Check ECS service status
+aws ecs describe-services \
+  --cluster qumis-prod \
+  --services api web sidekiq \
   --profile qumis_prod \
-  --max-items 20
+  --query 'services[*].[serviceName,status,runningCount,desiredCount]' \
+  --output table
 
-# 3. Check Lambda metrics
+# 3. Check recent errors across all ECS services (last 15 minutes)
+for SERVICE in api web sidekiq; do
+  echo "=== $SERVICE errors ==="
+  aws logs filter-log-events \
+    --log-group-name /ecs/qumis-prod/$SERVICE \
+    --start-time $(date -u -d '15 minutes ago' '+%s')000 \
+    --filter-pattern "ERROR" \
+    --profile qumis_prod \
+    --max-items 10
+done
+
+# 4. Check ECS cluster metrics
 aws cloudwatch get-metric-statistics \
-  --namespace AWS/Lambda \
-  --metric-name Errors \
-  --dimensions Name=FunctionName,Value=qumis-api-prod \
+  --namespace AWS/ECS \
+  --metric-name CPUUtilization \
+  --dimensions Name=ServiceName,Value=api Name=ClusterName,Value=qumis-prod \
   --start-time $(date -u -d '1 hour ago' --iso-8601) \
   --end-time $(date -u --iso-8601) \
   --period 300 \
-  --statistics Sum \
+  --statistics Average,Maximum \
   --profile qumis_prod
 ```
 
