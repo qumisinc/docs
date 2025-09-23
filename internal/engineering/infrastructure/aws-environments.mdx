@@ -1,0 +1,354 @@
+---
+title: "AWS Environments"
+description: "Overview of all AWS environments and their configurations"
+icon: "cloud"
+noindex: true
+---
+
+This guide provides a comprehensive overview of our AWS environments, their purposes, and access patterns.
+
+## Environment Overview
+
+### Deployment Environments
+
+<Info>
+  These environments are used for deploying and running our applications at different stages of the development lifecycle.
+</Info>
+
+| Environment | Account ID | Email | Purpose | Access Level |
+|------------|------------|--------|---------|--------------|
+| **Development** | 080970846004 | shiv+aws-dev@qumis.ai | Active development and testing | All engineers |
+| **QA** | 340452546718 | shiv+aws-qa@qumis.ai | Quality assurance testing | All engineers |
+| **UAT** | 499854674638 | shiv+aws-uat@qumis.ai | User acceptance testing | All engineers |
+| **Production** | 729033428609 | shiv+aws-production@qumis.ai | Live production environment | Senior engineers |
+
+### Infrastructure Environment
+
+| Environment | Account ID | Email | Purpose | Access Level |
+|------------|------------|--------|---------|--------------|
+| **Shared Services** | 355867115367 | shiv+aws-shared-service@qumis.ai | Cross-environment infrastructure, CI/CD, shared resources | DevOps team |
+
+<Warning>
+  **Shared Services** is not a deployment environment. It contains infrastructure that supports all other environments (e.g., CI/CD pipelines, artifact storage, shared databases).
+</Warning>
+
+## Environment Details
+
+### Development (dev)
+
+**Account ID**: 080970846004
+**AWS Profile**: `qumis_dev`
+**Purpose**: Active development and experimentation
+
+**Characteristics**:
+- Frequent deployments
+- Experimental features
+- Test data only
+- Relaxed security policies
+- Auto-shutdown for cost savings
+
+**Common Operations**:
+```bash
+# Login
+qumis aws login dev
+
+# Deploy
+qumis deploy api --env dev --reason "Test new feature"
+
+# Access console
+qumis services exec api --env dev -- rails console
+```
+
+### QA Environment
+
+**Account ID**: 340452546718
+**AWS Profile**: `qumis_qa`
+**Purpose**: Automated and manual QA testing
+
+**Characteristics**:
+- Stable builds for testing
+- Automated test suites run here
+- QA team validation
+- Production-like configuration
+- Regular data refreshes from production (sanitized)
+
+**Common Operations**:
+```bash
+# Login
+qumis aws login qa
+
+# Deploy for QA testing
+qumis deploy api --env qa --reason "QA testing sprint 23"
+
+# Check logs
+aws logs tail /aws/lambda/qumis-api-qa --profile qumis_qa
+```
+
+### UAT Environment
+
+**Account ID**: 499854674638
+**AWS Profile**: `qumis_uat`
+**Purpose**: User acceptance testing and staging
+
+**Characteristics**:
+- Production mirror
+- Stakeholder demos
+- Final testing before production
+- Production-like data (sanitized)
+- Same configuration as production
+
+**Common Operations**:
+```bash
+# Login
+qumis aws login uat
+
+# Deploy release candidate
+qumis deploy api --env uat --reason "Release candidate v1.2.3"
+
+# Verify deployment
+qumis services info api --env uat
+```
+
+### Production Environment
+
+**Account ID**: 729033428609
+**AWS Profile**: `qumis_prod`
+**Purpose**: Live production environment serving customers
+
+**Characteristics**:
+- Strict access control
+- Change approval required
+- Full monitoring and alerting
+- Regular backups
+- High availability configuration
+- Audit logging for all operations
+
+**Common Operations**:
+```bash
+# Login (requires elevated permissions)
+qumis aws login prod
+
+# Deploy with confirmation
+qumis deploy api \
+  --env prod \
+  --reason "Release v1.2.3 - ENG-123" \
+  --confirm prod
+
+# Production console (with audit log)
+qumis services exec api \
+  --env prod \
+  --reason "Debug customer issue #456" \
+  --confirm prod \
+  -- rails console
+```
+
+### Shared Services
+
+**Account ID**: 355867115367
+**AWS Profile**: `qumis_shared`
+**Purpose**: Infrastructure and services shared across environments
+
+**Components**:
+- CI/CD pipelines (GitHub Actions runners)
+- Docker registry (ECR)
+- Artifact storage (S3)
+- Secrets management (Parameter Store)
+- DNS management (Route53)
+- Certificate management (ACM)
+
+<Warning>
+  Direct access to Shared Services is restricted to DevOps team members. Most engineers interact with it indirectly through CI/CD pipelines.
+</Warning>
+
+## Access Management
+
+### AWS SSO Configuration
+
+<Steps>
+  <Step title="Configure SSO Profile">
+    ```bash
+    # Configure each environment
+    aws configure sso --profile qumis_dev
+    # SSO URL: [provided by team]
+    # Region: us-east-1
+    # Account: 080970846004
+    # Role: [your-assigned-role]
+    ```
+  </Step>
+
+  <Step title="Login to Environment">
+    ```bash
+    # Using qumis-cli
+    qumis aws login dev
+
+    # Or directly with AWS CLI
+    aws sso login --profile qumis_dev
+    ```
+  </Step>
+
+  <Step title="Verify Access">
+    ```bash
+    # Check current identity
+    aws sts get-caller-identity --profile qumis_dev
+
+    # List S3 buckets
+    aws s3 ls --profile qumis_dev
+    ```
+  </Step>
+</Steps>
+
+### Permission Levels
+
+| Role | Dev | QA | UAT | Prod | Shared Services |
+|------|-----|----|----|------|-----------------|
+| Junior Engineer | Full | Full | Read | No | No |
+| Engineer | Full | Full | Full | Read | No |
+| Senior Engineer | Full | Full | Full | Full | Read |
+| DevOps | Full | Full | Full | Full | Full |
+| Team Lead | Full | Full | Full | Full | Full |
+
+## Service Architecture
+
+### Lambda Functions
+
+Each environment runs Lambda functions for our services:
+
+```
+qumis-api-{environment}
+qumis-web-{environment}
+qumis-llm-{environment}
+```
+
+View functions:
+```bash
+# List all Lambda functions
+qumis lambda list-functions --env dev
+qumis lambda list-functions --env prod
+
+# Get function details
+qumis lambda describe-function qumis-api --env dev
+```
+
+### RDS Databases
+
+- **Dev**: Single instance, minimal resources
+- **QA**: Single instance, production-like config
+- **UAT**: Multi-AZ for testing failover
+- **Production**: Multi-AZ with read replicas
+
+### S3 Buckets
+
+Naming convention: `qumis-{service}-{environment}-{region}`
+
+Examples:
+- `qumis-api-dev-us-east-1`
+- `qumis-api-prod-us-east-1`
+- `qumis-uploads-prod-us-east-1`
+
+## Monitoring by Environment
+
+### CloudWatch Log Groups
+
+Log group naming: `/aws/lambda/qumis-{service}-{environment}`
+
+```bash
+# View logs for different environments
+aws logs tail /aws/lambda/qumis-api-dev --profile qumis_dev
+aws logs tail /aws/lambda/qumis-api-prod --profile qumis_prod --follow
+```
+
+### Metrics and Alarms
+
+- **Dev**: Basic metrics, no alarms
+- **QA**: Standard metrics, test alarms
+- **UAT**: Full metrics, staging alarms
+- **Production**: Comprehensive metrics, critical alarms with PagerDuty integration
+
+## Cost Management
+
+### Environment Costs (Monthly Estimates)
+
+| Environment | Typical Cost | Cost Controls |
+|------------|--------------|---------------|
+| Dev | $500-800 | Auto-shutdown, smaller instances |
+| QA | $800-1200 | Scheduled scaling, cleanup jobs |
+| UAT | $1500-2000 | On-demand scaling |
+| Production | $5000-8000 | Reserved instances, Savings Plans |
+| Shared Services | $300-500 | Minimal resources |
+
+### Cost Optimization
+
+**Development**:
+- Auto-stop Lambda functions after hours
+- Use spot instances where possible
+- Regular cleanup of old resources
+
+**Production**:
+- Reserved instances for predictable workloads
+- Auto-scaling based on demand
+- Regular cost analysis and optimization
+
+## Security Considerations
+
+### Network Isolation
+
+- Each environment has its own VPC
+- No direct connectivity between environments
+- Bastion hosts for emergency access
+- VPN access for production (when required)
+
+### Data Protection
+
+- **Dev/QA**: Synthetic test data only
+- **UAT**: Sanitized production data
+- **Production**: Full encryption at rest and in transit
+- **Backups**: Daily snapshots, 30-day retention
+
+### Compliance
+
+- SOC 2 compliance for production
+- HIPAA compliance where applicable
+- Regular security audits
+- Penetration testing quarterly
+
+## Emergency Procedures
+
+### Environment Down
+
+1. **Check AWS Status**: https://status.aws.amazon.com/
+2. **Verify Access**: `qumis aws login {env}`
+3. **Check Key Services**:
+   ```bash
+   # Lambda
+   qumis lambda list-functions --env {env}
+
+   # RDS
+   aws rds describe-db-instances --profile qumis_{env}
+
+   # S3
+   aws s3 ls --profile qumis_{env}
+   ```
+4. **Escalate if needed**: Contact DevOps team
+
+### Cross-Environment Issues
+
+If issues span multiple environments:
+1. Check Shared Services first
+2. Verify CI/CD pipeline status
+3. Check DNS and certificates
+4. Review recent infrastructure changes
+
+## Best Practices
+
+1. **Environment Progression**: Always deploy dev → qa → uat → prod
+2. **Access Principle**: Use minimum required permissions
+3. **Cost Awareness**: Clean up unused resources regularly
+4. **Security First**: Never copy production data to lower environments without sanitization
+5. **Documentation**: Document any manual changes made to environments
+
+## Additional Resources
+
+- [CloudWatch Monitoring](/internal/engineering/infrastructure/cloudwatch-monitoring)
+- [CloudWatch Alerts](/internal/engineering/infrastructure/cloudwatch-alerts)
+- [Production Deployment](/internal/engineering/deployment/production-deployment)
+- [AWS Console](https://console.aws.amazon.com/) - Use SSO portal for access

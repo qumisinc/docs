@@ -1,0 +1,211 @@
+---
+title: "Engineering Onboarding"
+description: "New engineer setup guide for joining the Qumis team"
+icon: "user-plus"
+noindex: true
+---
+
+Welcome to the Qumis engineering team! This guide will help you get set up with all the tools and access you need.
+
+## Prerequisites
+
+Before starting, ensure you have:
+- GitHub account with access to Qumis repositories
+- AWS account setup (coordinate with team lead)
+- Slack access to the engineering channels
+
+## Day 1: Essential Setup
+
+<Steps>
+  <Step title="Install Development Tools">
+    Install the core development tools:
+    ```bash
+    # Install Homebrew (macOS)
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    # Install essential tools
+    brew install git gh tree
+    brew install pygitup  # Highly recommended for git sync
+    ```
+  </Step>
+
+  <Step title="Install qumis-cli">
+    Clone and install our internal CLI tool:
+    ```bash
+    git clone https://github.com/qumisinc/qumis-cli.git
+    cd qumis-cli
+    make deploy
+
+    # Verify installation
+    qumis --version
+    ```
+
+    See [Tools Setup](/internal/engineering/tools-setup) for detailed instructions.
+  </Step>
+
+  <Step title="Configure AWS Access">
+    Set up AWS CLI and profiles:
+    ```bash
+    # Install AWS CLI
+    brew install awscli
+
+    # Configure AWS SSO
+    aws configure sso
+    ```
+
+    You'll need profiles for:
+    - `qumis_dev` - Development environment
+    - `qumis_qa` - QA environment
+    - `qumis_uat` - UAT environment
+    - `qumis_prod` - Production environment (requires approval)
+  </Step>
+
+  <Step title="Clone Core Repositories">
+    Clone the main repositories:
+    ```bash
+    # API Repository
+    git clone https://github.com/qumisinc/qumis-api.git
+
+    # Web Application
+    git clone https://github.com/qumisinc/qumis-web.git
+
+    # Infrastructure
+    git clone https://github.com/qumisinc/qumis-infra.git
+
+    # Documentation
+    git clone https://github.com/qumisinc/qumis-docs.git
+    ```
+  </Step>
+</Steps>
+
+## Day 2: Environment Configuration
+
+<Steps>
+  <Step title="Configure qumis-cli">
+    Set up your GitHub and Linear tokens:
+    ```bash
+    # Generate GitHub token at: https://github.com/settings/tokens
+    # Scopes needed: repo, workflow
+    qumis config github.token <your-github-token>
+
+    # Get Linear API key from: https://linear.app/settings/api
+    qumis config linear.token <your-linear-api-key>
+
+    # Verify configuration
+    qumis doctor
+    ```
+  </Step>
+
+  <Step title="Set Up Local Development">
+    For API development:
+    ```bash
+    cd qumis-api
+    # Follow README.md for local setup
+    bundle install
+    rails db:setup
+    ```
+
+    For web development:
+    ```bash
+    cd qumis-web
+    # Follow README.md for local setup
+    npm install
+    npm run dev
+    ```
+  </Step>
+
+  <Step title="Test AWS Access">
+    Verify your AWS access:
+    ```bash
+    # Login to development environment
+    qumis aws login dev
+
+    # List Lambda functions
+    qumis lambda list-functions --env dev
+
+    # View CloudWatch logs (if you have access)
+    aws logs tail /aws/lambda/qumis-api --profile qumis_dev
+    ```
+  </Step>
+</Steps>
+
+## Day 3-5: Learn the Workflow
+
+### Development Workflow
+
+1. **Create a feature branch**:
+   ```bash
+   qumis feature my-feature --ticket ENG-123
+   ```
+
+2. **Keep your branch updated**:
+   ```bash
+   qumis sync
+   ```
+
+3. **Create a pull request**:
+   ```bash
+   qumis pr create --title "Add new feature"
+   ```
+
+### Deployment Process
+
+<Warning>
+  Never deploy to production without:
+  - Code review approval
+  - QA testing in UAT environment
+  - Team lead approval
+</Warning>
+
+Learn about our deployment process:
+- [Production Deployment Guide](/internal/engineering/deployment/production-deployment)
+- [Deployment Checklist](/internal/engineering/deployment/deployment-checklist)
+
+### Monitoring & Debugging
+
+Get familiar with our monitoring tools:
+- [CloudWatch Monitoring](/internal/engineering/infrastructure/cloudwatch-monitoring)
+- [CloudWatch Alerts](/internal/engineering/infrastructure/cloudwatch-alerts)
+
+## Access Checklist
+
+Ensure you have access to:
+
+- [ ] GitHub repositories (qumis org)
+- [ ] AWS Console (at least dev environment)
+- [ ] Linear (project management)
+- [ ] Slack channels (#engineering, #deployments, #alerts)
+- [ ] PagerDuty (for on-call rotation)
+- [ ] 1Password (team vault)
+
+## Resources
+
+### Documentation
+- [qumis-cli Reference](/internal/engineering/operations/qumis-cli-reference)
+- [Git Branching Strategies](/internal/engineering/git-branching-strategies)
+- [Rails Commands Guide](/internal/engineering/operations/rails-commands)
+
+### Key Repositories
+- [qumis-cli](https://github.com/qumisinc/qumis-cli) - Internal CLI tool
+- [qumis-api](https://github.com/qumisinc/qumis-api) - Rails API
+- [qumis-web](https://github.com/qumisinc/qumis-web) - Web application
+- [qumis-infra](https://github.com/qumisinc/qumis-infra) - Infrastructure code
+
+### Support Channels
+- **Slack**: #engineering for questions
+- **Wiki**: Internal wiki for detailed guides
+- **Mentor**: Your assigned onboarding buddy
+
+## First Week Goals
+
+By the end of your first week, you should:
+- ✅ Have all tools installed and configured
+- ✅ Successfully run the application locally
+- ✅ Deploy a change to the dev environment
+- ✅ Understand our Git workflow
+- ✅ Know how to monitor logs in CloudWatch
+- ✅ Be familiar with qumis-cli commands
+
+## Questions?
+
+Don't hesitate to ask questions in #engineering or reach out to your onboarding buddy. We're here to help you succeed!

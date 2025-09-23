@@ -1,0 +1,332 @@
+---
+title: "Production Deployment"
+description: "Complete guide for deploying services to production using qumis-cli"
+icon: "rocket"
+noindex: true
+---
+
+<Warning>
+  **Production deployments require**:
+  - Code review approval on your PR
+  - Successful deployment to UAT
+  - Team lead or senior engineer approval
+  - Proper audit log reason
+</Warning>
+
+## Prerequisites
+
+Before deploying to production:
+
+1. **qumis-cli installed**: See [Tools Setup](/internal/engineering/tools-setup)
+2. **AWS Production access**: Verify with `qumis aws login prod`
+3. **GitHub access**: Ensure your PR is approved and merged
+4. **Deployment window**: Check #deployments channel for scheduled windows
+
+## Deployment Process
+
+### Step 1: Pre-Deployment Checks
+
+<Steps>
+  <Step title="Verify UAT Deployment">
+    Ensure your changes are deployed and tested in UAT:
+    ```bash
+    # Check UAT deployment status
+    qumis services info api --env uat
+
+    # Verify your changes are in UAT
+    qumis services exec api --env uat --reason "Verify deployment" -- rails runner "puts 'Version check'"
+    ```
+  </Step>
+
+  <Step title="Check Production Status">
+    Verify current production state:
+    ```bash
+    # Check current production version
+    qumis services info api --env prod
+
+    # Check production health
+    qumis lambda list-functions --env prod | grep api
+    ```
+  </Step>
+
+  <Step title="Review Deployment Checklist">
+    Go through the [Deployment Checklist](/internal/engineering/deployment/deployment-checklist) to ensure all items are completed.
+  </Step>
+</Steps>
+
+### Step 2: Deploy to Production
+
+<Tabs>
+  <Tab title="API Service">
+    Deploy the Rails API service:
+    ```bash
+    qumis deploy api \
+      --deploy-branch "main" \
+      --env "prod" \
+      --reason "Deploy feature XYZ - Ticket ENG-123" \
+      --workflow-ref "main" \
+      --confirm "prod"
+    ```
+
+    The `--confirm "prod"` flag is required as a safety measure.
+  </Tab>
+
+  <Tab title="Web Service">
+    Deploy the web application:
+    ```bash
+    qumis deploy web \
+      --deploy-branch "main" \
+      --env "prod" \
+      --reason "Deploy UI updates - Ticket ENG-124" \
+      --workflow-ref "main" \
+      --confirm "prod"
+    ```
+  </Tab>
+
+  <Tab title="LLM Service">
+    Deploy the LLM service:
+    ```bash
+    qumis deploy llm \
+      --deploy-branch "main" \
+      --env "prod" \
+      --reason "Update LLM models - Ticket ENG-125" \
+      --workflow-ref "main" \
+      --confirm "prod"
+    ```
+  </Tab>
+</Tabs>
+
+### Step 3: Monitor Deployment
+
+<Steps>
+  <Step title="Watch GitHub Actions">
+    Monitor the deployment workflow:
+    ```bash
+    # Open GitHub Actions in browser
+    qumis gh view
+
+    # Navigate to Actions tab to watch the deployment
+    ```
+  </Step>
+
+  <Step title="Monitor CloudWatch Logs">
+    Watch for errors during deployment:
+    ```bash
+    # Tail Lambda logs
+    aws logs tail /aws/lambda/qumis-api-prod --profile qumis_prod --follow
+
+    # Check for errors
+    aws logs filter-log-events \
+      --log-group-name /aws/lambda/qumis-api-prod \
+      --start-time $(date -u -d '5 minutes ago' '+%s')000 \
+      --filter-pattern "ERROR" \
+      --profile qumis_prod
+    ```
+  </Step>
+
+  <Step title="Verify Deployment">
+    Confirm the deployment succeeded:
+    ```bash
+    # Check service info
+    qumis services info api --env prod
+
+    # Run a health check
+    qumis services exec api \
+      --env prod \
+      --reason "Post-deployment health check" \
+      --confirm "prod" \
+      -- rails runner "puts 'Health: OK'"
+    ```
+  </Step>
+</Steps>
+
+## Deployment Commands Reference
+
+### Required Flags
+
+| Flag | Description | Example |
+|------|-------------|---------|
+| `--deploy-branch` | Git branch to deploy | `"main"` or `"hotfix-123"` |
+| `--env` | Target environment | `"prod"` |
+| `--reason` | Audit log reason | `"Deploy feature XYZ"` |
+| `--workflow-ref` | GitHub workflow branch | `"main"` |
+| `--confirm` | Confirmation (prod only) | `"prod"` |
+
+### Environment Mapping
+
+| Environment | AWS Account | Confirmation Required |
+|------------|-------------|----------------------|
+| dev | 080970846004 | No |
+| qa | 340452546718 | No |
+| uat | 499854674638 | No |
+| **prod** | **729033428609** | **Yes** (`--confirm prod`) |
+
+## Post-Deployment Tasks
+
+### Immediate Verification
+
+1. **Check application health**:
+   ```bash
+   # API health check
+   curl https://api.qumis.ai/health
+
+   # Web application check
+   curl https://app.qumis.ai
+   ```
+
+2. **Monitor error rates**:
+   ```bash
+   # Check CloudWatch metrics
+   aws cloudwatch get-metric-statistics \
+     --namespace AWS/Lambda \
+     --metric-name Errors \
+     --dimensions Name=FunctionName,Value=qumis-api-prod \
+     --start-time $(date -u -d '10 minutes ago' --iso-8601) \
+     --end-time $(date -u --iso-8601) \
+     --period 300 \
+     --statistics Sum \
+     --profile qumis_prod
+   ```
+
+3. **Verify key functionality**:
+   - Test login flow
+   - Check critical API endpoints
+   - Verify database connectivity
+
+### Communication
+
+<Steps>
+  <Step title="Update Deployment Channel">
+    Post in #deployments:
+    ```
+    ✅ Production deployment complete
+    Service: API
+    Version: [commit SHA]
+    Reason: Deploy feature XYZ - ENG-123
+    Status: Healthy
+    ```
+  </Step>
+
+  <Step title="Update Linear Ticket">
+    Mark the ticket as deployed:
+    ```bash
+    # If using linear-cli
+    linear issue update ENG-123 --status "Deployed"
+    ```
+  </Step>
+</Steps>
+
+## Rollback Procedures
+
+If issues are detected after deployment:
+
+<Warning>
+  **Act quickly but calmly**. Follow the [Rollback Procedures](/internal/engineering/deployment/rollback-procedures) guide.
+</Warning>
+
+Quick rollback command:
+```bash
+# Deploy the previous version
+qumis deploy api \
+  --deploy-branch "main" \
+  --env "prod" \
+  --reason "ROLLBACK: Issues detected with ENG-123" \
+  --workflow-ref "main" \
+  --confirm "prod"
+```
+
+## Security Considerations
+
+### Audit Logging
+
+All production deployments are logged with:
+- Deployer's identity
+- Timestamp
+- Reason provided
+- Git commit SHA
+- Source and target branches
+
+### Access Control
+
+- Production deployments require explicit AWS production role
+- GitHub branch protection prevents direct pushes to main
+- Confirmation prompt prevents accidental deployments
+
+### Sensitive Operations
+
+When running Rails commands in production:
+
+<Tabs>
+  <Tab title="Rails Console">
+    ```bash
+    qumis services exec api \
+      --env prod \
+      --reason "Debug customer issue #12345" \
+      --confirm "prod" \
+      -- rails console
+    ```
+
+    <Warning>
+      Rails console in production has full database access. Be extremely careful with any data modifications.
+    </Warning>
+  </Tab>
+
+  <Tab title="Database Migrations">
+    ```bash
+    qumis services exec api \
+      --env prod \
+      --reason "Run migration for feature ENG-123" \
+      --confirm "prod" \
+      -- rails db:migrate
+    ```
+
+    Always test migrations in UAT first!
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+### Common Issues
+
+<AccordionGroup>
+  <Accordion title="Deployment workflow not starting">
+    Check:
+    - GitHub Actions is not experiencing an outage
+    - Your GitHub token has workflow permissions
+    - The workflow file exists on the specified `--workflow-ref` branch
+  </Accordion>
+
+  <Accordion title="AWS permission denied">
+    Ensure:
+    ```bash
+    # Re-authenticate
+    qumis aws login prod
+
+    # Verify access
+    aws sts get-caller-identity --profile qumis_prod
+    ```
+  </Accordion>
+
+  <Accordion title="Deployment succeeded but app not working">
+    1. Check Lambda function status
+    2. Review CloudWatch logs for startup errors
+    3. Verify environment variables are set correctly
+    4. Check database connectivity
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+1. **Always deploy to UAT first** and wait for verification
+2. **Deploy during low-traffic periods** when possible
+3. **Monitor for 15-30 minutes** after deployment
+4. **Keep deployments small** - easier to debug and rollback
+5. **Document your deployment** in the audit log reason
+6. **Communicate with the team** before and after deployment
+
+## Additional Resources
+
+- [Deployment Checklist](/internal/engineering/deployment/deployment-checklist)
+- [Rollback Procedures](/internal/engineering/deployment/rollback-procedures)
+- [CloudWatch Monitoring](/internal/engineering/infrastructure/cloudwatch-monitoring)
+- [qumis-cli Reference](/internal/engineering/operations/qumis-cli-reference)

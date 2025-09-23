@@ -1,0 +1,414 @@
+---
+title: "qumis-cli Reference"
+description: "Quick reference guide for common qumis-cli commands and operations"
+icon: "terminal"
+noindex: true
+---
+
+<Info>
+  **qumis-cli** is our internal CLI tool for streamlining development and operations.
+
+  Repository: [github.com/qumisinc/qumis-cli](https://github.com/qumisinc/qumis-cli)
+
+  Not installed? See [Tools Setup](/internal/engineering/tools-setup)
+</Info>
+
+## Quick Command Reference
+
+### Service Deployment
+
+```bash
+# Deploy to different environments
+qumis deploy api --env dev --reason "Feature update"
+qumis deploy api --env qa --reason "QA testing"
+qumis deploy api --env uat --reason "UAT validation"
+qumis deploy api --env prod --reason "Production release" --confirm prod
+
+# Deploy specific branches
+qumis deploy web \
+  --deploy-branch "feature-branch" \
+  --env "dev" \
+  --reason "Test feature" \
+  --workflow-ref "main"
+```
+
+### Service Operations
+
+```bash
+# Execute commands on services
+qumis services exec api --env dev -- rails console
+qumis services exec api --env dev -- rails db:migrate
+qumis services exec api --env prod --reason "Debug" --confirm prod -- rails c
+
+# Get service information
+qumis services info api --env dev
+qumis services info web --env prod
+```
+
+### AWS Operations
+
+```bash
+# Authentication
+qumis aws login dev
+qumis aws login prod
+qumis aws status
+qumis aws profiles
+
+# Lambda functions
+qumis lambda list-functions --env dev
+qumis lambda describe-function CacheCreate --env dev
+```
+
+## Common Operations
+
+### Development Workflow
+
+<Tabs>
+  <Tab title="Feature Development">
+    ```bash
+    # 1. Sync your repository
+    qumis sync
+
+    # 2. Create feature branch
+    qumis feature user-auth --ticket ENG-456
+
+    # 3. Check status
+    qumis status
+
+    # 4. Create pull request
+    qumis pr create --title "Add user authentication"
+
+    # 5. View PR in browser
+    qumis pr view
+    ```
+  </Tab>
+  <Tab title="Quick Fixes">
+    ```bash
+    # 1. Switch to branch
+    qumis switch main
+
+    # 2. Pull latest changes
+    qumis sync
+
+    # 3. Create hotfix branch
+    qumis feature hotfix-bug
+
+    # 4. Deploy to dev for testing
+    qumis deploy api --env dev --reason "Test hotfix"
+    ```
+  </Tab>
+</Tabs>
+
+### Rails Console Access
+
+<Warning>
+  Production console access requires audit logging. Always provide a clear reason.
+</Warning>
+
+<Tabs>
+  <Tab title="Development">
+    ```bash
+    # Simple console access
+    qumis services exec api --env dev -- rails console
+
+    # Run specific commands
+    qumis services exec api --env dev -- rails runner "puts User.count"
+
+    # Check migrations
+    qumis services exec api --env dev -- rails db:migrate:status
+    ```
+  </Tab>
+  <Tab title="Production">
+    ```bash
+    # Production requires confirmation and reason
+    qumis services exec api \
+      --env prod \
+      --reason "Investigate customer issue #12345" \
+      --confirm prod \
+      -- rails console
+
+    # Run read-only queries
+    qumis services exec api \
+      --env prod \
+      --reason "Check user count for metrics" \
+      --confirm prod \
+      -- rails runner "puts User.count"
+    ```
+  </Tab>
+</Tabs>
+
+### Database Operations
+
+```bash
+# Run migrations
+qumis services exec api --env dev -- rails db:migrate
+qumis services exec api --env uat -- rails db:migrate
+qumis services exec api --env prod --reason "Apply migration" --confirm prod -- rails db:migrate
+
+# Check migration status
+qumis services exec api --env dev -- rails db:migrate:status
+
+# Rollback migration
+qumis services exec api --env dev -- rails db:rollback STEP=1
+
+# Seed database (dev only)
+qumis services exec api --env dev -- rails db:seed
+```
+
+### Environment Variables
+
+```bash
+# List environment variables
+qumis vars list api --env dev
+qumis vars list web --env prod
+
+# Set environment variable (through AWS Console or IaC)
+# Note: qumis-cli doesn't directly modify env vars for security
+```
+
+### Monitoring & Debugging
+
+```bash
+# Check service health
+qumis services info api --env prod
+
+# View Lambda functions
+qumis lambda list-functions --env prod
+
+# Get function details
+qumis lambda describe-function llm-api-Function2 --env prod
+
+# AWS authentication status
+qumis aws status
+```
+
+## Command Options
+
+### Global Flags
+
+| Flag | Description | Example |
+|------|-------------|---------|
+| `--env` | Target environment | `dev`, `qa`, `uat`, `prod` |
+| `--reason` | Audit log reason (required for prod) | `"Fix bug ENG-123"` |
+| `--confirm` | Confirmation for production | `prod` |
+| `--profile` | AWS profile override | `qumis_dev` |
+
+### Environment Mapping
+
+| Environment | AWS Account | Profile | Confirmation |
+|-------------|------------|---------|--------------|
+| `dev` | 080970846004 | qumis_dev | No |
+| `qa` | 340452546718 | qumis_qa | No |
+| `uat` | 499854674638 | qumis_uat | No |
+| `prod` | 729033428609 | qumis_prod | Yes |
+
+## Git Operations
+
+### Branch Management
+
+```bash
+# Create feature branch
+qumis feature my-feature
+qumis feature my-feature --ticket ENG-123
+
+# Switch branches
+qumis switch main
+qumis switch feature-branch
+qumis switch ENG-123  # Switch by ticket ID
+
+# Sync with remote
+qumis sync  # Fetches and prunes
+```
+
+### GitHub Integration
+
+```bash
+# Open in browser
+qumis gh view         # Current repo and branch
+qumis open pr         # Current PR
+qumis open branch     # Current branch
+
+# Pull request operations
+qumis pr create --title "Title" --description "Description"
+qumis pr view
+```
+
+## Troubleshooting Commands
+
+### Diagnostics
+
+```bash
+# Run system diagnostics
+qumis doctor
+
+# Check configuration
+qumis config
+qumis config github.token  # View specific (masked)
+
+# List all commands
+qumis commands
+qumis commands --category "Local Development"
+```
+
+### Common Issues
+
+<AccordionGroup>
+  <Accordion title="AWS authentication expired">
+    ```bash
+    # Re-authenticate
+    qumis aws login dev
+
+    # Check status
+    qumis aws status
+    ```
+  </Accordion>
+
+  <Accordion title="GitHub token issues">
+    ```bash
+    # Reconfigure token
+    qumis config github.token <new-token>
+
+    # Verify with
+    qumis doctor
+    ```
+  </Accordion>
+
+  <Accordion title="Command not found">
+    ```bash
+    # Check installation
+    which qumis
+
+    # Reinstall if needed
+    cd /path/to/qumis-cli
+    make deploy
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Advanced Usage
+
+### Interactive Mode
+
+qumis-cli supports interactive prompting for missing arguments:
+
+```bash
+# Will prompt for service and environment
+qumis deploy
+
+# Will prompt for environment
+qumis services exec api
+
+# Bypass prompts with flags
+qumis deploy api --env dev --reason "Deploy" --non-interactive
+```
+
+### Shell Aliases
+
+If you have shell integration enabled:
+
+```bash
+# Short aliases
+q status      # Same as: qumis status
+q sync        # Same as: qumis sync
+q pr view     # Same as: qumis pr view
+```
+
+### Repository Tools
+
+```bash
+# Pack repository for AI tools
+qumis repo pack --output context.xml
+
+# Copy to clipboard (macOS)
+qumis repo pack --stdout | pbcopy
+```
+
+## Service-Specific Commands
+
+### API Service
+
+```bash
+# Rails-specific commands
+qumis services exec api --env dev -- rails generate model User
+qumis services exec api --env dev -- bundle install
+qumis services exec api --env dev -- rake db:create
+qumis services exec api --env dev -- rspec
+```
+
+### Web Service
+
+```bash
+# Node.js/Next.js commands
+qumis services exec web --env dev -- npm install
+qumis services exec web --env dev -- npm run build
+qumis services exec web --env dev -- npm test
+```
+
+### LLM Service
+
+```bash
+# Python/ML commands
+qumis services exec llm --env dev -- python manage.py
+qumis services exec llm --env dev -- pip list
+```
+
+## Best Practices
+
+1. **Always provide clear reasons** for production operations
+2. **Test in dev/UAT first** before production deployments
+3. **Use ticket numbers** in deployment reasons for traceability
+4. **Run `qumis sync`** before starting new work
+5. **Check `qumis status`** to see current branch and PR status
+6. **Use `qumis doctor`** to diagnose configuration issues
+
+## Scripting with qumis-cli
+
+### Deployment Script Example
+
+```bash
+#!/bin/bash
+# deploy-to-uat.sh
+
+set -e
+
+echo "Deploying to UAT..."
+
+# Ensure we're on the right branch
+git checkout release
+
+# Sync with remote
+qumis sync
+
+# Deploy to UAT
+qumis deploy api \
+  --env uat \
+  --reason "UAT deployment for sprint review" \
+  --deploy-branch "release" \
+  --workflow-ref "release"
+
+# Verify deployment
+qumis services info api --env uat
+
+echo "UAT deployment complete!"
+```
+
+### Health Check Script
+
+```bash
+#!/bin/bash
+# health-check.sh
+
+ENVIRONMENTS=("dev" "qa" "uat" "prod")
+
+for ENV in "${ENVIRONMENTS[@]}"; do
+  echo "Checking $ENV..."
+  qumis services info api --env $ENV || echo "$ENV is down!"
+done
+```
+
+## Additional Resources
+
+- [qumis-cli GitHub Repository](https://github.com/qumisinc/qumis-cli)
+- [Rails Commands Guide](/internal/engineering/operations/rails-commands)
+- [Production Deployment](/internal/engineering/deployment/production-deployment)
+- [Tools Setup](/internal/engineering/tools-setup)

@@ -1,0 +1,319 @@
+---
+title: "Deployment Checklist"
+description: "Pre and post-deployment verification steps for safe releases"
+icon: "check-circle"
+noindex: true
+---
+
+Use this checklist before and after every deployment to ensure safe and successful releases.
+
+## Pre-Deployment Checklist
+
+### Code Review & Testing
+
+- [ ] **Pull request approved** by at least one team member
+- [ ] **All CI checks passing** (tests, linting, security scans)
+- [ ] **No merge conflicts** with target branch
+- [ ] **Unit tests** cover new functionality
+- [ ] **Integration tests** verify API contracts
+- [ ] **Manual testing** completed in development environment
+
+### Environment Progression
+
+- [ ] **Deployed to dev** and verified working
+- [ ] **Deployed to QA** and passed QA testing
+- [ ] **Deployed to UAT** and stakeholder approved
+- [ ] **Release notes** documented with changes
+
+### Database & Infrastructure
+
+- [ ] **Database migrations** tested in UAT
+- [ ] **No breaking schema changes** without coordination
+- [ ] **Environment variables** documented if added/changed
+- [ ] **API version compatibility** maintained
+- [ ] **Infrastructure changes** applied via Infrastructure as Code
+
+### Communication
+
+- [ ] **Deployment window** scheduled and communicated
+- [ ] **Team notified** in #deployments channel
+- [ ] **On-call engineer** aware of deployment
+- [ ] **Rollback plan** documented and ready
+
+## Deployment Execution
+
+### Pre-Flight Checks
+
+```bash
+# 1. Verify you're deploying the right commit
+git log --oneline -5
+
+# 2. Check current production version
+qumis services info api --env prod
+
+# 3. Verify UAT has your changes
+qumis services info api --env uat
+
+# 4. Check system health
+aws cloudwatch get-metric-statistics \
+  --namespace AWS/Lambda \
+  --metric-name Errors \
+  --dimensions Name=FunctionName,Value=qumis-api-prod \
+  --start-time $(date -u -d '1 hour ago' --iso-8601) \
+  --end-time $(date -u --iso-8601) \
+  --period 3600 \
+  --statistics Sum \
+  --profile qumis_prod
+```
+
+### Deployment Commands
+
+<Tabs>
+  <Tab title="Standard Deployment">
+    ```bash
+    # Deploy API to production
+    qumis deploy api \
+      --deploy-branch "main" \
+      --env "prod" \
+      --reason "Deploy feature ABC - ENG-123" \
+      --workflow-ref "main" \
+      --confirm "prod"
+    ```
+  </Tab>
+  <Tab title="Hotfix Deployment">
+    ```bash
+    # Deploy hotfix branch
+    qumis deploy api \
+      --deploy-branch "hotfix-critical-bug" \
+      --env "prod" \
+      --reason "HOTFIX: Critical bug fix - INC-456" \
+      --workflow-ref "main" \
+      --confirm "prod"
+    ```
+  </Tab>
+</Tabs>
+
+### During Deployment
+
+- [ ] **Monitor GitHub Actions** workflow progress
+- [ ] **Watch CloudWatch logs** for errors
+- [ ] **Check deployment status** in AWS Console
+- [ ] **Alert team** if deployment is taking longer than expected
+
+## Post-Deployment Checklist
+
+### Immediate Verification (0-5 minutes)
+
+- [ ] **Deployment workflow** completed successfully
+- [ ] **Application started** without errors
+- [ ] **Health endpoints** responding
+- [ ] **No spike in error rates**
+
+```bash
+# Quick health check
+curl -f https://api.qumis.ai/health || echo "Health check failed!"
+
+# Check recent errors
+aws logs filter-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --start-time $(date -u -d '5 minutes ago' '+%s')000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod
+```
+
+### Functional Verification (5-15 minutes)
+
+- [ ] **Login flow** working
+- [ ] **Core features** tested and working
+- [ ] **Database queries** performing normally
+- [ ] **External integrations** functioning
+- [ ] **Background jobs** processing
+
+### Performance Verification (15-30 minutes)
+
+- [ ] **Response times** within normal range
+- [ ] **Memory usage** stable
+- [ ] **CPU usage** normal
+- [ ] **Database connections** not exhausted
+- [ ] **No memory leaks** detected
+
+```bash
+# Check Lambda metrics
+aws cloudwatch get-metric-statistics \
+  --namespace AWS/Lambda \
+  --metric-name Duration \
+  --dimensions Name=FunctionName,Value=qumis-api-prod \
+  --start-time $(date -u -d '30 minutes ago' --iso-8601) \
+  --end-time $(date -u --iso-8601) \
+  --period 300 \
+  --statistics Average,Maximum \
+  --profile qumis_prod
+```
+
+### Communication & Documentation
+
+- [ ] **Update #deployments** channel with status
+- [ ] **Update Linear ticket** to "Deployed" status
+- [ ] **Document any issues** encountered
+- [ ] **Update runbook** if new procedures discovered
+
+## Environment-Specific Checklists
+
+### Development Deployment
+
+Simplified checklist for dev environment:
+- [ ] Code builds successfully
+- [ ] Basic smoke tests pass
+- [ ] Team notified of changes
+
+### UAT Deployment
+
+Additional checks for UAT:
+- [ ] Stakeholder notification sent
+- [ ] Test data prepared
+- [ ] Testing plan communicated
+- [ ] Rollback plan ready
+
+### Production Deployment
+
+Full checklist plus:
+- [ ] Change advisory board approval (if required)
+- [ ] Customer communication prepared (if user-facing)
+- [ ] Support team briefed
+- [ ] Monitoring alerts configured
+
+## Rollback Criteria
+
+Immediately rollback if any of these occur:
+
+<Warning>
+  **Critical Issues**:
+  - Application fails to start
+  - Database connection errors
+  - Authentication system failure
+  - Data corruption detected
+  - Error rate > 10% of requests
+</Warning>
+
+Consider rollback for:
+- Performance degradation > 50%
+- Key features not working
+- Integration failures with critical services
+- Excessive memory or CPU usage
+
+## Special Considerations
+
+### Database Migrations
+
+When deploying database migrations:
+
+- [ ] **Backup taken** before migration
+- [ ] **Migration reversible** or safe to leave
+- [ ] **Tested on production data copy**
+- [ ] **Downtime communicated** if required
+- [ ] **Verification queries** prepared
+
+```bash
+# Run migration with careful monitoring
+qumis services exec api \
+  --env prod \
+  --reason "Run migration for ENG-123" \
+  --confirm "prod" \
+  -- rails db:migrate:status
+
+# Verify migration succeeded
+qumis services exec api \
+  --env prod \
+  --reason "Verify migration" \
+  --confirm "prod" \
+  -- rails runner "puts ActiveRecord::Base.connection.tables"
+```
+
+### Breaking Changes
+
+For deployments with breaking changes:
+
+- [ ] **API version** incremented
+- [ ] **Deprecation notices** sent to consumers
+- [ ] **Migration guide** published
+- [ ] **Backwards compatibility** maintained (if possible)
+- [ ] **Coordinated deployment** with dependent services
+
+### High-Risk Deployments
+
+For significant changes or high-risk deployments:
+
+- [ ] **Canary deployment** considered
+- [ ] **Feature flags** in place
+- [ ] **Extended monitoring** period planned
+- [ ] **Rollback rehearsed** in UAT
+- [ ] **War room** scheduled with key stakeholders
+
+## Automation Scripts
+
+### Pre-deployment Health Check
+
+```bash
+#!/bin/bash
+# pre-deploy-check.sh
+
+echo "Running pre-deployment checks..."
+
+# Check UAT deployment
+echo "UAT Status:"
+qumis services info api --env uat
+
+# Check production health
+echo "Production Health:"
+curl -s https://api.qumis.ai/health | jq .
+
+# Check error rates
+echo "Recent errors:"
+aws logs filter-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --start-time $(date -u -d '1 hour ago' '+%s')000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod \
+  --max-items 10
+
+echo "Pre-deployment checks complete"
+```
+
+### Post-deployment Validation
+
+```bash
+#!/bin/bash
+# post-deploy-validate.sh
+
+echo "Running post-deployment validation..."
+
+# Health check
+if curl -f -s https://api.qumis.ai/health > /dev/null; then
+  echo "✅ Health check passed"
+else
+  echo "❌ Health check failed!"
+  exit 1
+fi
+
+# Check for errors
+ERROR_COUNT=$(aws logs filter-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --start-time $(date -u -d '5 minutes ago' '+%s')000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod \
+  --query 'events | length(@)')
+
+if [ "$ERROR_COUNT" -gt 10 ]; then
+  echo "⚠️ High error count detected: $ERROR_COUNT"
+else
+  echo "✅ Error count normal: $ERROR_COUNT"
+fi
+
+echo "Post-deployment validation complete"
+```
+
+## Next Steps
+
+- Review [Rollback Procedures](/internal/engineering/deployment/rollback-procedures) to be prepared
+- Set up [CloudWatch Alerts](/internal/engineering/infrastructure/cloudwatch-alerts) for automated monitoring
+- Read [Production Deployment Guide](/internal/engineering/deployment/production-deployment) for detailed instructions

@@ -125,13 +125,40 @@
           {
             "group": "Engineering",
             "pages": [
+              "internal/engineering/index",
+              "internal/engineering/onboarding",
+              "internal/engineering/tools-setup",
               "internal/engineering/git-branching-strategies"
+            ]
+          },
+          {
+            "group": "Deployment",
+            "pages": [
+              "internal/engineering/deployment/production-deployment",
+              "internal/engineering/deployment/deployment-checklist",
+              "internal/engineering/deployment/rollback-procedures"
+            ]
+          },
+          {
+            "group": "Operations",
+            "pages": [
+              "internal/engineering/operations/qumis-cli-reference",
+              "internal/engineering/operations/rails-commands"
             ]
           },
           {
             "group": "Infrastructure",
             "pages": [
-              "internal/infrastructure"
+              "internal/engineering/infrastructure/aws-environments",
+              "internal/engineering/infrastructure/cloudwatch-monitoring",
+              "internal/engineering/infrastructure/cloudwatch-alerts"
+            ]
+          },
+          {
+            "group": "Troubleshooting",
+            "pages": [
+              "internal/engineering/troubleshooting/common-issues",
+              "internal/engineering/troubleshooting/debugging-production"
             ]
           }
         ]
