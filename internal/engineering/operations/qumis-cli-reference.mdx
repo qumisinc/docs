@@ -22,7 +22,7 @@ noindex: true
 qumis deploy api --env dev --reason "Feature update"
 qumis deploy api --env qa --reason "QA testing"
 qumis deploy api --env uat --reason "UAT validation"
-qumis deploy api --env prod --reason "Production release" --confirm prod
+qumis deploy api --env prod --deploy-branch "release" --workflow-ref "release" --reason "Production release"
 
 # Deploy specific branches
 qumis deploy web \
@@ -30,6 +30,13 @@ qumis deploy web \
   --env "dev" \
   --reason "Test feature" \
   --workflow-ref "main"
+
+# Production deployments use release branch
+qumis deploy web \
+  --deploy-branch "release" \
+  --env "prod" \
+  --reason "Production deployment" \
+  --workflow-ref "release"
 ```
 
 ### Service Operations
@@ -38,7 +45,7 @@ qumis deploy web \
 # Execute commands on services
 qumis services exec api --env dev -- rails console
 qumis services exec api --env dev -- rails db:migrate
-qumis services exec api --env prod --reason "Debug" --confirm prod -- rails c
+qumis services exec api --env prod --reason "Debug" -- rails c
 
 # Get service information
 qumis services info api --env dev
@@ -120,18 +127,16 @@ qumis lambda describe-function CacheCreate --env dev
   </Tab>
   <Tab title="Production">
     ```bash
-    # Production requires confirmation and reason
+    # Production requires reason (interactive confirmation)
     qumis services exec api \
       --env prod \
       --reason "Investigate customer issue #12345" \
-      --confirm prod \
       -- rails console
 
     # Run read-only queries
     qumis services exec api \
       --env prod \
       --reason "Check user count for metrics" \
-      --confirm prod \
       -- rails runner "puts User.count"
     ```
   </Tab>
@@ -143,7 +148,7 @@ qumis lambda describe-function CacheCreate --env dev
 # Run migrations
 qumis services exec api --env dev -- rails db:migrate
 qumis services exec api --env uat -- rails db:migrate
-qumis services exec api --env prod --reason "Apply migration" --confirm prod -- rails db:migrate
+qumis services exec api --env prod --reason "Apply migration" -- rails db:migrate
 
 # Check migration status
 qumis services exec api --env dev -- rails db:migrate:status
@@ -190,7 +195,7 @@ qumis aws status
 |------|-------------|---------|
 | `--env` | Target environment | `dev`, `qa`, `uat`, `prod` |
 | `--reason` | Audit log reason (required for prod) | `"Fix bug ENG-123"` |
-| `--confirm` | Confirmation for production | `prod` |
+| `--interact` | Interactive confirmation (auto for prod) | N/A |
 | `--profile` | AWS profile override | `qumis_dev` |
 
 ### Environment Mapping
@@ -200,7 +205,7 @@ qumis aws status
 | `dev` | 080970846004 | qumis_dev | No |
 | `qa` | 340452546718 | qumis_qa | No |
 | `uat` | 499854674638 | qumis_uat | No |
-| `prod` | 729033428609 | qumis_prod | Yes |
+| `prod` | 729033428609 | qumis_prod | Yes (interactive) |
 
 ## Git Operations
 
@@ -379,12 +384,16 @@ git checkout release
 # Sync with remote
 qumis sync
 
-# Deploy to UAT
+# Deploy to UAT (or production)
 qumis deploy api \
   --env uat \
   --reason "UAT deployment for sprint review" \
   --deploy-branch "release" \
   --workflow-ref "release"
+
+# Note: For production, you'll be prompted to confirm by typing:
+# - The deploy branch (e.g., "release")
+# - The environment ("prod")
 
 # Verify deployment
 qumis services info api --env uat

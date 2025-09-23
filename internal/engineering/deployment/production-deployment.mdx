@@ -24,6 +24,14 @@ Before deploying to production:
 
 ## Deployment Process
 
+<Note>
+  **Interactive Confirmation for Production**: When deploying to production, the qumis-cli will display deployment details and prompt you to manually confirm by typing:
+  1. The deploy branch name (e.g., "release")
+  2. The environment name ("prod")
+
+  This two-step confirmation replaces the previous `--confirm` flag and helps prevent accidental production deployments.
+</Note>
+
 ### Step 1: Pre-Deployment Checks
 
 <Steps>
@@ -61,25 +69,29 @@ Before deploying to production:
     Deploy the Rails API service:
     ```bash
     qumis deploy api \
-      --deploy-branch "main" \
+      --deploy-branch "release" \
       --env "prod" \
       --reason "Deploy feature XYZ - Ticket ENG-123" \
-      --workflow-ref "main" \
-      --confirm "prod"
+      --workflow-ref "release"
     ```
 
-    The `--confirm "prod"` flag is required as a safety measure.
+    <Info>
+      **Interactive Confirmation**: For production deployments, the CLI will prompt you to manually type:
+      - The deploy branch name (e.g., "release")
+      - The environment name ("prod")
+
+      This replaces the previous `--confirm` flag for added safety.
+    </Info>
   </Tab>
 
   <Tab title="Web Service">
     Deploy the web application:
     ```bash
     qumis deploy web \
-      --deploy-branch "main" \
+      --deploy-branch "release" \
       --env "prod" \
       --reason "Deploy UI updates - Ticket ENG-124" \
-      --workflow-ref "main" \
-      --confirm "prod"
+      --workflow-ref "release"
     ```
   </Tab>
 
@@ -87,11 +99,10 @@ Before deploying to production:
     Deploy the LLM service:
     ```bash
     qumis deploy llm \
-      --deploy-branch "main" \
+      --deploy-branch "release" \
       --env "prod" \
       --reason "Update LLM models - Ticket ENG-125" \
-      --workflow-ref "main" \
-      --confirm "prod"
+      --workflow-ref "release"
     ```
   </Tab>
 </Tabs>
@@ -134,7 +145,6 @@ Before deploying to production:
     qumis services exec api \
       --env prod \
       --reason "Post-deployment health check" \
-      --confirm "prod" \
       -- rails runner "puts 'Health: OK'"
     ```
   </Step>
@@ -146,11 +156,10 @@ Before deploying to production:
 
 | Flag | Description | Example |
 |------|-------------|---------|
-| `--deploy-branch` | Git branch to deploy | `"main"` or `"hotfix-123"` |
+| `--deploy-branch` | Git branch to deploy | `"release"` or `"hotfix-123"` |
 | `--env` | Target environment | `"prod"` |
 | `--reason` | Audit log reason | `"Deploy feature XYZ"` |
-| `--workflow-ref` | GitHub workflow branch | `"main"` |
-| `--confirm` | Confirmation (prod only) | `"prod"` |
+| `--workflow-ref` | GitHub workflow branch | `"release"` |
 
 ### Environment Mapping
 
@@ -159,7 +168,7 @@ Before deploying to production:
 | dev | 080970846004 | No |
 | qa | 340452546718 | No |
 | uat | 499854674638 | No |
-| **prod** | **729033428609** | **Yes** (`--confirm prod`) |
+| **prod** | **729033428609** | **Yes** (type branch & env) |
 
 ## Post-Deployment Tasks
 
@@ -228,12 +237,15 @@ Quick rollback command:
 ```bash
 # Deploy the previous version
 qumis deploy api \
-  --deploy-branch "main" \
+  --deploy-branch "release" \
   --env "prod" \
   --reason "ROLLBACK: Issues detected with ENG-123" \
-  --workflow-ref "main" \
-  --confirm "prod"
+  --workflow-ref "release"
 ```
+
+<Note>
+  You'll be prompted to confirm by typing the branch name and environment.
+</Note>
 
 ## Security Considerations
 
@@ -262,7 +274,6 @@ When running Rails commands in production:
     qumis services exec api \
       --env prod \
       --reason "Debug customer issue #12345" \
-      --confirm "prod" \
       -- rails console
     ```
 
@@ -276,7 +287,6 @@ When running Rails commands in production:
     qumis services exec api \
       --env prod \
       --reason "Run migration for feature ENG-123" \
-      --confirm "prod" \
       -- rails db:migrate
     ```
 
