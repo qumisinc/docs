@@ -196,8 +196,7 @@ graph TD
   <Step title="Monitor Deployment">
     Watch the rollback deployment:
     ```bash
-    # Monitor GitHub Actions
-    qumis gh view  # Navigate to Actions tab
+    # Monitor GitHub Actions (navigate to Actions tab in browser)
 
     # Watch CloudWatch logs
     aws logs tail /aws/lambda/qumis-api-prod --profile qumis_prod --follow

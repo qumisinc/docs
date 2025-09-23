@@ -229,7 +229,6 @@ qumis sync  # Fetches and prunes
 
 ```bash
 # Open in browser
-qumis gh view         # Current repo and branch
 qumis open pr         # Current PR
 qumis open branch     # Current branch
 
@@ -322,10 +321,10 @@ q pr view     # Same as: qumis pr view
 
 ```bash
 # Pack repository for AI tools
-qumis repo pack --output context.xml
+qumis pack --output context.xml
 
 # Copy to clipboard (macOS)
-qumis repo pack --stdout | pbcopy
+qumis pack --stdout | pbcopy
 ```
 
 ## Service-Specific Commands
