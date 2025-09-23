@@ -50,8 +50,7 @@
               "tools/fill-in-checklist",
               "tools/document-vault",
               "tools/legal-search",
-              "tools/custom-reports",
-              "features/markdown-export"
+              "tools/custom-reports"
             ]
           },
           {
@@ -126,7 +125,8 @@
           {
             "group": "Documentation Standards",
             "pages": [
-              "internal/documentation/writing-style-guide"
+              "internal/documentation/writing-style-guide",
+              "internal/documentation/markdown-export"
             ]
           },
           {
