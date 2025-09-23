@@ -223,5 +223,17 @@
   "modeToggle": {
     "default": "light",
     "isHidden": true
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   }
 }
