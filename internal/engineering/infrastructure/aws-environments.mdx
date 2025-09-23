@@ -166,14 +166,22 @@ qumis services exec api \
 
 <Steps>
   <Step title="Configure SSO Profile">
+    Configure your `~/.aws/config` file with the SSO profiles. The SSO URL is `https://qumis.awsapps.com/start/` and the region is `us-east-2`:
+
     ```bash
-    # Configure each environment
-    aws configure sso --profile qumis_dev
-    # SSO URL: [provided by team]
-    # Region: us-east-1
-    # Account: 080970846004
-    # Role: [your-assigned-role]
+    # View the configuration template
+    cat ~/.aws/config
+
+    # Or create from template - see Tools Setup guide for full config
     ```
+
+    The profiles use the following pattern:
+    - SSO URL: `https://qumis.awsapps.com/start/`
+    - SSO Region: `us-east-2`
+    - Output Region: `us-east-2`
+    - Role: `AdministratorAccess` (adjust based on your assigned role)
+
+    See [Tools Setup](/internal/engineering/tools-setup#aws-configuration) for the complete configuration template.
   </Step>
 
   <Step title="Login to Environment">

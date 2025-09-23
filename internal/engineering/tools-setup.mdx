@@ -151,21 +151,78 @@ brew install --cask docker
     ```
   </Step>
 
-  <Step title="Configure SSO Profiles">
-    Create profiles for each environment:
-    ```bash
-    # Development environment
-    aws configure sso --profile qumis_dev
-    # SSO start URL: [provided by team]
-    # SSO Region: us-east-1
-    # Account: 080970846004
-    # Role: [your-role]
+  <Step title="Configure AWS Profiles">
+    Create or update your `~/.aws/config` file with the following configuration:
 
-    # Repeat for other environments:
-    # QA: 340452546718
-    # UAT: 499854674638
-    # Production: 729033428609 (requires special access)
+    ```ini
+    # AWS<->Qumis
+    # ================================
+    # AWS CLI configuration file
+    # This file is typically located at ~/.aws/config
+
+    # AWS SSO configuration
+    # --------------------------------
+    [sso-session qumis_sso]
+    sso_start_url = https://qumis.awsapps.com/start/
+    sso_region = us-east-2
+    sso_registration_scopes = sso:account:access
+
+    # Default profile configuration
+    # --------------------------------
+    # Don't specify any credentials here to avoid accidental usage.
+    [default]
+
+    # AWS Account Profiles
+    # --------------------------------
+    [profile qumis_dev]
+    sso_session = qumis_sso
+    sso_account_id = 080970846004
+    sso_role_name = AdministratorAccess
+    region = us-east-2
+    output = json
+    sso_start_url = https://qumis.awsapps.com/start/
+    sso_region = us-east-2
+
+    [profile qumis_qa]
+    sso_session = qumis_sso
+    sso_account_id = 340452546718
+    sso_role_name = AdministratorAccess
+    region = us-east-2
+    output = json
+    sso_start_url = https://qumis.awsapps.com/start/
+    sso_region = us-east-2
+
+    [profile qumis_uat]
+    sso_session = qumis_sso
+    sso_account_id = 499854674638
+    sso_role_name = AdministratorAccess
+    region = us-east-2
+    output = json
+    sso_start_url = https://qumis.awsapps.com/start/
+    sso_region = us-east-2
+
+    [profile qumis_prod]
+    sso_session = qumis_sso
+    sso_account_id = 729033428609
+    sso_role_name = AdministratorAccess
+    region = us-east-2
+    output = json
+    sso_start_url = https://qumis.awsapps.com/start/
+    sso_region = us-east-2
+
+    [profile qumis_sharedservices]
+    sso_session = qumis_sso
+    sso_account_id = 355867115367
+    sso_role_name = AdministratorAccess
+    region = us-east-2
+    output = json
+    sso_start_url = https://qumis.awsapps.com/start/
+    sso_region = us-east-2
     ```
+
+    <Info>
+      **Note**: The region is set to `us-east-2` for all profiles. Adjust the `sso_role_name` if you have a different role assigned.
+    </Info>
   </Step>
 
   <Step title="Test Access">
@@ -173,8 +230,14 @@ brew install --cask docker
     # Login to an environment
     qumis aws login dev
 
+    # Or login directly via AWS CLI
+    aws sso login --profile qumis_dev
+
     # Verify access
     aws s3 ls --profile qumis_dev
+
+    # Check your identity
+    aws sts get-caller-identity --profile qumis_dev
     ```
   </Step>
 </Steps>

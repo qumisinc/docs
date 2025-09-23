@@ -48,16 +48,48 @@ Before starting, ensure you have:
     ```bash
     # Install AWS CLI
     brew install awscli
-
-    # Configure AWS SSO
-    aws configure sso
     ```
 
-    You'll need profiles for:
-    - `qumis_dev` - Development environment
-    - `qumis_qa` - QA environment
-    - `qumis_uat` - UAT environment
-    - `qumis_prod` - Production environment (requires approval)
+    Create your `~/.aws/config` file with this template:
+    ```ini
+    # AWS SSO configuration
+    [sso-session qumis_sso]
+    sso_start_url = https://qumis.awsapps.com/start/
+    sso_region = us-east-2
+    sso_registration_scopes = sso:account:access
+
+    [default]
+
+    [profile qumis_dev]
+    sso_session = qumis_sso
+    sso_account_id = 080970846004
+    sso_role_name = AdministratorAccess
+    region = us-east-2
+    output = json
+
+    [profile qumis_qa]
+    sso_session = qumis_sso
+    sso_account_id = 340452546718
+    sso_role_name = AdministratorAccess
+    region = us-east-2
+    output = json
+
+    [profile qumis_uat]
+    sso_session = qumis_sso
+    sso_account_id = 499854674638
+    sso_role_name = AdministratorAccess
+    region = us-east-2
+    output = json
+
+    [profile qumis_prod]
+    sso_session = qumis_sso
+    sso_account_id = 729033428609
+    sso_role_name = AdministratorAccess
+    region = us-east-2
+    output = json
+    ```
+
+    See [Tools Setup](/internal/engineering/tools-setup) for the complete configuration including Shared Services.
   </Step>
 
   <Step title="Clone Core Repositories">
