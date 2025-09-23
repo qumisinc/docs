@@ -1,0 +1,370 @@
+---
+title: "Documentation Style Guide"
+description: "Standards and best practices for writing Qumis documentation"
+icon: "pen-line"
+noindex: true
+---
+
+This guide ensures consistency, clarity, and maintainability across all Qumis documentation. Follow these standards when creating or editing documentation.
+
+## Project Context
+
+<CardGroup cols={2}>
+  <Card title="Platform" icon="shield">
+    Documentation for Qumis, an AI platform for insurance professionals
+  </Card>
+  <Card title="Technology" icon="code">
+    Built with Mintlify using MDX (Markdown with JSX)
+  </Card>
+</CardGroup>
+
+### Target Audiences
+
+<Tabs>
+  <Tab title="Public">
+    Insurance professionals including:
+    - Brokers
+    - Claims leaders
+    - Attorneys
+    - Risk managers
+  </Tab>
+  <Tab title="Internal">
+    Qumis engineers with dedicated sections covering:
+    - Deployment procedures
+    - Infrastructure management
+    - Operations and monitoring
+  </Tab>
+</Tabs>
+
+## File Structure & Frontmatter
+
+Every `.mdx` page must begin with YAML frontmatter containing metadata.
+
+### Required Fields
+
+<ParamField body="title" type="string" required>
+  The primary title of the page
+</ParamField>
+
+<ParamField body="description" type="string" required>
+  Concise summary used for SEO and navigation menus
+</ParamField>
+
+### Optional Fields
+
+<ParamField body="icon" type="string">
+  Lucide icon name to display in navigation
+</ParamField>
+
+<ParamField body="noindex" type="boolean">
+  Set to `true` for internal pages that shouldn't be indexed by search engines
+</ParamField>
+
+### Example Frontmatter
+
+```yaml
+---
+title: "Production Deployment"
+description: "Complete guide for deploying services to production using qumis-cli"
+icon: "rocket"
+noindex: true
+---
+```
+
+## Core Writing Principles
+
+### Voice and Tone
+
+<Info>
+Write in the second person ("you") for all user-facing instructional content. Maintain a professional, clear, and direct tone.
+</Info>
+
+### Content Structure
+
+<Steps>
+  <Step title="Start with prerequisites">
+    Begin procedural content with a "Prerequisites" section listing required knowledge or tools
+  </Step>
+  <Step title="Use logical grouping">
+    Group related information with clear, descriptive headings
+  </Step>
+  <Step title="Break down complex procedures">
+    Use numbered steps for multi-part processes
+  </Step>
+</Steps>
+
+### Internal Links
+
+<Warning>
+Always use root-relative paths for internal links to ensure proper navigation.
+</Warning>
+
+- ✅ Correct: `href="/features/chat-with-documents"`
+- ❌ Incorrect: `href="../features/chat-with-documents"`
+
+## Mintlify Components
+
+### Callout Components
+
+Use callouts to highlight important information:
+
+<AccordionGroup>
+  <Accordion title="Note - Supplementary Information">
+    ```mdx
+    <Note>
+      Supplementary information that supports the main content.
+    </Note>
+    ```
+  </Accordion>
+  <Accordion title="Tip - Best Practices">
+    ```mdx
+    <Tip>
+      Expert advice, shortcuts, or best practices.
+    </Tip>
+    ```
+  </Accordion>
+  <Accordion title="Warning - Critical Information">
+    ```mdx
+    <Warning>
+      Critical cautions, breaking changes, or destructive actions.
+    </Warning>
+    ```
+  </Accordion>
+  <Accordion title="Info - Background Context">
+    ```mdx
+    <Info>
+      Neutral background information or context.
+    </Info>
+    ```
+  </Accordion>
+  <Accordion title="Check - Success Confirmation">
+    ```mdx
+    <Check>
+      Positive confirmations or success indicators.
+    </Check>
+    ```
+  </Accordion>
+</AccordionGroup>
+
+### Structural Components
+
+#### Steps Component
+
+For sequential instructions:
+
+```mdx
+<Steps>
+  <Step title="Install dependencies">
+    Run `npm install` to install required packages.
+  </Step>
+  <Step title="Configure environment">
+    Create a `.env` file with your API credentials.
+  </Step>
+</Steps>
+```
+
+#### Tabs Component
+
+For platform-specific content or alternatives:
+
+```mdx
+<Tabs>
+  <Tab title="macOS">
+    ```bash
+    brew install node
+    ```
+  </Tab>
+  <Tab title="Windows">
+    ```powershell
+    choco install nodejs
+    ```
+  </Tab>
+</Tabs>
+```
+
+#### Accordion Component
+
+For collapsible content sections:
+
+```mdx
+<AccordionGroup>
+  <Accordion title="Troubleshooting connection issues">
+    - **Firewall blocking**: Ensure ports 80 and 443 are open
+  </Accordion>
+  <Accordion title="Advanced configuration">
+    Details about advanced settings.
+  </Accordion>
+</AccordionGroup>
+```
+
+### Card Components
+
+#### Individual Cards
+
+```mdx
+<Card title="Getting started guide" icon="rocket" href="/quickstart">
+  A complete walkthrough to get you started.
+</Card>
+```
+
+#### Card Groups
+
+```mdx
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/auth">
+    Learn how to authenticate requests.
+  </Card>
+  <Card title="Rate limiting" icon="clock" href="/rate-limits">
+    Understand rate limits and best practices.
+  </Card>
+</CardGroup>
+```
+
+### Code Components
+
+#### Standard Code Blocks
+
+Use triple backticks with language identifier and optional filename:
+
+````mdx
+```javascript config.js
+const apiConfig = {
+  baseURL: 'https://api.example.com'
+};
+```
+````
+
+#### Code Groups
+
+Show examples in multiple languages:
+
+````mdx
+<CodeGroup>
+  ```javascript Node.js
+  const response = await fetch('/api/endpoint');
+  ```
+  ```python Python
+  import requests
+  response = requests.get('/api/endpoint')
+  ```
+</CodeGroup>
+````
+
+### API Documentation
+
+#### Request/Response Examples
+
+````mdx
+<RequestExample>
+  ```bash cURL
+  curl -X POST 'https://api.example.com/users'
+  ```
+</RequestExample>
+
+<ResponseExample>
+  ```json Success
+  {
+    "id": "user_123",
+    "name": "John Doe"
+  }
+  ```
+</ResponseExample>
+````
+
+#### Parameter Documentation
+
+```mdx
+<ParamField path="user_id" type="string" required>
+  Unique identifier for the user.
+</ParamField>
+
+<ParamField body="email" type="string" required>
+  User's email address.
+</ParamField>
+```
+
+#### Response Field Documentation
+
+```mdx
+<ResponseField name="user" type="object">
+  Complete user object.
+  <Expandable title="User properties">
+    <ResponseField name="profile" type="object">
+      User profile information.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+```
+
+### Media Components
+
+<Tip>
+Always wrap images and videos in a Frame component with descriptive captions.
+</Tip>
+
+```mdx
+<Frame caption="The analytics dashboard provides real-time insights">
+  <img src="/images/analytics.png" alt="Analytics dashboard with charts" />
+</Frame>
+```
+
+## Internal Documentation Standards
+
+When creating content for the `/internal/` directory:
+
+<Steps>
+  <Step title="Add noindex to frontmatter">
+    Always include `noindex: true` to prevent search engine indexing
+  </Step>
+  <Step title="Reference qumis-cli">
+    Use the internal `qumis-cli` tool for operational commands
+  </Step>
+  <Step title="Specify AWS environments">
+    Be explicit about environments (dev, qa, uat, prod) and services
+  </Step>
+  <Step title="Provide clear commands">
+    Include copy-pasteable shell commands for all procedures
+  </Step>
+</Steps>
+
+### Example Internal Documentation
+
+```bash
+# Deploy to Production
+qumis deploy api \
+  --deploy-branch "main" \
+  --env "prod" \
+  --reason "Deploy feature XYZ - Ticket ENG-123" \
+  --workflow-ref "main" \
+  --confirm "prod"
+```
+
+## Best Practices Checklist
+
+<Check>
+Use second-person voice ("you") consistently
+</Check>
+
+<Check>
+Start procedures with prerequisites
+</Check>
+
+<Check>
+Use root-relative paths for internal links
+</Check>
+
+<Check>
+Include descriptive captions for all media
+</Check>
+
+<Check>
+Add `noindex: true` to internal documentation
+</Check>
+
+<Check>
+Provide role-specific examples for insurance professionals
+</Check>
+
+<Check>
+Include rollback procedures for deployments
+</Check>

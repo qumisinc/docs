@@ -123,6 +123,12 @@
             ]
           },
           {
+            "group": "Documentation Standards",
+            "pages": [
+              "internal/documentation/writing-style-guide"
+            ]
+          },
+          {
             "group": "Engineering",
             "pages": [
               "internal/engineering/index",
