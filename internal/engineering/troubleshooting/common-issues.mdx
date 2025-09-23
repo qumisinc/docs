@@ -194,24 +194,24 @@ This guide provides solutions to common issues you might encounter while working
 
     **Solutions**:
     ```bash
-    # Check service events
+    # Check service events (blue cluster)
     aws ecs describe-services \
-      --cluster qumis-prod \
+      --cluster blue-prod \
       --services api \
       --profile qumis_prod \
       --query 'services[0].events[:10]'
 
     # Check task failures
     aws ecs list-tasks \
-      --cluster qumis-prod \
+      --cluster blue-prod \
       --service-name api \
       --desired-status STOPPED \
       --profile qumis_prod
 
     # Get task failure reason
-    TASK_ARN=$(aws ecs list-tasks --cluster qumis-prod --service-name api --desired-status STOPPED --profile qumis_prod --query 'taskArns[0]' --output text)
+    TASK_ARN=$(aws ecs list-tasks --cluster blue-prod --service-name api --desired-status STOPPED --profile qumis_prod --query 'taskArns[0]' --output text)
     aws ecs describe-tasks \
-      --cluster qumis-prod \
+      --cluster blue-prod \
       --tasks $TASK_ARN \
       --profile qumis_prod \
       --query 'tasks[0].stoppedReason'
@@ -229,12 +229,12 @@ This guide provides solutions to common issues you might encounter while working
 
     **Solutions**:
     ```bash
-    # Check container logs
-    aws logs tail /ecs/qumis-prod/api --profile qumis_prod --follow
+    # Check container logs (blue cluster)
+    aws logs tail /ecs/blue/prod/api --profile qumis_prod --follow
 
     # Check health check configuration
     aws ecs describe-task-definition \
-      --task-definition qumis-api-prod \
+      --task-definition api-prod \
       --profile qumis_prod \
       --query 'taskDefinition.containerDefinitions[0].healthCheck'
 
@@ -242,7 +242,7 @@ This guide provides solutions to common issues you might encounter while working
     aws cloudwatch get-metric-statistics \
       --namespace AWS/ECS \
       --metric-name MemoryUtilization \
-      --dimensions Name=ServiceName,Value=api Name=ClusterName,Value=qumis-prod \
+      --dimensions Name=ServiceName,Value=api Name=ClusterName,Value=blue-prod \
       --start-time $(date -u -d '1 hour ago' --iso-8601) \
       --end-time $(date -u --iso-8601) \
       --period 300 \
@@ -262,15 +262,15 @@ This guide provides solutions to common issues you might encounter while working
 
     **Solutions**:
     ```bash
-    # Check Sidekiq service status
+    # Check Sidekiq service status (blue cluster)
     aws ecs describe-services \
-      --cluster qumis-prod \
+      --cluster blue-prod \
       --services sidekiq \
       --profile qumis_prod \
       --query 'services[0].[status,runningCount,desiredCount]'
 
     # Check Sidekiq logs
-    aws logs tail /ecs/qumis-prod/sidekiq \
+    aws logs tail /ecs/blue/prod/sidekiq \
       --profile qumis_prod \
       --follow
 
@@ -294,9 +294,9 @@ This guide provides solutions to common issues you might encounter while working
         puts 'Queues: ' + Sidekiq::Queue.all.map { |q| q.name + ': ' + q.size.to_s }.join(', ')
       "
 
-    # Restart Sidekiq service if needed
+    # Restart Sidekiq service if needed (blue cluster)
     aws ecs update-service \
-      --cluster qumis-prod \
+      --cluster blue-prod \
       --service sidekiq \
       --force-new-deployment \
       --profile qumis_prod

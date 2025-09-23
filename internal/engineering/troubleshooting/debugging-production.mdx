@@ -31,9 +31,9 @@ noindex: true
 # 1. Check service status
 curl -f https://api.qumis.ai/health || echo "Service unhealthy"
 
-# 2. Check ECS service status
+# 2. Check ECS service status (blue cluster)
 aws ecs describe-services \
-  --cluster qumis-prod \
+  --cluster blue-prod \
   --services api web sidekiq \
   --profile qumis_prod \
   --query 'services[*].[serviceName,status,runningCount,desiredCount]' \
@@ -43,7 +43,7 @@ aws ecs describe-services \
 for SERVICE in api web sidekiq; do
   echo "=== $SERVICE errors ==="
   aws logs filter-log-events \
-    --log-group-name /ecs/qumis-prod/$SERVICE \
+    --log-group-name /ecs/blue/prod/$SERVICE \
     --start-time $(date -u -d '15 minutes ago' '+%s')000 \
     --filter-pattern "ERROR" \
     --profile qumis_prod \
@@ -54,7 +54,7 @@ done
 aws cloudwatch get-metric-statistics \
   --namespace AWS/ECS \
   --metric-name CPUUtilization \
-  --dimensions Name=ServiceName,Value=api Name=ClusterName,Value=qumis-prod \
+  --dimensions Name=ServiceName,Value=api Name=ClusterName,Value=blue-prod \
   --start-time $(date -u -d '1 hour ago' --iso-8601) \
   --end-time $(date -u --iso-8601) \
   --period 300 \

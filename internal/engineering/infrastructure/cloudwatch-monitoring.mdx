@@ -271,23 +271,23 @@ aws logs filter-log-events \
 ### ECS Task Monitoring
 
 ```bash
-# Get ECS task list
+# Get ECS task list (blue cluster)
 aws ecs list-tasks \
-  --cluster qumis-prod \
+  --cluster blue-prod \
   --service-name api \
   --profile qumis_prod
 
 # Describe a specific task
-TASK_ARN=$(aws ecs list-tasks --cluster qumis-prod --service-name api --profile qumis_prod --query 'taskArns[0]' --output text)
+TASK_ARN=$(aws ecs list-tasks --cluster blue-prod --service-name api --profile qumis_prod --query 'taskArns[0]' --output text)
 aws ecs describe-tasks \
-  --cluster qumis-prod \
+  --cluster blue-prod \
   --tasks $TASK_ARN \
   --profile qumis_prod
 
 # Get task logs by task ID
 TASK_ID=$(echo $TASK_ARN | grep -oE '[a-f0-9]{32}' | head -1)
 aws logs filter-log-events \
-  --log-group-name /ecs/qumis-prod/api \
+  --log-group-name /ecs/blue/prod/api \
   --log-stream-name-prefix ecs/api/$TASK_ID \
   --profile qumis_prod
 ```
@@ -295,9 +295,9 @@ aws logs filter-log-events \
 ### Container Health Monitoring
 
 ```bash
-# Check container health status
+# Check container health status (blue cluster)
 aws ecs describe-services \
-  --cluster qumis-prod \
+  --cluster blue-prod \
   --services api web sidekiq \
   --profile qumis_prod \
   --query 'services[*].[serviceName,healthCheckGracePeriodSeconds,deployments[0].runningCount]'
@@ -306,7 +306,7 @@ aws ecs describe-services \
 for SERVICE in api web sidekiq; do
   echo "=== $SERVICE container events ==="
   aws logs filter-log-events \
-    --log-group-name /ecs/qumis-prod/$SERVICE \
+    --log-group-name /ecs/blue/prod/$SERVICE \
     --filter-pattern "Container started" \
     --start-time $(date -u -d '24 hours ago' '+%s')000 \
     --profile qumis_prod \
@@ -662,11 +662,14 @@ cat logs_*.json | jq '.events[].message' | grep ERROR
 #!/bin/bash
 # ecs-monitor.sh
 
-CLUSTER="qumis-prod"
-PROFILE="qumis_prod"
+# Blue/Green deployment - currently only blue is active
+ENV="prod"  # Change to dev, qa, uat as needed
+CLUSTER="blue-${ENV}"
+PROFILE="qumis_${ENV}"
 SERVICES="api web sidekiq"
 
 echo "ECS Service Monitor - $(date)"
+echo "Cluster: $CLUSTER"
 echo "=========================="
 
 # Check service status
@@ -682,7 +685,7 @@ aws ecs describe-services \
 echo -e "\nRecent Errors (last hour):"
 for SERVICE in $SERVICES; do
   ERROR_COUNT=$(aws logs filter-log-events \
-    --log-group-name /ecs/$CLUSTER/$SERVICE \
+    --log-group-name /ecs/blue/$ENV/$SERVICE \
     --start-time $(date -u -d '1 hour ago' '+%s')000 \
     --filter-pattern "ERROR" \
     --profile $PROFILE \
