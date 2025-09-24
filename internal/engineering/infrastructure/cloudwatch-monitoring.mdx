@@ -13,25 +13,25 @@ This guide covers how to use AWS CloudWatch to monitor our applications across a
 
 <Warning>
   **Blue/Green Deployment Pattern**: We currently only have **blue** clusters active. Log groups follow the pattern:
-  `/ecs/blue/<environment>/<service>`
+  `ecs/blue/<environment>/<service>`
 
   Green clusters will be activated during blue/green deployments.
 </Warning>
 
 | Environment | Service | Log Group | AWS Profile |
 |------------|---------|-----------|-------------|
-| Dev | API | `/ecs/blue/dev/api` | `qumis_dev` |
-| Dev | Web | `/ecs/blue/dev/web` | `qumis_dev` |
-| Dev | Sidekiq | `/ecs/blue/dev/sidekiq` | `qumis_dev` |
-| QA | API | `/ecs/blue/qa/api` | `qumis_qa` |
-| QA | Web | `/ecs/blue/qa/web` | `qumis_qa` |
-| QA | Sidekiq | `/ecs/blue/qa/sidekiq` | `qumis_qa` |
-| UAT | API | `/ecs/blue/uat/api` | `qumis_uat` |
-| UAT | Web | `/ecs/blue/uat/web` | `qumis_uat` |
-| UAT | Sidekiq | `/ecs/blue/uat/sidekiq` | `qumis_uat` |
-| Production | API | `/ecs/blue/prod/api` | `qumis_prod` |
-| Production | Web | `/ecs/blue/prod/web` | `qumis_prod` |
-| Production | Sidekiq | `/ecs/blue/prod/sidekiq` | `qumis_prod` |
+| Dev | API | `ecs/blue/dev/api` | `qumis_dev` |
+| Dev | Web | `ecs/blue/dev/web` | `qumis_dev` |
+| Dev | Sidekiq | `ecs/blue/dev/sidekiq` | `qumis_dev` |
+| QA | API | `ecs/blue/qa/api` | `qumis_qa` |
+| QA | Web | `ecs/blue/qa/web` | `qumis_qa` |
+| QA | Sidekiq | `ecs/blue/qa/sidekiq` | `qumis_qa` |
+| UAT | API | `ecs/blue/uat/api` | `qumis_uat` |
+| UAT | Web | `ecs/blue/uat/web` | `qumis_uat` |
+| UAT | Sidekiq | `ecs/blue/uat/sidekiq` | `qumis_uat` |
+| Production | API | `ecs/blue/prod/api` | `qumis_prod` |
+| Production | Web | `ecs/blue/prod/web` | `qumis_prod` |
+| Production | Sidekiq | `ecs/blue/prod/sidekiq` | `qumis_prod` |
 
 ### Lambda Function Log Groups (if applicable)
 
@@ -48,15 +48,15 @@ This guide covers how to use AWS CloudWatch to monitor our applications across a
 
 ```bash
 # Tail ECS service logs in real-time (blue cluster)
-aws logs tail /ecs/blue/prod/api --profile qumis_prod --follow
-aws logs tail /ecs/blue/prod/web --profile qumis_prod --follow
-aws logs tail /ecs/blue/prod/sidekiq --profile qumis_prod --follow
+aws logs tail ecs/blue/prod/api --profile qumis_prod --follow
+aws logs tail ecs/blue/prod/web --profile qumis_prod --follow
+aws logs tail ecs/blue/prod/sidekiq --profile qumis_prod --follow
 
 # Search for errors across all services
 for SERVICE in api web sidekiq; do
   echo "=== $SERVICE errors ==="
   aws logs filter-log-events \
-    --log-group-name /ecs/blue/prod/$SERVICE \
+    --log-group-name ecs/blue/prod/$SERVICE \
     --start-time $(date -u -d '1 hour ago' '+%s')000 \
     --filter-pattern "ERROR" \
     --profile qumis_prod \
@@ -64,7 +64,7 @@ for SERVICE in api web sidekiq; do
 done
 
 # Monitor Sidekiq job processing
-aws logs tail /ecs/blue/prod/sidekiq \
+aws logs tail ecs/blue/prod/sidekiq \
   --profile qumis_prod \
   --follow \
   --filter-pattern "perform"
@@ -73,7 +73,7 @@ aws logs tail /ecs/blue/prod/sidekiq \
 ecs_logs() {
   ENV=$1
   SERVICE=$2
-  aws logs tail /ecs/blue/$ENV/$SERVICE --profile qumis_$ENV --follow
+  aws logs tail ecs/blue/$ENV/$SERVICE --profile qumis_$ENV --follow
 }
 # Usage: ecs_logs prod api
 ```
@@ -189,23 +189,23 @@ aws logs filter-log-events \
   <Tab title="API Service">
     ```bash
     # Tail API logs (blue cluster)
-    aws logs tail /ecs/blue/prod/api --profile qumis_prod --follow
+    aws logs tail ecs/blue/prod/api --profile qumis_prod --follow
 
     # Search for specific endpoints
     aws logs filter-log-events \
-      --log-group-name /ecs/blue/prod/api \
+      --log-group-name ecs/blue/prod/api \
       --filter-pattern "POST /api/v1/users" \
       --profile qumis_prod
 
     # Check Rails errors
     aws logs filter-log-events \
-      --log-group-name /ecs/blue/prod/api \
+      --log-group-name ecs/blue/prod/api \
       --filter-pattern "ActiveRecord::RecordNotFound" \
       --profile qumis_prod
 
     # Monitor API response times
     aws logs filter-log-events \
-      --log-group-name /ecs/blue/prod/api \
+      --log-group-name ecs/blue/prod/api \
       --filter-pattern "[Completed]" \
       --profile qumis_prod | grep -E "Completed [0-9]+ms"
     ```
@@ -214,23 +214,23 @@ aws logs filter-log-events \
   <Tab title="Web Service">
     ```bash
     # Tail web server logs (blue cluster)
-    aws logs tail /ecs/blue/prod/web --profile qumis_prod --follow
+    aws logs tail ecs/blue/prod/web --profile qumis_prod --follow
 
     # Check for JavaScript errors
     aws logs filter-log-events \
-      --log-group-name /ecs/blue/prod/web \
+      --log-group-name ecs/blue/prod/web \
       --filter-pattern "Error" \
       --profile qumis_prod
 
     # Monitor Next.js build issues
     aws logs filter-log-events \
-      --log-group-name /ecs/blue/prod/web \
+      --log-group-name ecs/blue/prod/web \
       --filter-pattern "Build error" \
       --profile qumis_prod
 
     # Check static asset serving
     aws logs filter-log-events \
-      --log-group-name /ecs/blue/prod/web \
+      --log-group-name ecs/blue/prod/web \
       --filter-pattern "404" \
       --profile qumis_prod
     ```
@@ -239,29 +239,29 @@ aws logs filter-log-events \
   <Tab title="Sidekiq Service">
     ```bash
     # Monitor job processing (blue cluster)
-    aws logs tail /ecs/blue/prod/sidekiq --profile qumis_prod --follow
+    aws logs tail ecs/blue/prod/sidekiq --profile qumis_prod --follow
 
     # Check for failed jobs
     aws logs filter-log-events \
-      --log-group-name /ecs/blue/prod/sidekiq \
+      --log-group-name ecs/blue/prod/sidekiq \
       --filter-pattern "FAILED" \
       --profile qumis_prod
 
     # Monitor specific job types
     aws logs filter-log-events \
-      --log-group-name /ecs/blue/prod/sidekiq \
+      --log-group-name ecs/blue/prod/sidekiq \
       --filter-pattern "EmailJob" \
       --profile qumis_prod
 
     # Check job queue depths
     aws logs filter-log-events \
-      --log-group-name /ecs/blue/prod/sidekiq \
+      --log-group-name ecs/blue/prod/sidekiq \
       --filter-pattern "queue" \
       --profile qumis_prod | grep -E "default|critical|low"
 
     # Monitor retries
     aws logs filter-log-events \
-      --log-group-name /ecs/blue/prod/sidekiq \
+      --log-group-name ecs/blue/prod/sidekiq \
       --filter-pattern "retry" \
       --profile qumis_prod
     ```
@@ -287,7 +287,7 @@ aws ecs describe-tasks \
 # Get task logs by task ID
 TASK_ID=$(echo $TASK_ARN | grep -oE '[a-f0-9]{32}' | head -1)
 aws logs filter-log-events \
-  --log-group-name /ecs/blue/prod/api \
+  --log-group-name ecs/blue/prod/api \
   --log-stream-name-prefix ecs/api/$TASK_ID \
   --profile qumis_prod
 ```
@@ -306,7 +306,7 @@ aws ecs describe-services \
 for SERVICE in api web sidekiq; do
   echo "=== $SERVICE container events ==="
   aws logs filter-log-events \
-    --log-group-name /ecs/blue/prod/$SERVICE \
+    --log-group-name ecs/blue/prod/$SERVICE \
     --filter-pattern "Container started" \
     --start-time $(date -u -d '24 hours ago' '+%s')000 \
     --profile qumis_prod \
@@ -685,7 +685,7 @@ aws ecs describe-services \
 echo -e "\nRecent Errors (last hour):"
 for SERVICE in $SERVICES; do
   ERROR_COUNT=$(aws logs filter-log-events \
-    --log-group-name /ecs/blue/$ENV/$SERVICE \
+    --log-group-name ecs/blue/$ENV/$SERVICE \
     --start-time $(date -u -d '1 hour ago' '+%s')000 \
     --filter-pattern "ERROR" \
     --profile $PROFILE \
