@@ -52,8 +52,8 @@ Before deploying to production:
     # Check current production version
     qumis services info api --env prod
 
-    # Check production health
-    qumis lambda list-functions --env prod | grep api
+    # Check current Lambda functions
+    qumis lambda list-functions --env prod
     ```
   </Step>
 
