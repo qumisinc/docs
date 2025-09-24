@@ -125,6 +125,7 @@
             "group": "Documentation Standards",
             "pages": [
               "internal/documentation/writing-style-guide",
+              "internal/documentation/prompt-library",
               "internal/documentation/markdown-export"
             ]
           },
