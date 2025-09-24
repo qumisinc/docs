@@ -5,95 +5,152 @@ icon: "code"
 noindex: true
 ---
 
-Welcome to the Qumis engineering documentation.
+Welcome to the Qumis engineering documentation hub. This is your central resource for deployment procedures, infrastructure management, and development workflows.
 
-## Getting Started
+<Tip>
+  **Most Used:** [Production Deployment](/internal/engineering/deployment/production-deployment) | [qumis-cli Reference](/internal/engineering/operations/qumis-cli-reference) | [AWS Environments](/internal/engineering/infrastructure/aws-environments)
+</Tip>
 
-<Steps>
-  <Step title="Complete Onboarding">
-    Follow the [onboarding guide](/internal/engineering/onboarding) to set up your development environment and get access to all necessary systems.
-  </Step>
-  <Step title="Install Tools">
-    Install [qumis-cli and other essential tools](/internal/engineering/tools-setup) for daily development work.
-  </Step>
-  <Step title="Learn Git Workflow">
-    Review our [Git branching strategies](/internal/engineering/git-branching-strategies) to understand our development workflow.
-  </Step>
-</Steps>
+## Quick Start
 
-## Deployment & Operations
+<CardGroup cols={3}>
+  <Card
+    title="New Engineer?"
+    icon="user-plus"
+    href="/internal/engineering/onboarding"
+  >
+    Complete onboarding checklist
+  </Card>
+  <Card
+    title="Deploy to Production"
+    icon="rocket"
+    href="/internal/engineering/deployment/production-deployment"
+  >
+    Step-by-step deployment guide
+  </Card>
+  <Card
+    title="Access AWS Console"
+    icon="lock-open"
+    href="https://qumis.awsapps.com/start/#/?tab=accounts"
+  >
+    SSO login for all environments
+  </Card>
+</CardGroup>
 
-<Columns cols={2}>
+## Core Operations
+
+### Deployment
+
+<Note>
+  Always follow the deployment checklist and validate after deployment. Use rollback procedures if issues arise.
+</Note>
+
+<CardGroup cols={2}>
   <Card
     title="Production Deployment"
     icon="rocket"
     href="/internal/engineering/deployment/production-deployment"
+    color="#10b981"
   >
     Deploy services to production with safety checks
   </Card>
   <Card
     title="Deployment Checklist"
-    icon="check-circle"
+    icon="clipboard-check"
     href="/internal/engineering/deployment/deployment-checklist"
+    color="#3b82f6"
   >
     Pre and post-deployment verification steps
+  </Card>
+  <Card
+    title="Post-Deployment Validation"
+    icon="shield-check"
+    href="/internal/engineering/deployment/post-deployment-validation"
+    color="#3b82f6"
+  >
+    Validate deployment success and system health
   </Card>
   <Card
     title="Rollback Procedures"
     icon="rotate-left"
     href="/internal/engineering/deployment/rollback-procedures"
+    color="#ef4444"
   >
     Emergency rollback and recovery procedures
   </Card>
-  <Card
-    title="Rails Commands"
-    icon="database"
-    href="/internal/engineering/operations/rails-commands"
-  >
-    Execute Rails commands on API service
-  </Card>
+</CardGroup>
+
+### Operations & Tools
+
+<CardGroup cols={2}>
   <Card
     title="qumis-cli Reference"
     icon="terminal"
     href="/internal/engineering/operations/qumis-cli-reference"
   >
-    Command-line tool documentation
+    Complete command-line tool documentation
   </Card>
-</Columns>
+  <Card
+    title="Rails Commands"
+    icon="gem"
+    href="/internal/engineering/operations/rails-commands"
+  >
+    Execute Rails commands on API service
+  </Card>
+</CardGroup>
 
 ## Infrastructure & Monitoring
 
-<Columns cols={2}>
-  <Card
-    title="AWS Environments"
-    icon="cloud"
-    href="/internal/engineering/infrastructure/aws-environments"
-  >
-    Complete guide to all AWS environments
-  </Card>
-  <Card
-    title="CloudWatch Monitoring"
-    icon="chart-line"
-    href="/internal/engineering/infrastructure/cloudwatch-monitoring"
-  >
-    Monitor logs and application metrics
-  </Card>
-  <Card
-    title="CloudWatch Alerts"
-    icon="bell"
-    href="/internal/engineering/infrastructure/cloudwatch-alerts"
-  >
-    Configure and manage alerts
-  </Card>
-</Columns>
+<AccordionGroup>
+  <Accordion title="AWS Infrastructure" icon="cloud">
+    <CardGroup cols={3}>
+      <Card
+        title="AWS Environments"
+        icon="server"
+        href="/internal/engineering/infrastructure/aws-environments"
+      >
+        Complete guide to all AWS environments
+      </Card>
+      <Card
+        title="CloudWatch Monitoring"
+        icon="chart-line"
+        href="/internal/engineering/infrastructure/cloudwatch-monitoring"
+      >
+        Monitor logs and application metrics
+      </Card>
+      <Card
+        title="CloudWatch Alerts"
+        icon="bell"
+        href="/internal/engineering/infrastructure/cloudwatch-alerts"
+      >
+        Configure and manage alerts
+      </Card>
+    </CardGroup>
+  </Accordion>
+</AccordionGroup>
 
-## Troubleshooting
+## Development Workflow
 
-<Columns cols={2}>
+<Steps>
+  <Step title="Setup Development Environment">
+    Install [qumis-cli and other essential tools](/internal/engineering/tools-setup) for daily development work
+  </Step>
+  <Step title="Learn Git Workflow">
+    Review our [Git branching strategies](/internal/engineering/git-branching-strategies) to understand our development process
+  </Step>
+  <Step title="Start Contributing">
+    Follow the team conventions and begin contributing to the codebase
+  </Step>
+</Steps>
+
+## Troubleshooting & Support
+
+<CardGroup cols={2}>
   <Card
     title="Common Issues"
-    icon="circle-alert"
+    icon="triangle-exclamation"
     href="/internal/engineering/troubleshooting/common-issues"
+    color="#f59e0b"
   >
     Solutions to frequently encountered problems
   </Card>
@@ -101,13 +158,51 @@ Welcome to the Qumis engineering documentation.
     title="Production Debugging"
     icon="bug"
     href="/internal/engineering/troubleshooting/debugging-production"
+    color="#f59e0b"
   >
     Safe debugging techniques for production
   </Card>
-</Columns>
+</CardGroup>
 
-## Important Links
+<Warning>
+  **Production Issues?** Check [Common Issues](/internal/engineering/troubleshooting/common-issues) first, then reach out in #engineering on Slack if you need help.
+</Warning>
 
-<Info>
-  **qumis-cli Repository**: [github.com/qumisinc/qumis-cli](https://github.com/qumisinc/qumis-cli)
-</Info>
+## Resources & Links
+
+<CardGroup cols={2}>
+  <Card
+    title="qumis-cli Repository"
+    icon="github"
+    href="https://github.com/qumisinc/qumis-cli"
+  >
+    CLI tool source code and issues
+  </Card>
+  <Card
+    title="AWS Console (SSO)"
+    icon="aws"
+    href="https://qumis.awsapps.com/start/#/?tab=accounts"
+  >
+    Access all AWS environments
+  </Card>
+  <Card
+    title="Engineering Slack"
+    icon="slack"
+    href="https://qumis.slack.com/channels/engineering"
+  >
+    Team communication channel
+  </Card>
+  <Card
+    title="System Status"
+    icon="signal"
+    href="https://status.qumis.com"
+  >
+    Current system health and incidents
+  </Card>
+</CardGroup>
+
+## Need Help?
+
+- **Slack**: #engineering channel for general questions
+- **Urgent Issues**: Page the on-call engineer via PagerDuty
+- **Documentation Issues**: Submit a PR or reach out to the documentation team
