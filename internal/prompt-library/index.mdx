@@ -1,0 +1,383 @@
+---
+title: "Prompt Library"
+description: "Curated prompts for high-signal internal workflows"
+noindex: true
+---
+
+# Qumis Prompt Library
+
+This page collects the most useful prompts for our internal teams. Each prompt includes a quick summary of when to use it along with the exact text to copy into your LLM. If you improve any of these prompts, please submit an update so everyone benefits.
+
+## Quality Loops
+
+### Perform Self-Review (v0.1)
+Use this immediately after generating an important response to surface gaps before shipping work externally.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+Perform a comprehensive self-review of your previous output. This process involves analyzing your response, evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
+```
+  </Accordion>
+</AccordionGroup>
+
+### Review Last Message (v0.2)
+Run when you want the model to evaluate the most recent exchange and highlight mismatches in understanding.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+Perform a comprehensive self-review of your LAST message and my message before that. First, describe the objective of what I had asked for and what you had replied with in your response.  This process involves analyzing your response, evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
+```
+  </Accordion>
+</AccordionGroup>
+
+### Review Modifications (General)
+Best for multi-step workflows where the model has produced several follow-up responses.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+Perform a comprehensive self-review. First, describe the objective of what I had asked for and what you had replied with in your response(s).  This process involves analyzing your response(s), evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
+```
+  </Accordion>
+</AccordionGroup>
+
+### Revise/Improve Output (v0.1)
+Use immediately after a self-review to apply the suggested fixes.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+Analyze your self-review and suggestions. Revise the original work to address any concerns and/or improvements with the goal of increasing the scores. Maintain its original purpose and style.
+```
+  </Accordion>
+</AccordionGroup>
+
+### Revise/Improve Output (v0.2)
+Alternative follow-up when you want the model to focus on boosting the scored attributes.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+Review your previous analysis and apply the suggested improvements to the process described in the original content. Focus on enhancing the score for the attributes that you have scored, while maintaining the original intent and structure.
+```
+  </Accordion>
+</AccordionGroup>
+
+## Clarifying Objectives
+
+### Alignment on Objective (Ask Questions)
+Great when the request feels ambiguous or you suspect misalignment with stakeholders.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+Review our interaction(s) so far. Think about the differences between:
+- My understanding of what I've asked/prompted you for (should usually be a high level since it's in my mental model)
+- Your understanding of my mental model transferred to you via chats and prompts.
+
+This is an inherently lossy process. Identify potential gaps in our understanding of the objective. How can we reach parity?
+
+First identify the potential differences in our understangings and anything that is ambiguous or unclear. Then come up with a list of questions for me which, if answered, will increase our likelihood of being aligned on what my true objective is. For each of the questions, add a score (0.0-1.0) of how much you think the answered question will improve our alignment on objective.
+```
+  </Accordion>
+</AccordionGroup>
+
+### Chat Dump
+Quickly export the full conversation for handoff or archival.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+Create a comprehensive JSON dump of all of the data so far in this conversation so that if given to you (or another LLM) in a new instance, you could "ingest" it and retain the knowledge from this entire conversation.
+```
+  </Accordion>
+</AccordionGroup>
+
+## Markdown Utilities
+
+### Return as Markdown
+Guarantees a Markdown-only response—useful when pasting into docs or Notion.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+````markdown
+Return this as Markdown in a code block (i.e., ```Markdown ...```). Escape any characters necessary. Make sure that any Markdown code block is escaped properly. Do not respond with anything but the code block.
+````
+  </Accordion>
+</AccordionGroup>
+
+### Convert to Markdown
+Ask the model to convert rich content into Markdown while keeping structure.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+````markdown
+Convert this to Markdown. Try to capture the original format as accurately as possible.
+
+[Return th](https://www.notion.so/IMA-Insurance-Document-Compliance-Review-System-v0-2-6-2255d92ed08b80e291c1f09a4a56be52?pvs=21)is as Markdown in a code block (i.e., ```Markdown ...```). Escape any characters necessary. Make sure that any Markdown code block is escaped properly. Do not respond with anything but the code block.
+````
+  </Accordion>
+</AccordionGroup>
+
+## Data & Analytics
+
+### Create Retool SQL Queries
+Use when adding new Retool queries—reminds the model to reference the shared schema and output only SQL.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+````markdown
+Create a Retool query and name for: <DESCRIPTION>
+
+Review the database schema defined in `schema.json` and use it for context.
+
+You will return only the following:  
+• A query name following this naming convention: `q_[description][timeframe/type][grouping]`  
+• A PostgreSQL SQL statement, using Retool’s `{{ }}` syntax for parameters  
+• Use only tables, columns, and enums that exist in `schema.json`  
+
+Examples of valid query names:  
+• `q_chats_weekly_count_by_org`  
+• `q_chats_weekly_count_by_user`  
+• `q_chats_6week_count_by_org`  
+• `q_chats_6week_count_by_user`  
+• `q_chat_data_validation`  
+
+**Format:**
+
+Return your answer in a single code block like this:
+
+```sql
+-- name: q_example_query_type_group
+SELECT * FROM example_table WHERE id = {{ id }};
+```
+
+Do not include any explanatory text—only the code block.
+````
+  </Accordion>
+</AccordionGroup>
+
+## Communication Support
+
+### Summarization Prompt
+Generates an executive-ready ~200 word summary tailored to your audience.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+Create a ~200 word summarization of the most important data from this report for <AUDIENCE>. Make it concise, extremely clear, and exceptionally readable.
+```
+  </Accordion>
+</AccordionGroup>
+
+## Documentation Packaging
+
+### Create llms-full.txt (Docs Extract)
+Build a single Markdown file that condenses key documentation for LLM ingestion.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+You will be creating a Markdown file named llms-full.txt that contains all essential information from an input file, converted to clean Markdown.
+
+Your task is to process this input and create a single Markdown file that follows these rules:
+
+1. Begin with "# <Project Name>" on its own line.
+2. Immediately follow with a concise 1-paragraph intro (no block-quote needed).
+3. Inline the full Markdown of every important page in logical order (e.g. Quick Start, Concepts, API Reference, Guides).
+4. Preserve headings (#–####), code fences, lists, tables, and images (![alt](url)). Strip any extraneous HTML, scripts, or navigation.
+5. Do not add external links — inline the content instead.
+6. Target ≤ 100 KB of output; summarise verbose or repetitive sections if needed, but keep code samples intact.
+
+Follow these steps to create the output:
+1. Identify the project name and create the top-level heading.
+2. Write a concise 1-paragraph introduction summarizing the project.
+3. Determine the logical order of important pages (e.g., Quick Start, Concepts, API Reference, Guides).
+4. For each important page:
+a. Convert the content to clean Markdown.
+b. Preserve headings, code fences, lists, tables, and images.
+c. Remove any extraneous HTML, scripts, or navigation elements.
+d. Inline any external links by including the relevant content directly.
+5. If the total content exceeds 100 KB, summarize verbose or repetitive sections while keeping code samples intact.
+
+Provide your output as Markdown. The content of these tags should be exactly what would be written to the /llms-full.txt file, with no additional commentary or explanation.
+```
+  </Accordion>
+</AccordionGroup>
+
+### Create llms-full.txt (Repository Extract)
+Alternate version tuned for code repositories when you need inline source plus structure.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+You will be creating a Markdown file named llms-full.txt that contains all essential information from a code repository, converted to clean Markdown format suitable for LLM consumption.
+
+Your task is to process the repository input and create a single comprehensive Markdown file that follows these rules:
+
+1. Begin with "# <Project Name>" on its own line.
+2. Immediately follow with a concise 1-paragraph intro describing what the project does and its main purpose.
+3. Include a comprehensive file structure overview showing the repository layout.
+4. Inline the complete source code of all important files in logical order (core modules, main scripts, configuration files, tests, documentation).
+7. Include key configuration files (package.json, requirements.txt, Dockerfile, etc.) and documentation files (README, API docs, guides).
+8. Remove any binary files, compiled assets, or generated files unless essential for understanding.
+9. Target ≤ 200 KB of output; prioritize core functionality over auxiliary files if size limits are exceeded.
+
+Follow these steps to create the output:
+1. Identify the project name from the repository and create the top-level heading.
+2. Write a concise 1-paragraph introduction explaining the project's purpose and functionality.
+3. Create a file structure section showing the repository organization.
+4. Determine the logical order for presenting files (typically: main entry points, core modules, utilities, configs, tests, docs).
+5. For each important file:
+   a. Add a section header with the file path (## path/to/file.py)
+   b. Include a concise 1-paragrph explaination of the file's purpose and functionality.
+6. Include relevant documentation files as Markdown sections.
+7. If approaching size limits, prioritize core source files over peripheral content.
+
+Provide your output as Markdown. The content should be exactly what would be written to the /lms-full.txt file, with no additional commentary or explanation outside the content itself.
+```
+  </Accordion>
+</AccordionGroup>
+
+## Meta-Prompting Systems
+
+### Generate/Evaluate Method
+Structured approach for creating high-performing prompts when you have example IO pairs.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+```markdown
+1. I tell the LLM to "Generate a detailed prompt engineering guide. The audience is <role>." (Example role might be "book authors" or "software developers" or "customer support reps").
+2. I paste in 5 examples of how I want my prompt to work (few-shot input+output).
+3. I instruct it to "Generate a prompt that could have generated the examples' outputs, and include a better set of examples." Submit.
+4. In a new chat, I instruct it to "Generate a detailed prompt evaluation guide. The audience is <role>".
+5. I paste in the new prompt and tell it to "Evaluate the prompt".
+6. I tell it to "Generate 3 improved alternative prompts".
+7. I pick the best one, and edit it as necessary.
+
+A benefit of this method is the LLM's own weights influence how the prompt is generated and evaluated.
+
+The prompt will be better than anything you could write. It's best to use a model in the same family as you'll use the prompt for.
+
+This works incredibly well and is very easy to do.
+```
+  </Accordion>
+</AccordionGroup>
+
+### Lyra Prompt Optimizer
+Drop this in when you want the assistant to behave like Lyra, our go-to prompt optimization expert.
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Copy prompt">
+````markdown
+You are Lyra, a master-level AI prompt optimization specialist. Your mission: transform any user input into precision-crafted prompts that unlock AI's full potential across all platforms.
+
+## THE 4-D METHODOLOGY
+
+### 1. DECONSTRUCT
+- Extract core intent, key entities, and context
+- Identify output requirements and constraints
+- Map what's provided vs. what's missing
+
+### 2. DIAGNOSE
+- Audit for clarity gaps and ambiguity
+- Check specificity and completeness
+- Assess structure and complexity needs
+
+### 3. DEVELOP
+- Select optimal techniques based on request type:
+  - **Creative** → Multi-perspective + tone emphasis
+  - **Technical** → Constraint-based + precision focus
+  - **Educational** → Few-shot examples + clear structure
+  - **Complex** → Chain-of-thought + systematic frameworks
+- Assign appropriate AI role/expertise
+- Enhance context and implement logical structure
+
+### 4. DELIVER
+- Construct optimized prompt
+- Format based on complexity
+- Provide implementation guidance
+
+## OPTIMIZATION TECHNIQUES
+
+**Foundation:** Role assignment, context layering, output specs, task decomposition
+
+**Advanced:** Chain-of-thought, few-shot learning, multi-perspective analysis, constraint optimization
+
+**Platform Notes:**
+- **ChatGPT/GPT-4:** Structured sections, conversation starters
+- **Claude:** Longer context, reasoning frameworks
+- **Gemini:** Creative tasks, comparative analysis
+- **Others:** Apply universal best practices
+
+## OPERATING MODES
+
+**DETAIL MODE:** 
+- Gather context with smart defaults
+- Ask 2-3 targeted clarifying questions
+- Provide comprehensive optimization
+
+**BASIC MODE:**
+- Quick fix primary issues
+- Apply core techniques only
+- Deliver ready-to-use prompt
+
+## RESPONSE FORMATS
+
+**Simple Requests:**
+```
+**Your Optimized Prompt:**
+[Improved prompt]
+
+**What Changed:** [Key improvements]
+```
+
+**Complex Requests:**
+```
+**Your Optimized Prompt:**
+[Improved prompt]
+
+**Key Improvements:**
+• [Primary changes and benefits]
+
+**Techniques Applied:** [Brief mention]
+
+**Pro Tip:** [Usage guidance]
+```
+
+## WELCOME MESSAGE (REQUIRED)
+
+When activated, display EXACTLY:
+
+"Hello! I'm Lyra, your AI prompt optimizer. I transform vague requests into precise, effective prompts that deliver better results.
+
+**What I need to know:**
+- **Target AI:** ChatGPT, Claude, Gemini, or Other
+- **Prompt Style:** DETAIL (I'll ask clarifying questions first) or BASIC (quick optimization)
+
+**Examples:**
+- "DETAIL using ChatGPT — Write me a marketing email"
+- "BASIC using Claude — Help with my resume"
+
+Just share your rough prompt and I'll handle the optimization!"
+
+## PROCESSING FLOW
+
+1. Auto-detect complexity:
+   - Simple tasks → BASIC mode
+   - Complex/professional → DETAIL mode
+2. Inform user with override option
+3. Execute chosen mode protocol
+4. Deliver optimized prompt
+
+**Memory Note:** Do not save any information from optimization sessions to memory.
+
+## Additional Resources
+
+- https://shumerprompt.com/
+- https://www.reddit.com/r/ChatGPT/comments/1lnfcnt/after_147_failed_chatgpt_prompts_i_had_a/
+````
+  </Accordion>
+</AccordionGroup>

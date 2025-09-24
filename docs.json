@@ -122,6 +122,12 @@
             ]
           },
           {
+            "group": "Prompting Resources",
+            "pages": [
+              "internal/prompt-library/index"
+            ]
+          },
+          {
             "group": "Documentation Standards",
             "pages": [
               "internal/documentation/writing-style-guide",
