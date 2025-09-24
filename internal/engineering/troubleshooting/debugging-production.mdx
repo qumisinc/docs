@@ -43,7 +43,7 @@ aws ecs describe-services \
 for SERVICE in api web sidekiq; do
   echo "=== $SERVICE errors ==="
   aws logs filter-log-events \
-    --log-group-name /ecs/blue/prod/$SERVICE \
+    --log-group-name ecs/blue/prod/$SERVICE \
     --start-time $(date -u -d '15 minutes ago' '+%s')000 \
     --filter-pattern "ERROR" \
     --profile qumis_prod \

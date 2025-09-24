@@ -230,7 +230,7 @@ This guide provides solutions to common issues you might encounter while working
     **Solutions**:
     ```bash
     # Check container logs (blue cluster)
-    aws logs tail /ecs/blue/prod/api --profile qumis_prod --follow
+    aws logs tail ecs/blue/prod/api --profile qumis_prod --follow
 
     # Check health check configuration
     aws ecs describe-task-definition \
@@ -270,7 +270,7 @@ This guide provides solutions to common issues you might encounter while working
       --query 'services[0].[status,runningCount,desiredCount]'
 
     # Check Sidekiq logs
-    aws logs tail /ecs/blue/prod/sidekiq \
+    aws logs tail ecs/blue/prod/sidekiq \
       --profile qumis_prod \
       --follow
 
