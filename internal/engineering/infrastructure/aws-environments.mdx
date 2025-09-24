@@ -7,6 +7,16 @@ noindex: true
 
 This guide provides a comprehensive overview of our AWS environments, their purposes, and access patterns.
 
+## AWS Console Access
+
+<Info>
+  **AWS SSO Portal**: Access all AWS accounts through the single sign-on portal
+
+  [**https://qumis.awsapps.com/start/#/?tab=accounts**](https://qumis.awsapps.com/start/#/?tab=accounts)
+
+  This is the main entrypoint for accessing AWS consoles across all environments. Bookmark this URL for quick access.
+</Info>
+
 ## Environment Overview
 
 ### Deployment Environments
@@ -165,8 +175,16 @@ qumis services exec api \
 ### AWS SSO Configuration
 
 <Steps>
+  <Step title="Access AWS Console">
+    **Primary Method**: Use the AWS SSO Portal to access the AWS Console for any environment:
+
+    [**https://qumis.awsapps.com/start/#/?tab=accounts**](https://qumis.awsapps.com/start/#/?tab=accounts)
+
+    This portal provides direct browser access to all AWS accounts you have permissions for.
+  </Step>
+
   <Step title="Configure SSO Profile">
-    Configure your `~/.aws/config` file with the SSO profiles. The SSO URL is `https://qumis.awsapps.com/start/` and the region is `us-east-2`:
+    For CLI access, configure your `~/.aws/config` file with the SSO profiles. The SSO URL is `https://qumis.awsapps.com/start/` and the region is `us-east-2`:
 
     ```bash
     # View the configuration template
@@ -356,7 +374,7 @@ If issues span multiple environments:
 
 ## Additional Resources
 
+- [AWS SSO Portal](https://qumis.awsapps.com/start/#/?tab=accounts) - Main entrypoint for AWS console access
 - [CloudWatch Monitoring](/internal/engineering/infrastructure/cloudwatch-monitoring)
 - [CloudWatch Alerts](/internal/engineering/infrastructure/cloudwatch-alerts)
 - [Production Deployment](/internal/engineering/deployment/production-deployment)
-- [AWS Console](https://console.aws.amazon.com/) - Use SSO portal for access

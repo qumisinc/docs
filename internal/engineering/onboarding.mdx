@@ -14,6 +14,14 @@ Before starting, ensure you have:
 - AWS account setup (coordinate with team lead)
 - Slack access to the engineering channels
 
+<Tip>
+  **AWS Console Access**: Once your AWS account is set up, you can access all environments through the AWS SSO portal:
+
+  [**https://qumis.awsapps.com/start/#/?tab=accounts**](https://qumis.awsapps.com/start/#/?tab=accounts)
+
+  Bookmark this URL for quick access to all AWS environments.
+</Tip>
+
 ## Day 1: Essential Setup
 
 <Steps>
@@ -50,7 +58,9 @@ Before starting, ensure you have:
     brew install awscli
     ```
 
-    Create your `~/.aws/config` file with this template:
+    **AWS SSO Portal Access**: [https://qumis.awsapps.com/start/#/?tab=accounts](https://qumis.awsapps.com/start/#/?tab=accounts)
+
+    Create your `~/.aws/config` file with this template for CLI access:
     ```ini
     # AWS SSO configuration
     [sso-session qumis_sso]
