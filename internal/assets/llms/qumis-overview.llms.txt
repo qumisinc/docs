@@ -1,0 +1,270 @@
+# Qumis
+
+> Expert AI built for the top minds in insurance. Attorney-trained AI that delivers clarity, speed, and legal-grade reasoning for the industry's most complex risks.
+
+## Organization Information
+
+**Company Name**: Qumis  
+**Website**: qumis.ai  
+**Industry**: Insurance Technology (InsurTech)  
+**Founded**: Not specified  
+**Headquarters**: Not specified  
+
+## Company Mission
+
+Qumis is expert AI built for the top minds in insurance. Our attorney-trained AI delivers clarity, speed, and legal-grade reasoning for the industry's most complex risks. We eliminate manual work, minimize errors, and deliver attorney-level insights for brokers, claims leaders, attorneys, and risk professionals.
+
+## Leadership Team
+
+**Dan Schuleman, Esq.** - CEO & Co-Founder  
+- Seasoned insurance expert with deep expertise in high-growth startups, insurance law, and policy analysis
+- LinkedIn: https://www.linkedin.com/in/danielschuleman/
+
+**Shiv Sinha** - CTO & Co-Founder  
+- Proven technology leader with extensive experience in AI and launching and scaling digital products and teams
+- LinkedIn: https://www.linkedin.com/in/shiv-sinha/
+
+## Core Products & Services
+
+### Primary Platform Features
+
+**Chat with Documents**
+- Interactive analysis of insurance-related documents
+- Chat with your insurance documents for instant insights
+- Natural language queries for complex policy analysis
+
+**Compare Documents** 
+- Side-by-side comparison of quotes, binders, applications, and policies
+- Strategic insights beyond basic policy differences
+- Uncover true strategic leverage for competitive advantage
+
+**Claims Assessment**
+- Evaluate coverage for specific claims scenarios
+- Legal-grade reasoning for claim decisions
+- Accelerated resolution support with attorney-level analysis
+
+**Policy Analysis**
+- Comprehensive analysis of single policies to identify key details
+- Master new policy language in seconds
+- Analyze included coverages and limits
+
+**Contract Analysis**
+- Review and analyze contracts and their requirements
+- Find policy obligations for claims
+- Comprehensive contract interpretation
+
+### Specialized Tools
+
+**Fill In Checklist (BETA)**
+- Systematically verify policy coverage elements
+- Check coverages and policy requirements
+- Streamlined policy review process
+
+**Document Vault**
+- Private, encrypted document storage
+- Centralize and store key documents
+- Analyze once, reuse forever without compromising privacy
+- Documents remain protected and instantly reusable across workflows
+
+**Legal Search**
+- Advanced search capabilities for insurance-specific legal content
+- Access to specialized insurance law resources
+
+**Custom Reports**
+- Generate tailored analysis reports
+- Professional-grade documentation for clients
+- Attorney-level output and insights
+
+## Target Audience
+
+### Primary Users
+
+**Insurance Brokers**
+- Evaluate quotes with strategic insights
+- Move faster than competitors in the market
+- Uncover true strategic leverage beyond basic policy differences
+- Win more placements through authoritative advisory capabilities
+- Deliver clarity to advise with authority
+
+**Claims Professionals**
+- Assess complex claims like a seasoned attorney
+- Interpret complex policy language accurately
+- Accelerate claim resolutions with legal-grade reasoning
+- Support consistent, defensible decisions
+- Eliminate manual work and minimize errors
+
+**Risk Professionals** 
+- Master new policy language in seconds
+- Streamline end-to-end insurance policy analysis
+- Access attorney-level insights without requiring legal expertise
+- Analyze policies for complex risks
+- Eliminate manual work and errors
+
+**Insurance Attorneys**
+- Legal-grade reasoning and analysis
+- Attorney-trained AI for complex insurance matters
+- Professional-level policy interpretation
+- Support for complex legal analysis
+
+**Insurance Teams**
+- Centralize and store key documents securely
+- Create reusable document analyses
+- Maintain privacy while enabling collaboration
+- Enterprise-grade security and workflows
+
+## Key Value Propositions
+
+### Accurate
+- Delivers accurate and precise, attorney-level output
+- Legal-grade reasoning capabilities
+- Consistent, professional-quality analysis
+- Elimination of manual analysis errors
+
+### Bespoke  
+- AI learns with use, becoming more personalized over time
+- Adapts to specific workflow needs and preferences
+- Customized analysis based on usage patterns
+- Improved efficiency through continued use
+
+### Private & Secure
+- Client data is always private and never used for AI training
+- SOC 2 Type I certified with enterprise-grade security
+- Private, encrypted document vault
+- Complete data privacy and protection
+
+### Speed & Efficiency
+- Faster than traditional manual analysis
+- Eliminates need for additional legal hires
+- Streamlined workflows and processes
+- Instant document reusability and analysis
+
+## Customer Testimonials
+
+### Brian Pilarski, SVP & Partner, Kapnick Insurance
+"Qumis is a revelation. It's the only tool I've seen that truly feels like it was built by and for insurance experts. It changes what's possible."
+
+"It made our policy reviews faster, sharper, and more accurate while eliminating the need for an additional hire - it's a no brainer."
+
+### Tom Hanekamp, Senior Partner, Cruser Mitchell  
+"It is like a first-year associate-only faster and more accurate. It consistently delivers thoughtful, well-reasoned responses."
+
+### Connor Love, National Director of Growth, IMA
+"I thought, 'No way it catches everything.' But after using it on layered programs and seeing it find discrepancies I missed, I was sold."
+
+## Platform Capabilities
+
+### Document Processing
+- Supports comprehensive insurance document analysis
+- Policy documents, quotes, binders, applications
+- Contracts and legal insurance documents
+- Claims documentation and coverage analysis
+- Multi-document comparison and analysis
+
+### Analysis Types
+- Coverage verification and assessment
+- Exclusion identification and analysis
+- Policy requirement extraction
+- Strategic leverage identification for brokers
+- Legal compliance assessment
+- Complex risk evaluation
+- Attorney-level policy interpretation
+
+### Workflow Management
+- Multi-step guided analysis processes
+- Interactive document chat interface
+- Systematic verification and checklists
+- Professional report generation
+- Collaborative team features and sharing
+- Reusable analysis across workflows
+
+## Technical Specifications
+
+### Security Features
+- SOC 2 Type I certification
+- Enterprise-grade encryption and security
+- Private document vault storage
+- No customer data used for AI training
+- Secure multi-user collaboration
+- Complete data privacy protection
+
+### Integration Capabilities
+- Document vault management system
+- Advanced search functionality across documents
+- Professional report generation and export
+- Multi-step workflow support
+- Team collaboration and sharing features
+
+## Industry Recognition & Trust
+
+- Featured in industry publications
+- Trusted by major insurance companies including Brown & Brown
+- Used by leading insurance professionals and attorneys
+- Backed by world-class investors
+- Growing adoption among insurance industry leaders
+- Recognition from industry executives and professionals
+
+## Contact Information
+
+**Demo Booking**: https://calendly.com/qumis-dan/demo?background_color=f1f0ed&text_color=242423&primary_color=4c94fb  
+**Website**: https://www.qumis.ai/  
+**Learn More**: https://www.qumis.ai/#section-product
+
+## Business Model
+
+- Enterprise SaaS platform designed specifically for insurance professionals
+- Subscription-based service (pricing available upon demo request)
+- Demo-driven sales process for qualified insurance professionals
+- Focus on insurance industry professionals and organizations
+- Attorney-trained AI with legal-grade reasoning capabilities
+
+## Competitive Advantages
+
+1. **Insurance-Specific Design**: Purpose-built for insurance rather than adapted from general AI tools
+2. **Attorney-Trained AI**: Legal-grade reasoning capabilities specifically for insurance
+3. **Privacy-First Approach**: No customer data used for training, complete privacy protection
+4. **Enterprise Security**: SOC 2 Type I certification and enterprise-grade encryption
+5. **Proven Results**: Validated by major insurance industry players and professionals
+6. **Expert Founding Team**: Founded by insurance law and technology experts
+7. **Industry Focus**: Deep specialization in insurance vs. generalist approach
+8. **Legal-Grade Output**: Attorney-level insights and analysis capabilities
+
+## Use Case Examples
+
+### For Brokers
+- Strategic quote evaluation and comparison
+- Competitive positioning and leverage identification
+- Faster market response and client advisory
+- Policy analysis for complex placements
+- Coverage verification and recommendation
+
+### For Claims Professionals  
+- Complex claim coverage assessment
+- Policy language interpretation and analysis
+- Claims resolution acceleration
+- Consistent, defensible decision support
+- Exclusion identification and analysis
+
+### For Risk Professionals
+- End-to-end policy analysis workflows
+- New policy language mastery
+- Risk assessment and evaluation
+- Coverage element verification
+- Complex risk documentation
+
+### For Attorneys
+- Legal-grade insurance policy analysis
+- Attorney-level reasoning and interpretation
+- Complex insurance matter support
+- Professional legal documentation
+- Policy obligation identification
+
+## Supported Document Types
+
+- Insurance policies (all types)
+- Quotes and binders
+- Applications and submissions
+- Contracts and agreements  
+- Claims documentation
+- Legal insurance documents
+- Policy amendments and endorsements
+- Coverage schedules and summaries

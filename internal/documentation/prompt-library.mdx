@@ -436,6 +436,110 @@ Just share your rough prompt and I'll handle the optimization!"
   Source: [Reddit r/ChatGPT](https://www.reddit.com/r/ChatGPT/comments/1lnfcnt/after_147_failed_chatgpt_prompts_i_had_a/)
 </Note>
 
+## LLM Context Files
+
+<Info>
+  Downloadable context files to enhance LLM understanding of Qumis systems and documentation.
+</Info>
+
+### What are LLM Context Files?
+
+LLM context files (`.llms.txt` format) are specially formatted documents that provide comprehensive background information about Qumis to AI assistants. These files help LLMs understand our domain, terminology, architecture, and best practices when assisting with documentation, code generation, or analysis tasks.
+
+### Available Context Files
+
+<CardGroup cols={2}>
+  <Card
+    title="Qumis Overview"
+    icon="building"
+    href="/internal/assets/llms/qumis-overview.llms.txt"
+  >
+    **Contents:**
+    - Company mission and values
+    - Product features and capabilities
+    - Target audience and use cases
+    - Industry context and terminology
+
+    **File:** `qumis-overview.llms.txt` (9.5 KB)
+
+    **Use when:** Working on product documentation, marketing content, or explaining Qumis to external audiences.
+  </Card>
+
+  <Card
+    title="Qumis Design System"
+    icon="palette"
+    href="/internal/assets/llms/qumis-design.llms.txt"
+  >
+    **Contents:**
+    - Brand guidelines and visual identity
+    - Color system and typography
+    - Component specifications
+    - UI/UX patterns and conventions
+
+    **File:** `qumis-design.llms.txt` (5.1 KB)
+
+    **Use when:** Creating UI components, styling documentation, or maintaining design consistency.
+  </Card>
+</CardGroup>
+
+### How to Use These Files
+
+<Steps>
+  <Step title="Download the relevant context file(s)">
+    Click on the cards above to download the `.llms.txt` files you need for your task.
+  </Step>
+
+  <Step title="Add to your AI tool">
+    **For ChatGPT:**
+    - Upload the file directly in your conversation
+    - Or paste the contents as context
+
+    **For Claude:**
+    - Upload via the attachment button
+    - Or include in your project's knowledge base
+
+    **For Cursor/GitHub Copilot:**
+    - Add to your project root as `.cursorrules` or `.github/copilot-instructions.md`
+    - Or reference in your workspace settings
+  </Step>
+
+  <Step title="Reference in your prompts">
+    When asking questions or generating content, reference the context:
+    ```
+    "Using the Qumis context provided, create documentation for..."
+    "Based on the Qumis design system, generate a component that..."
+    ```
+  </Step>
+</Steps>
+
+### Best Practices
+
+<Tip>
+  **Keep Context Files Updated:** These files should be updated whenever there are significant changes to:
+  - Product features or capabilities
+  - Design system or branding
+  - Company positioning or target audience
+  - Technical architecture or terminology
+</Tip>
+
+<Warning>
+  **Security Reminder:** These context files are for internal use only. Do not share them with external parties or upload to public AI services without authorization.
+</Warning>
+
+### Maintaining Context Files
+
+The LLM context files are stored in `/internal/assets/llms/` and should be updated quarterly or when significant changes occur. When updating:
+
+1. Maintain the structured format for optimal LLM parsing
+2. Keep file sizes under 15KB for better performance
+3. Include version dates in the file headers
+4. Test with multiple AI tools to ensure compatibility
+5. Notify the team of updates via Slack #engineering channel
+
+<Note>
+  To suggest improvements or report issues with these context files, create a Linear issue tagged with `documentation` and `llm-context`.
+</Note>
+
 ## Contributing to the Library
 
 To add a new prompt to this library:
