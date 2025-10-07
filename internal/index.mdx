@@ -6,19 +6,23 @@ noindex: true
 
 Welcome to the Qumis internal documentation hub.
 
-## Engineering
-
-<Card
-  title="Engineering Hub"
-  icon="code"
-  href="/internal/engineering/"
->
-  Complete engineering documentation and guides
-</Card>
-
-### Quick Links
+## Core Resources
 
 <CardGroup cols={3}>
+  <Card
+    title="Engineering Hub"
+    icon="code"
+    href="/internal/engineering/"
+  >
+    Complete engineering documentation and guides
+  </Card>
+  <Card
+    title="Documentation Hub"
+    icon="book-text"
+    href="/internal/documentation/writing-style-guide"
+  >
+    Writing standards, prompt library, and markdown tools
+  </Card>
   <Card
     title="AWS Console Access"
     icon="lock-open"
@@ -26,104 +30,76 @@ Welcome to the Qumis internal documentation hub.
   >
     Access all AWS environments via SSO
   </Card>
+</CardGroup>
+
+## Essential Tools & Workflows
+
+<CardGroup cols={3}>
   <Card
-    title="Onboarding Guide"
+    title="Getting Started"
     icon="user-plus"
     href="/internal/engineering/onboarding"
   >
-    Setup guide for new engineers
+    Onboarding guide and development tools setup
   </Card>
   <Card
-    title="Tools Setup"
-    icon="wrench"
-    href="/internal/engineering/tools-setup"
-  >
-    Install qumis-cli and development tools
-  </Card>
-  <Card
-    title="Production Deployment"
+    title="Deploy to Production"
     icon="rocket"
     href="/internal/engineering/deployment/production-deployment"
   >
-    Deploy services to production safely
+    Step-by-step deployment workflow and safety checks
   </Card>
   <Card
-    title="qumis-cli Reference"
+    title="qumis-cli Operations"
     icon="terminal"
     href="/internal/engineering/operations/qumis-cli-reference"
   >
-    Command-line tool documentation
+    Command-line tool reference and Rails commands
   </Card>
   <Card
     title="AWS Infrastructure"
     icon="cloud"
     href="/internal/engineering/infrastructure/aws-environments"
   >
-    Environment overview and access
+    Environment overview and configuration
   </Card>
   <Card
-    title="CloudWatch Monitoring"
+    title="Monitoring & Alerts"
     icon="chart-line"
     href="/internal/engineering/infrastructure/cloudwatch-monitoring"
   >
-    Application metrics and logs
-  </Card>
-  <Card
-    title="Alerts & Incidents"
-    icon="bell"
-    href="/internal/engineering/infrastructure/cloudwatch-alerts"
-  >
-    Alert management and response
+    CloudWatch monitoring, logs, and alert management
   </Card>
   <Card
     title="Troubleshooting"
     icon="circle-alert"
     href="/internal/engineering/troubleshooting/common-issues"
   >
-    Common issues and solutions
+    Common issues and production debugging
   </Card>
 </CardGroup>
 
-## Documentation Standards
-
-<CardGroup cols={2}>
-  <Card
-    title="Writing Style Guide"
-    icon="pen-line"
-    href="/internal/documentation/writing-style-guide"
-  >
-    Standards for writing Qumis documentation
-  </Card>
-  <Card
-    title="Qumis Prompt Library"
-    icon="sparkles"
-    href="/internal/documentation/prompt-library"
-  >
-    Battle-tested prompts for AI tools - browse 15+ prompts across 5 categories
-  </Card>
-</CardGroup>
-
-### Popular Prompts
+## Popular Prompts
 
 <CardGroup cols={3}>
   <Card
     title="Documentation Prompts"
     icon="book"
-    href="/internal/prompts/documentation-prompts"
+    href="/internal/documentation/prompt-library#documentation-prompts"
   >
     Markdown conversion, summarization, llms-full.txt generation
   </Card>
   <Card
     title="Engineering Prompts"
     icon="code"
-    href="/internal/prompts/engineering-prompts"
+    href="/internal/documentation/prompt-library#engineering-prompts"
   >
     Self-review, Retool SQL queries, Linear backfilling
   </Card>
   <Card
     title="Meta-Prompting"
     icon="wand-magic-sparkles"
-    href="/internal/prompts/meta-prompting"
+    href="/internal/documentation/prompt-library#meta-prompting-techniques"
   >
     Generate/Evaluate method, Lyra optimizer
   </Card>
