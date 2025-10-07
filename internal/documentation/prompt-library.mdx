@@ -42,7 +42,8 @@ Create a ~200 word summarization of the most important data from this report for
 
 Generate comprehensive documentation files from codebases or documentation sites, optimized for LLM consumption.
 
-<Accordion title="llms-full.txt for Documentation Sites">
+#### For Documentation Sites
+
 ```markdown
 You will be creating a Markdown file named llms-full.txt that contains all essential information from an input file, converted to clean Markdown.
 
@@ -68,9 +69,9 @@ Follow these steps to create the output:
 
 Provide your output as Markdown. The content of these tags should be exactly what would be written to the /llms-full.txt file, with no additional commentary or explanation.
 ```
-</Accordion>
 
-<Accordion title="llms-full.txt for Code Repositories (Strategic Extraction)">
+#### For Code Repositories (Strategic Extraction)
+
 ```markdown
 You will be creating a Markdown file named llms-full.txt that contains all essential information from a code repository, converted to clean Markdown format optimized for LLM consumption and understanding, with strategic content extraction rather than complete file dumps.
 
@@ -100,7 +101,6 @@ Your task is to process the repository input and create a single comprehensive M
 
 [Full prompt continues with architecture overview, dependency mapping, extraction strategies, and quality assurance sections...]
 ```
-</Accordion>
 
 ## Engineering Prompts
 
@@ -112,18 +112,19 @@ Your task is to process the repository input and create a single comprehensive M
 
 Perform comprehensive self-reviews to improve code quality and catch issues early. This two-step process helps LLMs evaluate and improve their own outputs.
 
-<Accordion title="Self-Review Process">
 #### Step 1: Perform Self-Review
 
-**Review Last Message:**
-```markdown
+<CodeGroup>
+
+```markdown Review Last Message
 Perform a comprehensive self-review of your LAST message and my message before that. First, describe the objective of what I had asked for and what you had replied with in your response. This process involves analyzing your response, evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
 ```
 
-**Review Modifications (General):**
-```markdown
+```markdown Review Modifications (General)
 Perform a comprehensive self-review. First, describe the objective of what I had asked for and what you had replied with in your response(s). This process involves analyzing your response(s), evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
 ```
+
+</CodeGroup>
 
 #### Step 2: Revise/Improve Output
 
@@ -134,7 +135,6 @@ Review your previous analysis and apply the suggested improvements to the proces
 <Note>
   You can repeat the self-review process multiple times for iterative improvement. As noted by @Erik Nomitch: "Since LLMs are more performant at review/analysis than they are at one-shot generation, I find that doing this self-review process can drastically improve many types of outputs."
 </Note>
-</Accordion>
 
 ### Create Retool SQL Queries
 
@@ -142,22 +142,21 @@ Generate SQL queries specifically formatted for Qumis Retool applications with p
 
 <Accordion title="Retool SQL Query Generator">
 
-```markdown
-Create a Retool query and name for: <DESCRIPTION>
+Create a Retool query and name for: `<DESCRIPTION>`
 
 Review the database schema defined in `schema.json` and use it for context.
 
 You will return only the following:
-• A query name following this naming convention: `q_[description][timeframe/type][grouping]`
-• A PostgreSQL SQL statement, using Retool's `{{ }}` syntax for parameters
-• Use only tables, columns, and enums that exist in `schema.json`
+- A query name following this naming convention: `q_[description][timeframe/type][grouping]`
+- A PostgreSQL SQL statement, using Retool's `{{ }}` syntax for parameters
+- Use only tables, columns, and enums that exist in `schema.json`
 
 Examples of valid query names:
-• `q_chats_weekly_count_by_org`
-• `q_chats_weekly_count_by_user`
-• `q_chats_6week_count_by_org`
-• `q_chats_6week_count_by_user`
-• `q_chat_data_validation`
+- `q_chats_weekly_count_by_org`
+- `q_chats_weekly_count_by_user`
+- `q_chats_6week_count_by_org`
+- `q_chats_6week_count_by_user`
+- `q_chat_data_validation`
 
 **Format:**
 
@@ -169,7 +168,6 @@ SELECT * FROM example_table WHERE id = {{ id }};
 ```
 
 Do not include any explanatory text—only the code block.
-```
 
 **Instructions:**
 1. Add the `schema.json` file (available from the Qumis engineering team)
@@ -189,7 +187,7 @@ Do not include any explanatory text—only the code block.
 
 Convert code changes and commits into properly formatted Linear tickets for documentation.
 
-<Accordion title="Backfilling Linear Issues">
+#### Main Prompt
 
 ```markdown
 # OBJECTIVE
@@ -200,7 +198,18 @@ Your objective is to review the code and data in the <CHANGES> tags and create L
 
 Here are some examples of Linear tickets in Markdown:
 
-```markdown
+[See examples below]
+
+<CHANGES>
+[Paste your code changes or commit history here]
+</CHANGES>
+```
+
+#### Example Linear Tickets
+
+<CodeGroup>
+
+```markdown Example 1: Upload Validation
 # Only allows users to upload appropriate document types
 
 Currently when a user goes to upload a document, the UI states only PDF format only however users are able to upload other types of documents such as .pngs that do not process correctly.
@@ -208,7 +217,7 @@ Currently when a user goes to upload a document, the UI states only PDF format o
 Users should only be allowed to upload .pdf
 ```
 
-```markdown
+```markdown Example 2: Environment Badges
 # Add persistent environment information badges
 
 Implement status badges for all non-customer facing environments. This is to limit mistakes and increase flow speed.
@@ -220,11 +229,7 @@ I don't want one of us to accidentally do something to our production environmen
 It should be persistent across all pages and and fixed with the top z-index.
 ```
 
-<CHANGES>
-[Paste your code changes or commit history here]
-</CHANGES>
-```
-</Accordion>
+</CodeGroup>
 
 ## Operations Prompts
 
@@ -323,7 +328,6 @@ This method leverages the LLM's weights to influence prompt generation and evalu
 
 A master-level prompt optimization specialist that transforms any user input into precision-crafted prompts.
 
-<Accordion title="Lyra Prompt Optimizer">
 ```markdown
 You are Lyra, a master-level AI prompt optimization specialist. Your mission: transform any user input into precision-crafted prompts that unlock AI's full potential across all platforms.
 
@@ -431,7 +435,6 @@ Just share your rough prompt and I'll handle the optimization!"
 <Note>
   Source: [Reddit r/ChatGPT](https://www.reddit.com/r/ChatGPT/comments/1lnfcnt/after_147_failed_chatgpt_prompts_i_had_a/)
 </Note>
-</Accordion>
 
 ## Contributing to the Library
 
