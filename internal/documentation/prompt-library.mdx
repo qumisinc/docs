@@ -30,7 +30,7 @@ Create concise, audience-specific summaries of reports and documents.
 
 <Accordion title="Summarization Prompt">
 ```markdown
-Create a ~200 word summarization of the most important data from this report for &lt;AUDIENCE&gt;. Make it concise, extremely clear, and exceptionally readable.
+Create a ~200 word summarization of the most important data from this report for <AUDIENCE>. Make it concise, extremely clear, and exceptionally readable.
 ```
 </Accordion>
 
@@ -44,7 +44,7 @@ You will be creating a Markdown file named llms-full.txt that contains all essen
 
 Your task is to process this input and create a single Markdown file that follows these rules:
 
-1. Begin with "# &lt;Project Name&gt;" on its own line.
+1. Begin with "# <Project Name>" on its own line.
 2. Immediately follow with a concise 1-paragraph intro (no block-quote needed).
 3. Inline the full Markdown of every important page in logical order (e.g. Quick Start, Concepts, API Reference, Guides).
 4. Preserve headings (#–####), code fences, lists, tables, and images (![alt](url)). Strip any extraneous HTML, scripts, or navigation.
@@ -72,7 +72,7 @@ You will be creating a Markdown file named llms-full.txt that contains all essen
 
 Your task is to process the repository input and create a single comprehensive Markdown file that follows these rules:
 
-1. Begin with "# &lt;Project Name&gt;" on its own line.
+1. Begin with "# <Project Name>" on its own line.
 2. Immediately follow with a concise 1-paragraph intro describing what the project does, its main purpose, and primary programming language(s) used.
 3. Include a **System Architecture Overview** explaining the application pattern, key components, and data flow.
 4. Add a **Module Dependencies Map** showing critical file relationships and import chains.
@@ -150,8 +150,9 @@ Review your previous analysis and apply the suggested improvements to the proces
 Generate SQL queries specifically formatted for Qumis Retool applications with proper naming conventions and parameter syntax.
 
 <Accordion title="Retool SQL Query Generator">
+
 ```markdown
-Create a Retool query and name for: &lt;DESCRIPTION&gt;
+Create a Retool query and name for: <DESCRIPTION>
 
 Review the database schema defined in `schema.json` and use it for context.
 
@@ -171,17 +172,17 @@ Examples of valid query names:
 
 Return your answer in a single code block like this:
 
-\`\`\`sql
+```sql
 -- name: q_example_query_type_group
 SELECT * FROM example_table WHERE id = {{ id }};
-\`\`\`
+```
 
 Do not include any explanatory text—only the code block.
 ```
 
 **Instructions:**
 1. Add the `schema.json` file (available from the Qumis engineering team)
-2. Replace `&lt;DESCRIPTION&gt;` with your query requirement
+2. Replace `<DESCRIPTION>` with your query requirement
 3. Run the prompt to generate the SQL query and name
 4. In Retool, go to "Edit App" → "Code"
 5. Duplicate an existing query
@@ -198,24 +199,25 @@ Do not include any explanatory text—only the code block.
 Convert code changes and commits into properly formatted Linear tickets for documentation.
 
 <Accordion title="Backfilling Linear Issues">
+
 ```markdown
 # OBJECTIVE
 
 I'd like to backfill our Linear issues with new tickets that are already done and in the codebase but don't exist in Linear yet.
 
-Your objective is to review the code and data in the &lt;CHANGES&gt; tags and create Linear tickets (in Markdown format) from them.
+Your objective is to review the code and data in the <CHANGES> tags and create Linear tickets (in Markdown format) from them.
 
 Here are some examples of Linear tickets in Markdown:
 
-\`\`\`Markdown
+```markdown
 # Only allows users to upload appropriate document types
 
 Currently when a user goes to upload a document, the UI states only PDF format only however users are able to upload other types of documents such as .pngs that do not process correctly.
 
 Users should only be allowed to upload .pdf
-\`\`\`
+```
 
-\`\`\`Markdown
+```markdown
 # Add persistent environment information badges
 
 Implement status badges for all non-customer facing environments. This is to limit mistakes and increase flow speed.
@@ -225,11 +227,11 @@ Since we will all be switching deployment environments pretty frequently, we sho
 I don't want one of us to accidentally do something to our production environment when we think we are on dev, qa, uat, etc.
 
 It should be persistent across all pages and and fixed with the top z-index.
-\`\`\`
+```
 
-&lt;CHANGES&gt;
+<CHANGES>
 [Paste your code changes or commit history here]
-&lt;/CHANGES&gt;
+</CHANGES>
 ```
 </Accordion>
 
@@ -290,7 +292,7 @@ This method leverages the LLM's weights to influence prompt generation and evalu
 
 1. **Generate a prompt engineering guide:**
    ```markdown
-   Generate a detailed prompt engineering guide. The audience is &lt;role&gt;.
+   Generate a detailed prompt engineering guide. The audience is <role>.
    ```
    (Example roles: "book authors", "software developers", "customer support reps")
 
@@ -304,7 +306,7 @@ This method leverages the LLM's weights to influence prompt generation and evalu
 
 4. **In a new chat, generate evaluation guide:**
    ```markdown
-   Generate a detailed prompt evaluation guide. The audience is &lt;role&gt;.
+   Generate a detailed prompt evaluation guide. The audience is <role>.
    ```
 
 5. **Evaluate the prompt:**
@@ -452,7 +454,7 @@ To add a new prompt to this library:
 
 <Note>
   When adding prompts, consider including:
-  - Clear variable placeholders using [brackets] or &lt;VARIABLES&gt;
+  - Clear variable placeholders using [brackets] or `<VARIABLES>`
   - Example inputs and expected outputs
   - Any prerequisites or context required (like schema.json for SQL queries)
   - Tips for customizing the prompt
