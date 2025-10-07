@@ -6,6 +6,10 @@ noindex: true
 
 The Qumis Prompt Library is a collection of reusable prompts for various documentation, engineering, and operational tasks. This library helps maintain consistency and efficiency across the team.
 
+<Tip>
+  **Most Used:** [Self-Review Process](#self-review) | [Create Retool SQL Queries](#create-retool-sql-queries) | [Backfilling Linear Issues](#backfilling-linear-issues)
+</Tip>
+
 ## Documentation Prompts
 
 <Info>
@@ -111,13 +115,6 @@ Perform comprehensive self-reviews to improve code quality and catch issues earl
 <Accordion title="Self-Review Process">
 #### Step 1: Perform Self-Review
 
-**v0.1 - Basic Self-Review**
-```markdown
-Perform a comprehensive self-review of your previous output. This process involves analyzing your response, evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
-```
-
-**v0.2 - Enhanced Self-Review Options**
-
 **Review Last Message:**
 ```markdown
 Perform a comprehensive self-review of your LAST message and my message before that. First, describe the objective of what I had asked for and what you had replied with in your response. This process involves analyzing your response, evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
@@ -130,12 +127,6 @@ Perform a comprehensive self-review. First, describe the objective of what I had
 
 #### Step 2: Revise/Improve Output
 
-**v0.1 - Basic Revision**
-```markdown
-Analyze your self-review and suggestions. Revise the original work to address any concerns and/or improvements with the goal of increasing the scores. Maintain its original purpose and style.
-```
-
-**v0.2 - Enhanced Revision**
 ```markdown
 Review your previous analysis and apply the suggested improvements to the process described in the original content. Focus on enhancing the score for the attributes that you have scored, while maintaining the original intent and structure.
 ```
