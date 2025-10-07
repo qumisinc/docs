@@ -48,12 +48,13 @@ Review your previous analysis and apply the suggested improvements to the proces
 
 Generate SQL queries specifically formatted for Qumis Retool applications with proper naming conventions and parameter syntax.
 
+<Info>
+**Database Schema File:** Download the [schema.json](/internal/assets/schema.json) file before using this prompt. This file contains the complete database schema including tables, columns, and enums.
+</Info>
+
 <Accordion title="Retool SQL Query Generator" icon="database">
 
 <Warning>
-**Required Files:**
-- `schema.json` (available from Qumis engineering team)
-
 **Common Use Cases:**
 - Weekly/monthly aggregations
 - User analytics and metrics
@@ -166,7 +167,7 @@ It should be persistent across all pages and and fixed with the top z-index.
 <Note>
   **Required Files for Engineering Prompts:**
   - Self-Review: No additional files needed
-  - Retool SQL: `schema.json` (from engineering team)
+  - Retool SQL: [schema.json](/internal/assets/schema.json) - Database schema for Qumis
   - Linear Backfilling: No additional files, but git history is helpful
 </Note>
 
