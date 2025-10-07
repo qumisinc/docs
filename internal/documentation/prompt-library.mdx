@@ -230,7 +230,18 @@ Create a ~200 word summarization of the most important data from this report for
 
 Generate comprehensive documentation files from codebases or documentation sites, optimized for LLM consumption.
 
-#### For Documentation Sites
+<Panel>
+  <Info>
+    **Purpose:** Create LLM-optimized documentation files for AI assistants
+
+    **Output:** Single Markdown file (≤100KB) with complete project information
+
+    **Use Cases:** API documentation sites, code repositories, knowledge bases
+  </Info>
+</Panel>
+
+<Tabs>
+  <Tab title="Documentation Sites" icon="book">
 
 ```markdown
 You will be creating a Markdown file named llms-full.txt that contains all essential information from an input file, converted to clean Markdown.
@@ -258,7 +269,8 @@ Follow these steps to create the output:
 Provide your output as Markdown. The content of these tags should be exactly what would be written to the /llms-full.txt file, with no additional commentary or explanation.
 ```
 
-#### For Code Repositories (Strategic Extraction)
+  </Tab>
+  <Tab title="Code Repositories" icon="code">
 
 ```markdown
 You will be creating a Markdown file named llms-full.txt that contains all essential information from a code repository, converted to clean Markdown format optimized for LLM consumption and understanding, with strategic content extraction rather than complete file dumps.
@@ -289,6 +301,9 @@ Your task is to process the repository input and create a single comprehensive M
 
 [Full prompt continues with architecture overview, dependency mapping, extraction strategies, and quality assurance sections...]
 ```
+
+  </Tab>
+</Tabs>
 
 ## Engineering Prompts
 
@@ -452,7 +467,7 @@ It should be persistent across all pages and and fixed with the top z-index.
 
 Identify gaps in understanding between user intent and AI interpretation to improve task alignment.
 
-<Accordion title="Alignment on Objective">
+<Accordion title="Alignment on Objective" icon="bullseye">
 ```markdown
 Review our interaction(s) so far. Think about the differences between:
 - My understanding of what I've asked/prompted you for (should usually be a high level since it's in my mental model)
@@ -468,7 +483,7 @@ First identify the potential differences in our understandings and anything that
 
 Create a comprehensive backup of conversation data for knowledge transfer or session restoration.
 
-<Accordion title="Chat Dump">
+<Accordion title="Chat Dump" icon="download">
 ```markdown
 Create a comprehensive JSON dump of all of the data so far in this conversation so that if given to you (or another LLM) in a new instance, you could "ingest" it and retain the knowledge from this entire conversation.
 ```
@@ -492,7 +507,16 @@ Create a comprehensive JSON dump of all of the data so far in this conversation 
 
 A systematic approach to creating optimized prompts using the LLM's own capabilities to generate and evaluate prompts.
 
-<Accordion title="Generate/Evaluate Method">
+<Accordion title="Generate/Evaluate Method" icon="flask">
+
+<Panel>
+  <Info>
+    **Best For:** Creating new prompts from scratch, optimizing existing prompts
+
+    **Pro Tip:** Use the same model family as your target deployment for best results
+  </Info>
+</Panel>
+
 This method leverages the LLM's weights to influence prompt generation and evaluation, often producing better results than manually crafted prompts.
 
 **Process:**
