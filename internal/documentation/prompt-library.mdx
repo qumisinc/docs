@@ -194,7 +194,7 @@ The LLM context files are stored in `/internal/assets/llms/` and should be updat
 
 Convert content to clean Markdown format with proper formatting and escaping.
 
-<Accordion title="Convert to Markdown Prompt">
+<Accordion title="Convert to Markdown Prompt" icon="file-code">
 ```markdown
 Convert this to Markdown. Try to capture the original format as accurately as possible.
 
@@ -206,9 +206,23 @@ Return this as Markdown in a code block (i.e., ```Markdown ...```). Escape any c
 
 Create concise, audience-specific summaries of reports and documents.
 
-<Accordion title="Summarization Prompt">
+<Accordion title="Summarization Prompt" icon="compress">
+
+<Panel>
+  <Tip>
+    **Best For:** Executive summaries, technical reports, customer communications
+
+    **Pro Tip:** Adjust word count based on audience - executives prefer 100-150 words, technical teams can handle 200-300 words
+  </Tip>
+</Panel>
+
 ```markdown
-Create a ~200 word summarization of the most important data from this report for <AUDIENCE>. Make it concise, extremely clear, and exceptionally readable.
+Create a ~200 word summarization of the most important data from this report for <Tooltip tip="Examples: 'executives', 'technical team', 'customers', 'stakeholders', 'board members'">AUDIENCE</Tooltip>. Make it concise, extremely clear, and exceptionally readable.
+```
+
+**Usage Example:**
+```markdown
+Create a ~200 word summarization of the most important data from this report for executives. Make it concise, extremely clear, and exceptionally readable.
 ```
 </Accordion>
 
@@ -286,6 +300,16 @@ Your task is to process the repository input and create a single comprehensive M
 
 Perform comprehensive self-reviews to improve code quality and catch issues early. This two-step process helps LLMs evaluate and improve their own outputs.
 
+<Panel>
+  <Tip>
+    **Why This Works:** LLMs are more performant at review/analysis than one-shot generation
+
+    **Best For:** Code reviews, documentation improvements, complex problem-solving
+
+    **Pro Tip:** Run 2-3 iterations for best results - each review compounds the improvements
+  </Tip>
+</Panel>
+
 #### Step 1: Perform Self-Review
 
 <CodeGroup>
@@ -314,9 +338,22 @@ Review your previous analysis and apply the suggested improvements to the proces
 
 Generate SQL queries specifically formatted for Qumis Retool applications with proper naming conventions and parameter syntax.
 
-<Accordion title="Retool SQL Query Generator">
+<Accordion title="Retool SQL Query Generator" icon="database">
 
-Create a Retool query and name for: `<DESCRIPTION>`
+<Panel>
+  <Warning>
+    **Required Files:**
+    - `schema.json` (available from Qumis engineering team)
+
+    **Common Use Cases:**
+    - Weekly/monthly aggregations
+    - User analytics and metrics
+    - Data validation queries
+    - Organization-level reporting
+  </Warning>
+</Panel>
+
+Create a Retool query and name for: <Tooltip tip="Examples: 'total chats per org last 6 weeks', 'average users per organization', 'failed logins by user'">DESCRIPTION</Tooltip>
 
 Review the database schema defined in `schema.json` and use it for context.
 
