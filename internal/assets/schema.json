@@ -1,0 +1,2904 @@
+{
+  "extensions": [
+    {
+      "name": "pgcrypto",
+      "schema": "public",
+      "comment": "cryptographic functions"
+    },
+    {
+      "name": "vector",
+      "schema": "public",
+      "comment": "vector data type and ivfflat and hnsw access methods"
+    }
+  ],
+  "types": {
+    "enums": {
+      "public.document_migration_status": [
+        "new",
+        "success",
+        "error"
+      ],
+      "public.document_ocr_processing_status": [
+        "not_started",
+        "invoked",
+        "complete",
+        "failed"
+      ],
+      "public.document_processing_status": [
+        "not_started",
+        "in_progress",
+        "complete",
+        "failed"
+      ],
+      "public.document_type": [
+        "policy",
+        "reference",
+        "fact",
+        "attachment",
+        "quote",
+        "renewal",
+        "binder",
+        "single_endorsement",
+        "other",
+        "spec",
+        "checklist",
+        "contract",
+        "application",
+        "work_order",
+        "certificate_of_insurance",
+        "acord_855",
+        "acord"
+      ],
+      "public.embedding_event": [
+        "INITIAL_EMBEDDING",
+        "META_DATA_UPDATE"
+      ],
+      "public.embedding_ocr_processing_status": [
+        "started",
+        "failed",
+        "complete"
+      ],
+      "public.organization_plan": [
+        "enterprise",
+        "standard"
+      ],
+      "public.report_email_processing_status": [
+        "not_started",
+        "ocr_processing",
+        "report_interpreter",
+        "generate_report",
+        "send_report",
+        "failed",
+        "complete",
+        "deleted",
+        "exempt",
+        "superseded"
+      ],
+      "public.subscription_billing_status": [
+        "paid",
+        "payment_action_required",
+        "payment_failed",
+        "no_balance",
+        "overdue"
+      ],
+      "public.subscription_stripe_status": [
+        "incomplete",
+        "incomplete_expired",
+        "trialing",
+        "active",
+        "past_due",
+        "canceled",
+        "unpaid"
+      ],
+      "public.subscription_type": [
+        "infinity_core",
+        "infinity_pro"
+      ],
+      "public.user_role": [
+        "site_admin",
+        "owner",
+        "admin",
+        "user",
+        "tech_support"
+      ],
+      "public.user_status": [
+        "new_user",
+        "onboarding_payment",
+        "verify_email",
+        "active",
+        "suspended",
+        "free",
+        "exempt",
+        "deactivated",
+        "trial_ended"
+      ]
+    }
+  },
+  "tables": {
+    "public.ar_internal_metadata": {
+      "columns": [
+        {
+          "name": "key",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "value",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "key"
+      ]
+    },
+    "public.artifacts": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "data",
+          "type": "jsonb",
+          "nullable": true
+        },
+        {
+          "name": "report_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "document_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "chart_type",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "citations",
+          "type": "jsonb",
+          "nullable": false,
+          "default": "'{}'::jsonb"
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "nullable": false,
+          "default": "'started'::character varying"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.audit_logs": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "action",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "metadata",
+          "type": "jsonb",
+          "nullable": false,
+          "default": "'{}'::jsonb"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.chat_messages": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "report_source",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "report_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "report_key",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "document_ids",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "rating",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "chat_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "message_type",
+          "type": "character varying",
+          "nullable": true,
+          "check": "message_type IN ('user','assistant')"
+        },
+        {
+          "name": "title",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "feedback",
+          "type": "text",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.checklist_elements": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "checklist_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "category_name",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "element",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.checklist_errors": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "report_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "error_reason",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "workflow_data",
+          "type": "jsonb",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.checklist_fields": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "field",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "value",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "cell_coordinate",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "row_coordinate",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "element_role",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "element_role_reasoning",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "column_header",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "document_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "filename",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "annotation",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "reasoning",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "term",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "category",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "short_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "report_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "feedback_text",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "thumbs_up",
+          "type": "boolean",
+          "nullable": true
+        },
+        {
+          "name": "version",
+          "type": "integer",
+          "nullable": false,
+          "default": "1"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "original_excel_row",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "original_excel_column",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "sort_order",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "confidence_score",
+          "type": "numeric(3,2)",
+          "nullable": true
+        },
+        {
+          "name": "confidence_reasoning",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "row_group_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "generation_method",
+          "type": "character varying",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.checklist_insights": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "short_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "insights",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "impact",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "report_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "feedback_text",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "thumbs_up",
+          "type": "boolean",
+          "nullable": true
+        },
+        {
+          "name": "version",
+          "type": "integer",
+          "nullable": false,
+          "default": "1"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "row_group_id",
+          "type": "character varying",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.checklists": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "is_shared",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "is_default",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.chunks": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "page_number",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "embedding",
+          "type": "public.vector(1536)",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "ordinal",
+          "type": "integer",
+          "nullable": false
+        },
+        {
+          "name": "document_id",
+          "type": "uuid",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.credit_histories": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "credit_type",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "purchase_type",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "amount",
+          "type": "integer",
+          "nullable": false
+        },
+        {
+          "name": "balance",
+          "type": "integer",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "report_id",
+          "type": "uuid",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.documents": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "filename",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "processed_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "processing_status",
+          "type": "public.document_processing_status",
+          "nullable": false,
+          "default": "'not_started'::public.document_processing_status"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "uploader_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "document_type",
+          "type": "public.document_type",
+          "nullable": false,
+          "default": "'reference'::public.document_type"
+        },
+        {
+          "name": "claim_number",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "claim_color",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "file_hash",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "filename_updated_by_user",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "page_count",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "access_levels",
+          "type": "character varying[]",
+          "nullable": false,
+          "default": "'{'\"private\"'}'::character varying[]"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.error_logs": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "error_type",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "source",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "context",
+          "type": "jsonb",
+          "nullable": true
+        },
+        {
+          "name": "user_id",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "organization_id",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "stacktrace",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "stripe_event_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.file_locations": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "file_hash",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "file_exist",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "unique": [
+        {
+          "name": "index_file_locations_on_organization_id_and_file_hash",
+          "columns": [
+            "organization_id",
+            "file_hash"
+          ]
+        }
+      ]
+    },
+    "public.invites": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "email",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "claimed_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "inviter_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "payment_intent_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "subscription_type",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "processed",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "billing_frequency",
+          "type": "character varying",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.job_doc_embeddings": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "document_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "event",
+          "type": "public.embedding_event",
+          "nullable": false
+        },
+        {
+          "name": "metadata",
+          "type": "jsonb",
+          "nullable": false,
+          "default": "'{}'::jsonb"
+        },
+        {
+          "name": "processing_status",
+          "type": "public.embedding_ocr_processing_status",
+          "nullable": false,
+          "default": "'started'::public.embedding_ocr_processing_status"
+        },
+        {
+          "name": "error_message",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.job_doc_ocrs": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "document_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "result_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "last_execution_time",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "processing_status",
+          "type": "public.document_ocr_processing_status",
+          "nullable": true,
+          "default": "'not_started'::public.document_ocr_processing_status"
+        },
+        {
+          "name": "error_message",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "failed_ocr_process_attempts",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.job_doc_searches": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": "nextval('public.job_doc_searches_id_seq'::regclass)"
+        },
+        {
+          "name": "document_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "error_message",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "uploaded_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.job_report_email_requests": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "from",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "to",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "message_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "subject",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "body_text",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "body_html",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "processing_status",
+          "type": "public.report_email_processing_status",
+          "nullable": true,
+          "default": "'not_started'::public.report_email_processing_status"
+        },
+        {
+          "name": "report_interpreter_result",
+          "type": "jsonb",
+          "nullable": false,
+          "default": "'{}'::jsonb"
+        },
+        {
+          "name": "document_ids",
+          "type": "uuid[]",
+          "nullable": false,
+          "default": "'{}'::uuid[]"
+        },
+        {
+          "name": "error_message",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "sent_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "report_options",
+          "type": "character varying[]",
+          "nullable": false,
+          "default": "'{}'::character varying[]"
+        },
+        {
+          "name": "source",
+          "type": "character varying",
+          "nullable": true,
+          "default": "'email'::character varying"
+        },
+        {
+          "name": "report_type",
+          "type": "character varying(225)",
+          "nullable": true
+        },
+        {
+          "name": "report_name",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "claim_number",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "original_report_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "feedback",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "rating",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "new_document_ids",
+          "type": "uuid[]",
+          "nullable": false,
+          "default": "'{}'::uuid[]"
+        },
+        {
+          "name": "regenerate_prompt",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "version",
+          "type": "integer",
+          "nullable": false,
+          "default": "1"
+        },
+        {
+          "name": "source_report_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "result",
+          "type": "jsonb",
+          "nullable": true
+        },
+        {
+          "name": "citations",
+          "type": "jsonb",
+          "nullable": false,
+          "default": "'{}'::jsonb"
+        },
+        {
+          "name": "checklist_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "analysis_file_extension",
+          "type": "character varying",
+          "nullable": true,
+          "default": "''::character varying"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.job_report_searches": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "job_report_email_request_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "error_message",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "uploaded_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.mfa_qr_codes": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "value",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "secret",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "qr_code",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "member_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "organization_id",
+          "type": "character varying",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.organization_settings": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "editor_settings",
+          "type": "jsonb",
+          "nullable": false,
+          "default": "'{}'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.organizations": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "plan",
+          "type": "public.organization_plan",
+          "nullable": false,
+          "default": "'standard'::public.organization_plan"
+        },
+        {
+          "name": "sso_enabled",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "workos_organization_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "workos_connection_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "domain",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "sso_settings",
+          "type": "jsonb",
+          "nullable": true,
+          "default": "'{}'::jsonb"
+        },
+        {
+          "name": "sso_configured_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "stytch_organization_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "stytch_tenant_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "stytch_connection_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "total_allowed_users",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "total_invited_users",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "mfa_policy",
+          "type": "character varying",
+          "nullable": false,
+          "default": "'optional'::character varying"
+        },
+        {
+          "name": "allowed_mfa_methods",
+          "type": "jsonb",
+          "nullable": false,
+          "default": "'[\"totp\"]'::jsonb"
+        },
+        {
+          "name": "mfa_enforcement_date",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "mfa_grace_period_days",
+          "type": "integer",
+          "nullable": false,
+          "default": "7"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.prompt_templates": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "shared",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "upvotes",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.prompt_votes": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "prompt_template_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "vote",
+          "type": "integer",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.schema_migrations": {
+      "columns": [
+        {
+          "name": "version",
+          "type": "character varying",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "version"
+      ],
+      "data_note": "Versions are populated via COPY in the dump tail."
+    },
+    "public.stripe_webhook_logs": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "stripe_event_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "event_type",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "payload",
+          "type": "jsonb",
+          "nullable": true
+        },
+        {
+          "name": "metadata",
+          "type": "jsonb",
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "nullable": false,
+          "default": "'received'::character varying"
+        },
+        {
+          "name": "processing_error",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "processed_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.subscription_types": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "permissions",
+          "type": "jsonb",
+          "nullable": false,
+          "default": "'[]'::jsonb"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "stripe_product_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "monthly_total_reports",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        },
+        {
+          "name": "stripe_monthly_price_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "yearly_total_reports",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        },
+        {
+          "name": "stripe_yearly_price_id",
+          "type": "character varying",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.subscriptions": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "stripe_subscription_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "stripe_customer_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "stripe_status",
+          "type": "public.subscription_stripe_status",
+          "nullable": true
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "access_enabled",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "billing_status",
+          "type": "public.subscription_billing_status",
+          "nullable": true,
+          "default": "'no_balance'::public.subscription_billing_status"
+        },
+        {
+          "name": "stripe_standard_plan_item_id",
+          "type": "character varying",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.taggings": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": "nextval('public.taggings_id_seq'::regclass)"
+        },
+        {
+          "name": "tag_id",
+          "type": "bigint",
+          "nullable": true
+        },
+        {
+          "name": "taggable_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "taggable_type",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "tagger_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "tagger_type",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "context",
+          "type": "character varying(128)",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp without time zone",
+          "nullable": true
+        },
+        {
+          "name": "tenant",
+          "type": "character varying(128)",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.tags": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": "nextval('public.tags_id_seq'::regclass)"
+        },
+        {
+          "name": "name",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "taggings_count",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.temp_analysis_locations": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": "nextval('public.temp_analysis_locations_id_seq'::regclass)"
+        },
+        {
+          "name": "report_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "report_key",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "document_count",
+          "type": "integer",
+          "nullable": true
+        },
+        {
+          "name": "moved_to_analysis",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "document_ids",
+          "type": "uuid[]",
+          "nullable": false,
+          "default": "'{}'::uuid[]"
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.temp_document_id_to_hash_migrations": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "document_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "file_hash",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "file_hash_existed",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "files_existed",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "status",
+          "type": "public.document_migration_status",
+          "nullable": true,
+          "default": "'new'::public.document_migration_status"
+        },
+        {
+          "name": "error_message",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.temp_file_name_to_generic_names": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "document_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "status",
+          "type": "character varying",
+          "nullable": true,
+          "default": "'pending'::character varying"
+        },
+        {
+          "name": "error_message",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "renamed_files",
+          "type": "jsonb",
+          "nullable": false,
+          "default": "'{}'::jsonb"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "error_logs",
+          "type": "jsonb",
+          "nullable": false,
+          "default": "'[]'::jsonb"
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.user_subscriptions": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "stripe_subscription_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "stripe_customer_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "stripe_subscription_item_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "stripe_status",
+          "type": "public.subscription_stripe_status",
+          "nullable": true
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "access_enabled",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "subscription_type_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "start_date",
+          "type": "timestamp(6) without time zone",
+          "nullable": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        {
+          "name": "reports_generated",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        },
+        {
+          "name": "last_report_generated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "total_reports_accessible",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        },
+        {
+          "name": "end_date",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "admin_managed",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "admin_payment_intent_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "admin_subscription_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "admin_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "billing_period",
+          "type": "character varying",
+          "nullable": false,
+          "default": "'monthly'::character varying"
+        },
+        {
+          "name": "credits_last_refreshed_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "months_elapsed",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        },
+        {
+          "name": "trial_ends",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.users": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "default": "gen_random_uuid()"
+        },
+        {
+          "name": "email",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "password_hash",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": false
+        },
+        {
+          "name": "organization_id",
+          "type": "uuid",
+          "nullable": true
+        },
+        {
+          "name": "role",
+          "type": "public.user_role",
+          "nullable": false,
+          "default": "'user'::public.user_role"
+        },
+        {
+          "name": "password_reset_token",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "password_reset_token_updated_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "first_name",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "last_name",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "sso_status",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "oauth_type",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "stytch_configured",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "stytch_user_id",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "email_verified",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "email_verification_token",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "public.user_status",
+          "nullable": false,
+          "default": "'new_user'::public.user_status"
+        },
+        {
+          "name": "free_credits",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        },
+        {
+          "name": "credit_balance",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        },
+        {
+          "name": "purchased_credits",
+          "type": "integer",
+          "nullable": false,
+          "default": "0"
+        },
+        {
+          "name": "user_persona",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "payment_notifications_opt_out",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "first_logged_in",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "business_group",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "viewed_intro_video",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "account_setup",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "mfa_enrolled",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "mfa_phone_number",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "mfa_phone_verified",
+          "type": "boolean",
+          "nullable": false,
+          "default": "false"
+        },
+        {
+          "name": "default_mfa_method",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "totp_secret",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "mfa_enrollment_date",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        },
+        {
+          "name": "mfa_last_used_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    },
+    "public.versions": {
+      "columns": [
+        {
+          "name": "id",
+          "type": "bigint",
+          "nullable": false,
+          "default": "nextval('public.versions_id_seq'::regclass)"
+        },
+        {
+          "name": "item_type",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "item_id",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "event",
+          "type": "character varying",
+          "nullable": false
+        },
+        {
+          "name": "whodunnit",
+          "type": "character varying",
+          "nullable": true
+        },
+        {
+          "name": "object",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp(6) without time zone",
+          "nullable": true
+        }
+      ],
+      "primary_key": [
+        "id"
+      ]
+    }
+  },
+  "foreign_keys": [
+    {
+      "table": "public.temp_file_name_to_generic_names",
+      "columns": [
+        "organization_id"
+      ],
+      "references": {
+        "table": "public.organizations",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.invites",
+      "columns": [
+        "inviter_id"
+      ],
+      "references": {
+        "table": "public.users",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.audit_logs",
+      "columns": [
+        "organization_id"
+      ],
+      "references": {
+        "table": "public.organizations",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.chunks",
+      "columns": [
+        "document_id"
+      ],
+      "references": {
+        "table": "public.documents",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.audit_logs",
+      "columns": [
+        "user_id"
+      ],
+      "references": {
+        "table": "public.users",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.prompt_votes",
+      "columns": [
+        "user_id"
+      ],
+      "references": {
+        "table": "public.users",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.job_report_email_requests",
+      "columns": [
+        "checklist_id"
+      ],
+      "references": {
+        "table": "public.checklists",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.subscriptions",
+      "columns": [
+        "organization_id"
+      ],
+      "references": {
+        "table": "public.organizations",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.documents",
+      "columns": [
+        "organization_id"
+      ],
+      "references": {
+        "table": "public.organizations",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.checklist_elements",
+      "columns": [
+        "checklist_id"
+      ],
+      "references": {
+        "table": "public.checklists",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.checklists",
+      "columns": [
+        "organization_id"
+      ],
+      "references": {
+        "table": "public.organizations",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.artifacts",
+      "columns": [
+        "report_id"
+      ],
+      "references": {
+        "table": "public.job_report_email_requests",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.temp_file_name_to_generic_names",
+      "columns": [
+        "document_id"
+      ],
+      "references": {
+        "table": "public.documents",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.job_report_email_requests",
+      "columns": [
+        "user_id"
+      ],
+      "references": {
+        "table": "public.users",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.user_subscriptions",
+      "columns": [
+        "admin_id"
+      ],
+      "references": {
+        "table": "public.users",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.job_doc_searches",
+      "columns": [
+        "document_id"
+      ],
+      "references": {
+        "table": "public.documents",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.job_report_email_requests",
+      "columns": [
+        "original_report_id"
+      ],
+      "references": {
+        "table": "public.job_report_email_requests",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.prompt_votes",
+      "columns": [
+        "prompt_template_id"
+      ],
+      "references": {
+        "table": "public.prompt_templates",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.checklists",
+      "columns": [
+        "user_id"
+      ],
+      "references": {
+        "table": "public.users",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.job_report_searches",
+      "columns": [
+        "job_report_email_request_id"
+      ],
+      "references": {
+        "table": "public.job_report_email_requests",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.documents",
+      "columns": [
+        "uploader_id"
+      ],
+      "references": {
+        "table": "public.users",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.artifacts",
+      "columns": [
+        "document_id"
+      ],
+      "references": {
+        "table": "public.documents",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.taggings",
+      "columns": [
+        "tag_id"
+      ],
+      "references": {
+        "table": "public.tags",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.job_doc_embeddings",
+      "columns": [
+        "document_id"
+      ],
+      "references": {
+        "table": "public.documents",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.job_report_email_requests",
+      "columns": [
+        "organization_id"
+      ],
+      "references": {
+        "table": "public.organizations",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.file_locations",
+      "columns": [
+        "organization_id"
+      ],
+      "references": {
+        "table": "public.organizations",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.organization_settings",
+      "columns": [
+        "organization_id"
+      ],
+      "references": {
+        "table": "public.organizations",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.user_subscriptions",
+      "columns": [
+        "user_id"
+      ],
+      "references": {
+        "table": "public.users",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.users",
+      "columns": [
+        "organization_id"
+      ],
+      "references": {
+        "table": "public.organizations",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.invites",
+      "columns": [
+        "organization_id"
+      ],
+      "references": {
+        "table": "public.organizations",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.user_subscriptions",
+      "columns": [
+        "subscription_type_id"
+      ],
+      "references": {
+        "table": "public.subscription_types",
+        "columns": [
+          "id"
+        ]
+      }
+    },
+    {
+      "table": "public.mfa_qr_codes",
+      "columns": [
+        "user_id"
+      ],
+      "references": {
+        "table": "public.users",
+        "columns": [
+          "id"
+        ]
+      }
+    }
+  ]
+}

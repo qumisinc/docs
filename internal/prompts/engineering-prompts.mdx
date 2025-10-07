@@ -12,7 +12,6 @@ noindex: true
 
 Perform comprehensive self-reviews to improve code quality and catch issues early. This two-step process helps LLMs evaluate and improve their own outputs.
 
-<Panel>
   <Tip>
     **Why This Works:** LLMs are more performant at review/analysis than one-shot generation
 
@@ -20,7 +19,6 @@ Perform comprehensive self-reviews to improve code quality and catch issues earl
 
     **Pro Tip:** Run 2-3 iterations for best results - each review compounds the improvements
   </Tip>
-</Panel>
 
 ### Step 1: Perform Self-Review
 
@@ -52,20 +50,21 @@ Generate SQL queries specifically formatted for Qumis Retool applications with p
 
 <Accordion title="Retool SQL Query Generator" icon="database">
 
-<Panel>
-  <Warning>
-    **Required Files:**
-    - `schema.json` (available from Qumis engineering team)
+<Warning>
+**Required Files:**
+- `schema.json` (available from Qumis engineering team)
 
-    **Common Use Cases:**
-    - Weekly/monthly aggregations
-    - User analytics and metrics
-    - Data validation queries
-    - Organization-level reporting
-  </Warning>
-</Panel>
+**Common Use Cases:**
+- Weekly/monthly aggregations
+- User analytics and metrics
+- Data validation queries
+- Organization-level reporting
+</Warning>
 
-Create a Retool query and name for: <Tooltip tip="Examples: 'total chats per org last 6 weeks', 'average users per organization', 'failed logins by user'">DESCRIPTION</Tooltip>
+Create a Retool query and name for: `<DESCRIPTION>`
+
+**Placeholder Guide:**
+- `<DESCRIPTION>`: Your query requirement (e.g., "total chats per org last 6 weeks", "average users per organization", "failed logins by user")
 
 Review the database schema defined in `schema.json` and use it for context.
 
@@ -170,3 +169,14 @@ It should be persistent across all pages and and fixed with the top z-index.
   - Retool SQL: `schema.json` (from engineering team)
   - Linear Backfilling: No additional files, but git history is helpful
 </Note>
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Prompt Library Home" icon="sparkles" href="/internal/documentation/prompt-library">
+    Browse all prompt categories
+  </Card>
+  <Card title="Operations Prompts" icon="server" href="/internal/prompts/operations-prompts">
+    Workflow alignment and infrastructure prompts
+  </Card>
+</CardGroup>

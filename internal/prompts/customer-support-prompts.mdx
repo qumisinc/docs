@@ -8,11 +8,119 @@ noindex: true
   Prompts for customer communication, issue resolution, and support workflows.
 </Info>
 
-## Coming Soon
+## Email Response Template
 
-<Note>
-  Customer support prompts will be added as they are developed and tested with the Qumis support team.
-</Note>
+Generate professional, empathetic customer support email responses.
+
+<Accordion title="Customer Email Response Generator" icon="mail">
+
+```markdown
+You are a customer support specialist for Qumis, an AI platform for insurance professionals. Generate a professional and empathetic email response for the following customer inquiry.
+
+**Customer Message:**
+<CUSTOMER_MESSAGE>
+
+**Internal Context (do not share with customer):**
+<INTERNAL_NOTES>
+
+**Response Guidelines:**
+- Acknowledge the customer's concern
+- Provide clear, actionable steps if applicable
+- Maintain a professional yet warm tone
+- Keep response under 200 words
+- Include next steps or timeline if relevant
+- End with an offer for additional assistance
+
+Generate the email response:
+```
+
+**Placeholder Guide:**
+- `<CUSTOMER_MESSAGE>`: Paste the customer's original message or question
+- `<INTERNAL_NOTES>`: Add any internal context, known issues, or planned fixes (optional)
+
+**Usage Example:**
+```markdown
+**Customer Message:**
+I'm having trouble uploading PDF files to analyze policies. The system keeps giving me an error.
+
+**Internal Context:**
+We're aware of a file upload issue affecting files over 10MB. Fix scheduled for next deployment.
+```
+
+</Accordion>
+
+## Issue Triage and Categorization
+
+Categorize and prioritize customer support tickets efficiently.
+
+<Accordion title="Support Ticket Triage" icon="clipboard-list">
+
+```markdown
+Analyze the following customer support ticket and provide:
+
+1. **Category**: Technical Issue / Feature Request / General Question / Billing / Account Access
+2. **Priority**: Critical / High / Medium / Low
+3. **Estimated Complexity**: Simple / Moderate / Complex
+4. **Suggested Owner**: Engineering / Customer Success / Product / Billing
+5. **Related Documentation**: Links to relevant docs or knowledge base articles
+6. **Recommended Next Steps**: Immediate actions to take
+
+**Customer Ticket:**
+<TICKET_DESCRIPTION>
+
+**Additional Context:**
+- Customer Tier: <TIER>
+- Account Status: <STATUS>
+- Previous Tickets: <COUNT>
+
+Provide your triage analysis:
+```
+
+**Placeholder Guide:**
+- `<TICKET_DESCRIPTION>`: Full customer issue description
+- `<TIER>`: Customer account tier (e.g., "Enterprise", "Professional", "Starter")
+- `<STATUS>`: Account status (e.g., "Active", "Trial", "Overdue")
+- `<COUNT>`: Number of previous support tickets (e.g., "0", "3 in last month")
+
+</Accordion>
+
+## Bug Report Summarization
+
+Create clear, actionable bug reports from customer descriptions.
+
+<Accordion title="Bug Report Formatter" icon="bug">
+
+```markdown
+Convert the following customer bug report into a structured format for the engineering team.
+
+**Customer Report:**
+<CUSTOMER_DESCRIPTION>
+
+**Environment:**
+- Browser: <BROWSER>
+- Account ID: <ACCOUNT_ID>
+- Timestamp: <TIMESTAMP>
+
+Generate a structured bug report with:
+
+1. **Summary**: One-line description of the issue
+2. **Steps to Reproduce**: Numbered steps to recreate the bug
+3. **Expected Behavior**: What should happen
+4. **Actual Behavior**: What actually happens
+5. **Impact**: Customer-facing impact and severity
+6. **Workaround**: If available, temporary solution for customer
+7. **Additional Context**: Browser, errors, screenshots mentioned
+
+Format as a Linear/GitHub issue-ready report.
+```
+
+**Placeholder Guide:**
+- `<CUSTOMER_DESCRIPTION>`: Customer's description of the problem in their own words
+- `<BROWSER>`: Browser and version (e.g., "Chrome 120", "Safari 17")
+- `<ACCOUNT_ID>`: Customer's account identifier
+- `<TIMESTAMP>`: When the issue occurred (e.g., "2024-01-15 14:30 UTC")
+
+</Accordion>
 
 ## Contributing
 
@@ -28,15 +136,16 @@ If you're working in customer support and have prompts that have proven valuable
   </Step>
 
   <Step title="Share with the team">
-    Add your prompt to this page following the format of other prompt category pages
+    Add your prompt to this page following the format above
   </Step>
 </Steps>
 
+## Best Practices
+
 <Tip>
-  **Suggested Prompt Categories for Customer Support:**
-  - Email response templates
-  - Issue triage and categorization
-  - Knowledge base article generation
-  - Customer communication tone adjustment
-  - Bug report summarization
+  **Tips for Customer Support Prompts:**
+  - **Email Responses**: Always review generated responses before sending - add personal touches
+  - **Triage**: Use consistent categorization to build better analytics over time
+  - **Bug Reports**: Include actual customer language in quotes when helpful for context
+  - **Follow-up**: Document which prompts work well for future optimization
 </Tip>

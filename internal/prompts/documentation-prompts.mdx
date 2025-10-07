@@ -26,17 +26,18 @@ Create concise, audience-specific summaries of reports and documents.
 
 <Accordion title="Summarization Prompt" icon="compress">
 
-<Panel>
-  <Tip>
-    **Best For:** Executive summaries, technical reports, customer communications
+<Tip>
+**Best For:** Executive summaries, technical reports, customer communications
 
-    **Pro Tip:** Adjust word count based on audience - executives prefer 100-150 words, technical teams can handle 200-300 words
-  </Tip>
-</Panel>
+**Pro Tip:** Adjust word count based on audience - executives prefer 100-150 words, technical teams can handle 200-300 words
+</Tip>
 
 ```markdown
-Create a ~200 word summarization of the most important data from this report for <Tooltip tip="Examples: 'executives', 'technical team', 'customers', 'stakeholders', 'board members'">AUDIENCE</Tooltip>. Make it concise, extremely clear, and exceptionally readable.
+Create a ~200 word summarization of the most important data from this report for <AUDIENCE>. Make it concise, extremely clear, and exceptionally readable.
 ```
+
+**Placeholder Guide:**
+- `<AUDIENCE>`: Your target readers (e.g., "executives", "technical team", "customers", "stakeholders", "board members")
 
 **Usage Example:**
 ```markdown
@@ -125,3 +126,14 @@ Provide your output as Markdown optimized for LLM understanding, focusing on arc
   - **llms-full.txt**: Choose the right tab based on whether you're documenting a docs site or codebase
   - **File Size**: Keep llms-full.txt files under 100KB for optimal LLM performance
 </Tip>
+
+## Related Resources
+
+<CardGroup cols={2}>
+  <Card title="Prompt Library Home" icon="sparkles" href="/internal/documentation/prompt-library">
+    Browse all prompt categories
+  </Card>
+  <Card title="Writing Style Guide" icon="pen-line" href="/internal/documentation/writing-style-guide">
+    Documentation standards and best practices
+  </Card>
+</CardGroup>
