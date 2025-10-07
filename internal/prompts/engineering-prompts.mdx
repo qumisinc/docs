@@ -1,0 +1,172 @@
+---
+title: "Engineering Prompts"
+description: "Prompts for code generation, review, debugging, and technical tasks"
+noindex: true
+---
+
+<Info>
+  Prompts for code generation, review, debugging, and technical tasks.
+</Info>
+
+## Self-Review
+
+Perform comprehensive self-reviews to improve code quality and catch issues early. This two-step process helps LLMs evaluate and improve their own outputs.
+
+<Panel>
+  <Tip>
+    **Why This Works:** LLMs are more performant at review/analysis than one-shot generation
+
+    **Best For:** Code reviews, documentation improvements, complex problem-solving
+
+    **Pro Tip:** Run 2-3 iterations for best results - each review compounds the improvements
+  </Tip>
+</Panel>
+
+### Step 1: Perform Self-Review
+
+<CodeGroup>
+
+```markdown Review Last Message
+Perform a comprehensive self-review of your LAST message and my message before that. First, describe the objective of what I had asked for and what you had replied with in your response. This process involves analyzing your response, evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
+```
+
+```markdown Review Modifications (General)
+Perform a comprehensive self-review. First, describe the objective of what I had asked for and what you had replied with in your response(s). This process involves analyzing your response(s), evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
+```
+
+</CodeGroup>
+
+### Step 2: Revise/Improve Output
+
+```markdown
+Review your previous analysis and apply the suggested improvements to the process described in the original content. Focus on enhancing the score for the attributes that you have scored, while maintaining the original intent and structure.
+```
+
+<Note>
+  You can repeat the self-review process multiple times for iterative improvement. As noted by @Erik Nomitch: "Since LLMs are more performant at review/analysis than they are at one-shot generation, I find that doing this self-review process can drastically improve many types of outputs."
+</Note>
+
+## Create Retool SQL Queries
+
+Generate SQL queries specifically formatted for Qumis Retool applications with proper naming conventions and parameter syntax.
+
+<Accordion title="Retool SQL Query Generator" icon="database">
+
+<Panel>
+  <Warning>
+    **Required Files:**
+    - `schema.json` (available from Qumis engineering team)
+
+    **Common Use Cases:**
+    - Weekly/monthly aggregations
+    - User analytics and metrics
+    - Data validation queries
+    - Organization-level reporting
+  </Warning>
+</Panel>
+
+Create a Retool query and name for: <Tooltip tip="Examples: 'total chats per org last 6 weeks', 'average users per organization', 'failed logins by user'">DESCRIPTION</Tooltip>
+
+Review the database schema defined in `schema.json` and use it for context.
+
+You will return only the following:
+- A query name following this naming convention: `q_[description][timeframe/type][grouping]`
+- A PostgreSQL SQL statement, using Retool's `{{ }}` syntax for parameters
+- Use only tables, columns, and enums that exist in `schema.json`
+
+Examples of valid query names:
+- `q_chats_weekly_count_by_org`
+- `q_chats_weekly_count_by_user`
+- `q_chats_6week_count_by_org`
+- `q_chats_6week_count_by_user`
+- `q_chat_data_validation`
+
+**Format:**
+
+Return your answer in a single code block like this:
+
+```sql
+-- name: q_example_query_type_group
+SELECT * FROM example_table WHERE id = {{ id }};
+```
+
+Do not include any explanatory text—only the code block.
+
+**Instructions:**
+1. Add the `schema.json` file (available from the Qumis engineering team)
+2. Replace `<DESCRIPTION>` with your query requirement
+3. Run the prompt to generate the SQL query and name
+4. In Retool, go to "Edit App" → "Code"
+5. Duplicate an existing query
+6. Replace the SQL with your generated query and rename it
+7. Click Run to test
+
+**Example Descriptions:**
+- "The total number of chats, per organization, within the last 6 weeks"
+- "The average number of users per organization"
+</Accordion>
+
+## Backfilling Linear Issues
+
+Convert code changes and commits into properly formatted Linear tickets for documentation.
+
+### Main Prompt
+
+```markdown
+# OBJECTIVE
+
+I'd like to backfill our Linear issues with new tickets that are already done and in the codebase but don't exist in Linear yet.
+
+Your objective is to review the code and data in the <CHANGES> tags and create Linear tickets (in Markdown format) from them.
+
+Here are some examples of Linear tickets in Markdown:
+
+[See examples below]
+
+<CHANGES>
+[Paste your code changes or commit history here]
+</CHANGES>
+```
+
+### Example Linear Tickets
+
+<CodeGroup>
+
+```markdown Example 1: Upload Validation
+# Only allows users to upload appropriate document types
+
+Currently when a user goes to upload a document, the UI states only PDF format only however users are able to upload other types of documents such as .pngs that do not process correctly.
+
+Users should only be allowed to upload .pdf
+```
+
+```markdown Example 2: Environment Badges
+# Add persistent environment information badges
+
+Implement status badges for all non-customer facing environments. This is to limit mistakes and increase flow speed.
+
+Since we will all be switching deployment environments pretty frequently, we should have an indicator that we on a certain environment (unless it is production) in the header.
+
+I don't want one of us to accidentally do something to our production environment when we think we are on dev, qa, uat, etc.
+
+It should be persistent across all pages and and fixed with the top z-index.
+```
+
+</CodeGroup>
+
+## Best Practices
+
+<Tip>
+  **Tips for Engineering Prompts:**
+  - **Self-Review**: Use for any significant code output - it dramatically improves quality
+  - **Retool Queries**: Always have schema.json attached before running the prompt
+  - **Linear Backfilling**: Paste git log output or code diffs directly into the CHANGES section
+  - **Iteration**: Engineering prompts often benefit from 2-3 rounds of refinement
+</Tip>
+
+<Note>
+  **Required Files for Engineering Prompts:**
+  - Self-Review: No additional files needed
+  - Retool SQL: `schema.json` (from engineering team)
+  - Linear Backfilling: No additional files, but git history is helpful
+</Note>

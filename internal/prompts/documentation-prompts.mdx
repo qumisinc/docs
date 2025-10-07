@@ -1,0 +1,127 @@
+---
+title: "Documentation Prompts"
+description: "Prompts for creating, reviewing, and transforming documentation"
+noindex: true
+---
+
+<Info>
+  Prompts for creating, reviewing, and transforming documentation.
+</Info>
+
+## Convert to Markdown
+
+Convert content to clean Markdown format with proper formatting and escaping.
+
+<Accordion title="Convert to Markdown Prompt" icon="file-code">
+```markdown
+Convert this to Markdown. Try to capture the original format as accurately as possible.
+
+Return this as Markdown in a code block (i.e., ```Markdown ...```). Escape any characters necessary. Make sure that any Markdown code block is escaped properly. Do not respond with anything but the code block.
+```
+</Accordion>
+
+## Summarization
+
+Create concise, audience-specific summaries of reports and documents.
+
+<Accordion title="Summarization Prompt" icon="compress">
+
+<Panel>
+  <Tip>
+    **Best For:** Executive summaries, technical reports, customer communications
+
+    **Pro Tip:** Adjust word count based on audience - executives prefer 100-150 words, technical teams can handle 200-300 words
+  </Tip>
+</Panel>
+
+```markdown
+Create a ~200 word summarization of the most important data from this report for <Tooltip tip="Examples: 'executives', 'technical team', 'customers', 'stakeholders', 'board members'">AUDIENCE</Tooltip>. Make it concise, extremely clear, and exceptionally readable.
+```
+
+**Usage Example:**
+```markdown
+Create a ~200 word summarization of the most important data from this report for executives. Make it concise, extremely clear, and exceptionally readable.
+```
+</Accordion>
+
+## Create llms-full.txt
+
+Generate comprehensive documentation files from codebases or documentation sites, optimized for LLM consumption.
+
+<Info>
+  **Purpose:** Create LLM-optimized documentation files for AI assistants
+
+  **Output:** Single Markdown file (≤100KB) with complete project information
+
+  **Use Cases:** API documentation sites, code repositories, knowledge bases
+</Info>
+
+<Accordion title="For Documentation Sites" icon="book">
+```markdown
+You will be creating a Markdown file named llms-full.txt that contains all essential information from an input file, converted to clean Markdown.
+
+Your task is to process this input and create a single Markdown file that follows these rules:
+
+1. Begin with "# <Project Name>" on its own line.
+2. Immediately follow with a concise 1-paragraph intro (no block-quote needed).
+3. Inline the full Markdown of every important page in logical order (e.g. Quick Start, Concepts, API Reference, Guides).
+4. Preserve headings (#–####), code fences, lists, tables, and images (![alt](url)). Strip any extraneous HTML, scripts, or navigation.
+5. Do not add external links — inline the content instead.
+6. Target ≤ 100 KB of output; summarise verbose or repetitive sections if needed, but keep code samples intact.
+
+Follow these steps to create the output:
+1. Identify the project name and create the top-level heading.
+2. Write a concise 1-paragraph introduction summarizing the project.
+3. Determine the logical order of important pages (e.g., Quick Start, Concepts, API Reference, Guides).
+4. For each important page:
+    a. Convert the content to clean Markdown.
+    b. Preserve headings, code fences, lists, tables, and images.
+    c. Remove any extraneous HTML, scripts, or navigation elements.
+    d. Inline any external links by including the relevant content directly.
+5. If the total content exceeds 100 KB, summarize verbose or repetitive sections while keeping code samples intact.
+
+Provide your output as Markdown. The content of these tags should be exactly what would be written to the /llms-full.txt file, with no additional commentary or explanation.
+```
+</Accordion>
+
+<Accordion title="For Code Repositories" icon="code">
+```markdown
+You will be creating a Markdown file named llms-full.txt that contains all essential information from a code repository, converted to clean Markdown format optimized for LLM consumption and understanding, with strategic content extraction rather than complete file dumps.
+
+Your task is to process the repository input and create a single comprehensive Markdown file that follows these rules:
+
+1. Begin with "# <Project Name>" on its own line.
+2. Immediately follow with a concise 1-paragraph intro describing what the project does, its main purpose, and primary programming language(s) used.
+3. Include a **System Architecture Overview** explaining the application pattern, key components, and data flow.
+4. Add a **Module Dependencies Map** showing critical file relationships and import chains.
+5. Include a comprehensive file structure overview with file type indicators and role descriptions.
+6. Extract and present **key code segments** from important files in logical order following the priority hierarchy below.
+7. For each file, use appropriate code fences with language specification and semantic markers.
+8. Focus on **interfaces, signatures, core logic, and architectural patterns** rather than complete implementations.
+9. Apply smart filtering and extraction strategies for optimal LLM comprehension.
+10. Target ≤ 100 KB with dynamic adjustment, prioritizing understanding over completeness.
+
+**Enhanced File Priority Hierarchy (highest to lowest):**
+1. **Core Entry Points**: main.py, index.js, app.py, server.js, main.go, etc.
+2. **Primary Business Logic**: Core models, controllers, services, domain logic
+3. **Configuration Files**: package.json, requirements.txt, Cargo.toml, go.mod, tsconfig.json, webpack.config.js
+4. **Key Integration Points**: Database models, API interfaces, external service connectors
+5. **Infrastructure**: Dockerfile, docker-compose.yml, .github/workflows, deployment configs
+6. **Type Definitions**: .d.ts files, interface definitions, schema files
+7. **Critical Utilities**: Helper functions, shared libraries, middleware
+8. **Representative Tests**: Key unit tests, integration tests that demonstrate usage patterns
+9. **Documentation**: README.md, API documentation, architectural decisions
+
+Provide your output as Markdown optimized for LLM understanding, focusing on architectural clarity and strategic code examples rather than exhaustive file dumps.
+```
+</Accordion>
+
+## Best Practices
+
+<Tip>
+  **Tips for Documentation Prompts:**
+  - **Convert to Markdown**: Use for screenshots, PDFs, or poorly formatted text
+  - **Summarization**: Specify your target audience for better results
+  - **llms-full.txt**: Choose the right tab based on whether you're documenting a docs site or codebase
+  - **File Size**: Keep llms-full.txt files under 100KB for optimal LLM performance
+</Tip>

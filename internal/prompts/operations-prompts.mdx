@@ -1,0 +1,50 @@
+---
+title: "Operations Prompts"
+description: "Prompts for infrastructure management, monitoring, and operational workflows"
+noindex: true
+---
+
+<Info>
+  Prompts for infrastructure management, monitoring, and operational workflows.
+</Info>
+
+## Alignment on Objective
+
+Identify gaps in understanding between user intent and AI interpretation to improve task alignment.
+
+<Accordion title="Alignment on Objective" icon="bullseye">
+```markdown
+Review our interaction(s) so far. Think about the differences between:
+- My understanding of what I've asked/prompted you for (should usually be a high level since it's in my mental model)
+- Your understanding of my mental model transferred to you via chats and prompts.
+
+This is an inherently lossy process. Identify potential gaps in our understanding of the objective. How can we reach parity?
+
+First identify the potential differences in our understandings and anything that is ambiguous or unclear. Then come up with a list of questions for me which, if answered, will increase our likelihood of being aligned on what my true objective is. For each of the questions, add a score (0.0-1.0) of how much you think the answered question will improve our alignment on objective.
+```
+</Accordion>
+
+## Chat Dump
+
+Create a comprehensive backup of conversation data for knowledge transfer or session restoration.
+
+<Accordion title="Chat Dump" icon="download">
+```markdown
+Create a comprehensive JSON dump of all of the data so far in this conversation so that if given to you (or another LLM) in a new instance, you could "ingest" it and retain the knowledge from this entire conversation.
+```
+</Accordion>
+
+## Best Practices
+
+<Tip>
+  **Tips for Operations Prompts:**
+  - **Alignment on Objective**: Use early in complex projects to ensure you and the AI are on the same page
+  - **Chat Dump**: Helpful for long conversations that you want to continue in a new session or share with team members
+  - **When to Use**: Operations prompts are most valuable for meta-level workflow improvements
+</Tip>
+
+<Note>
+  **Common Use Cases:**
+  - **Alignment**: Complex multi-step projects, unclear requirements, cross-functional work
+  - **Chat Dump**: Knowledge transfer, session backup, documentation of AI-assisted work
+</Note>
