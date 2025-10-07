@@ -12,19 +12,15 @@ noindex: true
 
 Convert content to clean Markdown format with proper formatting and escaping.
 
-<Accordion title="Convert to Markdown Prompt" icon="file-code">
 ```markdown
 Convert this to Markdown. Try to capture the original format as accurately as possible.
 
 Return this as Markdown in a code block (i.e., ```Markdown ...```). Escape any characters necessary. Make sure that any Markdown code block is escaped properly. Do not respond with anything but the code block.
 ```
-</Accordion>
 
 ## Summarization
 
 Create concise, audience-specific summaries of reports and documents.
-
-<Accordion title="Summarization Prompt" icon="compress">
 
 <Tip>
 **Best For:** Executive summaries, technical reports, customer communications
@@ -43,7 +39,6 @@ Create a ~200 word summarization of the most important data from this report for
 ```markdown
 Create a ~200 word summarization of the most important data from this report for executives. Make it concise, extremely clear, and exceptionally readable.
 ```
-</Accordion>
 
 ## Create llms-full.txt
 
@@ -57,7 +52,8 @@ Generate comprehensive documentation files from codebases or documentation sites
   **Use Cases:** API documentation sites, code repositories, knowledge bases
 </Info>
 
-<Accordion title="For Documentation Sites" icon="book">
+### For Documentation Sites
+
 ```markdown
 You will be creating a Markdown file named llms-full.txt that contains all essential information from an input file, converted to clean Markdown.
 
@@ -83,9 +79,9 @@ Follow these steps to create the output:
 
 Provide your output as Markdown. The content of these tags should be exactly what would be written to the /llms-full.txt file, with no additional commentary or explanation.
 ```
-</Accordion>
 
-<Accordion title="For Code Repositories" icon="code">
+### For Code Repositories
+
 ```markdown
 You will be creating a Markdown file named llms-full.txt that contains all essential information from a code repository, converted to clean Markdown format optimized for LLM consumption and understanding, with strategic content extraction rather than complete file dumps.
 
@@ -115,7 +111,6 @@ Your task is to process the repository input and create a single comprehensive M
 
 Provide your output as Markdown optimized for LLM understanding, focusing on architectural clarity and strategic code examples rather than exhaustive file dumps.
 ```
-</Accordion>
 
 ## Best Practices
 

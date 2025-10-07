@@ -52,7 +52,7 @@ Generate SQL queries specifically formatted for Qumis Retool applications with p
 **Database Schema File:** Download the [schema.json](/internal/assets/schema.json) file before using this prompt. This file contains the complete database schema including tables, columns, and enums.
 </Info>
 
-<Accordion title="Retool SQL Query Generator" icon="database">
+### Retool SQL Query Generator
 
 <Warning>
 **Common Use Cases:**
@@ -62,6 +62,7 @@ Generate SQL queries specifically formatted for Qumis Retool applications with p
 - Organization-level reporting
 </Warning>
 
+```markdown
 Create a Retool query and name for: `<DESCRIPTION>`
 
 **Placeholder Guide:**
@@ -91,6 +92,7 @@ SELECT * FROM example_table WHERE id = {{ id }};
 ```
 
 Do not include any explanatory text—only the code block.
+```
 
 **Instructions:**
 1. Add the `schema.json` file (available from the Qumis engineering team)
@@ -104,7 +106,6 @@ Do not include any explanatory text—only the code block.
 **Example Descriptions:**
 - "The total number of chats, per organization, within the last 6 weeks"
 - "The average number of users per organization"
-</Accordion>
 
 ## Backfilling Linear Issues
 
