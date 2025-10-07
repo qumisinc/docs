@@ -74,6 +74,10 @@ mint broken-links
 mint update
 ```
 
+**Troubleshooting:**
+- If dev environment isn't running: Run `mint update` to get the latest CLI version
+- If a page loads as 404: Verify you're running in a folder with valid `docs.json`
+
 ## High-level Architecture
 
 **Site Configuration (`docs.json`):**
@@ -107,12 +111,13 @@ description: "SEO and navigation description"
 
 **Mintlify Components:**
 - `<Card>`: Feature cards with icons and links
-- `<Columns>`: Responsive column layouts
-- `<Frame>`: Image/video containers with captions
-- `<AccordionGroup>`/`<Accordion>`: Collapsible sections
+- `<CardGroup>`: Groups of related cards (use `cols={2}` or `cols={3}` for layout)
+- `<Steps>` / `<Step>`: Step-by-step instructions with titles
+- `<Accordion>` / `<AccordionGroup>`: Collapsible sections
 - `<Info>`, `<Tip>`, `<Warning>`, `<Note>`: Callout boxes
-- `<CardGroup>`: Groups of related cards
-- `<Steps>`: Step-by-step instructions
+- `<Frame>`: Image/video containers with captions
+- `<Columns>`: Responsive column layouts
+- `<CodeGroup>`: Multiple code examples with language tabs
 
 ## Writing Guidelines
 
