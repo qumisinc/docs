@@ -126,11 +126,6 @@
             "pages": [
               "internal/documentation/writing-style-guide",
               "internal/documentation/prompt-library",
-              "internal/prompts/documentation-prompts",
-              "internal/prompts/engineering-prompts",
-              "internal/prompts/operations-prompts",
-              "internal/prompts/customer-support-prompts",
-              "internal/prompts/meta-prompting",
               "internal/documentation/markdown-export"
             ]
           },
