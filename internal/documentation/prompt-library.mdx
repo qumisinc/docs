@@ -4,10 +4,184 @@ description: "Reusable prompts for Qumis documentation and operations"
 noindex: true
 ---
 
-The Qumis Prompt Library is a collection of reusable prompts for various documentation, engineering, and operational tasks. This library helps maintain consistency and efficiency across the team.
+The Qumis Prompt Library is a curated collection of battle-tested prompts designed to accelerate your work with AI assistants like ChatGPT, Claude, and Cursor. Whether you're writing documentation, debugging code, or managing projects, these prompts help you get better results faster while maintaining consistency across the team.
+
+**Why use this library?** These prompts have been refined through real-world use at Qumis, incorporating best practices for prompt engineering, structured thinking, and domain-specific workflows. Instead of starting from scratch each time, you can leverage proven patterns that deliver high-quality results.
+
+**Who should use this?** Engineers, technical writers, product managers, and anyone working with AI tools at Qumis. Each prompt is designed to be flexible and customizable for your specific needs.
+
+**What's included?** 15+ prompts across 5 categories (Documentation, Engineering, Operations, Customer Support, and Meta-Prompting), plus 2 LLM context files to enhance AI understanding of Qumis systems.
+
+## Most Used Prompts
+
+<CardGroup cols={3}>
+  <Card title="Self-Review Process" icon="magnifying-glass" href="#self-review">
+    Two-step process to improve AI outputs through comprehensive self-evaluation and iterative refinement
+  </Card>
+  <Card title="Create Retool SQL Queries" icon="database" href="#create-retool-sql-queries">
+    Generate properly formatted PostgreSQL queries for Qumis Retool applications with correct naming conventions
+  </Card>
+  <Card title="Backfilling Linear Issues" icon="list-check" href="#backfilling-linear-issues">
+    Convert code changes and commits into properly formatted Linear tickets for documentation
+  </Card>
+</CardGroup>
+
+## Getting Started
+
+<Steps>
+  <Step title="Browse the prompt categories">
+    Explore the [Documentation](#documentation-prompts), [Engineering](#engineering-prompts), [Operations](#operations-prompts), [Customer Support](#customer-support-prompts), and [Meta-Prompting](#meta-prompting-techniques) sections to find prompts that match your task.
+  </Step>
+
+  <Step title="Download LLM context files (recommended)">
+    For better results, download the [Qumis Overview](#qumis-overview) and [Qumis Design System](#qumis-design-system) context files and add them to your AI tool. This helps the AI understand Qumis-specific terminology and patterns. See the [How to Use This Library](#how-to-use-this-library) section below for details.
+  </Step>
+
+  <Step title="Copy and customize the prompt">
+    Each prompt includes placeholders like `<DESCRIPTION>` or `[target]` that you should replace with your specific details. Some prompts also include examples to guide you.
+  </Step>
+
+  <Step title="Iterate and refine">
+    Most prompts work best with iteration. Use the [Self-Review Process](#self-review) to improve outputs, or run prompts multiple times with refined inputs based on initial results.
+  </Step>
+</Steps>
 
 <Tip>
-  **Most Used:** [Self-Review Process](#self-review) | [Create Retool SQL Queries](#create-retool-sql-queries) | [Backfilling Linear Issues](#backfilling-linear-issues)
+  **Pro Tip:** Many engineering prompts reference files like `schema.json`. Make sure to attach or reference the relevant project files when using these prompts for best results.
+</Tip>
+
+## How to Use This Library
+
+### Quick Navigation
+
+<CardGroup cols={2}>
+  <Card title="Documentation Tasks" icon="book" href="#documentation-prompts">
+    Convert to Markdown, create summaries, generate llms-full.txt files
+  </Card>
+  <Card title="Engineering Tasks" icon="code" href="#engineering-prompts">
+    Self-review, SQL queries, Linear backfilling, code analysis
+  </Card>
+  <Card title="Operations Tasks" icon="server" href="#operations-prompts">
+    Alignment on objectives, chat dumps, infrastructure work
+  </Card>
+  <Card title="Meta-Prompting" icon="wand-magic-sparkles" href="#meta-prompting-techniques">
+    Generate/evaluate methods, Lyra prompt optimizer
+  </Card>
+</CardGroup>
+
+### LLM Context Files
+
+<Info>
+  Downloadable context files to enhance LLM understanding of Qumis systems and documentation.
+</Info>
+
+#### What are LLM Context Files?
+
+LLM context files (`.llms.txt` format) are specially formatted documents that provide comprehensive background information about Qumis to AI assistants. These files help LLMs understand our domain, terminology, architecture, and best practices when assisting with documentation, code generation, or analysis tasks.
+
+#### Available Context Files
+
+<CardGroup cols={2}>
+  <Card
+    title="Qumis Overview"
+    icon="building"
+    href="/internal/assets/llms/qumis-overview.llms.txt"
+  >
+    **Contents:**
+    - Company mission and values
+    - Product features and capabilities
+    - Target audience and use cases
+    - Industry context and terminology
+
+    **File:** `qumis-overview.llms.txt` (9.5 KB)
+
+    **Use when:** Working on product documentation, marketing content, or explaining Qumis to external audiences.
+  </Card>
+
+  <Card
+    title="Qumis Design System"
+    icon="palette"
+    href="/internal/assets/llms/qumis-design.llms.txt"
+  >
+    **Contents:**
+    - Brand guidelines and visual identity
+    - Color system and typography
+    - Component specifications
+    - UI/UX patterns and conventions
+
+    **File:** `qumis-design.llms.txt` (5.1 KB)
+
+    **Use when:** Creating UI components, styling documentation, or maintaining design consistency.
+  </Card>
+</CardGroup>
+
+#### How to Use These Files
+
+<Steps>
+  <Step title="Download the relevant context file(s)">
+    Click on the cards above to download the `.llms.txt` files you need for your task.
+  </Step>
+
+  <Step title="Add to your AI tool">
+    **For ChatGPT:**
+    - Upload the file directly in your conversation
+    - Or paste the contents as context
+
+    **For Claude:**
+    - Upload via the attachment button
+    - Or include in your project's knowledge base
+
+    **For Cursor/GitHub Copilot:**
+    - Add to your project root as `.cursorrules` or `.github/copilot-instructions.md`
+    - Or reference in your workspace settings
+  </Step>
+
+  <Step title="Reference in your prompts">
+    When asking questions or generating content, reference the context:
+    ```
+    "Using the Qumis context provided, create documentation for..."
+    "Based on the Qumis design system, generate a component that..."
+    ```
+  </Step>
+</Steps>
+
+<Tip>
+  **Keep Context Files Updated:** These files should be updated whenever there are significant changes to:
+  - Product features or capabilities
+  - Design system or branding
+  - Company positioning or target audience
+  - Technical architecture or terminology
+</Tip>
+
+<Warning>
+  **Security Reminder:** These context files are for internal use only. Do not share them with external parties or upload to public AI services without authorization.
+</Warning>
+
+#### Maintaining Context Files
+
+The LLM context files are stored in `/internal/assets/llms/` and should be updated quarterly or when significant changes occur. When updating:
+
+1. Maintain the structured format for optimal LLM parsing
+2. Keep file sizes under 15KB for better performance
+3. Include version dates in the file headers
+4. Test with multiple AI tools to ensure compatibility
+5. Notify the team of updates via Slack #engineering channel
+
+<Note>
+  To suggest improvements or report issues with these context files, create a Linear issue tagged with `documentation` and `llm-context`.
+</Note>
+
+### Using Prompts Effectively
+
+<Tip>
+  **Best Practices for Prompt Usage:**
+  - **Keep prompts focused**: Each prompt should target a single, well-defined task
+  - **Customize placeholders**: Replace variables like `<DESCRIPTION>` or `[target]` with your specific details
+  - **Test and iterate**: Try prompts with sample data before using them on important work
+  - **Use context files**: Attach relevant Qumis context files for better, more accurate results
+  - **Document tool requirements**: Some prompts need specific files (like `schema.json`) - note these dependencies
+  - **Share improvements**: If you enhance a prompt, update it in the library and notify the team
+  - **Attribute sources**: When adding prompts from external resources, include proper attribution
 </Tip>
 
 ## Documentation Prompts
@@ -436,137 +610,57 @@ Just share your rough prompt and I'll handle the optimization!"
   Source: [Reddit r/ChatGPT](https://www.reddit.com/r/ChatGPT/comments/1lnfcnt/after_147_failed_chatgpt_prompts_i_had_a/)
 </Note>
 
-## LLM Context Files
+## Contributing to the Library
 
-<Info>
-  Downloadable context files to enhance LLM understanding of Qumis systems and documentation.
-</Info>
-
-### What are LLM Context Files?
-
-LLM context files (`.llms.txt` format) are specially formatted documents that provide comprehensive background information about Qumis to AI assistants. These files help LLMs understand our domain, terminology, architecture, and best practices when assisting with documentation, code generation, or analysis tasks.
-
-### Available Context Files
-
-<CardGroup cols={2}>
-  <Card
-    title="Qumis Overview"
-    icon="building"
-    href="/internal/assets/llms/qumis-overview.llms.txt"
-  >
-    **Contents:**
-    - Company mission and values
-    - Product features and capabilities
-    - Target audience and use cases
-    - Industry context and terminology
-
-    **File:** `qumis-overview.llms.txt` (9.5 KB)
-
-    **Use when:** Working on product documentation, marketing content, or explaining Qumis to external audiences.
-  </Card>
-
-  <Card
-    title="Qumis Design System"
-    icon="palette"
-    href="/internal/assets/llms/qumis-design.llms.txt"
-  >
-    **Contents:**
-    - Brand guidelines and visual identity
-    - Color system and typography
-    - Component specifications
-    - UI/UX patterns and conventions
-
-    **File:** `qumis-design.llms.txt` (5.1 KB)
-
-    **Use when:** Creating UI components, styling documentation, or maintaining design consistency.
-  </Card>
-</CardGroup>
-
-### How to Use These Files
+Help improve the Qumis Prompt Library by adding new prompts or enhancing existing ones. Your contributions make the library more valuable for the entire team.
 
 <Steps>
-  <Step title="Download the relevant context file(s)">
-    Click on the cards above to download the `.llms.txt` files you need for your task.
+  <Step title="Identify the right category">
+    Determine which category best fits your prompt: Documentation, Engineering, Operations, Customer Support, or Meta-Prompting. If your prompt doesn't fit existing categories, suggest a new one.
   </Step>
 
-  <Step title="Add to your AI tool">
-    **For ChatGPT:**
-    - Upload the file directly in your conversation
-    - Or paste the contents as context
-
-    **For Claude:**
-    - Upload via the attachment button
-    - Or include in your project's knowledge base
-
-    **For Cursor/GitHub Copilot:**
-    - Add to your project root as `.cursorrules` or `.github/copilot-instructions.md`
-    - Or reference in your workspace settings
+  <Step title="Draft your prompt">
+    Write a clear, reusable prompt template with:
+    - **Descriptive title**: Make it easy to find and understand the prompt's purpose
+    - **Clear placeholders**: Use `<BRACKETS>` or `[brackets]` for variables that users will customize
+    - **Example usage**: Show 1-2 examples of the prompt in action
+    - **Prerequisites**: List any required files, tools, or context needed
   </Step>
 
-  <Step title="Reference in your prompts">
-    When asking questions or generating content, reference the context:
-    ```
-    "Using the Qumis context provided, create documentation for..."
-    "Based on the Qumis design system, generate a component that..."
-    ```
+  <Step title="Test thoroughly">
+    Before adding to the library, test your prompt with:
+    - Different AI tools (ChatGPT, Claude, Cursor)
+    - Various inputs and edge cases
+    - Team members who might use it
+
+    Refine based on feedback and results.
+  </Step>
+
+  <Step title="Add to the documentation">
+    Edit this MDX file following the existing format:
+    - Use `<Accordion>` components for longer prompts
+    - Include code blocks with proper language tags
+    - Add inline tips or warnings where helpful
+    - Follow the existing naming and structure conventions
+  </Step>
+
+  <Step title="Share with the team">
+    Once added:
+    - Create a PR with a clear description of the new prompt
+    - Share in #engineering Slack channel with a brief demo
+    - Tag relevant team members who might find it useful
+    - Update the "Most Used" section if the prompt becomes popular
   </Step>
 </Steps>
 
-### Best Practices
-
 <Tip>
-  **Keep Context Files Updated:** These files should be updated whenever there are significant changes to:
-  - Product features or capabilities
-  - Design system or branding
-  - Company positioning or target audience
-  - Technical architecture or terminology
+  **Pro Tips for Contributors:**
+  - Include version numbers for prompts that you iterate on (e.g., "v2" in title)
+  - Add "Expected Output" sections to help users know what to expect
+  - Consider creating both basic and advanced versions of complex prompts
+  - Document any AI tool-specific quirks or limitations
+  - Source attribution: Always credit external sources when adapting prompts
 </Tip>
-
-<Warning>
-  **Security Reminder:** These context files are for internal use only. Do not share them with external parties or upload to public AI services without authorization.
-</Warning>
-
-### Maintaining Context Files
-
-The LLM context files are stored in `/internal/assets/llms/` and should be updated quarterly or when significant changes occur. When updating:
-
-1. Maintain the structured format for optimal LLM parsing
-2. Keep file sizes under 15KB for better performance
-3. Include version dates in the file headers
-4. Test with multiple AI tools to ensure compatibility
-5. Notify the team of updates via Slack #engineering channel
-
-<Note>
-  To suggest improvements or report issues with these context files, create a Linear issue tagged with `documentation` and `llm-context`.
-</Note>
-
-## Contributing to the Library
-
-To add a new prompt to this library:
-
-1. Identify the appropriate category for your prompt
-2. Add a descriptive title and purpose
-3. Include the prompt template with clear placeholders
-4. Provide examples of how to use the prompt
-5. Document any specific requirements or context needed
-
-<Note>
-  When adding prompts, consider including:
-  - Clear variable placeholders using [brackets] or `<VARIABLES>`
-  - Example inputs and expected outputs
-  - Any prerequisites or context required (like schema.json for SQL queries)
-  - Tips for customizing the prompt
-  - Version numbers for iterative improvements
-</Note>
-
-## Best Practices
-
-- Keep prompts concise and focused on a single task
-- Use consistent formatting and placeholder conventions
-- Test prompts before adding them to the library
-- Update existing prompts based on team feedback
-- Document any tool-specific requirements
-- Include attribution when prompts are sourced from external resources
 
 ## Resources
 
