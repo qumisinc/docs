@@ -1,0 +1,201 @@
+---
+title: "Visual Regression Testing"
+description: "Run Playwright + Chromatic visual regression tests for qumis-web"
+icon: "eye"
+noindex: true
+---
+
+Playwright + Chromatic visual regression tests detect UI changes across builds using automated browser testing and visual diffing.
+
+<Info>
+  **For comprehensive documentation** including viewport strategy, architecture details, and test structure, see the [qumis-web README](https://github.com/qumisinc/qumis-web/blob/main/README.md).
+</Info>
+
+## Quick Start
+
+<Steps>
+  <Step title="Install Playwright Browsers">
+    ```bash
+    pnpm playwright:install
+    ```
+    Installs Chromium and dependencies needed to run tests.
+  </Step>
+
+  <Step title="Set Chromatic Project Token">
+    Set your Chromatic project token as an environment variable:
+
+    ```bash
+    export CHROMATIC_PROJECT_TOKEN=chpt_your_token_here
+    ```
+
+    Or add to your `.env` file (recommended):
+
+    ```bash
+    CHROMATIC_PROJECT_TOKEN=chpt_your_token_here
+    ```
+  </Step>
+
+  <Step title="Run Tests Locally">
+    Test without Chromatic integration:
+
+    ```bash
+    pnpm playwright:test
+    ```
+  </Step>
+
+  <Step title="Run Chromatic Visual Regression">
+    Upload screenshots to Chromatic for visual diffing:
+
+    ```bash
+    pnpm chromatic
+    ```
+  </Step>
+</Steps>
+
+## Common Commands
+
+### Local Development
+
+<CodeGroup>
+```bash Run all tests locally
+pnpm playwright:test
+```
+
+```bash Run tests in UI mode (debugging)
+pnpm playwright:ui
+```
+
+```bash Run specific test file
+pnpm playwright:test chromatic-visual.spec.ts
+```
+</CodeGroup>
+
+### Chromatic Integration
+
+<CodeGroup>
+```bash Upload to Chromatic (uses .env token)
+pnpm chromatic
+```
+
+```bash Upload with explicit token
+pnpm exec chromatic --playwright --project-token=chpt_your_token_here
+```
+</CodeGroup>
+
+## CI/CD Workflow
+
+### Automatic Triggers
+
+The Chromatic workflow runs automatically on:
+- Push to `main` or `release` branches
+- Pull requests to `main` or `release` branches
+- Manual workflow dispatch
+
+### Manual Trigger via GitHub CLI
+
+Trigger the workflow on your current branch:
+
+```bash
+gh workflow run chromatic.yml --ref "$(git rev-parse --abbrev-ref HEAD)"
+```
+
+Force rebuild (skip Chromatic cache):
+
+```bash
+gh workflow run chromatic.yml \
+  --ref "$(git rev-parse --abbrev-ref HEAD)" \
+  --field force_rebuild=true
+```
+
+Watch workflow status:
+
+```bash
+gh run watch
+```
+
+### Manual Trigger via GitHub UI
+
+1. Go to **Actions** → **Chromatic** workflow → **Run workflow**
+2. Select your branch
+3. Optionally check **Force Chromatic to rebuild** to skip cache
+4. Click **Run workflow**
+
+## Test Configuration
+
+### Default Viewport Coverage
+
+By default, tests run on **TIER1 + TIER2 viewports** (7 total):
+- **TIER1** (4 viewports): Primary business workflows - desktop Full HD, laptops, windowed displays
+- **TIER2** (3 viewports): Extended desktop coverage - QHD, ultrawide, legacy laptops
+
+See `playwright.config.ts` in qumis-web for active configuration.
+
+### Performance Considerations
+
+- **TIER1 only** (4 viewports): ~2-4 minutes per test suite
+- **TIER1 + TIER2** (7 viewports): ~4-7 minutes per test suite
+- **All tiers** (11 viewports): ~7-12 minutes per test suite
+
+<Tip>
+  For PR builds, consider using TIER1 only for fast feedback. Use TIER1 + TIER2 for main/release branches.
+</Tip>
+
+## Resources
+
+<CardGroup cols={2}>
+  <Card
+    title="qumis-web README"
+    icon="github"
+    href="https://github.com/qumisinc/qumis-web/blob/main/README.md"
+  >
+    Full documentation on viewport strategy and test architecture
+  </Card>
+  <Card
+    title="Playwright Docs"
+    icon="book"
+    href="https://playwright.dev/docs/intro"
+  >
+    Official Playwright documentation
+  </Card>
+  <Card
+    title="Chromatic Docs"
+    icon="palette"
+    href="https://www.chromatic.com/docs/playwright"
+  >
+    Chromatic visual regression documentation
+  </Card>
+  <Card
+    title="GitHub Actions Workflow"
+    icon="github"
+    href="https://github.com/qumisinc/qumis-web/blob/main/.github/workflows/chromatic.yml"
+  >
+    View the full CI/CD workflow configuration
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Tests failing locally but passing in CI" icon="triangle-exclamation">
+    - Ensure you're using the same Node/pnpm versions as CI
+    - Run `pnpm playwright:install` to update browser binaries
+    - Clear Playwright cache: `rm -rf ~/.cache/ms-playwright`
+  </Accordion>
+
+  <Accordion title="Chromatic token not found" icon="key">
+    - Verify `CHROMATIC_PROJECT_TOKEN` is set in your environment
+    - Check your `.env` file in the qumis-web root directory
+    - Get token from Chromatic project settings
+  </Accordion>
+
+  <Accordion title="Visual diffs showing unexpected changes" icon="eye">
+    - Review changes in Chromatic dashboard
+    - Check if viewport configuration changed
+    - Verify CSS/component changes are intentional
+    - Accept baseline if changes are expected
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  **Production token required**: The `CHROMATIC_PROJECT_TOKEN` secret must be set in GitHub repository settings for CI/CD workflows to run.
+</Warning>

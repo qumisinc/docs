@@ -151,7 +151,8 @@
             "group": "Operations",
             "pages": [
               "internal/engineering/operations/qumis-cli-reference",
-              "internal/engineering/operations/rails-commands"
+              "internal/engineering/operations/rails-commands",
+              "internal/engineering/operations/visual-regression-testing"
             ]
           },
           {
