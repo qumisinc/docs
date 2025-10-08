@@ -4,38 +4,82 @@ description: "Central hub for Qumis team documentation"
 noindex: true
 ---
 
-Welcome to the Qumis internal documentation hub.
+Welcome to the Qumis internal documentation hub. This is your central resource for engineering workflows, documentation standards, and team resources.
 
-## Core Resources
+<Tip>
+**Most Used:** [Production Deployment](/internal/engineering/deployment/production-deployment) | [Prompt Library](/internal/documentation/prompt-library) | [AWS Console](https://qumis.awsapps.com/start/#/?tab=accounts)
+</Tip>
+
+## Core Hubs
 
 <CardGroup cols={3}>
   <Card
-    title="Engineering Hub"
+    title="Engineering"
     icon="code"
     href="/internal/engineering/"
   >
-    Complete engineering documentation and guides
+    Development workflows, deployment procedures, infrastructure management
   </Card>
   <Card
-    title="Documentation Hub"
+    title="Documentation"
     icon="book-text"
     href="/internal/documentation/writing-style-guide"
   >
-    Writing standards, prompt library, and markdown tools
+    Writing standards, style guide, prompt library, and markdown tools
   </Card>
   <Card
-    title="AWS Console Access"
+    title="AWS Console"
     icon="lock-open"
     href="https://qumis.awsapps.com/start/#/?tab=accounts"
   >
-    Access all AWS environments via SSO
+    Access all environments via SSO (production, staging, dev)
   </Card>
 </CardGroup>
 
-## LLM Context Files
+## Quick Start
+
+<Steps>
+  <Step title="New to Qumis Engineering?">
+    Start with the [Onboarding Guide](/internal/engineering/onboarding) and [Tools Setup](/internal/engineering/tools-setup)
+  </Step>
+  <Step title="Ready to Deploy?">
+    Review the [Deployment Checklist](/internal/engineering/deployment/deployment-checklist) and [Production Deployment](/internal/engineering/deployment/production-deployment) guide
+  </Step>
+  <Step title="Writing Documentation?">
+    Follow the [Writing Style Guide](/internal/documentation/writing-style-guide) and browse the [Prompt Library](/internal/documentation/prompt-library)
+  </Step>
+</Steps>
+
+## Documentation Resources
+
+<CardGroup cols={3}>
+  <Card
+    title="Writing Style Guide"
+    icon="pen-line"
+    href="/internal/documentation/writing-style-guide"
+  >
+    Standards and best practices for writing Qumis documentation
+  </Card>
+  <Card
+    title="Prompt Library"
+    icon="sparkles"
+    href="/internal/documentation/prompt-library"
+  >
+    Battle-tested AI prompts for documentation, engineering, and operations
+  </Card>
+  <Card
+    title="Markdown Export"
+    icon="file-down"
+    href="/internal/documentation/markdown-export"
+  >
+    Export documentation pages as clean Markdown files
+  </Card>
+</CardGroup>
+
+### LLM Context Files
 
 <Info>
-Download these context files to enhance AI assistant understanding of Qumis systems, terminology, and design patterns when working on documentation or code generation tasks.
+Download these context files to enhance AI assistant understanding of Qumis systems and design patterns.
 </Info>
 
 <CardGroup cols={2}>
@@ -44,69 +88,134 @@ Download these context files to enhance AI assistant understanding of Qumis syst
     icon="file-text"
     href="/internal/assets/llms/qumis-overview.llms.txt"
   >
-    **9.5 KB** · Company mission, product features, target audience, and industry terminology
+    **9.5 KB** · Company mission, product features, target audience, industry terminology
 
-    Use when: Product documentation, marketing content, explaining Qumis to external audiences
+    Use for: Product docs, marketing content, external communications
   </Card>
   <Card
     title="Qumis Design System"
     icon="palette"
     href="/internal/assets/llms/qumis-design.llms.txt"
   >
-    **5.1 KB** · Brand guidelines, color system, typography, component specs, UI/UX patterns
+    **5.1 KB** · Brand guidelines, color system, typography, component specs
 
-    Use when: Creating UI components, styling documentation, maintaining design consistency
+    Use for: UI components, styling, design consistency
   </Card>
 </CardGroup>
 
-## Essential Tools & Workflows
+## Engineering Essentials
+
+### Deployment
+
+<CardGroup cols={2}>
+  <Card
+    title="Production Deployment"
+    icon="rocket"
+    href="/internal/engineering/deployment/production-deployment"
+    color="#10b981"
+  >
+    Complete guide to deploying services to production safely
+  </Card>
+  <Card
+    title="Deployment Checklist"
+    icon="clipboard-check"
+    href="/internal/engineering/deployment/deployment-checklist"
+  >
+    Pre and post-deployment verification steps
+  </Card>
+  <Card
+    title="Post-Deployment Validation"
+    icon="shield-check"
+    href="/internal/engineering/deployment/post-deployment-validation"
+  >
+    Validate deployment success and system health
+  </Card>
+  <Card
+    title="Rollback Procedures"
+    icon="rotate-left"
+    href="/internal/engineering/deployment/rollback-procedures"
+    color="#ef4444"
+  >
+    Emergency rollback and recovery procedures
+  </Card>
+</CardGroup>
+
+### Operations & Tools
 
 <CardGroup cols={3}>
   <Card
-    title="Getting Started"
-    icon="user-plus"
-    href="/internal/engineering/onboarding"
-  >
-    Onboarding guide and development tools setup
-  </Card>
-  <Card
-    title="Deploy to Production"
-    icon="rocket"
-    href="/internal/engineering/deployment/production-deployment"
-  >
-    Step-by-step deployment workflow and safety checks
-  </Card>
-  <Card
-    title="qumis-cli Operations"
+    title="qumis-cli Reference"
     icon="terminal"
     href="/internal/engineering/operations/qumis-cli-reference"
   >
-    Command-line tool reference and Rails commands
+    Complete command-line tool documentation
   </Card>
   <Card
-    title="AWS Infrastructure"
+    title="Rails Commands"
+    icon="gem"
+    href="/internal/engineering/operations/rails-commands"
+  >
+    Execute Rails commands on API service
+  </Card>
+  <Card
+    title="Git Branching Strategies"
+    icon="git-branch"
+    href="/internal/engineering/git-branching-strategies"
+  >
+    Team Git workflow and branch conventions
+  </Card>
+</CardGroup>
+
+### Infrastructure & Monitoring
+
+<CardGroup cols={3}>
+  <Card
+    title="AWS Environments"
     icon="cloud"
     href="/internal/engineering/infrastructure/aws-environments"
   >
-    Environment overview and configuration
+    Complete guide to all AWS environments
   </Card>
   <Card
-    title="Monitoring & Alerts"
+    title="CloudWatch Monitoring"
     icon="chart-line"
     href="/internal/engineering/infrastructure/cloudwatch-monitoring"
   >
-    CloudWatch monitoring, logs, and alert management
+    Monitor logs and application metrics
   </Card>
   <Card
-    title="Troubleshooting"
-    icon="circle-alert"
-    href="/internal/engineering/troubleshooting/common-issues"
+    title="CloudWatch Alerts"
+    icon="bell"
+    href="/internal/engineering/infrastructure/cloudwatch-alerts"
   >
-    Common issues and production debugging
+    Configure and manage alerts
+  </Card>
+</CardGroup>
+
+### Troubleshooting & Support
+
+<CardGroup cols={2}>
+  <Card
+    title="Common Issues"
+    icon="triangle-exclamation"
+    href="/internal/engineering/troubleshooting/common-issues"
+    color="#f59e0b"
+  >
+    Solutions to frequently encountered problems
+  </Card>
+  <Card
+    title="Production Debugging"
+    icon="bug"
+    href="/internal/engineering/troubleshooting/debugging-production"
+    color="#f59e0b"
+  >
+    Safe debugging techniques for production
   </Card>
 </CardGroup>
 
 ## Popular Prompts
+
+Quick access to the most frequently used prompts from our [Prompt Library](/internal/documentation/prompt-library).
 
 <CardGroup cols={3}>
   <Card
@@ -134,4 +243,23 @@ Download these context files to enhance AI assistant understanding of Qumis syst
 
 ## Get Support
 
-- **Slack**: #engineering channel
+<CardGroup cols={2}>
+  <Card
+    title="Slack: #engineering"
+    icon="slack"
+    href="https://qumis.slack.com/channels/engineering"
+  >
+    Team communication channel for general questions
+  </Card>
+  <Card
+    title="AWS Console"
+    icon="aws"
+    href="https://qumis.awsapps.com/start/#/?tab=accounts"
+  >
+    Access all AWS environments via SSO
+  </Card>
+</CardGroup>
+
+<Warning>
+**Production Issues?** Check [Common Issues](/internal/engineering/troubleshooting/common-issues) first, then reach out in #engineering on Slack if you need help.
+</Warning>
