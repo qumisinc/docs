@@ -1,7 +1,7 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
+  "$schema": "https://mintlify.com/schema.json",
   "theme": "willow",
-  "name": "Qumis Documentation",
+  "name": "Welcome to Qumis",
   "description": "Expert AI built for the top minds in insurance. Attorney-trained AI that delivers clarity, speed, and legal-grade reasoning for the industry's most complex risks.",
   "colors": {
     "primary": "#666666",
@@ -26,88 +26,64 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Get Started",
             "pages": [
-              "index",
-              "quickstart",
-              "security-privacy"
+              {
+                "group": "Foundations for Success",
+                "pages": [
+                  "get-started/foundations-for-success/implementing-ai",
+                  "get-started/foundations-for-success/identifying-use-cases",
+                  "get-started/foundations-for-success/change-management",
+                  "get-started/foundations-for-success/change-management-toolkit"
+                ]
+              },
+              {
+                "group": "Setup and Access",
+                "pages": [
+                  "get-started/setup-and-access/single-sign-on",
+                  "get-started/setup-and-access/navigating-the-dashboard",
+                  "get-started/setup-and-access/inviting-users"
+                ]
+              }
             ]
           },
           {
-            "group": "Core Features",
+            "group": "Features",
             "pages": [
-              "features/chat-with-documents",
-              "features/compare-documents",
-              "features/policy-analysis",
-              "features/claims-assessment",
-              "features/contract-analysis"
+              "features/chats",
+              "features/document-vault",
+              "features/legal-search",
+              "features/prompt-library",
+              "features/reports"
             ]
           },
           {
-            "group": "Advanced Tools",
+            "group": "Reports",
             "pages": [
-              "tools/fill-in-checklist",
-              "tools/document-vault",
-              "tools/legal-search",
-              "tools/custom-reports"
+              "reports/claims",
+              "reports/comparisons",
+              "reports/contract-review",
+              "reports/coverage-table",
+              "reports/custom-reports",
+              "reports/policy-analysis"
             ]
           },
           {
-            "group": "Use Cases by Role",
+            "group": "Playbooks",
             "pages": [
-              "roles/insurance-brokers",
-              "roles/claims-professionals",
-              "roles/risk-professionals",
-              "roles/insurance-attorneys"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "User Guides",
-            "pages": [
-              "guides/",
-              "guides/creating-custom-templates",
-              "guides/managing-your-account"
+              "playbooks/for-account-managers",
+              "playbooks/for-brokers",
+              "playbooks/for-claims-professionals",
+              "playbooks/for-producers",
+              "playbooks/for-service-teams"
             ]
           },
           {
-            "group": "Troubleshooting",
+            "group": "Resources",
             "pages": [
-              "guides/common-issues",
-              "guides/contact-support"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Workflows",
-        "groups": [
-          {
-            "group": "Broker Workflows",
-            "pages": [
-              "workflows/quote-evaluation",
-              "workflows/competitive-positioning",
-              "workflows/coverage-recommendations"
-            ]
-          },
-          {
-            "group": "Claims Workflows",
-            "pages": [
-              "workflows/coverage-assessment",
-              "workflows/policy-interpretation",
-              "workflows/claims-resolution"
-            ]
-          },
-          {
-            "group": "Risk Management",
-            "pages": [
-              "workflows/policy-review",
-              "workflows/risk-assessment",
-              "workflows/compliance-verification"
+              "resources/contact-support",
+              "resources/product-updates-and-release-notes",
+              "resources/troubleshooting-and-faqs"
             ]
           }
         ]
