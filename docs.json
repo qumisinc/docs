@@ -26,12 +26,6 @@
         "tab": "Documentation",
         "groups": [
           {
-            "group": "Overview",
-            "pages": [
-              "overview"
-            ]
-          },
-          {
             "group": "Get Started",
             "pages": [
               {
