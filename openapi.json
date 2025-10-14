@@ -1,0 +1,401 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Qumis Documentation API",
+    "version": "1.0.0",
+    "description": "AI-powered insurance documentation and knowledge base for Qumis platform. Access comprehensive guides, workflows, and technical documentation for insurance professionals.",
+    "contact": {
+      "name": "Qumis Support",
+      "email": "support@qumis.ai",
+      "url": "https://www.qumis.ai"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://docs.qumis.ai",
+      "description": "Qumis Documentation Production"
+    }
+  ],
+  "x-mcp": {
+    "enabled": true
+  },
+  "paths": {
+    "/features/chats": {
+      "get": {
+        "summary": "Get Chat Features Documentation",
+        "description": "Retrieve documentation about Qumis chat functionality, including how to interact with AI, manage conversations, and leverage chat-based workflows.",
+        "operationId": "getChatFeatures",
+        "tags": ["Features"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Chat Features",
+            "description": "Access documentation for Qumis AI chat capabilities"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Chat features documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/features/document-vault": {
+      "get": {
+        "summary": "Get Document Vault Documentation",
+        "description": "Access documentation for the Qumis Document Vault feature, including upload, organization, and AI-powered document analysis.",
+        "operationId": "getDocumentVault",
+        "tags": ["Features"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Document Vault Features",
+            "description": "Learn about document management and vault capabilities"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Document vault documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/features/legal-search": {
+      "get": {
+        "summary": "Get Legal Search Documentation",
+        "description": "Documentation for Qumis legal search capabilities, including case law research and legal precedent discovery.",
+        "operationId": "getLegalSearch",
+        "tags": ["Features"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Legal Search Features",
+            "description": "Access legal search and research documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Legal search documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/features/prompt-library": {
+      "get": {
+        "summary": "Get Prompt Library Documentation",
+        "description": "Learn about the Qumis prompt library for pre-built AI prompts tailored to insurance workflows.",
+        "operationId": "getPromptLibrary",
+        "tags": ["Features"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Prompt Library",
+            "description": "Access prompt library documentation and templates"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Prompt library documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/features/reports": {
+      "get": {
+        "summary": "Get Reports Features Documentation",
+        "description": "Documentation for Qumis reporting capabilities, including claims reports, policy analysis, and custom report generation.",
+        "operationId": "getReports",
+        "tags": ["Features"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Reports Features",
+            "description": "Learn about AI-powered reporting capabilities"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reports documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/claims": {
+      "get": {
+        "summary": "Get Claims Reports Documentation",
+        "description": "Detailed documentation for claims report generation and analysis.",
+        "operationId": "getClaimsReports",
+        "tags": ["Reports"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Claims Reports Guide",
+            "description": "Access claims reporting documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Claims reports documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/policy-analysis": {
+      "get": {
+        "summary": "Get Policy Analysis Documentation",
+        "description": "Documentation for AI-powered policy analysis and comparison tools.",
+        "operationId": "getPolicyAnalysis",
+        "tags": ["Reports"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Policy Analysis Guide",
+            "description": "Learn about policy analysis capabilities"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Policy analysis documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/playbooks/for-brokers": {
+      "get": {
+        "summary": "Get Broker Playbook",
+        "description": "Role-specific playbook for insurance brokers using Qumis AI.",
+        "operationId": "getBrokerPlaybook",
+        "tags": ["Playbooks"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Broker Playbook",
+            "description": "Access broker-specific workflows and best practices"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Broker playbook documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/playbooks/for-claims-professionals": {
+      "get": {
+        "summary": "Get Claims Professional Playbook",
+        "description": "Role-specific playbook for claims professionals using Qumis AI.",
+        "operationId": "getClaimsPlaybook",
+        "tags": ["Playbooks"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Claims Professional Playbook",
+            "description": "Access claims-specific workflows and best practices"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Claims professional playbook documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-started/foundations-for-success/implementing-ai": {
+      "get": {
+        "summary": "Get AI Implementation Guide",
+        "description": "Comprehensive guide for implementing AI in insurance organizations.",
+        "operationId": "getImplementingAI",
+        "tags": ["Get Started"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get AI Implementation Guide",
+            "description": "Learn how to implement AI in insurance workflows"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "AI implementation documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-started/setup-and-access/single-sign-on": {
+      "get": {
+        "summary": "Get SSO Setup Guide",
+        "description": "Documentation for configuring Single Sign-On for Qumis platform.",
+        "operationId": "getSSOSetup",
+        "tags": ["Get Started"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get SSO Setup Guide",
+            "description": "Configure Single Sign-On authentication"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "SSO setup documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/deployment/production-deployment": {
+      "get": {
+        "summary": "Get Production Deployment Guide",
+        "description": "Internal documentation for production deployment procedures and best practices.",
+        "operationId": "getProductionDeployment",
+        "tags": ["Internal - Engineering"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Production Deployment Guide",
+            "description": "Access internal deployment procedures"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Production deployment documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/infrastructure/aws-environments": {
+      "get": {
+        "summary": "Get AWS Infrastructure Guide",
+        "description": "Internal documentation for AWS environment configuration and management.",
+        "operationId": "getAWSEnvironments",
+        "tags": ["Internal - Infrastructure"],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get AWS Infrastructure Guide",
+            "description": "Access AWS infrastructure documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "AWS infrastructure documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Features",
+      "description": "Core Qumis platform features and capabilities"
+    },
+    {
+      "name": "Reports",
+      "description": "AI-powered reporting and analysis tools"
+    },
+    {
+      "name": "Playbooks",
+      "description": "Role-specific guides and workflows for insurance professionals"
+    },
+    {
+      "name": "Get Started",
+      "description": "Onboarding and setup documentation"
+    },
+    {
+      "name": "Internal - Engineering",
+      "description": "Internal engineering documentation and procedures"
+    },
+    {
+      "name": "Internal - Infrastructure",
+      "description": "Internal infrastructure and operations documentation"
+    }
+  ]
+}

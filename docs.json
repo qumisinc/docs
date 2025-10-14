@@ -85,6 +85,12 @@
               "resources/product-updates-and-release-notes",
               "resources/troubleshooting-and-faqs"
             ]
+          },
+          {
+            "group": "API Reference",
+            "pages": [
+              "api-reference"
+            ]
           }
         ]
       },
@@ -213,5 +219,6 @@
       "cursor",
       "vscode"
     ]
-  }
+  },
+  "openapi": "openapi.json"
 }

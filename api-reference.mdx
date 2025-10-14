@@ -1,0 +1,153 @@
+---
+title: "API Reference"
+description: "Explore the Qumis Documentation API with MCP-enabled endpoints for AI assistants and programmatic access"
+---
+
+## Overview
+
+The Qumis Documentation API provides programmatic access to our comprehensive insurance AI documentation. All endpoints are **MCP-enabled**, allowing AI assistants and development tools to seamlessly discover and navigate our knowledge base.
+
+<Info>
+**Model Context Protocol (MCP)** integration enables AI assistants like Claude to directly access and reference Qumis documentation during conversations.
+</Info>
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="MCP-Enabled" icon="robot">
+    All documentation endpoints are exposed as MCP tools for AI assistant integration
+  </Card>
+  <Card title="Comprehensive Coverage" icon="book">
+    Access guides for features, reports, playbooks, and internal engineering docs
+  </Card>
+  <Card title="Role-Based Content" icon="users">
+    Retrieve documentation tailored for brokers, claims professionals, and service teams
+  </Card>
+  <Card title="Always Current" icon="arrows-rotate">
+    Documentation reflects the latest Qumis platform capabilities
+  </Card>
+</CardGroup>
+
+## Base URL
+
+```
+https://docs.qumis.ai
+```
+
+## Available Endpoints
+
+### Features
+
+Access documentation for core Qumis platform capabilities:
+
+- **Chat Features** - `/features/chats`
+- **Document Vault** - `/features/document-vault`
+- **Legal Search** - `/features/legal-search`
+- **Prompt Library** - `/features/prompt-library`
+- **Reports** - `/features/reports`
+
+### Reports
+
+Detailed guides for AI-powered reporting tools:
+
+- **Claims Reports** - `/reports/claims`
+- **Policy Analysis** - `/reports/policy-analysis`
+- **Coverage Tables** - `/reports/coverage-table`
+- **Contract Review** - `/reports/contract-review`
+- **Custom Reports** - `/reports/custom-reports`
+
+### Playbooks
+
+Role-specific workflows and best practices:
+
+- **Brokers** - `/playbooks/for-brokers`
+- **Claims Professionals** - `/playbooks/for-claims-professionals`
+- **Account Managers** - `/playbooks/for-account-managers`
+- **Producers** - `/playbooks/for-producers`
+- **Service Teams** - `/playbooks/for-service-teams`
+
+### Getting Started
+
+Onboarding and implementation guides:
+
+- **Implementing AI** - `/get-started/foundations-for-success/implementing-ai`
+- **Single Sign-On** - `/get-started/setup-and-access/single-sign-on`
+- **Navigating Dashboard** - `/get-started/setup-and-access/navigating-the-dashboard`
+- **Change Management** - `/get-started/foundations-for-success/change-management`
+
+### Internal Documentation
+
+Engineering and infrastructure resources:
+
+- **Production Deployment** - `/internal/engineering/deployment/production-deployment`
+- **AWS Environments** - `/internal/engineering/infrastructure/aws-environments`
+- **CloudWatch Monitoring** - `/internal/engineering/infrastructure/cloudwatch-monitoring`
+- **Troubleshooting** - `/internal/engineering/troubleshooting/common-issues`
+
+## MCP Integration
+
+All endpoints support the Model Context Protocol, enabling AI assistants to:
+
+1. **Discover** available documentation programmatically
+2. **Navigate** between related topics and guides
+3. **Reference** accurate, up-to-date information during conversations
+4. **Suggest** relevant documentation based on user queries
+
+### Example MCP Tool Call
+
+When an AI assistant needs information about Qumis chat features, it can invoke:
+
+```json
+{
+  "tool": "Get Chat Features",
+  "description": "Access documentation for Qumis AI chat capabilities",
+  "endpoint": "https://docs.qumis.ai/features/chats"
+}
+```
+
+## Usage with AI Assistants
+
+### Claude Desktop
+
+Configure Claude Desktop to access Qumis documentation:
+
+<Steps>
+  <Step title="Enable MCP">
+    Ensure MCP is enabled in your Claude Desktop settings
+  </Step>
+  <Step title="Reference Documentation">
+    Ask Claude questions about Qumis - it will automatically access relevant documentation
+  </Step>
+  <Step title="Get Contextual Help">
+    Claude can provide guidance based on the most current documentation
+  </Step>
+</Steps>
+
+### Cursor & VS Code
+
+Development tools with MCP support can reference Qumis documentation when:
+
+- Building integrations with Qumis APIs
+- Understanding feature capabilities for implementation
+- Following deployment and infrastructure best practices
+
+## Response Format
+
+All endpoints return HTML documentation content optimized for:
+
+- **Human readability** with Mintlify styling
+- **AI parsing** with semantic HTML structure
+- **Rich media** including images, code examples, and videos
+
+## Support
+
+Need help with the API or MCP integration?
+
+<CardGroup cols={2}>
+  <Card title="Contact Support" icon="headset" href="mailto:support@qumis.ai">
+    Email our support team for assistance
+  </Card>
+  <Card title="View Full Spec" icon="file-code" href="/openapi.json">
+    Download the complete OpenAPI specification
+  </Card>
+</CardGroup>
