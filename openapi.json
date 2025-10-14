@@ -16,8 +16,10 @@
       "description": "Qumis Documentation Production"
     }
   ],
-  "x-mcp": {
-    "enabled": true
+  "x-mint": {
+    "mcp": {
+      "enabled": true
+    }
   },
   "paths": {
     "/features/chats": {
