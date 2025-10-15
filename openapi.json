@@ -12,15 +12,10 @@
   },
   "servers": [
     {
-      "url": "https://docs.qumis.ai/api/v1",
+      "url": "https://docs.qumis.ai",
       "description": "Qumis Documentation Production"
     }
   ],
-  "x-mint": {
-    "mcp": {
-      "enabled": true
-    }
-  },
   "paths": {
     "/features/chats": {
       "get": {
@@ -214,6 +209,122 @@
         "responses": {
           "200": {
             "description": "Policy analysis documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/comparisons": {
+      "get": {
+        "summary": "Get Comparisons Documentation",
+        "description": "Documentation for AI-powered comparison reports and analysis tools.",
+        "operationId": "getComparisons",
+        "tags": [
+          "Reports"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Comparisons Guide",
+            "description": "Learn about comparison report capabilities"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Comparisons documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/contract-review": {
+      "get": {
+        "summary": "Get Contract Review Documentation",
+        "description": "Documentation for AI-powered contract review and analysis.",
+        "operationId": "getContractReview",
+        "tags": [
+          "Reports"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Contract Review Guide",
+            "description": "Access contract review documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contract review documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/coverage-table": {
+      "get": {
+        "summary": "Get Coverage Table Documentation",
+        "description": "Documentation for creating and analyzing coverage tables.",
+        "operationId": "getCoverageTable",
+        "tags": [
+          "Reports"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Coverage Table Guide",
+            "description": "Learn about coverage table generation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Coverage table documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/custom-reports": {
+      "get": {
+        "summary": "Get Custom Reports Documentation",
+        "description": "Documentation for creating custom AI-powered reports.",
+        "operationId": "getCustomReports",
+        "tags": [
+          "Reports"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Custom Reports Guide",
+            "description": "Learn about custom report creation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Custom reports documentation",
             "content": {
               "text/html": {
                 "schema": {
