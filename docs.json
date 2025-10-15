@@ -45,8 +45,13 @@
         "tab": "Documentation",
         "groups": [
           {
+            "group": "Overview",
+            "pages": ["index"]
+          },
+          {
             "group": "Get Started",
             "pages": [
+              "quickstart",
               {
                 "group": "Foundations for Success",
                 "pages": [
@@ -61,7 +66,8 @@
                 "pages": [
                   "get-started/setup-and-access/single-sign-on",
                   "get-started/setup-and-access/navigating-the-dashboard",
-                  "get-started/setup-and-access/inviting-users"
+                  "get-started/setup-and-access/inviting-users",
+                  "get-started/setup-and-access/roles-and-permissions"
                 ]
               }
             ]
@@ -102,7 +108,8 @@
             "pages": [
               "resources/contact-support",
               "resources/product-updates-and-release-notes",
-              "resources/troubleshooting-and-faqs"
+              "resources/troubleshooting-and-faqs",
+              "security-privacy"
             ]
           },
           {
