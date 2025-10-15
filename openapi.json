@@ -394,6 +394,93 @@
         }
       }
     },
+    "/playbooks/for-account-managers": {
+      "get": {
+        "summary": "Get Account Manager Playbook",
+        "description": "Role-specific playbook for account managers using Qumis AI.",
+        "operationId": "getAccountManagerPlaybook",
+        "tags": [
+          "Playbooks"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Account Manager Playbook",
+            "description": "Access account manager workflows and best practices"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account manager playbook documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/playbooks/for-producers": {
+      "get": {
+        "summary": "Get Producer Playbook",
+        "description": "Role-specific playbook for insurance producers using Qumis AI.",
+        "operationId": "getProducerPlaybook",
+        "tags": [
+          "Playbooks"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Producer Playbook",
+            "description": "Access producer-specific workflows and best practices"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Producer playbook documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/playbooks/for-service-teams": {
+      "get": {
+        "summary": "Get Service Team Playbook",
+        "description": "Role-specific playbook for service teams using Qumis AI.",
+        "operationId": "getServiceTeamPlaybook",
+        "tags": [
+          "Playbooks"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Service Team Playbook",
+            "description": "Access service team workflows and best practices"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Service team playbook documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/get-started/foundations-for-success/implementing-ai": {
       "get": {
         "summary": "Get AI Implementation Guide",
@@ -423,6 +510,93 @@
         }
       }
     },
+    "/get-started/foundations-for-success/identifying-use-cases": {
+      "get": {
+        "summary": "Get Use Case Identification Guide",
+        "description": "Guide for identifying and prioritizing AI use cases in insurance operations.",
+        "operationId": "getIdentifyingUseCases",
+        "tags": [
+          "Get Started"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Use Case Identification Guide",
+            "description": "Learn how to identify AI use cases"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Use case identification documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-started/foundations-for-success/change-management": {
+      "get": {
+        "summary": "Get Change Management Guide",
+        "description": "Guide for managing organizational change when implementing AI solutions.",
+        "operationId": "getChangeManagement",
+        "tags": [
+          "Get Started"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Change Management Guide",
+            "description": "Learn change management best practices"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Change management documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-started/foundations-for-success/change-management-toolkit": {
+      "get": {
+        "summary": "Get Change Management Toolkit",
+        "description": "Practical toolkit and templates for managing organizational change.",
+        "operationId": "getChangeManagementToolkit",
+        "tags": [
+          "Get Started"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Change Management Toolkit",
+            "description": "Access change management tools and templates"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Change management toolkit documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/get-started/setup-and-access/single-sign-on": {
       "get": {
         "summary": "Get SSO Setup Guide",
@@ -441,6 +615,64 @@
         "responses": {
           "200": {
             "description": "SSO setup documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-started/setup-and-access/navigating-the-dashboard": {
+      "get": {
+        "summary": "Get Dashboard Navigation Guide",
+        "description": "Learn how to navigate and use the Qumis dashboard effectively.",
+        "operationId": "getNavigatingDashboard",
+        "tags": [
+          "Get Started"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Dashboard Navigation Guide",
+            "description": "Learn to navigate the Qumis dashboard"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Dashboard navigation documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-started/setup-and-access/inviting-users": {
+      "get": {
+        "summary": "Get User Invitation Guide",
+        "description": "Learn how to invite and manage users in the Qumis platform.",
+        "operationId": "getInvitingUsers",
+        "tags": [
+          "Get Started"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get User Invitation Guide",
+            "description": "Learn to invite and manage users"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User invitation documentation",
             "content": {
               "text/html": {
                 "schema": {
@@ -509,6 +741,122 @@
           }
         }
       }
+    },
+    "/internal/engineering/infrastructure/cloudwatch-monitoring": {
+      "get": {
+        "summary": "Get CloudWatch Monitoring Guide",
+        "description": "Internal documentation for CloudWatch monitoring setup and configuration.",
+        "operationId": "getCloudWatchMonitoring",
+        "tags": [
+          "Internal - Infrastructure"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get CloudWatch Monitoring Guide",
+            "description": "Access CloudWatch monitoring documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "CloudWatch monitoring documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/infrastructure/cloudwatch-alerts": {
+      "get": {
+        "summary": "Get CloudWatch Alerts Guide",
+        "description": "Internal documentation for CloudWatch alerts configuration and management.",
+        "operationId": "getCloudWatchAlerts",
+        "tags": [
+          "Internal - Infrastructure"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get CloudWatch Alerts Guide",
+            "description": "Access CloudWatch alerts documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "CloudWatch alerts documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/troubleshooting/common-issues": {
+      "get": {
+        "summary": "Get Common Issues Troubleshooting Guide",
+        "description": "Internal documentation for troubleshooting common engineering issues.",
+        "operationId": "getCommonIssues",
+        "tags": [
+          "Internal - Troubleshooting"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Common Issues Guide",
+            "description": "Access common issues troubleshooting documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Common issues documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/troubleshooting/debugging-production": {
+      "get": {
+        "summary": "Get Production Debugging Guide",
+        "description": "Internal documentation for debugging production issues and incidents.",
+        "operationId": "getDebuggingProduction",
+        "tags": [
+          "Internal - Troubleshooting"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Production Debugging Guide",
+            "description": "Access production debugging documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Production debugging documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -535,6 +883,10 @@
     {
       "name": "Internal - Infrastructure",
       "description": "Internal infrastructure and operations documentation"
+    },
+    {
+      "name": "Internal - Troubleshooting",
+      "description": "Internal troubleshooting guides and debugging procedures"
     }
   ]
 }
