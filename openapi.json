@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "https://docs.qumis.ai",
+      "url": "https://docs.qumis.ai/api/v1",
       "description": "Qumis Documentation Production"
     }
   ],
@@ -27,7 +27,9 @@
         "summary": "Get Chat Features Documentation",
         "description": "Retrieve documentation about Qumis chat functionality, including how to interact with AI, manage conversations, and leverage chat-based workflows.",
         "operationId": "getChatFeatures",
-        "tags": ["Features"],
+        "tags": [
+          "Features"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -54,7 +56,9 @@
         "summary": "Get Document Vault Documentation",
         "description": "Access documentation for the Qumis Document Vault feature, including upload, organization, and AI-powered document analysis.",
         "operationId": "getDocumentVault",
-        "tags": ["Features"],
+        "tags": [
+          "Features"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -81,7 +85,9 @@
         "summary": "Get Legal Search Documentation",
         "description": "Documentation for Qumis legal search capabilities, including case law research and legal precedent discovery.",
         "operationId": "getLegalSearch",
-        "tags": ["Features"],
+        "tags": [
+          "Features"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -108,7 +114,9 @@
         "summary": "Get Prompt Library Documentation",
         "description": "Learn about the Qumis prompt library for pre-built AI prompts tailored to insurance workflows.",
         "operationId": "getPromptLibrary",
-        "tags": ["Features"],
+        "tags": [
+          "Features"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -135,7 +143,9 @@
         "summary": "Get Reports Features Documentation",
         "description": "Documentation for Qumis reporting capabilities, including claims reports, policy analysis, and custom report generation.",
         "operationId": "getReports",
-        "tags": ["Features"],
+        "tags": [
+          "Features"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -162,7 +172,9 @@
         "summary": "Get Claims Reports Documentation",
         "description": "Detailed documentation for claims report generation and analysis.",
         "operationId": "getClaimsReports",
-        "tags": ["Reports"],
+        "tags": [
+          "Reports"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -189,7 +201,9 @@
         "summary": "Get Policy Analysis Documentation",
         "description": "Documentation for AI-powered policy analysis and comparison tools.",
         "operationId": "getPolicyAnalysis",
-        "tags": ["Reports"],
+        "tags": [
+          "Reports"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -216,7 +230,9 @@
         "summary": "Get Broker Playbook",
         "description": "Role-specific playbook for insurance brokers using Qumis AI.",
         "operationId": "getBrokerPlaybook",
-        "tags": ["Playbooks"],
+        "tags": [
+          "Playbooks"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -243,7 +259,9 @@
         "summary": "Get Claims Professional Playbook",
         "description": "Role-specific playbook for claims professionals using Qumis AI.",
         "operationId": "getClaimsPlaybook",
-        "tags": ["Playbooks"],
+        "tags": [
+          "Playbooks"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -270,7 +288,9 @@
         "summary": "Get AI Implementation Guide",
         "description": "Comprehensive guide for implementing AI in insurance organizations.",
         "operationId": "getImplementingAI",
-        "tags": ["Get Started"],
+        "tags": [
+          "Get Started"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -297,7 +317,9 @@
         "summary": "Get SSO Setup Guide",
         "description": "Documentation for configuring Single Sign-On for Qumis platform.",
         "operationId": "getSSOSetup",
-        "tags": ["Get Started"],
+        "tags": [
+          "Get Started"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -324,7 +346,9 @@
         "summary": "Get Production Deployment Guide",
         "description": "Internal documentation for production deployment procedures and best practices.",
         "operationId": "getProductionDeployment",
-        "tags": ["Internal - Engineering"],
+        "tags": [
+          "Internal - Engineering"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
@@ -351,7 +375,9 @@
         "summary": "Get AWS Infrastructure Guide",
         "description": "Internal documentation for AWS environment configuration and management.",
         "operationId": "getAWSEnvironments",
-        "tags": ["Internal - Infrastructure"],
+        "tags": [
+          "Internal - Infrastructure"
+        ],
         "x-mint": {
           "mcp": {
             "enabled": true,
