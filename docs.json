@@ -21,37 +21,13 @@
     "library": "lucide"
   },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Qumis.ai",
-          "icon": "globe",
-          "href": "https://www.qumis.ai"
-        },
-        {
-          "anchor": "Request Demo",
-          "icon": "calendar",
-          "href": "https://calendly.com/qumis-dan/demo?background_color=f1f0ed&text_color=242423&primary_color=4c94fb"
-        },
-        {
-          "anchor": "Support",
-          "icon": "headset",
-          "href": "mailto:support@qumis.ai"
-        }
-      ]
-    },
     "tabs": [
       {
         "tab": "Documentation",
         "groups": [
           {
-            "group": "Overview",
-            "pages": ["index"]
-          },
-          {
             "group": "Get Started",
             "pages": [
-              "quickstart",
               {
                 "group": "Foundations for Success",
                 "pages": [
@@ -66,8 +42,7 @@
                 "pages": [
                   "get-started/setup-and-access/single-sign-on",
                   "get-started/setup-and-access/navigating-the-dashboard",
-                  "get-started/setup-and-access/inviting-users",
-                  "get-started/setup-and-access/roles-and-permissions"
+                  "get-started/setup-and-access/inviting-users"
                 ]
               }
             ]
@@ -108,68 +83,7 @@
             "pages": [
               "resources/contact-support",
               "resources/product-updates-and-release-notes",
-              "resources/troubleshooting-and-faqs",
-              "security-privacy"
-            ]
-          },
-          {
-            "group": "API Reference",
-            "pages": [
-              "api-reference",
-              {
-                "group": "Features",
-                "pages": [
-                  { "openapi": "get /features/chats" },
-                  { "openapi": "get /features/document-vault" },
-                  { "openapi": "get /features/legal-search" },
-                  { "openapi": "get /features/prompt-library" },
-                  { "openapi": "get /features/reports" }
-                ]
-              },
-              {
-                "group": "Reports",
-                "pages": [
-                  { "openapi": "get /reports/claims" },
-                  { "openapi": "get /reports/policy-analysis" },
-                  { "openapi": "get /reports/comparisons" },
-                  { "openapi": "get /reports/contract-review" },
-                  { "openapi": "get /reports/coverage-table" },
-                  { "openapi": "get /reports/custom-reports" }
-                ]
-              },
-              {
-                "group": "Playbooks",
-                "pages": [
-                  { "openapi": "get /playbooks/for-brokers" },
-                  { "openapi": "get /playbooks/for-claims-professionals" },
-                  { "openapi": "get /playbooks/for-account-managers" },
-                  { "openapi": "get /playbooks/for-producers" },
-                  { "openapi": "get /playbooks/for-service-teams" }
-                ]
-              },
-              {
-                "group": "Get Started",
-                "pages": [
-                  { "openapi": "get /get-started/foundations-for-success/implementing-ai" },
-                  { "openapi": "get /get-started/foundations-for-success/identifying-use-cases" },
-                  { "openapi": "get /get-started/foundations-for-success/change-management" },
-                  { "openapi": "get /get-started/foundations-for-success/change-management-toolkit" },
-                  { "openapi": "get /get-started/setup-and-access/single-sign-on" },
-                  { "openapi": "get /get-started/setup-and-access/navigating-the-dashboard" },
-                  { "openapi": "get /get-started/setup-and-access/inviting-users" }
-                ]
-              },
-              {
-                "group": "Internal",
-                "pages": [
-                  { "openapi": "get /internal/engineering/deployment/production-deployment" },
-                  { "openapi": "get /internal/engineering/infrastructure/aws-environments" },
-                  { "openapi": "get /internal/engineering/infrastructure/cloudwatch-monitoring" },
-                  { "openapi": "get /internal/engineering/infrastructure/cloudwatch-alerts" },
-                  { "openapi": "get /internal/engineering/troubleshooting/common-issues" },
-                  { "openapi": "get /internal/engineering/troubleshooting/debugging-production" }
-                ]
-              }
+              "resources/troubleshooting-and-faqs"
             ]
           }
         ]
@@ -234,7 +148,26 @@
           }
         ]
       }
-    ]
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Qumis.ai",
+          "href": "https://www.qumis.ai",
+          "icon": "globe"
+        },
+        {
+          "anchor": "Request Demo",
+          "href": "https://calendly.com/qumis-dan/demo?background_color=f1f0ed&text_color=242423&primary_color=4c94fb",
+          "icon": "calendar"
+        },
+        {
+          "anchor": "Support",
+          "href": "mailto:support@qumis.ai",
+          "icon": "headset"
+        }
+      ]
+    }
   },
   "navbar": {
     "links": [
