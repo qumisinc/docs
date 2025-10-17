@@ -90,6 +90,7 @@
       },
       {
         "tab": "Internal",
+        "hidden": true,
         "groups": [
           {
             "group": "Overview",
