@@ -1,6 +1,7 @@
-# Single Sign On
-
->This guide will help your IT team configure Single Sign-On (SSO) with Qumis. SSO allows your employees to access Qumis using your organization's existing identity provider credentials, streamlining access management and enhancing security.
+---
+title: "Single Sign On"
+---
+> This guide will help your IT team configure Single Sign-On (SSO) with Qumis. SSO allows your employees to access Qumis using your organization's existing identity provider credentials, streamlining access management and enhancing security.
 
 ---
 
@@ -46,9 +47,9 @@ Your Qumis Customer Success team will request the following information to confi
 - **SSO URL / Sign-On URL**: The endpoint where authentication requests will be sent
 - **X.509 Certificate**: Public certificate from your IdP for validating SAML assertions
 - **Attribute Mapping** (if different from defaults):
-    - Email address attribute
-    - First name attribute
-    - Last name attribute
+  - Email address attribute
+  - First name attribute
+  - Last name attribute
 
 #### For OIDC Connections
 
@@ -65,7 +66,7 @@ Your Qumis Customer Success team will request the following information to confi
 
 ### Step 1: Contact Qumis Customer Success
 
-Reach out to your Qumis Customer Success Manager or email support@qumis.ai to initiate the SSO setup process. We'll schedule a brief kickoff call to review requirements and timeline.
+Reach out to your Qumis Customer Success Manager or email [support@qumis.ai](mailto:support@qumis.ai) to initiate the SSO setup process. We'll schedule a brief kickoff call to review requirements and timeline.
 
 ### Step 2: Configure Qumis Application in Your IdP
 
@@ -75,7 +76,7 @@ Your IT team will need to add Qumis as an application in your identity provider.
 - **Assertion Consumer Service (ACS) URL**: Where SAML assertions or OIDC tokens should be sent
 - **Callback/Redirect URI**: For OIDC flows
 
-*Follow your IdP's documentation to create a new SSO application with these values.*
+_Follow your IdP's documentation to create a new SSO application with these values._
 
 ### Step 3: Provide Configuration Details to Qumis
 
@@ -103,8 +104,8 @@ Once Qumis confirms the configuration is complete:
 1. **Initial Test**: A designated test user should attempt to log in to Qumis using SSO
 2. **Verify User Details**: Confirm that user information (name, email) is populated correctly
 3. **Test Different Scenarios**:
-    - Existing user login
-    - Access to appropriate resources and permissions
+   - Existing user login
+   - Access to appropriate resources and permissions
 
 ### Step 6: Production Rollout
 
@@ -184,41 +185,41 @@ Contact your Qumis Customer Success Manager if this applies to your use case.
 
 For assistance with SSO configuration or troubleshooting:
 
-- **Email**: support@qumis.ai
+- **Email**: [support@qumis.ai](mailto:support@qumis.ai)
 
 When contacting support, please include:
 
 - Your organization name
 - Description of the issue
-- Screenshots of any error messages 
+- Screenshots of any error messages
 - Approximate time the issue occurred
 
 ---
 
 ## Frequently Asked Questions
 
-**Q: Can we enforce SSO as the only login method?**  
+**Q: Can we enforce SSO as the only login method?**\
 A: Yes. Once SSO is configured and tested, Qumis will automatically disable alternative authentication methods for your organization.
 
-**Q: What happens if our IdP experiences downtime?**  
+**Q: What happens if our IdP experiences downtime?**\
 A: Users will be unable to log in via SSO during IdP downtime. Contact Qumis support if you need temporary alternative access enabled.
 
-**Q: Can we configure multiple IdP connections?**  
+**Q: Can we configure multiple IdP connections?**\
 A: Organizations typically use a single IdP connection. Contact your Customer Success Manager if you have a specific use case requiring multiple connections.
 
-**Q: How do we offboard users?**  
+**Q: How do we offboard users?**\
 A: Remove user access in your IdP by unassigning them from the Qumis application. They will be unable to authenticate on their next login attempt.
 
-**Q: Does SSO support Multi-Factor Authentication (MFA)?**  
+**Q: Does SSO support Multi-Factor Authentication (MFA)?**\
 A: Yes. MFA enforcement is managed through your identity provider. When MFA is required by your IdP, users will complete MFA as part of the SSO flow.
 
-**Q: Can we customize the login page?**  
+**Q: Can we customize the login page?**\
 A: Qumis provides a standard enterprise login experience. For custom branding requirements, please contact your Customer Success Manager.
 
 ---
 
 ## Next Steps
 
-Ready to configure SSO for your organization? Contact your Qumis Customer Success Manager or email support@qumis.ai to begin the setup process.
+Ready to configure SSO for your organization? Contact your Qumis Customer Success Manager or email [support@qumis.ai](mailto:support@qumis.ai) to begin the setup process.
 
 We're here to ensure a smooth implementation and answer any questions throughout the process.
