@@ -2,7 +2,9 @@
 title: "Chats"
 ---
 
->Use Qumis’ **Chats** to ask natural-language questions about your insurance documents and get attorney-grade answers with citations. This guide walks you through the whole flow—from opening Chats to asking questions, saving work, and troubleshooting.
+<Info>
+Use Qumis' **Chats** to ask natural-language questions about your insurance documents and get attorney-grade answers with citations. This guide walks you through the whole flow—from opening Chats to asking questions, saving work, and troubleshooting.
+</Info>
 
 ---
 
@@ -23,24 +25,42 @@ title: "Chats"
 
 ## 1) Open the Chats workspace
 
-1. From the left sidebar, click **Chats**.
-   - On **Home**, you’ll also see other tools like _Chat with Documents_, _Compare Documents_, _Claims_, _Policy Analysis_, and _Contracts_ (all accessible from the same sidebar later).
+<Steps>
+<Step title="Navigate to Chats">
+From the left sidebar, click **Chats**.
 
-![Qumis Home screen showing navigation and feature cards](/images/screenshots/01.png)
+On **Home**, you'll also see other tools like _Chat with Documents_, _Compare Documents_, _Claims_, _Policy Analysis_, and _Contracts_ (all accessible from the same sidebar later).
+</Step>
+</Steps>
+
+<Frame caption="Qumis Home screen showing navigation and feature cards">
+  ![Qumis Home screen showing navigation and feature cards](/images/screenshots/01.png)
+</Frame>
 
 
 ---
 
 ## 2) Start a new chat
 
-1. In **Chats**, click **New Chat** at the top of the list.
-2. You’ll see a welcome message and two ways to add files:
-   - **Search and Add Documents From Vault** (pull existing files), or
-   - **Drop files here** (drag & drop from your computer).
+<Steps>
+<Step title="Create a new chat">
+In **Chats**, click **New Chat** at the top of the list.
+</Step>
 
-![New Chat empty view with upload options](/images/screenshots/04.png)
+<Step title="Choose how to add files">
+You'll see a welcome message and two ways to add files:
+- **Search and Add Documents From Vault** (pull existing files), or
+- **Drop files here** (drag & drop from your computer).
+</Step>
+</Steps>
 
-> **Tip:** You can add more than one file to the same chat to ask cross-document questions (e.g., compare a quote to a policy).
+<Frame caption="New Chat empty view with upload options">
+  ![New Chat empty view with upload options](/images/screenshots/04.png)
+</Frame>
+
+<Tip>
+You can add more than one file to the same chat to ask cross-document questions (e.g., compare a quote to a policy).
+</Tip>
 
 ---
 
@@ -55,18 +75,22 @@ title: "Chats"
 1. Click in the **Search and Add Documents From Vault** bar.
 2. Search by file name and select the document(s) you want.
 
-> **Security note:** Documents live in your private, encrypted **Vault**; they remain protected and reusable across workflows.
+<Note>
+**Security note:** Documents live in your private, encrypted **Vault**; they remain protected and reusable across workflows.
+</Note>
 
 ---
 
 ## 4) Wait for automatic OCR & ingestion
 
 - After you add files, Qumis runs OCR and parsing automatically.
-- You’ll see a **Processing OCR** progress window with a checkmark when each file finishes.
+- You'll see a **Processing OCR** progress window with a checkmark when each file finishes.
 
-![Processing OCR window showing document extraction progress](/images/screenshots/03.png)
+<Frame caption="Processing OCR window showing document extraction progress">
+  ![Processing OCR window showing document extraction progress](/images/screenshots/03.png)
+</Frame>
 
-If you close the window accidentally, don’t worry—processing continues in the background and you can start typing your question once the file shows as loaded.
+If you close the window accidentally, don't worry—processing continues in the background and you can start typing your question once the file shows as loaded.
 
 ---
 
@@ -82,21 +106,33 @@ Once at least one document is loaded, the chat view shows:
   - _Compare coverage to industry standards_
   - _Check for specific endorsements_
 
-![Chats interface showing loaded document and suggested actions](/images/screenshots/02.png)
+<Frame caption="Chats interface showing loaded document and suggested actions">
+  ![Chats interface showing loaded document and suggested actions](/images/screenshots/02.png)
+</Frame>
 
-- **Chat list** (left sidebar) with your recent and older chats. Click any item to reopen it. You’ll also see pagination at the bottom of the list.
+- **Chat list** (left sidebar) with your recent and older chats. Click any item to reopen it. You'll also see pagination at the bottom of the list.
 
 ---
 
 ## 6) Ask your first question
 
-1. Click a suggested action **or** type a question in your own words.
-   - Example: _“Does this policy cover independent contractors?”_
-2. Press **Ask ↵**.
+<Steps>
+<Step title="Enter your question">
+Click a suggested action **or** type a question in your own words.
+
+Example: _"Does this policy cover independent contractors?"_
+</Step>
+
+<Step title="Submit and review the answer">
+Press **Ask ↵**.
 
 Qumis reads the uploaded document(s) and replies with an answer. If citations are visible, click them to see the exact source passages extracted from your files.
+</Step>
+</Steps>
 
-> **What kinds of analyses can I ask for?** Coverage checks, exclusions, policy requirements, legal compliance, claims assessments, and more.
+<Info>
+**What kinds of analyses can I ask for?** Coverage checks, exclusions, policy requirements, legal compliance, claims assessments, and more.
+</Info>
 
 ---
 
@@ -127,32 +163,53 @@ Qumis reads the uploaded document(s) and replies with an answer. If citations ar
 
 ## Troubleshooting
 
-**I don’t see my document after uploading.**
+<AccordionGroup>
+<Accordion title="I don't see my document after uploading">
+Wait for the **Processing OCR** window to finish. If it stalls, remove the file and re-add it. Check that the file type is supported (PDF, Word, Excel, JPG/PNG/TIFF).
+</Accordion>
 
-- Wait for the **Processing OCR** window to finish. If it stalls, remove the file and re-add it. Check that the file type is supported (PDF, Word, Excel, JPG/PNG/TIFF).
+<Accordion title="Responses don't show citations">
+Toggle **Hide Citations** off (top-right).
+</Accordion>
 
-**Responses don’t show citations.**
+<Accordion title="My question seems too broad">
+Use a suggested action (buttons under the chat box) to guide the analysis, then ask follow-ups.
+</Accordion>
 
-- Toggle **Hide Citations** off (top-right).
-
-**My question seems too broad.**
-
-- Use a suggested action (buttons under the chat box) to guide the analysis, then ask follow-ups.
-
-**I need to find an older conversation.**
-
-- Scroll the chat list on the left, or use pagination at the bottom to move between pages.
+<Accordion title="I need to find an older conversation">
+Scroll the chat list on the left, or use pagination at the bottom to move between pages.
+</Accordion>
+</AccordionGroup>
 
 ---
 
 ## Example prompts you can copy
 
-- “Summarize all coverages and limits in this policy. Include a short explanation for each.”
-- “List every exclusion and where it appears. Flag anything unusual.”
-- “Compare the quote to the policy and tell me material differences and potential gaps.”
-- “Does this cover independent contractors? Cite the clause.”
-- “Extract all policy requirements and obligations I need to track.”
-- “Explain the deductible and sublimit structure like I’m new to insurance.”
+<CodeGroup>
+```text Coverage Summary
+Summarize all coverages and limits in this policy. Include a short explanation for each.
+```
+
+```text Exclusions Analysis
+List every exclusion and where it appears. Flag anything unusual.
+```
+
+```text Policy Comparison
+Compare the quote to the policy and tell me material differences and potential gaps.
+```
+
+```text Coverage Verification
+Does this cover independent contractors? Cite the clause.
+```
+
+```text Requirements Extraction
+Extract all policy requirements and obligations I need to track.
+```
+
+```text Plain Language Explanation
+Explain the deductible and sublimit structure like I'm new to insurance.
+```
+</CodeGroup>
 
 ---
 
