@@ -2,7 +2,9 @@
 title: "Custom Report"
 ---
 
-> The **Custom Report** gives you the flexibility to specify exactly what output you'd like from Qumis while leveraging its deep analytical capabilities and contextual understanding of insurance policies. Whether you need a specialized policy analysis, a client-facing summary, or any custom insurance document evaluation, Custom Reports let you define the task and output format while Qumis handles the analysis.
+<Info>
+The **Custom Report** gives you the flexibility to specify exactly what output you'd like from Qumis while leveraging its deep analytical capabilities and contextual understanding of insurance policies. Whether you need a specialized policy analysis, a client-facing summary, or any custom insurance document evaluation, Custom Reports let you define the task and output format while Qumis handles the analysis.
+</Info>
 
 ---
 
@@ -22,7 +24,9 @@ With Custom Reports, you can:
 
 You can also chat directly with the report to explore findings in more depth. Each chat is saved, and multiple threads can be maintained per report for different topics or follow-up analyses.
 
-> 💡 You will need **at least one document** and **a prompt** to create a Custom Report.
+<Note>
+You will need **at least one document** and **a prompt** to create a Custom Report.
+</Note>
 
 ---
 
@@ -37,16 +41,29 @@ You can also chat directly with the report to explore findings in more depth. Ea
 
 ## 1) Access Custom Report
 
-1. Click **Custom Report** from the left sidebar.
-2. You'll see the Custom Report workspace with a card to "Generate Custom Report."
-3. Below that, you'll see a list of your previously generated custom reports with timestamps and associated documents.
-4. To start a new report, click the **Generate Custom Report** card.
+<Steps>
+<Step title="Navigate to Custom Report">
+Click **Custom Report** from the left sidebar. You'll see the Custom Report workspace with a card to "Generate Custom Report."
+</Step>
 
+<Step title="View your report history">
+Below the card, you'll see a list of your previously generated custom reports with timestamps and associated documents.
+</Step>
+
+<Step title="Start a new report">
+Click the **Generate Custom Report** card to begin.
+</Step>
+</Steps>
+
+<Frame caption="Custom Report dashboard showing the Generate Custom Report card and previous reports">
 <img
   style={{ width:"1200%" }}
 />
+</Frame>
 
-> 📁 Each generated report is stored automatically and can be reopened or expanded later.
+<Info>
+Each generated report is stored automatically and can be reopened or expanded later.
+</Info>
 
 ---
 
@@ -61,15 +78,25 @@ A four-step workflow guides you through creating your custom report:
 
 On **Step 1: Report Title**, provide a name for your report:
 
-1. Enter a descriptive title in the text box (e.g., "Sample Custom Report," "GL Policy Executive Summary," "Cyber Coverage Gap Analysis").
-2. This title will help you identify the report later in your saved reports list.
-3. Click **Upload Documents** to proceed to Step 2.
+<Steps>
+<Step title="Enter a descriptive title">
+Enter a descriptive title in the text box (e.g., "Sample Custom Report," "GL Policy Executive Summary," "Cyber Coverage Gap Analysis"). This title will help you identify the report later in your saved reports list.
+</Step>
 
+<Step title="Proceed to document upload">
+Click **Upload Documents** to proceed to Step 2.
+</Step>
+</Steps>
+
+<Frame caption="Step 1: Report Title input field">
 <img
   style={{ width:"1200%" }}
 />
+</Frame>
 
-> 📝 Titles should describe the goal of the analysis (e.g., "Cyber Policy Risk Commentary" or "Property Policy Limit Review").
+<Tip>
+Titles should describe the goal of the analysis (e.g., "Cyber Policy Risk Commentary" or "Property Policy Limit Review").
+</Tip>
 
 ---
 
@@ -77,18 +104,31 @@ On **Step 1: Report Title**, provide a name for your report:
 
 On **Step 2: Upload Documents**, add the documents you want Qumis to analyze:
 
-1. You can add documents in two ways:
-   - Click **Search and Add Documents From Vault** to pull previously uploaded documents from your Vault, or
-   - Drag and drop files into the **Drop files here** area, or click to select files from your computer.
-2. Supported file types include PDF, Word, Excel, and images (JPG, PNG, TIFF).
-3. You can upload multiple documents if your analysis requires comparing or synthesizing information from several sources.
-4. Once uploaded, your documents appear in green boxes with checkmarks showing they're ready.
+<Steps>
+<Step title="Add documents">
+You can add documents in two ways:
+- Click **Search and Add Documents From Vault** to pull previously uploaded documents from your Vault, or
+- Drag and drop files into the **Drop files here** area, or click to select files from your computer.
+</Step>
 
+<Step title="Upload multiple files if needed">
+Supported file types include PDF, Word, Excel, and images (JPG, PNG, TIFF). You can upload multiple documents if your analysis requires comparing or synthesizing information from several sources.
+</Step>
+
+<Step title="Verify uploads">
+Once uploaded, your documents appear in green boxes with checkmarks showing they're ready.
+</Step>
+</Steps>
+
+<Frame caption="Step 2: Upload Documents interface with drag-and-drop area and Vault search">
 <img
   style={{ width:"1200%" }}
 />
+</Frame>
 
-> ✅ Uploading at least one document is required before you can move to the prompt step.
+<Note>
+Uploading at least one document is required before you can move to the prompt step.
+</Note>
 
 ---
 
@@ -111,13 +151,17 @@ You have two options:
 1. Type directly in the large text box.
 2. Follow the guidance provided to create an effective prompt.
 
+<Frame caption="Step 3: Description with prompt template selector and custom prompt input">
 <img
   style={{ width:"1200%" }}
 />
+</Frame>
 
-> 💬 You can write your own prompt or select one from your **Prompt Library** using the dropdown.\
-> 🧠 Prompts from the library are great for consistency across teams.\
-> 💼 If your organization would like standard report prompts automatically added to every user's Prompt Library, please contact your **Customer Success Manager**.
+<Info>
+- You can write your own prompt or select one from your **Prompt Library** using the dropdown.
+- Prompts from the library are great for consistency across teams.
+- If your organization would like standard report prompts automatically added to every user's Prompt Library, please contact your **Customer Success Manager**.
+</Info>
 
 ### How to write an effective prompt
 
@@ -153,11 +197,15 @@ _Task: Analyze the provided general liability insurance policy for a constructio
 - _Policy Form: Determine if the policy is occurrence-based, claims-made, or claims-made and reported. Justify your conclusion._
 - _Limits, Deductibles, and Retentions: List all policy limits, deductibles, and retentions, clarifying their application..."_
 
+<Frame caption="Example of a detailed, well-structured custom report prompt">
 <img
   style={{ width:"1200%" }}
 />
+</Frame>
 
-> ✍️ The more specific your prompt, the more precise and useful your report will be.
+<Tip>
+The more specific your prompt, the more precise and useful your report will be.
+</Tip>
 
 ---
 
@@ -165,17 +213,29 @@ _Task: Analyze the provided general liability insurance policy for a constructio
 
 Once the report title, documents, and description are complete:
 
-1. Click **Generate Custom Report** at the bottom right.
-2. Qumis begins analyzing the documents according to your instructions.
-3. The process takes approximately 5–10 minutes depending on document complexity and the scope of your prompt.
-4. You'll see a progress screen with status updates.
-5. You can leave the page and return later—the report will be ready when processing completes.
+<Steps>
+<Step title="Generate the report">
+Click **Generate Custom Report** at the bottom right. Qumis begins analyzing the documents according to your instructions.
+</Step>
 
+<Step title="Wait for processing">
+The process takes approximately 5–10 minutes depending on document complexity and the scope of your prompt. You'll see a progress screen with status updates.
+</Step>
+
+<Step title="Return when ready">
+You can leave the page and return later—the report will be ready when processing completes.
+</Step>
+</Steps>
+
+<Frame caption="Report generation progress screen">
 <img
   style={{ width:"1200%" }}
 />
+</Frame>
 
-> ⏱️ Reports typically complete within 5–10 minutes. You'll receive a notification when your report is ready.
+<Info>
+Reports typically complete within 5–10 minutes. You'll receive a notification when your report is ready.
+</Info>
 
 ---
 
@@ -198,9 +258,11 @@ The report structure will match what you specified in your prompt. Sections and 
 - Conclusions and recommendations
 - Any other sections you defined in your prompt
 
+<Frame caption="Completed custom report with structured sections and analysis">
 <img
   style={{ width:"1200%" }}
 />
+</Frame>
 
 The report will follow your instructions for tone, format, and content focus, making it suitable for your intended audience.
 
@@ -210,7 +272,9 @@ You can:
 - Show or hide citations to view where Qumis pulled information from
 - Download the full report for client or internal use
 
-> 📘 Each report can contain multiple pages of analysis, policy references, and custom commentary.
+<Info>
+Each report can contain multiple pages of analysis, policy references, and custom commentary.
+</Info>
 
 ---
 
@@ -229,7 +293,9 @@ You can ask questions such as:
 - "Highlight any coverage gaps."
 - "Compare this policy to the other one I uploaded."
 
-> 💬 Chats are saved and threaded — you can revisit or start new conversations for deeper exploration of the same report.
+<Tip>
+Chats are saved and threaded — you can revisit or start new conversations for deeper exploration of the same report.
+</Tip>
 
 ---
 
@@ -354,6 +420,8 @@ Use it when you need:
 
 Custom Reports give you the power to create exactly the analysis you need, formatted precisely for your audience. Whether you're preparing executive summaries, conducting specialized industry analysis, or creating unique client deliverables, Custom Reports let you leverage Qumis's deep analytical capabilities while maintaining complete control over the output. The result is professional, tailored insurance analysis that would take hours to produce manually, delivered in minutes and ready for your specific use case.
 
-> 🚀 The Custom Report unlocks the full analytical power of Qumis — driven entirely by your expertise and creativity.
+<Tip>
+The Custom Report unlocks the full analytical power of Qumis — driven entirely by your expertise and creativity.
+</Tip>
 
 ---

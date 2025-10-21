@@ -2,7 +2,9 @@
 title: "Coverage Table"
 ---
 
-> The **Coverage Table** feature helps brokers, account managers, and producers quickly create a side-by-side coverage summary for one or more insurance policies. Qumis reads your uploaded policy documents, extracts the relevant terms and conditions, and presents them in a structured, professional comparison table that's easy to share with clients.
+<Info>
+The **Coverage Table** feature helps brokers, account managers, and producers quickly create a side-by-side coverage summary for one or more insurance policies. Qumis reads your uploaded policy documents, extracts the relevant terms and conditions, and presents them in a structured, professional comparison table that's easy to share with clients.
+</Info>
 
 ---
 
@@ -30,22 +32,21 @@ It's best to create separate Coverage Table reports for each line of business (e
 
 ---
 
-## 1) Access the Coverage Table tool
+<Steps>
 
+<Step title="Access the Coverage Table tool">
 1. From the sidebar, click **Coverage Table (BETA)**.
 2. You'll see a list of existing reports and the option to start a new one.
 3. Click **Create Coverage Table** to begin.
 
 Each generated table is saved automatically for future reference.
 
-<img
-  style={{ width:"1200%" }}
-/>
+<Frame caption="Coverage Table dashboard showing existing reports and create button">
+  <img style={{ width:"1200%" }} />
+</Frame>
+</Step>
 
----
-
-## 2) Upload your policy documents
-
+<Step title="Upload your policy documents">
 A three-step workflow guides you through creating your coverage table:
 
 - **Step 1: Policy Documents**
@@ -61,14 +62,12 @@ On **Step 1: Policy Documents**, add the documents you want to analyze:
 3. You can upload between 1 and 5 policy documents.
 4. Qumis reads and parses the uploaded documents to extract key coverage items.
 
-<img
-  style={{ width:"1200%" }}
-/>
+<Frame caption="Document upload interface with vault search and file drop options">
+  <img style={{ width:"1200%" }} />
+</Frame>
+</Step>
 
----
-
-## 3) Add checklist items
-
+<Step title="Add checklist items">
 On **Step 2: Add Checklist Items**, choose how you want Qumis to build your coverage table.
 
 You have two options:
@@ -77,11 +76,11 @@ You have two options:
 
 1. Toggle **Auto-Generate Checklist Items** **on** (enabled).
 2. Qumis will automatically identify relevant fields and terms based on the uploaded documents.
-3. This is the fastest way to create a table if you don't already have a checklist defined.
+3. This is the fastest way to create a table if you don't have a checklist defined.
 
-<img
-  style={{ width:"1200%" }}
-/>
+<Frame caption="Auto-generate checklist toggle enabled">
+  <img style={{ width:"1200%" }} />
+</Frame>
 
 ### Option B — Use a Defined Checklist
 
@@ -106,39 +105,37 @@ You have two options:
 - Select the appropriate checklist from your saved prompts.
 - The checklist fields will populate automatically.
 
-<img
-  style={{ width:"1200%" }}
-/>
+<Frame caption="Custom checklist input with Prompt Library integration">
+  <img style={{ width:"1200%" }} />
+</Frame>
+</Step>
 
----
-
-## 4) Best practices for checklist creation
-
-**Create line-of-business-specific checklists**
-
+<Step title="Best practices for checklist creation">
+<AccordionGroup>
+<Accordion title="Create line-of-business-specific checklists">
 - Create separate Coverage Table reports for each line of business (e.g., General Liability, Commercial Property, Workers Compensation, Cyber).
 - Use checklists that ask for information relevant to that specific line of business.
 - Don't use your General Liability checklist on a Commercial Property policy—the fields won't match.
+</Accordion>
 
-**Save frequently-used checklists**
-
+<Accordion title="Save frequently-used checklists">
 - Save your most-used coverage checklists to the Prompt Library for quick reuse.
 - Name them clearly (e.g., "GL Coverage Checklist," "Commercial Property Limits and Deductibles").
 - Update them as your proposals or client needs evolve.
 - If you'd like your agency's standard checklists added to the Prompt Library for all users in your organization to access, contact your customer success manager.
+</Accordion>
 
-**Include relevant fields**
-
+<Accordion title="Include relevant fields">
 - Policy information (carrier, term, admitted status, ratings)
 - Key limits and sublimits
 - Deductibles and retentions
 - Important coverage types and endorsements
 - Territory and jurisdictional information
+</Accordion>
+</AccordionGroup>
+</Step>
 
----
-
-## 5) Generate your coverage table
-
+<Step title="Generate your coverage table">
 Once documents are uploaded and checklist items are defined:
 
 1. Click **Generate Coverage Table** at the bottom right.
@@ -146,14 +143,12 @@ Once documents are uploaded and checklist items are defined:
 3. Report generation typically takes 5–10 minutes as Qumis validates and extracts data using a multi-agent AI process.
 4. You can leave the page and return later—the report will be ready when processing completes.
 
-<img
-  style={{ width:"1200%" }}
-/>
+<Frame caption="Generate Coverage Table button initiating the analysis process">
+  <img style={{ width:"1200%" }} />
+</Frame>
+</Step>
 
----
-
-## 6) Review your completed coverage table
-
+<Step title="Review your completed coverage table">
 When ready, the coverage table displays each policy side by side with fields such as:
 
 - Writing Company
@@ -170,9 +165,12 @@ Each row indicates the status of that field:
 
 You can sort or filter by status, impact, or confidence level for quick review.
 
-<img
-  style={{ width:"1200%" }}
-/>
+<Frame caption="Completed coverage table showing side-by-side policy comparison with match status">
+  <img style={{ width:"1200%" }} />
+</Frame>
+</Step>
+
+</Steps>
 
 ---
 
@@ -264,55 +262,65 @@ Your previously generated Coverage Tables are saved and listed on the Coverage T
 
 ## Time savings example
 
+<Columns>
+<Column>
 **Traditional coverage table creation (typical):**
 
 - Read through each policy document: 30-60 minutes
 - Extract coverage limits and terms: 1-2 hours
 - Create comparison table in Excel: 30-60 minutes
 - Format for client presentation: 30-45 minutes
-- Total: 2.5-4.5 hours per coverage table
+- **Total: 2.5-4.5 hours per coverage table**
+</Column>
 
+<Column>
 **With Qumis Coverage Table Report:**
 
 - Upload documents: 2 minutes
 - Select or create checklist: 2-3 minutes
 - Generate table: 5-10 minutes
 - Review and download: 3-5 minutes
-- Total: 12-20 minutes per coverage table
+- **Total: 12-20 minutes per coverage table**
+</Column>
+</Columns>
 
+<Tip>
 You can now create multiple professional coverage tables in the time it would have taken to create one manually.
+</Tip>
 
 ---
 
 ## Troubleshooting
 
-**My table didn't extract the information I expected.**
+<AccordionGroup>
+<Accordion title="My table didn't extract the information I expected">
+Check that your checklist fields match what's actually in the documents. If you asked for "Cyber Limits" but uploaded a GL policy, Qumis won't find that information.
+</Accordion>
 
-- Check that your checklist fields match what's actually in the documents. If you asked for "Cyber Limits" but uploaded a GL policy, Qumis won't find that information.
+<Accordion title="Some fields show 'Not Available'">
+This means Qumis couldn't find that information in the document. The field may not exist in that policy, or it may be described differently.
+</Accordion>
 
-**Some fields show "Not Available."**
+<Accordion title="My coverage table is taking too long to generate">
+Average generation time is 5–10 minutes. If it exceeds 15 minutes, refresh the page or re-upload the documents.
+</Accordion>
 
-- This means Qumis couldn't find that information in the document. The field may not exist in that policy, or it may be described differently.
+<Accordion title="How do I create a checklist for a new line of business?">
+Look at a sample policy for that line and list all the key coverage items, limits, deductibles, and terms you want to track. Save it as a prompt for future use.
+</Accordion>
 
-**My coverage table is taking too long to generate.**
+<Accordion title="Can I compare more than 5 documents?">
+No, Coverage Table supports 1-5 documents per table. If you need to compare more, create multiple tables.
+</Accordion>
 
-- Average generation time is 5–10 minutes. If it exceeds 15 minutes, refresh the page or re-upload the documents.
+<Accordion title="Where are my saved checklists?">
+Checklists saved to the Prompt Library can be accessed by clicking the book icon during checklist creation.
+</Accordion>
 
-**How do I create a checklist for a new line of business?**
-
-- Look at a sample policy for that line and list all the key coverage items, limits, deductibles, and terms you want to track. Save it as a prompt for future use.
-
-**Can I compare more than 5 documents?**
-
-- No, Coverage Table supports 1-5 documents per table. If you need to compare more, create multiple tables.
-
-**Where are my saved checklists?**
-
-- Checklists saved to the Prompt Library can be accessed by clicking the book icon during checklist creation.
-
-**Can I edit the table after it's generated?**
-
-- You can download the table and edit it in Excel or your preferred tool. The table in Qumis is fixed once generated.
+<Accordion title="Can I edit the table after it's generated?">
+You can download the table and edit it in Excel or your preferred tool. The table in Qumis is fixed once generated.
+</Accordion>
+</AccordionGroup>
 
 ---
 
