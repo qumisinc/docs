@@ -1,0 +1,355 @@
+---
+title: "Production Deployment Cheatsheet"
+description: "Quick reference for common production operations"
+icon: "rocket"
+noindex: true
+---
+
+Quick reference guide for production operations. All commands are copy-paste ready.
+
+<Info>
+**For detailed procedures and explanations**, refer to the full deployment guides:
+- [Production Deployment](/internal/engineering/deployment/production-deployment)
+- [Post-Deployment Validation](/internal/engineering/deployment/post-deployment-validation)
+- [qumis-cli Reference](/internal/engineering/operations/qumis-cli-reference)
+</Info>
+
+## Environment Reference
+
+| Item | Value |
+|------|-------|
+| **Account ID** | 729033428609 |
+| **AWS Profile** | `qumis_prod` |
+| **Region** | us-east-2 |
+| **Services** | api, web, sidekiq |
+| **API URL** | https://api.qumis.ai |
+| **Web URL** | https://app.qumis.ai |
+
+### Log Groups
+
+| Service | Log Group |
+|---------|-----------|
+| API | `ecs/blue/prod/api` |
+| Web | `ecs/blue/prod/web` |
+| Sidekiq | `ecs/blue/prod/sidekiq` |
+
+## Rails Console
+
+<Warning>
+Production console access requires `--confirm "prod"` and a descriptive `--reason` for audit logging.
+</Warning>
+
+```bash
+qumis services exec api \
+  --env prod \
+  --reason "Debug customer issue #123" \
+  --confirm "prod" \
+  -- rails console
+```
+
+## Check Production Status
+
+```bash
+# Service info
+qumis services info api --env prod
+qumis services info web --env prod
+
+# Health endpoints
+curl https://api.qumis.ai/health
+curl https://app.qumis.ai/health
+
+# AWS login (if needed)
+qumis aws login prod
+```
+
+## Environment Variables & Secrets
+
+### List Configured Variables and Secrets
+
+```bash
+# API service
+qumis vars list api --env prod
+qumis secrets list api --env prod
+
+# Web service
+qumis vars list web --env prod
+qumis secrets list web --env prod
+```
+
+### Inspect Running Environment Variables
+
+```bash
+# API service
+qumis services exec api \
+  --env prod \
+  --reason "Print ENV vars" \
+  --confirm "prod" \
+  -- env | grep -E "^[A-Z_]+=.*" | sort
+
+# Web service
+qumis services exec web \
+  --env prod \
+  --reason "Print ENV vars" \
+  --confirm "prod" \
+  -- env | grep -E "^[A-Z_]+=.*" | sort
+```
+
+## Deploy to Production
+
+<Warning>
+Always verify UAT deployment before production. Requires `--confirm` flag and descriptive `--reason`.
+</Warning>
+
+```bash
+# API service
+qumis deploy api \
+  --env prod \
+  --reason "Deploy v1.2.3 - ENG-123" \
+  --workflow-ref "release" \
+  --confirm
+
+# Web service
+qumis deploy web \
+  --env prod \
+  --reason "Deploy v1.2.3 - ENG-123" \
+  --workflow-ref "release" \
+  --confirm
+```
+
+## Monitor Deployments
+
+### GitHub Actions
+
+```bash
+# List recent workflow runs
+gh run list --repo qumis-hq/qumis --limit 5
+
+# Watch specific run
+gh run watch <run-id> --repo qumis-hq/qumis
+
+# View run logs
+gh run view <run-id> --repo qumis-hq/qumis --log
+```
+
+### CloudWatch Logs
+
+```bash
+# Tail logs in real-time
+aws logs tail ecs/blue/prod/api \
+  --profile qumis_prod \
+  --follow
+
+aws logs tail ecs/blue/prod/web \
+  --profile qumis_prod \
+  --follow
+
+aws logs tail ecs/blue/prod/sidekiq \
+  --profile qumis_prod \
+  --follow
+
+# Tail with filter
+aws logs tail ecs/blue/prod/api \
+  --profile qumis_prod \
+  --follow \
+  --filter-pattern "ERROR"
+```
+
+## Check for Errors
+
+### Last 5 Minutes
+
+```bash
+# API errors
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/api \
+  --start-time $(date -u -v-5M +%s)000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod
+
+# Web errors
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/web \
+  --start-time $(date -u -v-5M +%s)000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod
+
+# Sidekiq errors
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/sidekiq \
+  --start-time $(date -u -v-5M +%s)000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod
+```
+
+### Last Hour
+
+```bash
+# API errors (last hour)
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/api \
+  --start-time $(date -u -v-1H +%s)000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod
+
+# Web errors (last hour)
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/web \
+  --start-time $(date -u -v-1H +%s)000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod
+```
+
+## Quick Diagnostics
+
+### ECS Services
+
+```bash
+# API service status
+aws ecs describe-services \
+  --cluster qumis-prod \
+  --services api-service \
+  --profile qumis_prod
+
+# Web service status
+aws ecs describe-services \
+  --cluster qumis-prod \
+  --services web-service \
+  --profile qumis_prod
+
+# List all services
+aws ecs list-services \
+  --cluster qumis-prod \
+  --profile qumis_prod
+```
+
+### Sidekiq Status
+
+```bash
+# Check Sidekiq queue status
+qumis services exec api \
+  --env prod \
+  --reason "Check Sidekiq status" \
+  --confirm "prod" \
+  -- bundle exec rails runner "puts Sidekiq::Stats.new.inspect"
+
+# Check queue sizes
+qumis services exec api \
+  --env prod \
+  --reason "Check queue sizes" \
+  --confirm "prod" \
+  -- bundle exec rails runner "puts Sidekiq::Queue.all.map { |q| [q.name, q.size] }.to_h.inspect"
+```
+
+### Database Connectivity
+
+```bash
+# Check database connection
+qumis services exec api \
+  --env prod \
+  --reason "Check DB connection" \
+  --confirm "prod" \
+  -- bundle exec rails runner "puts ActiveRecord::Base.connection.active?"
+
+# Run a simple query
+qumis services exec api \
+  --env prod \
+  --reason "Test DB query" \
+  --confirm "prod" \
+  -- bundle exec rails runner "puts User.count"
+```
+
+### Rails Commands
+
+```bash
+# View routes
+qumis services exec api \
+  --env prod \
+  --reason "View routes" \
+  --confirm "prod" \
+  -- bundle exec rails routes
+
+# Check Rails environment
+qumis services exec api \
+  --env prod \
+  --reason "Check environment" \
+  --confirm "prod" \
+  -- bundle exec rails runner "puts Rails.env"
+
+# Database migration status
+qumis services exec api \
+  --env prod \
+  --reason "Check migrations" \
+  --confirm "prod" \
+  -- bundle exec rails db:migrate:status
+```
+
+## Common Operations
+
+### Verify Deployment
+
+```bash
+# 1. Check service health
+qumis services info api --env prod
+qumis services info web --env prod
+
+# 2. Verify health endpoints
+curl https://api.qumis.ai/health
+curl https://app.qumis.ai/health
+
+# 3. Check for errors (last 5 min)
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/api \
+  --start-time $(date -u -v-5M +%s)000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod
+
+# 4. Test critical feature (example)
+curl -X POST https://api.qumis.ai/api/v1/auth/verify \
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+### Clear Cache (if applicable)
+
+```bash
+# Clear Rails cache
+qumis services exec api \
+  --env prod \
+  --reason "Clear cache" \
+  --confirm "prod" \
+  -- bundle exec rails runner "Rails.cache.clear"
+```
+
+### Restart Services
+
+```bash
+# Restart API service (via deployment)
+qumis deploy api \
+  --env prod \
+  --reason "Restart service" \
+  --workflow-ref "release" \
+  --confirm
+
+# Force new deployment (same version)
+qumis deploy api \
+  --env prod \
+  --reason "Force restart" \
+  --workflow-ref "release" \
+  --confirm
+```
+
+## Emergency Contacts
+
+For production incidents:
+1. Check [CloudWatch Alerts](/internal/engineering/infrastructure/cloudwatch-alerts)
+2. Review [Common Issues](/internal/engineering/troubleshooting/common-issues)
+3. Escalate to on-call engineer via PagerDuty
+
+## Best Practices
+
+<Warning>
+- **Always verify UAT** before deploying to production
+- **Use descriptive reasons** for all production commands (audit trail)
+- **Monitor for 15 minutes** after deployment
+- **Have rollback plan ready** before deploying
+- **Communicate** with team before production changes
+</Warning>

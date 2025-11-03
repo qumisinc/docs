@@ -118,6 +118,7 @@
           {
             "group": "Deployment",
             "pages": [
+              "internal/engineering/deployment/deployment-cheatsheet",
               "internal/engineering/deployment/production-deployment",
               "internal/engineering/deployment/deployment-checklist",
               "internal/engineering/deployment/post-deployment-validation",
