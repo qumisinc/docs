@@ -18,20 +18,26 @@ Quick reference guide for production operations. All commands are copy-paste rea
 
 | Item | Value |
 |------|-------|
-| **Account ID** | 729033428609 |
 | **AWS Profile** | `qumis_prod` |
 | **Region** | us-east-2 |
 | **Services** | api, web, sidekiq |
-| **API URL** | https://api.qumis.ai |
-| **Web URL** | https://app.qumis.ai |
 
-### Log Groups
+**AWS Console:** [https://qumis.awsapps.com/](https://qumis.awsapps.com/)
 
-| Service | Log Group |
-|---------|-----------|
-| API | `ecs/blue/prod/api` |
-| Web | `ecs/blue/prod/web` |
-| Sidekiq | `ecs/blue/prod/sidekiq` |
+<Accordion title="Additional Environment Details" icon="info-circle">
+  **Account ID:** 729033428609
+
+  **URLs:**
+  - API: https://api.qumis.ai
+  - Web: https://app.qumis.ai
+
+  **Log Groups:**
+  | Service | Log Group |
+  |---------|-----------|
+  | API | `ecs/blue/prod/api` |
+  | Web | `ecs/blue/prod/web` |
+  | Sidekiq | `ecs/blue/prod/sidekiq` |
+</Accordion>
 
 ## Rails Console
 
