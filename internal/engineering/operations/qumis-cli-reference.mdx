@@ -162,6 +162,8 @@ qumis services exec api --env dev -- rails db:seed
 
 ### Environment Variables
 
+#### List Configured Variables
+
 ```bash
 # List environment variables
 qumis vars list api --env dev
@@ -170,6 +172,35 @@ qumis vars list web --env prod
 # Set environment variable (through AWS Console or IaC)
 # Note: qumis-cli doesn't directly modify env vars for security
 ```
+
+#### Inspect Running Environment Variables in Production
+
+Use these commands to inspect the actual environment variables running in production containers:
+
+```bash
+# API service
+qumis services exec api \
+  --env prod \
+  --reason "Print ENV vars" \
+  --confirm "prod" \
+  -- env | grep -E "^[A-Z_]+=.*" | sort
+
+# Web service
+qumis services exec web \
+  --env prod \
+  --reason "Print ENV vars" \
+  --confirm "prod" \
+  -- env | grep -E "^[A-Z_]+=.*" | sort
+```
+
+**Command breakdown:**
+- `qumis services exec [service]` - Execute command in service container
+- `--env prod` - Target production environment
+- `--reason "..."` - Audit trail reason (required for prod)
+- `--confirm "prod"` - Production safety confirmation
+- `-- env` - Run env command inside container
+- `grep -E "^[A-Z_]+=.*"` - Filter for uppercase environment variables
+- `sort` - Alphabetically sort output for easier reading
 
 ### Monitoring & Debugging
 
