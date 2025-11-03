@@ -155,69 +155,86 @@ brew install --cask docker
     Create or update your `~/.aws/config` file with the following configuration:
 
     ```ini
-    # AWS<->Qumis
+    # AWS Configuration for Qumis
     # ================================
     # AWS CLI configuration file
-    # This file is typically located at ~/.aws/config
+    # Location: ~/.aws/config
+    #
+    # After updating this file, authenticate with: aws sso login --profile qumis_<env>
+    # Example: aws sso login --profile qumis_prod
 
-    # AWS SSO configuration
+    # AWS SSO Session Configuration
     # --------------------------------
+    # Shared SSO session used by all Qumis AWS profiles
     [sso-session qumis_sso]
     sso_start_url = https://qumis.awsapps.com/start/
     sso_region = us-east-2
     sso_registration_scopes = sso:account:access
 
-    # Default profile configuration
+    # Default Profile
     # --------------------------------
-    # Don't specify any credentials here to avoid accidental usage.
     [default]
 
-    # AWS Account Profiles
+    # Development Environment
     # --------------------------------
+    # Account: 080970846004
+    # Region: us-east-2
+    # Use: Local development and testing
     [profile qumis_dev]
     sso_session = qumis_sso
     sso_account_id = 080970846004
     sso_role_name = AdministratorAccess
     region = us-east-2
     output = json
-    sso_start_url = https://qumis.awsapps.com/start/
-    sso_region = us-east-2
 
+    # QA Environment
+    # --------------------------------
+    # Account: 340452546718
+    # Region: us-east-2
+    # Use: Quality assurance testing
     [profile qumis_qa]
     sso_session = qumis_sso
     sso_account_id = 340452546718
     sso_role_name = AdministratorAccess
     region = us-east-2
     output = json
-    sso_start_url = https://qumis.awsapps.com/start/
-    sso_region = us-east-2
 
+    # UAT Environment
+    # --------------------------------
+    # Account: 499854674638
+    # Region: us-east-2
+    # Use: User acceptance testing (pre-production)
     [profile qumis_uat]
     sso_session = qumis_sso
     sso_account_id = 499854674638
     sso_role_name = AdministratorAccess
     region = us-east-2
     output = json
-    sso_start_url = https://qumis.awsapps.com/start/
-    sso_region = us-east-2
 
+    # Production Environment
+    # --------------------------------
+    # Account: 729033428609
+    # Region: us-east-2
+    # Use: Production deployments and operations
+    # WARNING: Exercise caution when using this profile
     [profile qumis_prod]
     sso_session = qumis_sso
     sso_account_id = 729033428609
     sso_role_name = AdministratorAccess
     region = us-east-2
     output = json
-    sso_start_url = https://qumis.awsapps.com/start/
-    sso_region = us-east-2
 
+    # Shared Services
+    # --------------------------------
+    # Account: 355867115367
+    # Region: us-east-2
+    # Use: Shared infrastructure and services
     [profile qumis_sharedservices]
     sso_session = qumis_sso
     sso_account_id = 355867115367
     sso_role_name = AdministratorAccess
     region = us-east-2
     output = json
-    sso_start_url = https://qumis.awsapps.com/start/
-    sso_region = us-east-2
     ```
 
     <Info>
