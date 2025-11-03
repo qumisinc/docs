@@ -96,13 +96,19 @@ Before deploying to production:
   </Tab>
 
   <Tab title="LLM Service">
-    Deploy the LLM service:
+    <Warning>
+      **Note**: `qumis deploy llm` is not yet available. Use the serverless command below from the `llm-service` repository.
+    </Warning>
+
+    Deploy the LLM service from the `llm-service` repository:
     ```bash
-    qumis deploy llm \
-      --deploy-branch "release" \
-      --env "prod" \
-      --reason "Update LLM models - Ticket ENG-125" \
-      --workflow-ref "release"
+    npx serverless deploy \
+      --config serverless-qumis.yml \
+      --stage prod \
+      --verbose \
+      --org qumis \
+      --region us-east-2 \
+      --aws-profile qumis_prod
     ```
   </Tab>
 </Tabs>
