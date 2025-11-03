@@ -862,6 +862,528 @@
           }
         }
       }
+    },
+    "/resources/contact-support": {
+      "get": {
+        "summary": "Get Contact Support Guide",
+        "description": "Information on how to contact Qumis support for assistance.",
+        "operationId": "getContactSupport",
+        "tags": [
+          "Resources"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Contact Support Guide",
+            "description": "Learn how to contact Qumis support"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Contact support documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resources/product-updates-and-release-notes": {
+      "get": {
+        "summary": "Get Product Updates and Release Notes",
+        "description": "Latest product updates, new features, and release notes for the Qumis platform.",
+        "operationId": "getProductUpdates",
+        "tags": [
+          "Resources"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Product Updates",
+            "description": "Access product updates and release notes"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product updates documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resources/troubleshooting-and-faqs": {
+      "get": {
+        "summary": "Get Troubleshooting and FAQs",
+        "description": "Common troubleshooting steps and frequently asked questions about the Qumis platform.",
+        "operationId": "getTroubleshootingFAQs",
+        "tags": [
+          "Resources"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Troubleshooting and FAQs",
+            "description": "Access troubleshooting guides and FAQs"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Troubleshooting and FAQs documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/index": {
+      "get": {
+        "summary": "Get Internal Documentation Overview",
+        "description": "Overview of internal Qumis documentation for engineering and operations teams.",
+        "operationId": "getInternalOverview",
+        "tags": [
+          "Internal - Overview"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Internal Documentation Overview",
+            "description": "Access internal documentation overview"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Internal documentation overview",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/documentation/writing-style-guide": {
+      "get": {
+        "summary": "Get Documentation Writing Style Guide",
+        "description": "Internal style guide for writing Qumis documentation with consistent voice and formatting.",
+        "operationId": "getWritingStyleGuide",
+        "tags": [
+          "Internal - Documentation"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Writing Style Guide",
+            "description": "Access documentation writing standards"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Writing style guide documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/documentation/prompt-library": {
+      "get": {
+        "summary": "Get Documentation Prompt Library",
+        "description": "Internal library of AI prompts for creating and maintaining Qumis documentation.",
+        "operationId": "getDocumentationPromptLibrary",
+        "tags": [
+          "Internal - Documentation"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Documentation Prompt Library",
+            "description": "Access documentation AI prompts"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Documentation prompt library",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/documentation/markdown-export": {
+      "get": {
+        "summary": "Get Markdown Export Guide",
+        "description": "Internal guide for exporting Qumis documentation to markdown format.",
+        "operationId": "getMarkdownExport",
+        "tags": [
+          "Internal - Documentation"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Markdown Export Guide",
+            "description": "Learn about markdown export capabilities"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Markdown export documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/index": {
+      "get": {
+        "summary": "Get Engineering Documentation Overview",
+        "description": "Overview of internal engineering documentation, tools, and procedures.",
+        "operationId": "getEngineeringOverview",
+        "tags": [
+          "Internal - Engineering"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Engineering Overview",
+            "description": "Access engineering documentation overview"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Engineering documentation overview",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/onboarding": {
+      "get": {
+        "summary": "Get Engineering Onboarding Guide",
+        "description": "Internal onboarding guide for new engineering team members.",
+        "operationId": "getEngineeringOnboarding",
+        "tags": [
+          "Internal - Engineering"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Engineering Onboarding",
+            "description": "Access engineering onboarding documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Engineering onboarding documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/tools-setup": {
+      "get": {
+        "summary": "Get Engineering Tools Setup Guide",
+        "description": "Internal guide for setting up development tools and environment.",
+        "operationId": "getToolsSetup",
+        "tags": [
+          "Internal - Engineering"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Tools Setup Guide",
+            "description": "Access development tools setup documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tools setup documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/git-branching-strategies": {
+      "get": {
+        "summary": "Get Git Branching Strategies Guide",
+        "description": "Internal guide for Git workflow and branching strategies used at Qumis.",
+        "operationId": "getGitBranchingStrategies",
+        "tags": [
+          "Internal - Engineering"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Git Branching Strategies",
+            "description": "Access Git workflow documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Git branching strategies documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/deployment/deployment-cheatsheet": {
+      "get": {
+        "summary": "Get Deployment Cheatsheet",
+        "description": "Internal quick reference guide for common deployment commands and procedures.",
+        "operationId": "getDeploymentCheatsheet",
+        "tags": [
+          "Internal - Deployment"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Deployment Cheatsheet",
+            "description": "Access deployment quick reference"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deployment cheatsheet documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/deployment/deployment-checklist": {
+      "get": {
+        "summary": "Get Deployment Checklist",
+        "description": "Internal comprehensive checklist for pre-deployment validation.",
+        "operationId": "getDeploymentChecklist",
+        "tags": [
+          "Internal - Deployment"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Deployment Checklist",
+            "description": "Access deployment checklist"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deployment checklist documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/deployment/post-deployment-validation": {
+      "get": {
+        "summary": "Get Post-Deployment Validation Guide",
+        "description": "Internal guide for validating deployments and verifying system health.",
+        "operationId": "getPostDeploymentValidation",
+        "tags": [
+          "Internal - Deployment"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Post-Deployment Validation",
+            "description": "Access post-deployment validation procedures"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post-deployment validation documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/deployment/rollback-procedures": {
+      "get": {
+        "summary": "Get Rollback Procedures Guide",
+        "description": "Internal guide for rolling back deployments in case of issues.",
+        "operationId": "getRollbackProcedures",
+        "tags": [
+          "Internal - Deployment"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Rollback Procedures",
+            "description": "Access deployment rollback procedures"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Rollback procedures documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/operations/qumis-cli-reference": {
+      "get": {
+        "summary": "Get Qumis CLI Reference",
+        "description": "Internal reference documentation for the Qumis command-line interface tool.",
+        "operationId": "getQumisCLIReference",
+        "tags": [
+          "Internal - Operations"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Qumis CLI Reference",
+            "description": "Access Qumis CLI documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Qumis CLI reference documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/operations/rails-commands": {
+      "get": {
+        "summary": "Get Rails Commands Reference",
+        "description": "Internal reference for common Rails commands and operations.",
+        "operationId": "getRailsCommands",
+        "tags": [
+          "Internal - Operations"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Rails Commands Reference",
+            "description": "Access Rails commands documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Rails commands reference documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/engineering/operations/visual-regression-testing": {
+      "get": {
+        "summary": "Get Visual Regression Testing Guide",
+        "description": "Internal guide for running and maintaining visual regression tests.",
+        "operationId": "getVisualRegressionTesting",
+        "tags": [
+          "Internal - Operations"
+        ],
+        "x-mint": {
+          "mcp": {
+            "enabled": true,
+            "name": "Get Visual Regression Testing Guide",
+            "description": "Access visual regression testing documentation"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Visual regression testing documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -882,8 +1404,28 @@
       "description": "Onboarding and setup documentation"
     },
     {
+      "name": "Resources",
+      "description": "Support resources, FAQs, and product updates"
+    },
+    {
+      "name": "Internal - Overview",
+      "description": "Internal documentation overview and navigation"
+    },
+    {
+      "name": "Internal - Documentation",
+      "description": "Internal documentation standards and guidelines"
+    },
+    {
       "name": "Internal - Engineering",
       "description": "Internal engineering documentation and procedures"
+    },
+    {
+      "name": "Internal - Deployment",
+      "description": "Internal deployment guides, checklists, and procedures"
+    },
+    {
+      "name": "Internal - Operations",
+      "description": "Internal operations and CLI reference documentation"
     },
     {
       "name": "Internal - Infrastructure",
