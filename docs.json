@@ -193,7 +193,10 @@
     "prompt": "Search documentation..."
   },
   "seo": {
-    "indexing": "navigable"
+    "indexing": "all",
+    "metatags": {
+      "robots": "noindex"
+    }
   },
   "integrations": {
     "gtm": {
