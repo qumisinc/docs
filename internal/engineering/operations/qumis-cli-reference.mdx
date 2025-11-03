@@ -162,16 +162,25 @@ qumis services exec api --env dev -- rails db:seed
 
 ### Environment Variables
 
-#### List Configured Variables
+#### List Configured Variables and Secrets
+
+List environment variables and secrets configured in GitHub for each service:
 
 ```bash
-# List environment variables
-qumis vars list api --env dev
-qumis vars list web --env prod
+# API service - production
+qumis vars list api --env prod
+qumis secrets list api --env prod
 
-# Set environment variable (through AWS Console or IaC)
-# Note: qumis-cli doesn't directly modify env vars for security
+# Web service - production
+qumis vars list web --env prod
+qumis secrets list web --env prod
 ```
+
+<Note>
+- `qumis vars list` shows environment variable names and values from GitHub
+- `qumis secrets list` shows secret names only (values are not accessible for security)
+- Variables and secrets are not directly modified via qumis-cli; use AWS Console or IaC
+</Note>
 
 #### Inspect Running Environment Variables in Production
 
