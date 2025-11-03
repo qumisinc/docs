@@ -17,6 +17,21 @@ This guide provides a comprehensive overview of our AWS environments, their purp
   This is the main entrypoint for accessing AWS consoles across all environments. Bookmark this URL for quick access.
 </Info>
 
+<Frame caption="Select the appropriate environment from the AWS SSO portal">
+  <img src="/images/screenshots/internal/engineering/aws-access-portal.png" alt="AWS SSO Portal showing all Qumis environments" />
+</Frame>
+
+**Using the AWS SSO Portal:**
+
+1. Navigate to the [AWS SSO Portal](https://qumis.awsapps.com/start/#/?tab=accounts)
+2. Select the appropriate environment from the list (e.g., "Qumis - Production" as shown in the screenshot)
+3. Click **"Management console"** or **"AdministratorAccess"** to access the AWS Console for that environment
+4. You'll see all environments you have permissions to access, including Development, QA, UAT, Production, and Shared Services
+
+<Note>
+  The environments displayed depend on your IAM permissions. New engineers typically start with access to Dev, QA, and UAT. Production access requires senior engineer permissions.
+</Note>
+
 ## Environment Overview
 
 ### Deployment Environments
