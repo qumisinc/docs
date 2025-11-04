@@ -201,13 +201,11 @@ Convert content to clean Markdown format with proper formatting and escaping.
 Create concise, audience-specific summaries of reports and documents.
 
 <Accordion title="Summarization Prompt" icon="compress">
-  <Panel>
   <Tip>
     **Best For:** Executive summaries, technical reports, customer communications
 
     **Pro Tip:** Adjust word count based on audience - executives prefer 100-150 words, technical teams can handle 200-300 words
   </Tip>
-</Panel>
 
   ```markdown
   Create a ~200 word summarization of the most important data from this report for <Tooltip tip="Examples: 'executives', 'technical team', 'customers', 'stakeholders', 'board members'">AUDIENCE</Tooltip>. Make it concise, extremely clear, and exceptionally readable.
@@ -224,15 +222,13 @@ Create concise, audience-specific summaries of reports and documents.
 
 Generate comprehensive documentation files from codebases or documentation sites, optimized for LLM consumption.
 
-<Panel>
-  <Info>
-    **Purpose:** Create LLM-optimized documentation files for AI assistants
+<Info>
+  **Purpose:** Create LLM-optimized documentation files for AI assistants
 
-    **Output:** Single Markdown file (≤100KB) with complete project information
+  **Output:** Single Markdown file (≤100KB) with complete project information
 
-    **Use Cases:** API documentation sites, code repositories, knowledge bases
-  </Info>
-</Panel>
+  **Use Cases:** API documentation sites, code repositories, knowledge bases
+</Info>
 
 <Tabs>
   <Tab title="Documentation Sites">
@@ -305,15 +301,13 @@ Generate comprehensive documentation files from codebases or documentation sites
 
 Perform comprehensive self-reviews to improve code quality and catch issues early. This two-step process helps LLMs evaluate and improve their own outputs.
 
-<Panel>
-  <Tip>
-    **Why This Works:** LLMs are more performant at review/analysis than one-shot generation
+<Tip>
+  **Why This Works:** LLMs are more performant at review/analysis than one-shot generation
 
-    **Best For:** Code reviews, documentation improvements, complex problem-solving
+  **Best For:** Code reviews, documentation improvements, complex problem-solving
 
-    **Pro Tip:** Run 2-3 iterations for best results - each review compounds the improvements
-  </Tip>
-</Panel>
+  **Pro Tip:** Run 2-3 iterations for best results - each review compounds the improvements
+</Tip>
 
 #### Step 1: Perform Self-Review
 
@@ -345,7 +339,6 @@ Review your previous analysis and apply the suggested improvements to the proces
 Generate SQL queries specifically formatted for Qumis Retool applications with proper naming conventions and parameter syntax.
 
 <Accordion title="Retool SQL Query Generator" icon="database">
-  <Panel>
   <Warning>
     **Required Files:**
 
@@ -358,7 +351,6 @@ Generate SQL queries specifically formatted for Qumis Retool applications with p
     * Data validation queries
     * Organization-level reporting
   </Warning>
-</Panel>
 
   Create a Retool query and name for: <Tooltip tip="Examples: 'total chats per org last 6 weeks', 'average users per organization', 'failed logins by user'">DESCRIPTION</Tooltip>
 
@@ -505,13 +497,11 @@ _Customer support prompts will be added as they are developed and tested with th
 A systematic approach to creating optimized prompts using the LLM's own capabilities to generate and evaluate prompts.
 
 <Accordion title="Generate/Evaluate Method" icon="flask">
-  <Panel>
   <Info>
     **Best For:** Creating new prompts from scratch, optimizing existing prompts
 
     **Pro Tip:** Use the same model family as your target deployment for best results
   </Info>
-</Panel>
 
   This method leverages the LLM's weights to influence prompt generation and evaluation, often producing better results than manually crafted prompts.
 

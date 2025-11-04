@@ -17,54 +17,80 @@ noindex: true
 
 ### Service Deployment
 
-```bash
-# Deploy to different environments
+<CodeGroup>
+```bash Development
 qumis deploy api --env dev --reason "Feature update"
-qumis deploy api --env qa --reason "QA testing"
-qumis deploy api --env uat --reason "UAT validation"
-qumis deploy api --env prod --deploy-branch "release" --workflow-ref "release" --reason "Production release"
+```
 
-# Deploy specific branches
+```bash QA
+qumis deploy api --env qa --reason "QA testing"
+```
+
+```bash UAT
+qumis deploy api --env uat --reason "UAT validation"
+```
+
+```bash Production
+qumis deploy api --env prod --deploy-branch "release" --workflow-ref "release" --reason "Production release"
+```
+
+```bash Feature Branch
 qumis deploy web \
   --deploy-branch "feature-branch" \
   --env "dev" \
   --reason "Test feature" \
   --workflow-ref "main"
-
-# Production deployments use release branch
-qumis deploy web \
-  --deploy-branch "release" \
-  --env "prod" \
-  --reason "Production deployment" \
-  --workflow-ref "release"
 ```
+</CodeGroup>
 
 ### Service Operations
 
-```bash
-# Execute commands on services
+<CodeGroup>
+```bash Rails Console
 qumis services exec api --env dev -- rails console
-qumis services exec api --env dev -- rails db:migrate
-qumis services exec api --env prod --reason "Debug" -- rails c
+```
 
-# Get service information
+```bash Run Migrations
+qumis services exec api --env dev -- rails db:migrate
+```
+
+```bash Production Console
+qumis services exec api --env prod --reason "Debug" -- rails c
+```
+
+```bash Service Info
 qumis services info api --env dev
 qumis services info web --env prod
 ```
+</CodeGroup>
 
 ### AWS Operations
 
-```bash
-# Authentication
+<CodeGroup>
+```bash Login to Dev
 qumis aws login dev
-qumis aws login prod
-qumis aws status
-qumis aws profiles
+```
 
-# Lambda functions
+```bash Login to Prod
+qumis aws login prod
+```
+
+```bash Check Status
+qumis aws status
+```
+
+```bash List Profiles
+qumis aws profiles
+```
+
+```bash List Lambda Functions
 qumis lambda list-functions --env dev
+```
+
+```bash Describe Lambda Function
 qumis lambda describe-function CacheCreate --env dev
 ```
+</CodeGroup>
 
 ## Common Operations
 
@@ -144,21 +170,31 @@ qumis lambda describe-function CacheCreate --env dev
 
 ### Database Operations
 
-```bash
-# Run migrations
+<CodeGroup>
+```bash Run Migrations (Dev)
 qumis services exec api --env dev -- rails db:migrate
+```
+
+```bash Run Migrations (UAT)
 qumis services exec api --env uat -- rails db:migrate
+```
+
+```bash Run Migrations (Production)
 qumis services exec api --env prod --reason "Apply migration" -- rails db:migrate
+```
 
-# Check migration status
+```bash Check Migration Status
 qumis services exec api --env dev -- rails db:migrate:status
+```
 
-# Rollback migration
+```bash Rollback Migration
 qumis services exec api --env dev -- rails db:rollback STEP=1
+```
 
-# Seed database (dev only)
+```bash Seed Database (Dev Only)
 qumis services exec api --env dev -- rails db:seed
 ```
+</CodeGroup>
 
 ### Environment Variables
 
@@ -251,19 +287,22 @@ qumis aws status
 
 ### Branch Management
 
-```bash
-# Create feature branch
+<CodeGroup>
+```bash Create Feature Branch
 qumis feature my-feature
 qumis feature my-feature --ticket ENG-123
+```
 
-# Switch branches
+```bash Switch Branches
 qumis switch main
 qumis switch feature-branch
 qumis switch ENG-123  # Switch by ticket ID
+```
 
-# Sync with remote
+```bash Sync with Remote
 qumis sync  # Fetches and prunes
 ```
+</CodeGroup>
 
 ### GitHub Integration
 

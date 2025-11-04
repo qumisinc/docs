@@ -17,11 +17,15 @@ noindex: true
 
 ### Safety First
 
-1. **Read-only by default** - Start with non-destructive operations
-2. **Audit everything** - All commands are logged with reasons
-3. **Test in UAT first** - Reproduce issues in UAT when possible
-4. **Pair debugging** - Have another engineer review critical operations
-5. **Time-box investigations** - Set limits to prevent extended downtime
+<Note>
+  Follow these critical safety principles when debugging production:
+
+  1. **Read-only by default** - Start with non-destructive operations
+  2. **Audit everything** - All commands are logged with reasons
+  3. **Test in UAT first** - Reproduce issues in UAT when possible
+  4. **Pair debugging** - Have another engineer review critical operations
+  5. **Time-box investigations** - Set limits to prevent extended downtime
+</Note>
 
 ## Initial Assessment
 
@@ -478,12 +482,14 @@ echo "Debug report saved to $REPORT"
 
 ### Documentation
 
-Create incident report with:
-- Timeline of events
-- Root cause analysis
-- Actions taken
-- Lessons learned
-- Prevention measures
+<Info>
+  Create incident report with:
+  - Timeline of events
+  - Root cause analysis
+  - Actions taken
+  - Lessons learned
+  - Prevention measures
+</Info>
 
 ### Monitoring Improvements
 
@@ -506,14 +512,18 @@ aws cloudwatch put-metric-alarm \
 
 ## Best Practices
 
-1. **Always use `--reason` flag** for audit trail
-2. **Start with read-only operations**
-3. **Test fixes in lower environments first**
-4. **Document all debugging steps**
-5. **Set time limits for debugging sessions**
-6. **Have rollback plan ready**
-7. **Communicate with team throughout**
-8. **Create runbooks for common issues**
+<Tip>
+  Follow these best practices for safe production debugging:
+
+  1. **Always use `--reason` flag** for audit trail
+  2. **Start with read-only operations**
+  3. **Test fixes in lower environments first**
+  4. **Document all debugging steps**
+  5. **Set time limits for debugging sessions**
+  6. **Have rollback plan ready**
+  7. **Communicate with team throughout**
+  8. **Create runbooks for common issues**
+</Tip>
 
 ## Additional Resources
 

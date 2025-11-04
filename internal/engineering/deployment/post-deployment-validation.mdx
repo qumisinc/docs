@@ -270,9 +270,9 @@ Track your validation progress:
 
 ## Validation Scripts
 
-### Quick Health Check
+<CodeGroup>
 
-```bash
+```bash quick-health-check.sh
 #!/bin/bash
 # quick-health-check.sh
 
@@ -304,9 +304,7 @@ aws logs filter-log-events \
   --profile qumis_prod
 ```
 
-### Comprehensive Validation
-
-```bash
+```bash comprehensive-validation.sh
 #!/bin/bash
 # comprehensive-validation.sh
 
@@ -343,28 +341,36 @@ qumis services exec api \
 echo "Validation complete!"
 ```
 
+</CodeGroup>
+
 ## Troubleshooting Common Issues
 
-### Login Issues
-- **Check** Stytch service status
-- **Verify** SSO configuration
-- **Review** CloudWatch logs for auth errors
+<AccordionGroup>
+  <Accordion title="Login Issues">
+    - **Check** Stytch service status
+    - **Verify** SSO configuration
+    - **Review** CloudWatch logs for auth errors
+  </Accordion>
 
-### Document Processing Failures
-- **Verify** S3 bucket accessibility
-- **Check** Lambda function logs
-- **Confirm** PDF processing service is running
+  <Accordion title="Document Processing Failures">
+    - **Verify** S3 bucket accessibility
+    - **Check** Lambda function logs
+    - **Confirm** PDF processing service is running
+  </Accordion>
 
-### Search Not Working
-- **Check** Typesense service health
-- **Verify** indexing jobs are running
-- **Review** search service logs
+  <Accordion title="Search Not Working">
+    - **Check** Typesense service health
+    - **Verify** indexing jobs are running
+    - **Review** search service logs
+  </Accordion>
 
-### Report Generation Stuck
-- **Check** Sidekiq queue depth
-- **Verify** LLM service availability
-- **Review** background job logs
-- **Check** for rate limiting
+  <Accordion title="Report Generation Stuck">
+    - **Check** Sidekiq queue depth
+    - **Verify** LLM service availability
+    - **Review** background job logs
+    - **Check** for rate limiting
+  </Accordion>
+</AccordionGroup>
 
 ## Next Steps
 

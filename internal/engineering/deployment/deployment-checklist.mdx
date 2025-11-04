@@ -209,57 +209,59 @@ Consider rollback for:
 
 ## Special Considerations
 
-### Database Migrations
+<AccordionGroup>
+  <Accordion title="Database Migrations">
+    When deploying database migrations:
 
-When deploying database migrations:
+    - [ ] **Backup taken** before migration
+    - [ ] **Migration reversible** or safe to leave
+    - [ ] **Tested on production data copy**
+    - [ ] **Downtime communicated** if required
+    - [ ] **Verification queries** prepared
 
-- [ ] **Backup taken** before migration
-- [ ] **Migration reversible** or safe to leave
-- [ ] **Tested on production data copy**
-- [ ] **Downtime communicated** if required
-- [ ] **Verification queries** prepared
+    ```bash
+    # Run migration with careful monitoring
+    qumis services exec api \
+      --env prod \
+      --reason "Run migration for ENG-123" \
+      --confirm "prod" \
+      -- rails db:migrate:status
 
-```bash
-# Run migration with careful monitoring
-qumis services exec api \
-  --env prod \
-  --reason "Run migration for ENG-123" \
-  --confirm "prod" \
-  -- rails db:migrate:status
+    # Verify migration succeeded
+    qumis services exec api \
+      --env prod \
+      --reason "Verify migration" \
+      --confirm "prod" \
+      -- rails runner "puts ActiveRecord::Base.connection.tables"
+    ```
+  </Accordion>
 
-# Verify migration succeeded
-qumis services exec api \
-  --env prod \
-  --reason "Verify migration" \
-  --confirm "prod" \
-  -- rails runner "puts ActiveRecord::Base.connection.tables"
-```
+  <Accordion title="Breaking Changes">
+    For deployments with breaking changes:
 
-### Breaking Changes
+    - [ ] **API version** incremented
+    - [ ] **Deprecation notices** sent to consumers
+    - [ ] **Migration guide** published
+    - [ ] **Backwards compatibility** maintained (if possible)
+    - [ ] **Coordinated deployment** with dependent services
+  </Accordion>
 
-For deployments with breaking changes:
+  <Accordion title="High-Risk Deployments">
+    For significant changes or high-risk deployments:
 
-- [ ] **API version** incremented
-- [ ] **Deprecation notices** sent to consumers
-- [ ] **Migration guide** published
-- [ ] **Backwards compatibility** maintained (if possible)
-- [ ] **Coordinated deployment** with dependent services
-
-### High-Risk Deployments
-
-For significant changes or high-risk deployments:
-
-- [ ] **Canary deployment** considered
-- [ ] **Feature flags** in place
-- [ ] **Extended monitoring** period planned
-- [ ] **Rollback rehearsed** in UAT
-- [ ] **War room** scheduled with key stakeholders
+    - [ ] **Canary deployment** considered
+    - [ ] **Feature flags** in place
+    - [ ] **Extended monitoring** period planned
+    - [ ] **Rollback rehearsed** in UAT
+    - [ ] **War room** scheduled with key stakeholders
+  </Accordion>
+</AccordionGroup>
 
 ## Automation Scripts
 
-### Pre-deployment Health Check
+<CodeGroup>
 
-```bash
+```bash pre-deploy-check.sh
 #!/bin/bash
 # pre-deploy-check.sh
 
@@ -285,9 +287,7 @@ aws logs filter-log-events \
 echo "Pre-deployment checks complete"
 ```
 
-### Post-deployment Validation
-
-```bash
+```bash post-deploy-validate.sh
 #!/bin/bash
 # post-deploy-validate.sh
 
@@ -317,6 +317,8 @@ fi
 
 echo "Post-deployment validation complete"
 ```
+
+</CodeGroup>
 
 ## Next Steps
 

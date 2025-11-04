@@ -31,36 +31,37 @@ asdf global golang 1.21.0
 
 ### Install qumis-cli
 
-<Tabs>
-  <Tab title="Full Install (Recommended)">
-    Complete installation with shell integration:
-    ```bash
-    # Clone the repository
-    git clone https://github.com/qumisinc/qumis-cli.git
-    cd qumis-cli
+<CodeGroup>
 
-    # Build and install
-    make deploy
+```bash Full Install (Recommended)
+# Clone the repository
+git clone https://github.com/qumisinc/qumis-cli.git
+cd qumis-cli
 
-    # Verify installation
-    qumis --version
+# Build and install
+make deploy
 
-    # Add shell integration to your ~/.zshrc or ~/.bashrc
-    echo "source $(pwd)/shell/qumis.sh" >> ~/.zshrc
-    source ~/.zshrc
-    ```
-  </Tab>
-  <Tab title="Binary Only">
-    Quick installation without shell integration:
-    ```bash
-    git clone https://github.com/qumisinc/qumis-cli.git /tmp/qumis-cli && \
-    cd /tmp/qumis-cli && \
-    make deploy && \
-    cd - && \
-    rm -rf /tmp/qumis-cli
-    ```
-  </Tab>
-</Tabs>
+# Verify installation
+qumis --version
+
+# Add shell integration to your ~/.zshrc or ~/.bashrc
+echo "source $(pwd)/shell/qumis.sh" >> ~/.zshrc
+source ~/.zshrc
+```
+
+```bash Binary Only
+git clone https://github.com/qumisinc/qumis-cli.git /tmp/qumis-cli && \
+cd /tmp/qumis-cli && \
+make deploy && \
+cd - && \
+rm -rf /tmp/qumis-cli
+```
+
+</CodeGroup>
+
+<Note>
+**Full Install** includes shell integration with helpful aliases and completions. **Binary Only** is faster but lacks these conveniences.
+</Note>
 
 ### Configure qumis-cli
 
@@ -112,14 +113,30 @@ brew install awscli
 
 # Directory visualization
 brew install tree
+```
 
-# Node.js for web development
+### Node.js Installation
+
+<CodeGroup>
+
+```bash Homebrew (Simple)
 brew install node
-# OR use nvm for version management:
+```
+
+```bash nvm (Version Management)
+# Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# Install and use Node.js 20
 nvm install 20
 nvm use 20
 ```
+
+</CodeGroup>
+
+<Tip>
+Use **nvm** if you need to manage multiple Node.js versions across different projects. Use **Homebrew** for a simpler single-version setup.
+</Tip>
 
 ### Optional but Recommended
 
@@ -243,11 +260,18 @@ brew install --cask docker
   </Step>
 
   <Step title="Test Access">
-    ```bash
+    <CodeGroup>
+
+    ```bash qumis-cli (Recommended)
     # Login to an environment
     qumis aws login dev
 
-    # Or login directly via AWS CLI
+    # Verify access
+    qumis lambda list-functions --env dev
+    ```
+
+    ```bash AWS CLI Direct
+    # Login directly via AWS CLI
     aws sso login --profile qumis_dev
 
     # Verify access
@@ -256,6 +280,12 @@ brew install --cask docker
     # Check your identity
     aws sts get-caller-identity --profile qumis_dev
     ```
+
+    </CodeGroup>
+
+    <Tip>
+    Use `qumis aws login` for a streamlined experience. It handles profile selection and SSO automatically.
+    </Tip>
   </Step>
 </Steps>
 

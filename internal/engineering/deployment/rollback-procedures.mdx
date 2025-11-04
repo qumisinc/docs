@@ -240,45 +240,47 @@ graph TD
 
 ## Rollback Scenarios
 
-### Scenario 1: Application Won't Start
+<AccordionGroup>
+  <Accordion title="Scenario 1: Application Won't Start">
+    **Symptoms**: Lambda function failing to initialize, timeout errors
 
-**Symptoms**: Lambda function failing to initialize, timeout errors
+    **Actions**:
+    1. Immediate rollback to previous version
+    2. Check CloudWatch logs for initialization errors
+    3. Verify environment variables are correct
+    4. Check for missing dependencies
+  </Accordion>
 
-**Actions**:
-1. Immediate rollback to previous version
-2. Check CloudWatch logs for initialization errors
-3. Verify environment variables are correct
-4. Check for missing dependencies
+  <Accordion title="Scenario 2: Database Connection Errors">
+    **Symptoms**: Cannot connect to RDS, connection pool exhausted
 
-### Scenario 2: Database Connection Errors
+    **Actions**:
+    1. Check RDS status and connectivity
+    2. Verify security groups and network configuration
+    3. Check connection pool settings
+    4. Consider increasing Lambda concurrent executions
+  </Accordion>
 
-**Symptoms**: Cannot connect to RDS, connection pool exhausted
+  <Accordion title="Scenario 3: High Error Rate">
+    **Symptoms**: >10% of requests failing, 500 errors
 
-**Actions**:
-1. Check RDS status and connectivity
-2. Verify security groups and network configuration
-3. Check connection pool settings
-4. Consider increasing Lambda concurrent executions
+    **Actions**:
+    1. Identify error patterns in logs
+    2. Check for null pointer exceptions or missing data
+    3. Verify external service dependencies
+    4. Rollback if cannot identify quick fix
+  </Accordion>
 
-### Scenario 3: High Error Rate
+  <Accordion title="Scenario 4: Performance Degradation">
+    **Symptoms**: Response times >3x normal, timeouts
 
-**Symptoms**: >10% of requests failing, 500 errors
-
-**Actions**:
-1. Identify error patterns in logs
-2. Check for null pointer exceptions or missing data
-3. Verify external service dependencies
-4. Rollback if cannot identify quick fix
-
-### Scenario 4: Performance Degradation
-
-**Symptoms**: Response times >3x normal, timeouts
-
-**Actions**:
-1. Check for N+1 queries or inefficient code
-2. Verify database indices are present
-3. Check for memory leaks
-4. Monitor Lambda cold starts
+    **Actions**:
+    1. Check for N+1 queries or inefficient code
+    2. Verify database indices are present
+    3. Check for memory leaks
+    4. Monitor Lambda cold starts
+  </Accordion>
+</AccordionGroup>
 
 ## Fix Forward vs Rollback
 
@@ -301,51 +303,53 @@ Always rollback when:
 
 ## Post-Rollback Actions
 
-### Immediate (Within 1 hour)
+<AccordionGroup>
+  <Accordion title="Immediate (Within 1 hour)">
+    1. **Stabilize the system**
+       - Verify all services are healthy
+       - Check for any lingering issues
+       - Monitor error rates and performance
 
-1. **Stabilize the system**
-   - Verify all services are healthy
-   - Check for any lingering issues
-   - Monitor error rates and performance
+    2. **Document the incident**
+       - Create incident report
+       - Capture logs and metrics
+       - Document timeline of events
 
-2. **Document the incident**
-   - Create incident report
-   - Capture logs and metrics
-   - Document timeline of events
+    3. **Communicate with stakeholders**
+       - Update customers if affected
+       - Inform leadership of status
+       - Schedule RCA meeting
+  </Accordion>
 
-3. **Communicate with stakeholders**
-   - Update customers if affected
-   - Inform leadership of status
-   - Schedule RCA meeting
+  <Accordion title="Short-term (Within 24 hours)">
+    1. **Root Cause Analysis**
+       - Identify what went wrong
+       - Determine why it wasn't caught earlier
+       - Document lessons learned
 
-### Short-term (Within 24 hours)
+    2. **Fix the issue**
+       - Develop proper fix
+       - Add tests to prevent recurrence
+       - Test thoroughly in UAT
 
-1. **Root Cause Analysis**
-   - Identify what went wrong
-   - Determine why it wasn't caught earlier
-   - Document lessons learned
+    3. **Update procedures**
+       - Update deployment checklist
+       - Add monitoring for issue
+       - Update runbooks
+  </Accordion>
 
-2. **Fix the issue**
-   - Develop proper fix
-   - Add tests to prevent recurrence
-   - Test thoroughly in UAT
+  <Accordion title="Long-term (Within 1 week)">
+    1. **Process improvements**
+       - Review deployment process
+       - Enhance testing coverage
+       - Improve monitoring and alerting
 
-3. **Update procedures**
-   - Update deployment checklist
-   - Add monitoring for issue
-   - Update runbooks
-
-### Long-term (Within 1 week)
-
-1. **Process improvements**
-   - Review deployment process
-   - Enhance testing coverage
-   - Improve monitoring and alerting
-
-2. **Share learnings**
-   - Present RCA to team
-   - Update documentation
-   - Share with broader organization
+    2. **Share learnings**
+       - Present RCA to team
+       - Update documentation
+       - Share with broader organization
+  </Accordion>
+</AccordionGroup>
 
 ## Emergency Contacts
 

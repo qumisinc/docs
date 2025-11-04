@@ -93,32 +93,41 @@ The Chromatic workflow runs automatically on:
 
 ### Manual Trigger via GitHub CLI
 
-Trigger the workflow on your current branch:
-
-```bash
+<CodeGroup>
+```bash Trigger on Current Branch
 gh workflow run chromatic.yml --ref "$(git rev-parse --abbrev-ref HEAD)"
 ```
 
-Force rebuild (skip Chromatic cache):
-
-```bash
+```bash Force Rebuild (Skip Cache)
 gh workflow run chromatic.yml \
   --ref "$(git rev-parse --abbrev-ref HEAD)" \
   --field force_rebuild=true
 ```
 
-Watch workflow status:
-
-```bash
+```bash Watch Workflow Status
 gh run watch
 ```
+</CodeGroup>
 
 ### Manual Trigger via GitHub UI
 
-1. Go to **Actions** → **Chromatic** workflow → **Run workflow**
-2. Select your branch
-3. Optionally check **Force Chromatic to rebuild** to skip cache
-4. Click **Run workflow**
+<Steps>
+  <Step title="Navigate to Workflow">
+    Go to **Actions** → **Chromatic** workflow → **Run workflow**
+  </Step>
+
+  <Step title="Select Branch">
+    Select your branch from the dropdown
+  </Step>
+
+  <Step title="Configure Options">
+    Optionally check **Force Chromatic to rebuild** to skip cache
+  </Step>
+
+  <Step title="Run Workflow">
+    Click **Run workflow** to start the build
+  </Step>
+</Steps>
 
 ## Test Configuration
 

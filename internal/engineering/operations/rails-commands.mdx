@@ -167,20 +167,22 @@ qumis services exec api \
 
 ### Safe Read Operations
 
-```bash
-# Count records
+<CodeGroup>
+```bash Count Records
 qumis services exec api --env prod \
   --reason "Get user metrics" \
   --confirm prod \
   -- rails runner "puts User.count"
+```
 
-# Find specific records
+```bash Find Specific Records
 qumis services exec api --env prod \
   --reason "Check specific user status" \
   --confirm prod \
   -- rails runner "puts User.find_by(email: 'user@example.com')&.attributes"
+```
 
-# Generate reports
+```bash Generate Reports
 qumis services exec api --env prod \
   --reason "Generate usage report" \
   --confirm prod \
@@ -188,6 +190,7 @@ qumis services exec api --env prod \
     puts 'Daily Active Users: ' + User.where(last_sign_in_at: 1.day.ago..Time.now).count.to_s
   "
 ```
+</CodeGroup>
 
 ### Data Modifications
 
@@ -228,15 +231,23 @@ qumis services exec api \
 
 ### Built-in Tasks
 
-```bash
-# List all rake tasks
+<CodeGroup>
+```bash List All Rake Tasks
 qumis services exec api --env dev -- rails -T
+```
 
-# Run specific rake task
+```bash Stats
 qumis services exec api --env dev -- rake stats
+```
+
+```bash Routes
 qumis services exec api --env dev -- rake routes
+```
+
+```bash Middleware
 qumis services exec api --env dev -- rake middleware
 ```
+</CodeGroup>
 
 ### Custom Rake Tasks
 
@@ -259,20 +270,27 @@ qumis services exec api \
 
 ### Running Tests
 
-```bash
-# Run all tests
+<CodeGroup>
+```bash Run All Tests
 qumis services exec api --env dev -- rails test
+```
 
-# Run specific test file
+```bash Run Specific Test File
 qumis services exec api --env dev -- rails test test/models/user_test.rb
+```
 
-# Run RSpec tests
+```bash Run RSpec Tests
 qumis services exec api --env dev -- rspec
-qumis services exec api --env dev -- rspec spec/models/user_spec.rb
+```
 
-# Run specific test
+```bash Run Specific RSpec File
+qumis services exec api --env dev -- rspec spec/models/user_spec.rb
+```
+
+```bash Run Specific Test Line
 qumis services exec api --env dev -- rspec spec/models/user_spec.rb:42
 ```
+</CodeGroup>
 
 ### Test Database
 
@@ -288,17 +306,19 @@ qumis services exec api --env dev -- rails db:fixtures:load
 
 ### Cache Management
 
-```bash
-# Clear Rails cache
+<CodeGroup>
+```bash Clear Rails Cache (Dev)
 qumis services exec api --env dev -- rails cache:clear
+```
 
-# Production cache clear
+```bash Clear Rails Cache (Production)
 qumis services exec api \
   --env prod \
   --reason "Clear cache after configuration change" \
   --confirm prod \
   -- rails cache:clear
 ```
+</CodeGroup>
 
 ### Asset Management
 

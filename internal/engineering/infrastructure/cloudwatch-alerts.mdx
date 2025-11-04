@@ -366,19 +366,21 @@ echo "Created duration alarm for ${FUNCTION_NAME}"
 
 ### Alert Tuning
 
-```bash
-# View alarm history
+<CodeGroup>
+```bash View Alarm History
 aws cloudwatch describe-alarm-history \
   --alarm-name qumis-api-prod-high-error-rate \
   --profile qumis_prod \
   --max-records 50
+```
 
-# Check alarm state changes
+```bash Check Alarm State Changes
 aws cloudwatch describe-alarms \
   --alarm-names qumis-api-prod-high-error-rate \
   --profile qumis_prod \
   --query 'MetricAlarms[0].StateTransitionReason'
 ```
+</CodeGroup>
 
 ### Best Practices
 
@@ -401,22 +403,25 @@ aws cloudwatch describe-alarms \
 
 ### Managing Subscriptions
 
-```bash
-# List SNS topics
+<CodeGroup>
+```bash List SNS Topics
 aws sns list-topics --profile qumis_prod
+```
 
-# List subscriptions for a topic
+```bash List Subscriptions for a Topic
 aws sns list-subscriptions-by-topic \
   --topic-arn arn:aws:sns:us-east-1:729033428609:prod-critical-alerts \
   --profile qumis_prod
+```
 
-# Add email subscription
+```bash Add Email Subscription
 aws sns subscribe \
   --topic-arn arn:aws:sns:us-east-1:729033428609:prod-critical-alerts \
   --protocol email \
   --notification-endpoint your-email@qumis.ai \
   --profile qumis_prod
 ```
+</CodeGroup>
 
 ## Integration with External Services
 

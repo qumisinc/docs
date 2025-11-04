@@ -46,12 +46,15 @@ This guide covers how to use AWS CloudWatch to monitor our applications across a
 
 #### ECS Services
 
-```bash
+<CodeGroup>
+```bash Tail Service Logs
 # Tail ECS service logs in real-time (blue cluster)
 aws logs tail ecs/blue/prod/api --profile qumis_prod --follow
 aws logs tail ecs/blue/prod/web --profile qumis_prod --follow
 aws logs tail ecs/blue/prod/sidekiq --profile qumis_prod --follow
+```
 
+```bash Search for Errors
 # Search for errors across all services
 for SERVICE in api web sidekiq; do
   echo "=== $SERVICE errors ==="
@@ -62,13 +65,16 @@ for SERVICE in api web sidekiq; do
     --profile qumis_prod \
     --max-items 5
 done
+```
 
-# Monitor Sidekiq job processing
+```bash Monitor Sidekiq Jobs
 aws logs tail ecs/blue/prod/sidekiq \
   --profile qumis_prod \
   --follow \
   --filter-pattern "perform"
+```
 
+```bash Helper Function
 # Quick function for any environment
 ecs_logs() {
   ENV=$1
@@ -77,20 +83,23 @@ ecs_logs() {
 }
 # Usage: ecs_logs prod api
 ```
+</CodeGroup>
 
 #### Lambda Functions
 
-```bash
-# Tail Lambda logs in real-time
+<CodeGroup>
+```bash Tail Lambda Logs
 aws logs tail /aws/lambda/qumis-api-prod --profile qumis_prod --follow
+```
 
-# Search for errors in last hour
+```bash Search for Errors
 aws logs filter-log-events \
   --log-group-name /aws/lambda/qumis-api-prod \
   --start-time $(date -u -d '1 hour ago' '+%s')000 \
   --filter-pattern "ERROR" \
   --profile qumis_prod
 ```
+</CodeGroup>
 
 ## Accessing CloudWatch
 

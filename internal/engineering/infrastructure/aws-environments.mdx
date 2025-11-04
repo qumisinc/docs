@@ -23,10 +23,23 @@ This guide provides a comprehensive overview of our AWS environments, their purp
 
 **Using the AWS SSO Portal:**
 
-1. Navigate to the [AWS SSO Portal](https://qumis.awsapps.com/start/#/?tab=accounts)
-2. Select the appropriate environment from the list (e.g., "Qumis - Production" as shown in the screenshot)
-3. Click **"Management console"** or **"AdministratorAccess"** to access the AWS Console for that environment
-4. You'll see all environments you have permissions to access, including Development, QA, UAT, Production, and Shared Services
+<Steps>
+  <Step title="Navigate to AWS SSO Portal">
+    Go to the [AWS SSO Portal](https://qumis.awsapps.com/start/#/?tab=accounts)
+  </Step>
+
+  <Step title="Select Environment">
+    Select the appropriate environment from the list (e.g., "Qumis - Production" as shown in the screenshot)
+  </Step>
+
+  <Step title="Access Console">
+    Click **"Management console"** or **"AdministratorAccess"** to access the AWS Console for that environment
+  </Step>
+
+  <Step title="View Available Environments">
+    You'll see all environments you have permissions to access, including Development, QA, UAT, Production, and Shared Services
+  </Step>
+</Steps>
 
 <Note>
   The environments displayed depend on your IAM permissions. New engineers typically start with access to Dev, QA, and UAT. Production access requires senior engineer permissions.
@@ -73,16 +86,19 @@ This guide provides a comprehensive overview of our AWS environments, their purp
 - Auto-shutdown for cost savings
 
 **Common Operations**:
-```bash
-# Login
+<CodeGroup>
+```bash Login
 qumis aws login dev
+```
 
-# Deploy
+```bash Deploy
 qumis deploy api --env dev --reason "Test new feature"
+```
 
-# Access console
+```bash Access Console
 qumis services exec api --env dev -- rails console
 ```
+</CodeGroup>
 
 ### QA Environment
 
@@ -98,16 +114,19 @@ qumis services exec api --env dev -- rails console
 - Regular data refreshes from production (sanitized)
 
 **Common Operations**:
-```bash
-# Login
+<CodeGroup>
+```bash Login
 qumis aws login qa
+```
 
-# Deploy for QA testing
+```bash Deploy for QA Testing
 qumis deploy api --env qa --reason "QA testing sprint 23"
+```
 
-# Check logs
+```bash Check Logs
 aws logs tail /aws/lambda/qumis-api-qa --profile qumis_qa
 ```
+</CodeGroup>
 
 ### UAT Environment
 
@@ -123,16 +142,19 @@ aws logs tail /aws/lambda/qumis-api-qa --profile qumis_qa
 - Same configuration as production
 
 **Common Operations**:
-```bash
-# Login
+<CodeGroup>
+```bash Login
 qumis aws login uat
+```
 
-# Deploy release candidate
+```bash Deploy Release Candidate
 qumis deploy api --env uat --reason "Release candidate v1.2.3"
+```
 
-# Verify deployment
+```bash Verify Deployment
 qumis services info api --env uat
 ```
+</CodeGroup>
 
 ### Production Environment
 
@@ -149,23 +171,26 @@ qumis services info api --env uat
 - Audit logging for all operations
 
 **Common Operations**:
-```bash
-# Login (requires elevated permissions)
+<CodeGroup>
+```bash Login (Requires Elevated Permissions)
 qumis aws login prod
+```
 
-# Deploy with confirmation
+```bash Deploy with Confirmation
 qumis deploy api \
   --env prod \
   --reason "Release v1.2.3 - ENG-123" \
   --confirm prod
+```
 
-# Production console (with audit log)
+```bash Production Console (With Audit Log)
 qumis services exec api \
   --env prod \
   --reason "Debug customer issue #456" \
   --confirm prod \
   -- rails console
 ```
+</CodeGroup>
 
 ### Shared Services
 
@@ -349,28 +374,61 @@ aws logs tail /aws/lambda/qumis-api-prod --profile qumis_prod --follow
 
 ### Environment Down
 
-1. **Check AWS Status**: https://status.aws.amazon.com/
-2. **Verify Access**: `qumis aws login {env}`
-3. **Check Key Services**:
-   ```bash
-   # Lambda
-   qumis lambda list-functions --env {env}
+<Steps>
+  <Step title="Check AWS Status">
+    Visit https://status.aws.amazon.com/ to check for AWS service outages
+  </Step>
 
-   # RDS
-   aws rds describe-db-instances --profile qumis_{env}
+  <Step title="Verify Access">
+    Authenticate to the affected environment:
+    ```bash
+    qumis aws login {env}
+    ```
+  </Step>
 
-   # S3
-   aws s3 ls --profile qumis_{env}
-   ```
-4. **Escalate if needed**: Contact DevOps team
+  <Step title="Check Key Services">
+    Verify Lambda, RDS, and S3 are operational:
+    <CodeGroup>
+    ```bash Lambda
+    qumis lambda list-functions --env {env}
+    ```
+
+    ```bash RDS
+    aws rds describe-db-instances --profile qumis_{env}
+    ```
+
+    ```bash S3
+    aws s3 ls --profile qumis_{env}
+    ```
+    </CodeGroup>
+  </Step>
+
+  <Step title="Escalate if Needed">
+    Contact DevOps team if services are down or unresponsive
+  </Step>
+</Steps>
 
 ### Cross-Environment Issues
 
 If issues span multiple environments:
-1. Check Shared Services first
-2. Verify CI/CD pipeline status
-3. Check DNS and certificates
-4. Review recent infrastructure changes
+
+<Steps>
+  <Step title="Check Shared Services First">
+    Verify the Shared Services account is operational as it supports all environments
+  </Step>
+
+  <Step title="Verify CI/CD Pipeline Status">
+    Check GitHub Actions and deployment pipeline health
+  </Step>
+
+  <Step title="Check DNS and Certificates">
+    Verify Route53 and ACM configurations are working correctly
+  </Step>
+
+  <Step title="Review Recent Infrastructure Changes">
+    Check CloudTrail for recent changes that may have affected multiple environments
+  </Step>
+</Steps>
 
 ## Best Practices
 

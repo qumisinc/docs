@@ -313,20 +313,27 @@ This guide provides solutions to common issues you might encounter while working
     **Symptoms**: Deployment workflow fails to complete
 
     **Solutions**:
-    1. Check GitHub Actions page for error details
-    2. Common fixes:
-    ```bash
-    # Retry deployment
-    qumis deploy api --env dev --reason "Retry after fix"
 
-    # Check workflow file exists
-    git pull origin main
-    ls .github/workflows/
+    <Steps>
+      <Step title="Check GitHub Actions page for error details">
+        Review the workflow run logs to identify the specific failure point
+      </Step>
 
-    # Verify branch has latest changes
-    git fetch --all
-    git rebase origin/main
-    ```
+      <Step title="Apply common fixes">
+        ```bash
+        # Retry deployment
+        qumis deploy api --env dev --reason "Retry after fix"
+
+        # Check workflow file exists
+        git pull origin main
+        ls .github/workflows/
+
+        # Verify branch has latest changes
+        git fetch --all
+        git rebase origin/main
+        ```
+      </Step>
+    </Steps>
   </Accordion>
 
   <Accordion title="Docker build errors">
@@ -641,21 +648,25 @@ echo "Debug information saved to $OUTPUT"
 
 ## Getting Help
 
-If you can't resolve an issue:
+<Info>
+  If you can't resolve an issue, follow these escalation steps:
 
-1. **Search existing documentation** - Check other guides in this documentation
-2. **Ask in Slack** - Post in #engineering with error details
-3. **Check runbooks** - Look for specific runbooks for your service
-4. **Escalate if critical** - Page on-call for production issues
+  1. **Search existing documentation** - Check other guides in this documentation
+  2. **Ask in Slack** - Post in #engineering with error details
+  3. **Check runbooks** - Look for specific runbooks for your service
+  4. **Escalate if critical** - Page on-call for production issues
+</Info>
 
 ### Information to Provide
 
-When asking for help, include:
-- Environment (dev/qa/uat/prod)
-- Error message (full stack trace)
-- Recent changes (deployments, config changes)
-- Steps to reproduce
-- What you've already tried
+<Note>
+  When asking for help, include:
+  - Environment (dev/qa/uat/prod)
+  - Error message (full stack trace)
+  - Recent changes (deployments, config changes)
+  - Steps to reproduce
+  - What you've already tried
+</Note>
 
 ## Additional Resources
 
