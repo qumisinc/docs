@@ -65,7 +65,7 @@ Templates support dynamic variables that automatically populate with relevant da
 
 Add conditional sections that appear based on specific criteria:
 
-```text
+```handlebars
 {{#if coverage_type == "comprehensive"}}
   This policy includes comprehensive coverage with...
 {{/if}}
@@ -75,7 +75,7 @@ Add conditional sections that appear based on specific criteria:
 
 Include calculations in your templates:
 
-```text
+```handlebars
 Premium Total: {{monthly_premium * 12}}
 ```
 
@@ -83,7 +83,7 @@ Premium Total: {{monthly_premium * 12}}
 
 Embed one template within another for modular document creation:
 
-```text
+```handlebars
 {{include "standard_terms_template"}}
 ```
 
@@ -99,10 +99,23 @@ Embed one template within another for modular document creation:
 
 Qumis automatically maintains version history for all templates:
 
-- View previous versions
-- Compare changes between versions
-- Restore earlier versions if needed
-- Track who made changes and when
+<CardGroup cols={2}>
+  <Card title="View History" icon="clock-rotate-left">
+    View previous versions
+  </Card>
+
+  <Card title="Compare Changes" icon="code-compare">
+    Compare changes between versions
+  </Card>
+
+  <Card title="Restore Versions" icon="arrow-rotate-left">
+    Restore earlier versions if needed
+  </Card>
+
+  <Card title="Track Changes" icon="user-clock">
+    Track who made changes and when
+  </Card>
+</CardGroup>
 
 ### Sharing Templates
 
@@ -144,14 +157,19 @@ Templates can be shared across your organization:
 
 ## Common Use Cases
 
-### Policy Documentation
-Create standardized policy documents that automatically populate with client and coverage information.
+<CardGroup cols={3}>
+  <Card title="Policy Documentation" icon="file-contract">
+    Create standardized policy documents that automatically populate with client and coverage information.
+  </Card>
 
-### Claims Processing
-Design claim forms that include all required fields and automatically calculate totals.
+  <Card title="Claims Processing" icon="clipboard-list">
+    Design claim forms that include all required fields and automatically calculate totals.
+  </Card>
 
-### Client Communications
-Build email templates for common communications like renewals, updates, and notifications.
+  <Card title="Client Communications" icon="envelope">
+    Build email templates for common communications like renewals, updates, and notifications.
+  </Card>
+</CardGroup>
 
 ## Troubleshooting
 
