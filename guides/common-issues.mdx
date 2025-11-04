@@ -282,22 +282,25 @@ curl -X GET https://api.qumis.com/v1/health \
 
 ### "Access Denied" Errors
 
-**Check these common causes:**
+<AccordionGroup>
+  <Accordion title="Role Permissions">
+    - Contact admin to review your role
+    - Request specific feature access
+    - Check team membership
+  </Accordion>
 
-1. **Role permissions**
-   - Contact admin to review your role
-   - Request specific feature access
-   - Check team membership
+  <Accordion title="License Limitations">
+    - Verify your subscription includes the feature
+    - Check if user limit reached
+    - Review plan restrictions
+  </Accordion>
 
-2. **License limitations**
-   - Verify your subscription includes the feature
-   - Check if user limit reached
-   - Review plan restrictions
-
-3. **Geographic restrictions**
-   - Some features may be region-specific
-   - VPN might trigger security blocks
-   - IP whitelisting might be required
+  <Accordion title="Geographic Restrictions">
+    - Some features may be region-specific
+    - VPN might trigger security blocks
+    - IP whitelisting might be required
+  </Accordion>
+</AccordionGroup>
 
 ## Data Recovery
 
@@ -307,21 +310,49 @@ curl -X GET https://api.qumis.com/v1/health \
   Most deleted items can be recovered within 30 days from the Recycle Bin.
 </Info>
 
-1. Navigate to **Recycle Bin** in sidebar
-2. Locate deleted item (use filters if needed)
-3. Select item and click **Restore**
-4. Item returns to original location
+<Steps>
+  <Step title="Navigate to Recycle Bin">
+    Find **Recycle Bin** in the sidebar
+  </Step>
 
-For items older than 30 days, contact support immediately.
+  <Step title="Locate Deleted Item">
+    Use filters if needed to find the item you want to recover
+  </Step>
+
+  <Step title="Restore Item">
+    Select item and click **Restore**
+  </Step>
+
+  <Step title="Verify Recovery">
+    Item returns to original location
+  </Step>
+</Steps>
+
+<Warning>
+  For items older than 30 days, contact support immediately.
+</Warning>
 
 ## Getting Additional Help
 
 If you couldn't resolve your issue:
 
-1. **Search Knowledge Base**: Check our comprehensive documentation
-2. **Community Forum**: Browse community solutions
-3. **Contact Support**: [Get direct help](/guides/contact-support)
-4. **Status Page**: Check status.qumis.com for system issues
+<CardGroup cols={2}>
+  <Card title="Search Knowledge Base" icon="book">
+    Check our comprehensive documentation
+  </Card>
+
+  <Card title="Community Forum" icon="users">
+    Browse community solutions
+  </Card>
+
+  <Card title="Contact Support" icon="headset" href="/guides/contact-support">
+    Get direct help from our team
+  </Card>
+
+  <Card title="Status Page" icon="signal-stream">
+    Check status.qumis.com for system issues
+  </Card>
+</CardGroup>
 
 <Tip>
   When contacting support, include:
