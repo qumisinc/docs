@@ -19,12 +19,14 @@ Qumis supports both **SAML 2.0** and **OpenID Connect (OIDC)** protocols, making
 
 ## Prerequisites
 
+<Info>
 Before beginning the SSO setup process, ensure you have:
 
 - **Administrative access** to your organization's identity provider (IdP)
 - **Contact with your Qumis representative** to coordinate the setup
 - **Organization details** ready (domain(s) to be used for SSO)
 - **User provisioning plan** (which users or groups should have access to Qumis)
+</Info>
 
 ## Setup Timeline
 
@@ -103,19 +105,38 @@ The Qumis team will configure the SSO connection on our platform using the infor
 
 Once Qumis confirms the configuration is complete:
 
-1. **Initial Test**: A designated test user should attempt to log in to Qumis using SSO
-2. **Verify User Details**: Confirm that user information (name, email) is populated correctly
-3. **Test Different Scenarios**:
-   - Existing user login
-   - Access to appropriate resources and permissions
+<Steps>
+<Step title="Initial Test">
+A designated test user should attempt to log in to Qumis using SSO.
+</Step>
+
+<Step title="Verify User Details">
+Confirm that user information (name, email) is populated correctly.
+</Step>
+
+<Step title="Test Different Scenarios">
+- Existing user login
+- Access to appropriate resources and permissions
+</Step>
+</Steps>
 
 ### Step 6: Production Rollout
 
 After successful testing:
 
-1. Enable SSO for additional user groups as planned
-2. Communicate the new login process to your users
-3. Update any internal documentation
+<Steps>
+<Step title="Enable SSO for Additional User Groups">
+Enable SSO for additional user groups as planned.
+</Step>
+
+<Step title="Communicate the New Login Process">
+Communicate the new login process to your users.
+</Step>
+
+<Step title="Update Internal Documentation">
+Update any internal documentation.
+</Step>
+</Steps>
 
 ---
 
@@ -123,11 +144,27 @@ After successful testing:
 
 Once SSO is configured, your users will access Qumis as follows:
 
-1. Navigate to your organization's Qumis login page: `https://app.qumis.ai`
-2. Enter their company email address
-3. Click "Continue with SSO"
-4. Users are redirected to your organization's identity provider
-5. After authenticating with your IdP, users are automatically signed into Qumis
+<Steps>
+<Step title="Navigate to Qumis">
+Navigate to your organization's Qumis login page: `https://app.qumis.ai`
+</Step>
+
+<Step title="Enter Email Address">
+Enter their company email address.
+</Step>
+
+<Step title="Click Continue with SSO">
+Click "Continue with SSO".
+</Step>
+
+<Step title="Redirect to Identity Provider">
+Users are redirected to your organization's identity provider.
+</Step>
+
+<Step title="Authenticate and Access Qumis">
+After authenticating with your IdP, users are automatically signed into Qumis.
+</Step>
+</Steps>
 
 ---
 
@@ -135,10 +172,12 @@ Once SSO is configured, your users will access Qumis as follows:
 
 ### Data Protection
 
+<Info>
 - All SSO communications are encrypted using industry-standard TLS protocols
 - Your IdP credentials are never stored by Qumis
 - Qumis is **SOC 2 Type I certified** with enterprise-grade security
 - Your organization's data remains private and is never used for AI training
+</Info>
 
 ### Authentication Flow
 
@@ -160,28 +199,30 @@ Contact your Qumis Customer Success Manager if this applies to your use case.
 
 ### Common Issues
 
-**Users receive "SSO Configuration Not Found" error**
-
+<AccordionGroup>
+<Accordion title='Users receive "SSO Configuration Not Found" error'>
 - Verify that the user's email domain matches the domain configured for SSO
 - Confirm the SSO connection is active in Qumis
 - Check that users are assigned to the Qumis application in your IdP
+</Accordion>
 
-**SAML assertion errors**
-
+<Accordion title="SAML assertion errors">
 - Verify the X.509 certificate is current and hasn't expired
 - Confirm the ACS URL is correctly configured in your IdP
 - Check that attribute mappings match expected values
+</Accordion>
 
-**OIDC authentication failures**
-
+<Accordion title="OIDC authentication failures">
 - Verify Client ID and Client Secret are correct
 - Confirm redirect URI exactly matches the value in your IdP
 - Check that required scopes (openid, email, profile) are granted
+</Accordion>
 
-**Users created but missing information**
-
+<Accordion title="Users created but missing information">
 - Review attribute/claim mappings in your IdP configuration
 - Verify that user profiles in your IdP contain the required fields
+</Accordion>
+</AccordionGroup>
 
 ### Support
 
