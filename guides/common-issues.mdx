@@ -70,25 +70,31 @@ This guide provides solutions to common issues users encounter in Qumis. If you 
 
 ### Document Search Not Working
 
-**Common causes and solutions:**
+<AccordionGroup>
+  <Accordion title="Search Returns No Results">
+    **Solutions:**
+    - Check spelling and try alternative keywords
+    - Remove special characters from search terms
+    - Ensure documents are indexed (may take 5-10 minutes after upload)
+    - Try advanced search with filters
+  </Accordion>
 
-1. **Search returns no results**
-   - Check spelling and try alternative keywords
-   - Remove special characters from search terms
-   - Ensure documents are indexed (may take 5-10 minutes after upload)
-   - Try advanced search with filters
+  <Accordion title="Search Is Slow">
+    **Solutions:**
+    - Reduce the date range
+    - Use more specific search terms
+    - Clear browser cache
+    - Try during off-peak hours
+  </Accordion>
 
-2. **Search is slow**
-   - Reduce the date range
-   - Use more specific search terms
-   - Clear browser cache
-   - Try during off-peak hours
-
-3. **Wrong documents appearing**
-   - Review and refine search filters
-   - Check document metadata and tags
-   - Use quotes for exact phrase matching
-   - Exclude terms with minus sign (-)
+  <Accordion title="Wrong Documents Appearing">
+    **Solutions:**
+    - Review and refine search filters
+    - Check document metadata and tags
+    - Use quotes for exact phrase matching
+    - Exclude terms with minus sign (-)
+  </Accordion>
+</AccordionGroup>
 
 ## Performance Issues
 
@@ -195,22 +201,27 @@ curl -X GET https://api.qumis.com/v1/health \
 
 ### Third-Party Integration Failures
 
-1. **OAuth connection issues**
-   - Re-authenticate the connection
-   - Check if tokens have expired
-   - Verify redirect URLs are whitelisted
+<AccordionGroup>
+  <Accordion title="OAuth Connection Issues">
+    - Re-authenticate the connection
+    - Check if tokens have expired
+    - Verify redirect URLs are whitelisted
+  </Accordion>
 
-2. **Data sync problems**
-   - Check field mappings
-   - Verify data formats match
-   - Review sync logs for specific errors
-   - Test with smaller data batch
+  <Accordion title="Data Sync Problems">
+    - Check field mappings
+    - Verify data formats match
+    - Review sync logs for specific errors
+    - Test with smaller data batch
+  </Accordion>
 
-3. **Webhook failures**
-   - Confirm endpoint is accessible
-   - Check SSL certificate validity
-   - Verify payload format
-   - Monitor webhook logs
+  <Accordion title="Webhook Failures">
+    - Confirm endpoint is accessible
+    - Check SSL certificate validity
+    - Verify payload format
+    - Monitor webhook logs
+  </Accordion>
+</AccordionGroup>
 
 ## Mobile App Issues
 
