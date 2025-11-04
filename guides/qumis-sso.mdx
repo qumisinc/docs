@@ -226,44 +226,45 @@ Contact your Qumis Customer Success Manager if this applies to your use case.
 
 ### Support
 
-For assistance with SSO configuration or troubleshooting:
-
-- **Email**: [support@qumis.ai](mailto:support@qumis.ai)
+<Info>
+For assistance with SSO configuration or troubleshooting, email [support@qumis.ai](mailto:support@qumis.ai).
 
 When contacting support, please include:
-
 - Your organization name
 - Description of the issue
 - Screenshots of any error messages
 - Approximate time the issue occurred
+</Info>
 
 ---
 
 ## Frequently Asked Questions
 
-**Q: Can we enforce SSO as the only login method?**
+<AccordionGroup>
+<Accordion title="Can we enforce SSO as the only login method?">
+Yes. Once SSO is configured and tested, Qumis will automatically disable alternative authentication methods for your organization.
+</Accordion>
 
-A: Yes. Once SSO is configured and tested, Qumis will automatically disable alternative authentication methods for your organization.
+<Accordion title="What happens if our IdP experiences downtime?">
+Users will be unable to log in via SSO during IdP downtime. Contact Qumis support if you need temporary alternative access enabled.
+</Accordion>
 
-**Q: What happens if our IdP experiences downtime?**
+<Accordion title="Can we configure multiple IdP connections?">
+Organizations typically use a single IdP connection. Contact your Customer Success Manager if you have a specific use case requiring multiple connections.
+</Accordion>
 
-A: Users will be unable to log in via SSO during IdP downtime. Contact Qumis support if you need temporary alternative access enabled.
+<Accordion title="How do we offboard users?">
+Remove user access in your IdP by unassigning them from the Qumis application. They will be unable to authenticate on their next login attempt.
+</Accordion>
 
-**Q: Can we configure multiple IdP connections?**
+<Accordion title="Does SSO support Multi-Factor Authentication (MFA)?">
+Yes. MFA enforcement is managed through your identity provider. When MFA is required by your IdP, users will complete MFA as part of the SSO flow.
+</Accordion>
 
-A: Organizations typically use a single IdP connection. Contact your Customer Success Manager if you have a specific use case requiring multiple connections.
-
-**Q: How do we offboard users?**
-
-A: Remove user access in your IdP by unassigning them from the Qumis application. They will be unable to authenticate on their next login attempt.
-
-**Q: Does SSO support Multi-Factor Authentication (MFA)?**
-
-A: Yes. MFA enforcement is managed through your identity provider. When MFA is required by your IdP, users will complete MFA as part of the SSO flow.
-
-**Q: Can we customize the login page?**
-
-A: Qumis provides a standard enterprise login experience. For custom branding requirements, please contact your Customer Success Manager.
+<Accordion title="Can we customize the login page?">
+Qumis provides a standard enterprise login experience. For custom branding requirements, please contact your Customer Success Manager.
+</Accordion>
+</AccordionGroup>
 
 ---
 

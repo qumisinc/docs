@@ -96,9 +96,15 @@ Since Qumis is built specifically for insurance professionals, the expertise is 
 </Step>
 </Steps>
 
-**Example: Analysis Prompt** "Review this policy for exclusions related to subcontractor work. Summarize findings in a client-friendly format highlighting risks."
+<CodeGroup>
+```text Analysis Prompt
+Review this policy for exclusions related to subcontractor work. Summarize findings in a client-friendly format highlighting risks.
+```
 
-**Example: Coverage Checklist Prompt** "Using this Workers Compensation policy, verify coverage for the following: Employee classifications, state coverage, occupational disease coverage, employer's liability limits, and voluntary compensation. Flag any missing or inadequate coverages."
+```text Coverage Checklist Prompt
+Using this Workers Compensation policy, verify coverage for the following: Employee classifications, state coverage, occupational disease coverage, employer's liability limits, and voluntary compensation. Flag any missing or inadequate coverages.
+```
+</CodeGroup>
 
 <Frame>
 <img
@@ -299,7 +305,9 @@ Click **Save Prompt** again to overwrite the old version.
 </Step>
 </Steps>
 
+<Tip>
 You can iterate on prompts over time, improving them based on results you get from using them.
+</Tip>
 
 ---
 
@@ -321,26 +329,59 @@ You can iterate on prompts over time, improving them based on results you get fr
 
 ## Example prompts to get you started
 
-**Coverage Checklists:**
+<AccordionGroup>
+<Accordion title="Coverage Checklists">
+<CodeGroup>
+```text WC Coverage Verification
+Verify this Workers Comp policy includes employee classifications, state coverage, occupational disease coverage, employer's liability limits, and voluntary compensation. Flag any gaps.
+```
 
-- "WC Coverage Verification Checklist: Verify this Workers Comp policy includes employee classifications, state coverage, occupational disease coverage, employer's liability limits, and voluntary compensation. Flag any gaps."
-- "General Liability Audit: Review this GL policy and confirm: named insureds match our records, coverage territory is correct, coverage limits are adequate for the business, and no unusual exclusions apply."
-- "Cyber Policy Coverage Check: Confirm this cyber policy covers: first-party data breach response, third-party liability, regulatory fines, business interruption, and ransomware. Note any exclusions or sublimits."
+```text General Liability Audit
+Review this GL policy and confirm: named insureds match our records, coverage territory is correct, coverage limits are adequate for the business, and no unusual exclusions apply.
+```
 
-**For brokers:**
+```text Cyber Policy Coverage Check
+Confirm this cyber policy covers: first-party data breach response, third-party liability, regulatory fines, business interruption, and ransomware. Note any exclusions or sublimits.
+```
+</CodeGroup>
+</Accordion>
 
-- "Compare this quote to the incumbent policy and identify 5 key differences that represent either better coverage or cost savings. Format for client presentation."
-- "Extract all premium, taxes, and fees in a table format for proposal presentation. Include comparisons to current policy if available."
+<Accordion title="For Brokers">
+<CodeGroup>
+```text Quote Comparison
+Compare this quote to the incumbent policy and identify 5 key differences that represent either better coverage or cost savings. Format for client presentation.
+```
 
-**For claims professionals:**
+```text Premium Extraction
+Extract all premium, taxes, and fees in a table format for proposal presentation. Include comparisons to current policy if available.
+```
+</CodeGroup>
+</Accordion>
 
-- "Analyze this claim scenario against the policy and determine if coverage applies. Cite specific policy language supporting your conclusion."
-- "Identify all policy conditions, exclusions, and endorsements relevant to this type of claim. Flag any that may limit coverage."
+<Accordion title="For Claims Professionals">
+<CodeGroup>
+```text Coverage Determination
+Analyze this claim scenario against the policy and determine if coverage applies. Cite specific policy language supporting your conclusion.
+```
 
-**For risk professionals:**
+```text Exclusions Analysis
+Identify all policy conditions, exclusions, and endorsements relevant to this type of claim. Flag any that may limit coverage.
+```
+</CodeGroup>
+</Accordion>
 
-- "Summarize all coverage limits, sublimits, and deductibles by line of business in an easy-to-read table format."
-- "Extract all policy requirements and obligations the insured must follow to maintain coverage. Highlight those most critical for ongoing compliance."
+<Accordion title="For Risk Professionals">
+<CodeGroup>
+```text Limits Summary
+Summarize all coverage limits, sublimits, and deductibles by line of business in an easy-to-read table format.
+```
+
+```text Requirements Extraction
+Extract all policy requirements and obligations the insured must follow to maintain coverage. Highlight those most critical for ongoing compliance.
+```
+</CodeGroup>
+</Accordion>
+</AccordionGroup>
 
 ---
 
