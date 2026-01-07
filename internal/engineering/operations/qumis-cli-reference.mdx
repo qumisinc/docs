@@ -435,6 +435,54 @@ qumis services exec llm --env dev -- python manage.py
 qumis services exec llm --env dev -- pip list
 ```
 
+### Report Operations
+
+Download documents from a Qumis report into a zip file.
+
+<CodeGroup>
+```bash Download from Local
+qumis reports documents <report_id>
+```
+
+```bash Download from Production
+qumis reports documents <report_id> --env prod
+```
+
+```bash Download to Specific Directory
+qumis reports documents <report_id> --output ~/Downloads
+```
+
+```bash Force Download (Stuck Reports)
+qumis reports documents <report_id> --env prod --force
+```
+</CodeGroup>
+
+**Flags:**
+
+| Flag | Short | Default | Description |
+|------|-------|---------|-------------|
+| `--env` | `-e` | `local` | Environment to use (`local`, `dev`, `qa`, `uat`, `prod`) |
+| `--output` | `-o` | `.` | Output directory for the zip file |
+| `--force` | `-f` | `false` | Download even if report is still processing |
+
+<Note>
+The `--force` flag is useful when a report is stuck in a processing state. However, documents may not be available until the report processing completes.
+</Note>
+
+**Example Output:**
+```
+• Fetching report abc-123-def...
+• Found 5 documents
+  -> policy-document.pdf (2.1 MB)
+  -> endorsement-1.pdf (450 KB)
+  -> endorsement-2.pdf (380 KB)
+  -> schedule.xlsx (125 KB)
+  -> certificate.pdf (89 KB)
+✓ Downloaded 5/5 documents to ./Report_Name.zip (3.1 MB)
+
+Zip file saved to: ./Report_Name.zip
+```
+
 ## Best Practices
 
 1. **Always provide clear reasons** for production operations
