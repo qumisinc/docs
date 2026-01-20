@@ -69,6 +69,12 @@
             ]
           },
           {
+            "group": "Data Extraction",
+            "pages": [
+              "guides/data-extraction/client-template-guide"
+            ]
+          },
+          {
             "group": "Playbooks",
             "pages": [
               "playbooks/for-account-managers",
