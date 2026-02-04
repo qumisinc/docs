@@ -15,7 +15,7 @@ noindex: true
 
 This release brings a **redesigned onboarding experience**, **real-time report progress tracking**, and **improved analytics** to help us better understand how users interact with Qumis.
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="6 New Features" icon="sparkles" color="#10b981">
     Onboarding, progress tracking, analytics, and more
   </Card>
@@ -24,6 +24,9 @@ This release brings a **redesigned onboarding experience**, **real-time report p
   </Card>
   <Card title="6 Improvements" icon="chart-line" color="#3b82f6">
     Better docs links, logging, and error handling
+  </Card>
+  <Card title="183 Files Changed" icon="code" color="#8b5cf6">
+    <span style={{color: '#22c55e'}}>**+54,581**</span> / <span style={{color: '#ef4444'}}>**-1,817**</span> lines
   </Card>
 </CardGroup>
 
@@ -145,13 +148,17 @@ This release brings a **redesigned onboarding experience**, **real-time report p
 ## Technical Details
 
 <Accordion title="Services Deployed" icon="cloud">
-  | Service | Commit | Environment |
-  |---------|--------|-------------|
-  | API | `b2cce9d` | Production |
-  | Web | `ecace62` | Production |
-  | LLM Service | `27ae3fb` | Production |
+  | Service | Commit | Files | Lines Changed |
+  |---------|--------|-------|---------------|
+  | API | `b2cce9d` | 57 | +2,848 / -397 |
+  | Web | `ecace62` | 68 | +3,580 / -519 |
+  | LLM Service | `27ae3fb` | 58 | +48,153 / -901 |
 
   **Previous deployment:** January 29, 2026 (API/Web), January 15, 2026 (LLM Service)
+
+  <Note>
+    LLM Service includes test fixtures and generated schema files, accounting for the high line count.
+  </Note>
 </Accordion>
 
 <Accordion title="Pull Requests" icon="code-pull-request">

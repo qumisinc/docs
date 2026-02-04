@@ -25,7 +25,7 @@ noindex: true
 
 {1-2 sentence overview of what this release includes, written for non-technical readers.}
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="{X} New Features" icon="sparkles" color="#10b981">
     {Brief summary}
   </Card>
@@ -35,7 +35,12 @@ noindex: true
   <Card title="{X} Improvements" icon="chart-line" color="#3b82f6">
     {Brief summary}
   </Card>
+  <Card title="{X} Files Changed" icon="code" color="#8b5cf6">
+    <span style={{color: '#22c55e'}}>**+{X}**</span> / <span style={{color: '#ef4444'}}>**-{X}**</span> lines
+  </Card>
 </CardGroup>
+
+{/* Get stats with: git diff --shortstat <last-deployed-commit>..origin/release */}
 
 ---
 
@@ -123,13 +128,19 @@ noindex: true
 ## Technical Details
 
 <Accordion title="Services Deployed" icon="cloud">
-  | Service | Commit | Environment |
-  |---------|--------|-------------|
-  | API | `{commit}` | Production |
-  | Web | `{commit}` | Production |
-  | LLM Service | `{commit}` | Production |
+  | Service | Commit | Files | Lines Changed |
+  |---------|--------|-------|---------------|
+  | API | `{commit}` | {X} | +{X} / -{X} |
+  | Web | `{commit}` | {X} | +{X} / -{X} |
+  | LLM Service | `{commit}` | {X} | +{X} / -{X} |
 
   **Previous deployment:** {Date of last deployment}
+
+  {/* Get per-service stats:
+      cd apps/api && git diff --shortstat <last-commit>..origin/release
+      cd apps/web && git diff --shortstat <last-commit>..origin/release
+      cd apps/llm-service && git diff --shortstat <last-commit>..origin/release
+  */}
 </Accordion>
 
 <Accordion title="Pull Requests" icon="code-pull-request">
