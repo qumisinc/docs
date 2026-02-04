@@ -135,7 +135,13 @@
             "group": "Release Notes",
             "pages": [
               "internal/engineering/release-notes/index",
-              "internal/engineering/release-notes/template"
+              "internal/engineering/release-notes/template",
+              {
+                "group": "2026",
+                "pages": [
+                  "internal/engineering/release-notes/2026/2026-02-04"
+                ]
+              }
             ]
           },
           {
