@@ -19,11 +19,13 @@ noindex: true
   **Deployment Date:** MONTH DAY, YEAR
 
   **Deployed By:** NAME_OR_TEAM
+
+  **Previous Deployment:** DATE(S)_WITH_PER_SERVICE_INFO_IF_THEY_DIFFER
 </Info>
 
 ## What's New
 
-_1-2 sentence overview of what this release includes, written for non-technical readers._
+_Narrative paragraph summarizing the release for non-technical readers. Use **bold** to highlight key features and explain user value. Example: "Users get a **completely redesigned onboarding experience** that guides new sign-ups through their first report, **real-time progress tracking** so they can see exactly what's happening, and a **new legal citations option** for reports."_
 
 <CardGroup cols={2}>
   <Card title="X New Features" icon="sparkles" color="#10b981">
@@ -36,7 +38,7 @@ _1-2 sentence overview of what this release includes, written for non-technical 
     Brief summary
   </Card>
   <Card title="X Files Changed" icon="code" color="#8b5cf6">
-    +X / -X lines
+    <span style={{color: '#22c55e'}}>**+X**</span> / <span style={{color: '#ef4444'}}>**-X**</span> lines
   </Card>
 </CardGroup>
 
@@ -77,13 +79,13 @@ _Remove this section if no features. Add one h3 + Tip block per feature._
 _Remove this section if no bug fixes._
 
 <AccordionGroup>
-  <Accordion title="User-Facing Fixes" icon="user" defaultOpen>
+  <Accordion title="User-Facing Fixes (X)" icon="user" defaultOpen>
     | Issue | Description | Ticket |
     |-------|-------------|--------|
     | Issue name | Plain-language description | [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) |
   </Accordion>
 
-  <Accordion title="Backend Fixes" icon="server">
+  <Accordion title="Backend Fixes (X)" icon="server">
     | Issue | Description | Ticket |
     |-------|-------------|--------|
     | Issue name | Description | [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) |
@@ -136,6 +138,11 @@ _Remove this section if no special notes. Include any pre/post deployment steps,
 
   **Previous deployment:** DATE_OF_LAST_DEPLOYMENT
 
+  {/* Optional: Add a <Note> to explain anomalies like unusually high line counts */}
+  {/* <Note>
+    Explanation of any anomalies, e.g., "LLM Service includes test fixtures and generated schema files, accounting for the high line count."
+  </Note> */}
+
   {/* Get per-service stats:
       cd apps/api && git diff --shortstat LAST_COMMIT..origin/release
       cd apps/web && git diff --shortstat LAST_COMMIT..origin/release
@@ -143,7 +150,7 @@ _Remove this section if no special notes. Include any pre/post deployment steps,
   */}
 </Accordion>
 
-<Accordion title="Pull Requests" icon="code-pull-request">
+<Accordion title="Pull Requests (X total)" icon="code-pull-request">
   **API (X PRs)**
   | PR | Description |
   |----|-------------|
@@ -165,5 +172,8 @@ _Remove this section if no special notes. Include any pre/post deployment steps,
   - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
 
   **Bug Fixes:**
+  - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
+
+  **Improvements:**
   - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
 </Accordion>
