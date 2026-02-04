@@ -9,141 +9,222 @@ noindex: true
   **Deployment Date:** February 4, 2026
 
   **Deployed By:** Engineering Team
-
-  **Linear Tickets:** [ENG-1465](https://linear.app/qumis/issue/ENG-1465), [ENG-1517](https://linear.app/qumis/issue/ENG-1517), [ENG-1484](https://linear.app/qumis/issue/ENG-1484), [ENG-1387](https://linear.app/qumis/issue/ENG-1387)
 </Info>
 
-## Summary
+## What's New
 
-Major release including onboarding v2, real-time workflow progress tracking during report generation, Chameleon analytics integration, and improved checklist schema detection for nested lists.
+This release brings a **redesigned onboarding experience**, **real-time report progress tracking**, and **improved analytics** to help us better understand how users interact with Qumis.
 
-## Services Deployed
+<CardGroup cols={3}>
+  <Card title="6 New Features" icon="sparkles" color="#10b981">
+    Onboarding, progress tracking, analytics, and more
+  </Card>
+  <Card title="10 Bug Fixes" icon="bug" color="#f59e0b">
+    Scrolling, PDF viewer, seat management issues resolved
+  </Card>
+  <Card title="6 Improvements" icon="chart-line" color="#3b82f6">
+    Better docs links, logging, and error handling
+  </Card>
+</CardGroup>
 
-| Service | Commit | Environment | Status |
-|---------|--------|-------------|--------|
-| API | `b2cce9d` | Production | Deployed |
-| Web | `ecace62` | Production | Deployed |
-| LLM Service | `27ae3fb` | Production | Deployed |
+---
+
+## Highlights
+
+### New Onboarding Experience
+
+<Tip>
+  New users will now see a guided walkthrough when they first use Qumis, helping them understand key features and generate their first report successfully.
+</Tip>
+
+- Step-by-step guidance through the platform
+- Progress saves automatically — users can resume anytime
+- Celebration moment when they complete their first report
+
+### Report Progress Tracking
+
+<Tip>
+  Users can now see exactly what's happening while their report generates, with real-time status updates and progress indicators.
+</Tip>
+
+- Live progress bar during report generation
+- Shows current processing phase (e.g., "Analyzing documents", "Generating insights")
+- Clearer field hierarchy in checklist reports
+
+### Analytics Integration
+
+We've integrated **Chameleon** to better understand user behavior and improve the product experience. This is controlled via feature flags and can be enabled/disabled as needed.
+
+---
 
 ## Features
 
 <AccordionGroup>
-  <Accordion title="Onboarding v2" icon="sparkles">
+  <Accordion title="Onboarding v2" icon="graduation-cap">
     New user onboarding flow with step tracking, first report celebration, and resume capability.
 
-    **Linear:** [ENG-1465](https://linear.app/qumis/issue/ENG-1465)
-
-    **Changes:**
-    - New onboarding controller and endpoints
-    - Step state persistence in database
-    - First report completion tracking
+    **What users see:**
+    - Guided walkthrough on first login
+    - Progress indicators showing completion status
     - Confetti celebration on first report
+
+    **Linear:** [ENG-1465](https://linear.app/qumis/issue/ENG-1465)
   </Accordion>
 
-  <Accordion title="Workflow Progress Tracking" icon="sparkles">
+  <Accordion title="Workflow Progress Tracking" icon="bars-progress">
     Real-time progress display during report generation showing current step and phase.
 
-    **Linear:** [ENG-1517](https://linear.app/qumis/issue/ENG-1517), [ENG-1518](https://linear.app/qumis/issue/ENG-1518)
+    **What users see:**
+    - Progress bar while waiting for reports
+    - Current phase displayed (e.g., "Extracting data...")
+    - Improved field hierarchy in checklist viewer
 
-    **Changes:**
-    - Workflow steps table and API endpoints
-    - Progress component with loading animation
-    - Phase tracking and deduplication
-    - Field name hierarchy display in checklist viewer
+    **Linear:** [ENG-1517](https://linear.app/qumis/issue/ENG-1517), [ENG-1518](https://linear.app/qumis/issue/ENG-1518)
   </Accordion>
 
-  <Accordion title="Chameleon Analytics Integration" icon="sparkles">
+  <Accordion title="Chameleon Analytics" icon="chart-pie">
     User analytics integration for product insights and user behavior tracking.
 
-    **Linear:** [ENG-1387](https://linear.app/qumis/issue/ENG-1387)
+    **Business value:**
+    - Understand how users navigate the platform
+    - Identify friction points in workflows
+    - Data-driven product improvements
 
-    **Changes:**
-    - Backend integration with cached user stats
-    - Frontend event tracking
-    - Feature flag controlled rollout
+    **Linear:** [ENG-1387](https://linear.app/qumis/issue/ENG-1387)
   </Accordion>
 
-  <Accordion title="Improved Template Schema Detection" icon="sparkles">
+  <Accordion title="Improved Checklist Detection" icon="list-check">
     Enhanced detection of nested lists and repeatable sections in insurance checklists.
 
-    **Linear:** [ENG-1484](https://linear.app/qumis/issue/ENG-1484)
+    **What this improves:**
+    - Better handling of complex insurance forms
+    - Accurate detection of numbered/nested items
+    - Smarter extraction of repeating sections
 
-    **Changes:**
-    - Heuristic-based schema detection for document-driven elements
-    - Recursive schema for nested checklist elements
-    - List instance handling with hierarchy path tracking
-    - Document distillation with batch processing
+    **Linear:** [ENG-1484](https://linear.app/qumis/issue/ENG-1484)
   </Accordion>
 
-  <Accordion title="Beta Feature Flag System" icon="sparkles">
+  <Accordion title="Feature Flag System" icon="toggle-on">
     Conditional UI rendering based on feature flags for controlled rollouts.
 
-    **Linear:** [ENG-1574](https://linear.app/qumis/issue/ENG-1574)
+    **What this enables:**
+    - Gradual rollout of new features
+    - A/B testing capabilities
+    - Quick enable/disable of features without deployment
 
-    **Changes:**
-    - Beta feature flag infrastructure
-    - Billing and signup flow toggles
-    - Credit management feature flag
+    **Linear:** [ENG-1574](https://linear.app/qumis/issue/ENG-1574)
   </Accordion>
 
-  <Accordion title="Credits System Refactoring" icon="sparkles">
-    Renamed subscription reports to credits with configurable usage.
+  <Accordion title="Credits System Updates" icon="coins">
+    Renamed subscription reports to credits with configurable usage tracking.
+
+    **What changed:**
+    - "Reports" renamed to "Credits" throughout the app
+    - New trial end indicator for users
+    - Updated pricing display page
 
     **Linear:** [ENG-1502](https://linear.app/qumis/issue/ENG-1502)
-
-    **Changes:**
-    - CreditCost model for report and chat costs
-    - Subscription credits across the application
-    - Trial end indicator component
-    - Price list page
   </Accordion>
 </AccordionGroup>
 
+---
+
 ## Bug Fixes
 
-- Vertical scroll in chat and report panels ([ENG-1579](https://linear.app/qumis/issue/ENG-1579))
-- PDF.js worker configuration for vault eye icon ([ENG-1536](https://linear.app/qumis/issue/ENG-1536))
-- Seat management UI race condition ([PSC-28](https://linear.app/qumis/issue/PSC-28))
-- Lambda function timeout handling ([ENG-1493](https://linear.app/qumis/issue/ENG-1493))
-- Proposal generation endpoint fix ([ENG-1501](https://linear.app/qumis/issue/ENG-1501))
-- esbuild external list for @opentelemetry packages ([ENG-1581](https://linear.app/qumis/issue/ENG-1581))
-- Two different versions of report type handling ([ENG-1574](https://linear.app/qumis/issue/ENG-1574))
-- Unsafe redirect URLs in login/SSO response handling
-- Callback data key stringify fix
-- Typesense indexing text truncation
+<AccordionGroup>
+  <Accordion title="User-Facing Fixes" icon="user" defaultOpen>
+    | Issue | Description | Ticket |
+    |-------|-------------|--------|
+    | Chat scrolling | Fixed vertical scroll behavior in chat and report panels | [ENG-1579](https://linear.app/qumis/issue/ENG-1579) |
+    | Vault preview | Fixed eye icon click not working in document vault | [ENG-1536](https://linear.app/qumis/issue/ENG-1536) |
+    | Seat management | Fixed UI not showing when organization has 0 seats configured | [PSC-28](https://linear.app/qumis/issue/PSC-28) |
+    | Proposal generation | Fixed "service unavailable" error when generating proposals | [ENG-1501](https://linear.app/qumis/issue/ENG-1501) |
+    | Login security | Fixed potential unsafe redirect URLs in login flow | — |
+  </Accordion>
+
+  <Accordion title="Backend Fixes" icon="server">
+    | Issue | Description | Ticket |
+    |-------|-------------|--------|
+    | Lambda timeout | Moved sync operations to background jobs to prevent timeouts | [ENG-1493](https://linear.app/qumis/issue/ENG-1493) |
+    | Build errors | Fixed esbuild configuration for OpenTelemetry packages | [ENG-1581](https://linear.app/qumis/issue/ENG-1581) |
+    | Report types | Fixed handling of different report type versions | [ENG-1574](https://linear.app/qumis/issue/ENG-1574) |
+    | Search indexing | Fixed text truncation for Typesense to prevent memory issues | — |
+    | Callbacks | Fixed JSON key handling in callback data processing | — |
+  </Accordion>
+</AccordionGroup>
+
+---
 
 ## Improvements
 
-- Help Center link updated to point to documentation ([ENG-1571](https://linear.app/qumis/issue/ENG-1571))
-- Mintlify OAuth authentication for docs ([ENG-1531](https://linear.app/qumis/issue/ENG-1531))
-- Configurable credit usage via environment variable
-- Workflow benchmarking utility for performance tracking
-- Enhanced logging for large callback requests (6MB limit warning)
-- Improved error handling for JSON serialization and oversized payloads
+- **Help Center link** now points to our documentation site ([ENG-1571](https://linear.app/qumis/issue/ENG-1571))
+- **Docs authentication** via Mintlify OAuth for docs.qumis.ai ([ENG-1531](https://linear.app/qumis/issue/ENG-1531))
+- **Configurable credits** — credit charging can be toggled via environment variable
+- **Performance tracking** — new workflow benchmarking for monitoring report generation times
+- **Better logging** — warnings for large callback requests (>6MB)
+- **Error handling** — improved handling of JSON serialization errors
 
-## Pull Requests
+---
 
-| Repository | PR | Description |
-|------------|-----|-------------|
-| qumis-api | [#324](https://github.com/qumisinc/qumis-api/pull/324) | Make credit usage configurable via environment variable |
-| qumis-api | [#320](https://github.com/qumisinc/qumis-api/pull/320) | ENG-1387: Chameleon analytics |
-| qumis-api | [#319](https://github.com/qumisinc/qumis-api/pull/319) | ENG-1502: Stripe remaining items |
-| qumis-api | [#317](https://github.com/qumisinc/qumis-api/pull/317) | ENG-1493: Fix Lambda timeout with background jobs |
-| qumis-api | [#311](https://github.com/qumisinc/qumis-api/pull/311) | ENG-1465: Guided tour v2 (Onboarding) |
-| qumis-web | [#461](https://github.com/qumisinc/qumis-web/pull/461) | Disable billing and signup flow feature flags |
-| qumis-web | [#460](https://github.com/qumisinc/qumis-web/pull/460) | Enhance chat scrollbar visibility and behavior |
-| qumis-web | [#459](https://github.com/qumisinc/qumis-web/pull/459) | Add legal citations option in policy fact analysis |
-| qumis-web | [#457](https://github.com/qumisinc/qumis-web/pull/457) | ENG-1571: Change help center link to docs |
-| qumis-web | [#453](https://github.com/qumisinc/qumis-web/pull/453) | Fix PDF.js worker for vault eye icon error |
-| qumis-web | [#451](https://github.com/qumisinc/qumis-web/pull/451) | ENG-1387: Chameleon analytics |
-| qumis-web | [#446](https://github.com/qumisinc/qumis-web/pull/446) | ENG-1518: Show field name hierarchy and workflow progress |
-| qumis-web | [#445](https://github.com/qumisinc/qumis-web/pull/445) | ENG-1502: Stripe remaining items |
-| qumis-web | [#444](https://github.com/qumisinc/qumis-web/pull/444) | ENG-1465: Onboarding v2 |
-| qumis-web | [#438](https://github.com/qumisinc/qumis-web/pull/438) | ENG-1378: Checklist table alignment and list instance grouping |
-| qumis-llm-service | [#84](https://github.com/qumisinc/qumis-llm-service/pull/84) | Fix @opentelemetry esbuild external list |
-| qumis-llm-service | [#83](https://github.com/qumisinc/qumis-llm-service/pull/83) | ENG-1574: Two versions of report type |
-| qumis-llm-service | [#77](https://github.com/qumisinc/qumis-llm-service/pull/77) | ENG-1484: Improve template schema detection |
+## Technical Details
 
-## Related Links
+<Accordion title="Services Deployed" icon="cloud">
+  | Service | Commit | Environment |
+  |---------|--------|-------------|
+  | API | `b2cce9d` | Production |
+  | Web | `ecace62` | Production |
+  | LLM Service | `27ae3fb` | Production |
 
-- **Previous Release:** January 29, 2026 (API/Web), January 15, 2026 (LLM Service)
+  **Previous deployment:** January 29, 2026 (API/Web), January 15, 2026 (LLM Service)
+</Accordion>
+
+<Accordion title="Pull Requests" icon="code-pull-request">
+  **API (5 PRs)**
+  | PR | Description |
+  |----|-------------|
+  | [#324](https://github.com/qumisinc/qumis-api/pull/324) | Make credit usage configurable |
+  | [#320](https://github.com/qumisinc/qumis-api/pull/320) | Chameleon analytics integration |
+  | [#319](https://github.com/qumisinc/qumis-api/pull/319) | Stripe billing updates |
+  | [#317](https://github.com/qumisinc/qumis-api/pull/317) | Fix Lambda timeout issues |
+  | [#311](https://github.com/qumisinc/qumis-api/pull/311) | Onboarding v2 |
+
+  **Web (10 PRs)**
+  | PR | Description |
+  |----|-------------|
+  | [#461](https://github.com/qumisinc/qumis-web/pull/461) | Feature flag updates |
+  | [#460](https://github.com/qumisinc/qumis-web/pull/460) | Chat scrollbar improvements |
+  | [#459](https://github.com/qumisinc/qumis-web/pull/459) | Legal citations option |
+  | [#457](https://github.com/qumisinc/qumis-web/pull/457) | Help center link update |
+  | [#453](https://github.com/qumisinc/qumis-web/pull/453) | PDF.js worker fix |
+  | [#451](https://github.com/qumisinc/qumis-web/pull/451) | Chameleon analytics |
+  | [#446](https://github.com/qumisinc/qumis-web/pull/446) | Field hierarchy & workflow progress |
+  | [#445](https://github.com/qumisinc/qumis-web/pull/445) | Stripe billing updates |
+  | [#444](https://github.com/qumisinc/qumis-web/pull/444) | Onboarding v2 |
+  | [#438](https://github.com/qumisinc/qumis-web/pull/438) | Checklist table improvements |
+
+  **LLM Service (3 PRs)**
+  | PR | Description |
+  |----|-------------|
+  | [#84](https://github.com/qumisinc/qumis-llm-service/pull/84) | Fix esbuild bundling |
+  | [#83](https://github.com/qumisinc/qumis-llm-service/pull/83) | Report type handling |
+  | [#77](https://github.com/qumisinc/qumis-llm-service/pull/77) | Template schema detection |
+</Accordion>
+
+<Accordion title="Related Linear Tickets" icon="ticket">
+  **Major Features:**
+  - [ENG-1465](https://linear.app/qumis/issue/ENG-1465) — Onboarding v2
+  - [ENG-1517](https://linear.app/qumis/issue/ENG-1517) — Workflow steps tracking
+  - [ENG-1518](https://linear.app/qumis/issue/ENG-1518) — Field name hierarchy
+  - [ENG-1484](https://linear.app/qumis/issue/ENG-1484) — Template schema detection
+  - [ENG-1387](https://linear.app/qumis/issue/ENG-1387) — Chameleon analytics
+  - [ENG-1502](https://linear.app/qumis/issue/ENG-1502) — Credits system
+  - [ENG-1574](https://linear.app/qumis/issue/ENG-1574) — Feature flags
+
+  **Bug Fixes:**
+  - [ENG-1579](https://linear.app/qumis/issue/ENG-1579) — Scroll issues
+  - [ENG-1536](https://linear.app/qumis/issue/ENG-1536) — Vault eye icon
+  - [PSC-28](https://linear.app/qumis/issue/PSC-28) — Seat management
+  - [ENG-1493](https://linear.app/qumis/issue/ENG-1493) — Lambda timeout
+  - [ENG-1501](https://linear.app/qumis/issue/ENG-1501) — Proposal generation
+  - [ENG-1581](https://linear.app/qumis/issue/ENG-1581) — esbuild fix
+</Accordion>
