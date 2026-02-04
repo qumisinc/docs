@@ -1,159 +1,99 @@
 ---
-title: "Release 2026-02-04"
-description: "Production deployment - Example release notes template"
+title: "Release {YYYY-MM-DD}"
+description: "Production deployment - {Brief description}"
 icon: "rocket"
 noindex: true
 ---
 
 <Info>
-  **Deployment Date:** February 4, 2026 at 14:00 UTC
+  **Deployment Date:** {Month Day, Year} at {HH:MM} UTC
 
-  **Deployed By:** Engineering Team
+  **Deployed By:** {Name or Team}
 
-  **Linear Tickets:** [ENG-1234](https://linear.app/qumis/issue/ENG-1234), [ENG-1235](https://linear.app/qumis/issue/ENG-1235)
+  **Linear Tickets:** [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX})
 </Info>
 
 ## Summary
 
-Example release notes demonstrating the standard template structure. Use this as a reference when creating new release documentation.
+{1-2 sentence overview of what this release includes.}
 
 ## Services Deployed
 
 | Service | Commit | Environment | Status |
 |---------|--------|-------------|--------|
-| API | `abc1234` | Production | Deployed |
-| Web | `def5678` | Production | Deployed |
-| LLM Service | `ghi9012` | Production | Deployed |
+| API | `{commit}` | Production | {Deployed/Skipped} |
+| Web | `{commit}` | Production | {Deployed/Skipped} |
+| LLM Service | `{commit}` | Production | {Deployed/Skipped} |
 
 ## Features
 
+{Remove this section if no features.}
+
 <AccordionGroup>
-  <Accordion title="New Report Type: Coverage Comparison" icon="sparkles">
-    Added ability to compare coverage across multiple policies side-by-side.
+  <Accordion title="{Feature Title}" icon="sparkles">
+    {Feature description.}
 
-    **Linear:** [ENG-1234](https://linear.app/qumis/issue/ENG-1234)
-
-    **Changes:**
-    - New `/v1/reports/comparison` endpoint
-    - Updated report generation pipeline
-    - Added comparison UI components
-  </Accordion>
-
-  <Accordion title="Enhanced Document Search" icon="sparkles">
-    Improved search relevance with semantic ranking.
-
-    **Linear:** [ENG-1235](https://linear.app/qumis/issue/ENG-1235)
+    **Linear:** [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX})
 
     **Changes:**
-    - Integrated vector similarity scoring
-    - Updated Typesense configuration
+    - {Change 1}
+    - {Change 2}
   </Accordion>
 </AccordionGroup>
 
 ## Bug Fixes
 
-- Fixed session timeout not refreshing correctly ([ENG-1240](https://linear.app/qumis/issue/ENG-1240))
-- Resolved PDF export formatting issues ([ENG-1241](https://linear.app/qumis/issue/ENG-1241))
-- Fixed race condition in document upload ([ENG-1242](https://linear.app/qumis/issue/ENG-1242))
+{Remove this section if no bug fixes.}
+
+- {Bug fix description} ([ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}))
 
 ## Improvements
 
-- Reduced report generation time by 40%
-- Improved error messages for failed uploads
-- Updated dependency versions for security patches
+{Remove this section if no improvements.}
+
+- {Improvement description}
 
 ## Breaking Changes
 
-<Warning>
-  **API Response Format Change**
+{Remove this section if no breaking changes.}
 
-  The `/v1/documents` endpoint now returns paginated results by default.
+<Warning>
+  **{Breaking Change Title}**
+
+  {Description of the breaking change.}
 
   **Migration:**
   ```bash
-  # Old format (deprecated)
-  GET /v1/documents
-
-  # New format
-  GET /v1/documents?page=1&per_page=50
+  {Migration commands or steps}
   ```
-
-  Clients should update to handle pagination or explicitly request all results with `per_page=-1`.
 </Warning>
 
 ## Infrastructure Changes
 
-- Updated ECS task definitions for API service
-- Increased Lambda memory allocation for LLM Service
-- Added new CloudWatch alarms for report generation latency
+{Remove this section if no infrastructure changes.}
+
+- {Infrastructure change description}
 
 ## Deployment Notes
 
-### Pre-Deployment
+{Remove this section if no special deployment notes.}
 
-<Steps>
-  <Step title="Database Migration">
-    ```bash
-    qumis-cli rails:run -e prod -c "bundle exec rake db:migrate"
-    ```
-  </Step>
-  <Step title="Clear Cache">
-    ```bash
-    qumis-cli rails:run -e prod -c "bundle exec rake cache:clear"
-    ```
-  </Step>
-</Steps>
-
-### During Deployment
-
-Standard blue-green deployment via GitHub Actions. No manual intervention required.
-
-### Post-Deployment
-
-<Steps>
-  <Step title="Verify Health Checks">
-    ```bash
-    curl https://api.qumis.ai/health
-    curl https://app.qumis.ai/health
-    ```
-  </Step>
-  <Step title="Run Smoke Tests">
-    ```bash
-    qumis-cli test:smoke -e prod
-    ```
-  </Step>
-</Steps>
+- {Note about deployment}
 
 ## Rollback Plan
 
-<Warning>
-  **Emergency Rollback Commands**
+{Remove this section if standard rollback applies.}
 
-  ```bash
-  # Rollback API to previous version
-  qumis-cli deploy:rollback -s api -e prod
-
-  # Rollback Web to previous version
-  qumis-cli deploy:rollback -s web -e prod
-
-  # Rollback database migration
-  qumis-cli rails:run -e prod -c "bundle exec rake db:rollback STEP=1"
-  ```
-</Warning>
+- {Rollback instructions if non-standard}
 
 ## Monitoring
 
-**CloudWatch Dashboards:**
-- [Production Overview](https://console.aws.amazon.com/cloudwatch/home?region=us-east-2#dashboards:name=qumis-prod-overview)
-- [API Metrics](https://console.aws.amazon.com/cloudwatch/home?region=us-east-2#dashboards:name=qumis-prod-api)
+{Remove this section if no special monitoring notes.}
 
-**Key Metrics to Watch:**
-- API response time (p95 < 500ms)
-- Error rate (< 0.1%)
-- Report generation success rate (> 99%)
+- {Metrics or dashboards to watch}
 
 ## Related Links
 
-- **Pull Requests:** [API #456](https://github.com/qumisinc/qumis-api/pull/456), [Web #789](https://github.com/qumisinc/qumis-web/pull/789)
-- **Linear Epic:** [Release 2026-02-04](https://linear.app/qumis/project/release-2026-02-04)
-- **Previous Release:** [2026-02-01](/internal/engineering/release-notes/2026/2026-02-01)
+- **Pull Requests:** [API #{XXX}](https://github.com/qumisinc/qumis-api/pull/{XXX}), [Web #{XXX}](https://github.com/qumisinc/qumis-web/pull/{XXX})
+- **Linear Epic:** [{Epic Name}](https://linear.app/qumis/project/{project-slug})
+- **Previous Release:** [{YYYY-MM-DD}](/internal/engineering/release-notes/{YYYY}/{YYYY-MM-DD})
