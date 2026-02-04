@@ -6,7 +6,7 @@ noindex: true
 ---
 
 <Note>
-  **Template:** Copy this file to `release-notes/{YYYY}/{YYYY-MM-DD}.mdx` and fill in the details.
+  **Template:** Copy this file to `release-notes/YYYY/YYYY-MM-DD.mdx` and fill in the details.
 
   Delete any sections that don't apply. Remove this note when done.
 </Note>
@@ -16,77 +16,77 @@ noindex: true
 {/* Copy everything below this line */}
 
 <Info>
-  **Deployment Date:** {Month Day, Year}
+  **Deployment Date:** MONTH DAY, YEAR
 
-  **Deployed By:** {Name or Team}
+  **Deployed By:** NAME_OR_TEAM
 </Info>
 
 ## What's New
 
-{1-2 sentence overview of what this release includes, written for non-technical readers.}
+_1-2 sentence overview of what this release includes, written for non-technical readers._
 
 <CardGroup cols={2}>
-  <Card title="{X} New Features" icon="sparkles" color="#10b981">
-    {Brief summary}
+  <Card title="X New Features" icon="sparkles" color="#10b981">
+    Brief summary
   </Card>
-  <Card title="{X} Bug Fixes" icon="bug" color="#f59e0b">
-    {Brief summary}
+  <Card title="X Bug Fixes" icon="bug" color="#f59e0b">
+    Brief summary
   </Card>
-  <Card title="{X} Improvements" icon="chart-line" color="#3b82f6">
-    {Brief summary}
+  <Card title="X Improvements" icon="chart-line" color="#3b82f6">
+    Brief summary
   </Card>
-  <Card title="{X} Files Changed" icon="code" color="#8b5cf6">
-    <span style={{color: '#22c55e'}}>**+{X}**</span> / <span style={{color: '#ef4444'}}>**-{X}**</span> lines
+  <Card title="X Files Changed" icon="code" color="#8b5cf6">
+    +X / -X lines
   </Card>
 </CardGroup>
 
-{/* Get stats with: git diff --shortstat <last-deployed-commit>..origin/release */}
+{/* Get stats with: git diff --shortstat LAST_DEPLOYED_COMMIT..origin/release */}
 
 ---
 
 ## Features
 
-{Remove this section if no features. Add one h3 + Tip block per feature.}
+_Remove this section if no features. Add one h3 + Tip block per feature._
 
-### {Feature Name}
-
-<Tip>
-  {Plain-language description of what users will see or experience. 1-2 sentences.}
-</Tip>
-
-- {Benefit or change 1}
-- {Benefit or change 2}
-- {Benefit or change 3}
-
-**Linear:** [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX})
-
-### {Feature Name 2}
+### FEATURE_NAME
 
 <Tip>
-  {Plain-language description.}
+  Plain-language description of what users will see or experience. 1-2 sentences.
 </Tip>
 
-- {Benefit or change}
+- Benefit or change 1
+- Benefit or change 2
+- Benefit or change 3
 
-**Linear:** [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX})
+**Linear:** [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX)
+
+### FEATURE_NAME_2
+
+<Tip>
+  Plain-language description.
+</Tip>
+
+- Benefit or change
+
+**Linear:** [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX)
 
 ---
 
 ## Bug Fixes
 
-{Remove this section if no bug fixes.}
+_Remove this section if no bug fixes._
 
 <AccordionGroup>
   <Accordion title="User-Facing Fixes" icon="user" defaultOpen>
     | Issue | Description | Ticket |
     |-------|-------------|--------|
-    | {Issue name} | {Plain-language description} | [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}) |
+    | Issue name | Plain-language description | [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) |
   </Accordion>
 
   <Accordion title="Backend Fixes" icon="server">
     | Issue | Description | Ticket |
     |-------|-------------|--------|
-    | {Issue name} | {Description} | [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}) |
+    | Issue name | Description | [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) |
   </Accordion>
 </AccordionGroup>
 
@@ -94,24 +94,24 @@ noindex: true
 
 ## Improvements
 
-{Remove this section if no improvements.}
+_Remove this section if no improvements._
 
-- **{Improvement name}** — {description} ([ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}))
+- **Improvement name** — description ([ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX))
 
 ---
 
 ## Breaking Changes
 
-{Remove this section if no breaking changes.}
+_Remove this section if no breaking changes._
 
 <Warning>
-  **{Breaking Change Title}**
+  **BREAKING_CHANGE_TITLE**
 
-  {Description of what changed and who is affected.}
+  Description of what changed and who is affected.
 
   **Migration:**
   ```bash
-  {Migration commands or steps}
+  # Migration commands or steps
   ```
 </Warning>
 
@@ -119,9 +119,9 @@ noindex: true
 
 ## Deployment Notes
 
-{Remove this section if no special notes. Include any pre/post deployment steps, rollback instructions, or monitoring notes.}
+_Remove this section if no special notes. Include any pre/post deployment steps, rollback instructions, or monitoring notes._
 
-- {Note about deployment}
+- Note about deployment
 
 ---
 
@@ -130,40 +130,40 @@ noindex: true
 <Accordion title="Services Deployed" icon="cloud">
   | Service | Commit | Files | Lines Changed |
   |---------|--------|-------|---------------|
-  | API | `{commit}` | {X} | +{X} / -{X} |
-  | Web | `{commit}` | {X} | +{X} / -{X} |
-  | LLM Service | `{commit}` | {X} | +{X} / -{X} |
+  | API | `COMMIT` | X | +X / -X |
+  | Web | `COMMIT` | X | +X / -X |
+  | LLM Service | `COMMIT` | X | +X / -X |
 
-  **Previous deployment:** {Date of last deployment}
+  **Previous deployment:** DATE_OF_LAST_DEPLOYMENT
 
   {/* Get per-service stats:
-      cd apps/api && git diff --shortstat <last-commit>..origin/release
-      cd apps/web && git diff --shortstat <last-commit>..origin/release
-      cd apps/llm-service && git diff --shortstat <last-commit>..origin/release
+      cd apps/api && git diff --shortstat LAST_COMMIT..origin/release
+      cd apps/web && git diff --shortstat LAST_COMMIT..origin/release
+      cd apps/llm-service && git diff --shortstat LAST_COMMIT..origin/release
   */}
 </Accordion>
 
 <Accordion title="Pull Requests" icon="code-pull-request">
-  **API ({X} PRs)**
+  **API (X PRs)**
   | PR | Description |
   |----|-------------|
-  | [#{XXX}](https://github.com/qumisinc/qumis-api/pull/{XXX}) | {Title} |
+  | [#XXX](https://github.com/qumisinc/qumis-api/pull/XXX) | Title |
 
-  **Web ({X} PRs)**
+  **Web (X PRs)**
   | PR | Description |
   |----|-------------|
-  | [#{XXX}](https://github.com/qumisinc/qumis-web/pull/{XXX}) | {Title} |
+  | [#XXX](https://github.com/qumisinc/qumis-web/pull/XXX) | Title |
 
-  **LLM Service ({X} PRs)**
+  **LLM Service (X PRs)**
   | PR | Description |
   |----|-------------|
-  | [#{XXX}](https://github.com/qumisinc/qumis-llm-service/pull/{XXX}) | {Title} |
+  | [#XXX](https://github.com/qumisinc/qumis-llm-service/pull/XXX) | Title |
 </Accordion>
 
 <Accordion title="Related Linear Tickets" icon="ticket">
   **Major Features:**
-  - [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}) — {Description}
+  - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
 
   **Bug Fixes:**
-  - [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}) — {Description}
+  - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
 </Accordion>
