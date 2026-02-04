@@ -1,0 +1,104 @@
+---
+title: "Release Notes"
+description: "Track production deployments, features, bug fixes, and breaking changes"
+icon: "newspaper"
+noindex: true
+---
+
+Internal release notes tracking production deployments for the Qumis platform. Each release documents features, bug fixes, breaking changes, and deployment details.
+
+<Tip>
+  **Latest Release:** [2026-02-04](/internal/engineering/release-notes/2026/2026-02-04)
+
+  **Related:** [Deployment Cheatsheet](/internal/engineering/deployment/deployment-cheatsheet) | [Production Deployment](/internal/engineering/deployment/production-deployment) | [Rollback Procedures](/internal/engineering/deployment/rollback-procedures)
+</Tip>
+
+## Recent Releases
+
+<CardGroup cols={2}>
+  <Card
+    title="2026-02-04"
+    icon="rocket"
+    href="/internal/engineering/release-notes/2026/2026-02-04"
+  >
+    Example release with full documentation template
+  </Card>
+</CardGroup>
+
+## Archive
+
+<AccordionGroup>
+  <Accordion title="2026" icon="calendar" defaultOpen>
+    | Date | Summary | Services |
+    |------|---------|----------|
+    | [2026-02-04](/internal/engineering/release-notes/2026/2026-02-04) | Example release template | API, Web, LLM Service |
+  </Accordion>
+
+  <Accordion title="2025" icon="calendar">
+    _No archived releases yet._
+  </Accordion>
+</AccordionGroup>
+
+## Quick Reference
+
+### Categories
+
+| Category | Description | Icon |
+|----------|-------------|------|
+| Features | New functionality | `sparkles` |
+| Bug Fixes | Resolved issues | `bug` |
+| Improvements | Performance and enhancements | `chart-line` |
+| Breaking Changes | Requires migration | `triangle-exclamation` |
+| Infrastructure | Terraform/ECS/config changes | `server` |
+
+### Services
+
+| Service | Repository | Environment |
+|---------|------------|-------------|
+| API | qumis-api | ECS Fargate |
+| Web | qumis-web | ECS Fargate |
+| LLM Service | qumis-llm-service | Lambda |
+| Copilot API | qumis-copilot-api | ECS Fargate |
+
+## Creating Release Notes
+
+<Steps>
+  <Step title="Copy the template">
+    Copy the latest release file and rename with today's date: `YYYY-MM-DD.mdx`
+  </Step>
+  <Step title="Update the content">
+    Fill in deployment details, features, bug fixes, and any breaking changes
+  </Step>
+  <Step title="Update navigation">
+    Add the new file to `docs.json` under the appropriate year group
+  </Step>
+  <Step title="Update this hub">
+    Add a card to Recent Releases and update the Archive table
+  </Step>
+</Steps>
+
+## Related Documentation
+
+<CardGroup cols={3}>
+  <Card
+    title="Deployment Cheatsheet"
+    icon="list-check"
+    href="/internal/engineering/deployment/deployment-cheatsheet"
+  >
+    Quick reference commands
+  </Card>
+  <Card
+    title="Post-Deployment Validation"
+    icon="shield-check"
+    href="/internal/engineering/deployment/post-deployment-validation"
+  >
+    Verify deployment success
+  </Card>
+  <Card
+    title="Rollback Procedures"
+    icon="rotate-left"
+    href="/internal/engineering/deployment/rollback-procedures"
+  >
+    Emergency recovery steps
+  </Card>
+</CardGroup>
