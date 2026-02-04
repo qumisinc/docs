@@ -29,9 +29,9 @@ This release brings a **redesigned onboarding experience**, **real-time report p
 
 ---
 
-## Highlights
+## Features
 
-### New Onboarding Experience
+### Onboarding v2
 
 <Tip>
   New users will now see a guided walkthrough when they first use Qumis, helping them understand key features and generate their first report successfully.
@@ -40,6 +40,8 @@ This release brings a **redesigned onboarding experience**, **real-time report p
 - Step-by-step guidance through the platform
 - Progress saves automatically — users can resume anytime
 - Celebration moment when they complete their first report
+
+**Linear:** [ENG-1465](https://linear.app/qumis/issue/ENG-1465)
 
 ### Report Progress Tracking
 
@@ -51,81 +53,55 @@ This release brings a **redesigned onboarding experience**, **real-time report p
 - Shows current processing phase (e.g., "Analyzing documents", "Generating insights")
 - Clearer field hierarchy in checklist reports
 
-### Analytics Integration
+**Linear:** [ENG-1517](https://linear.app/qumis/issue/ENG-1517), [ENG-1518](https://linear.app/qumis/issue/ENG-1518)
 
-We've integrated **Chameleon** to better understand user behavior and improve the product experience. This is controlled via feature flags and can be enabled/disabled as needed.
+### Chameleon Analytics
 
----
+<Tip>
+  We've integrated Chameleon to better understand user behavior and improve the product experience.
+</Tip>
 
-## Features
+- Understand how users navigate the platform
+- Identify friction points in workflows
+- Controlled via feature flags — can be enabled/disabled as needed
 
-<AccordionGroup>
-  <Accordion title="Onboarding v2" icon="graduation-cap">
-    New user onboarding flow with step tracking, first report celebration, and resume capability.
+**Linear:** [ENG-1387](https://linear.app/qumis/issue/ENG-1387)
 
-    **What users see:**
-    - Guided walkthrough on first login
-    - Progress indicators showing completion status
-    - Confetti celebration on first report
+### Improved Checklist Detection
 
-    **Linear:** [ENG-1465](https://linear.app/qumis/issue/ENG-1465)
-  </Accordion>
+<Tip>
+  Enhanced detection of nested lists and repeatable sections in insurance checklists for more accurate data extraction.
+</Tip>
 
-  <Accordion title="Workflow Progress Tracking" icon="bars-progress">
-    Real-time progress display during report generation showing current step and phase.
+- Better handling of complex insurance forms
+- Accurate detection of numbered/nested items
+- Smarter extraction of repeating sections
 
-    **What users see:**
-    - Progress bar while waiting for reports
-    - Current phase displayed (e.g., "Extracting data...")
-    - Improved field hierarchy in checklist viewer
+**Linear:** [ENG-1484](https://linear.app/qumis/issue/ENG-1484)
 
-    **Linear:** [ENG-1517](https://linear.app/qumis/issue/ENG-1517), [ENG-1518](https://linear.app/qumis/issue/ENG-1518)
-  </Accordion>
+### Feature Flag System
 
-  <Accordion title="Chameleon Analytics" icon="chart-pie">
-    User analytics integration for product insights and user behavior tracking.
+<Tip>
+  New infrastructure for conditional UI rendering, enabling controlled rollouts and A/B testing.
+</Tip>
 
-    **Business value:**
-    - Understand how users navigate the platform
-    - Identify friction points in workflows
-    - Data-driven product improvements
+- Gradual rollout of new features to specific users
+- A/B testing capabilities
+- Quick enable/disable of features without deployment
 
-    **Linear:** [ENG-1387](https://linear.app/qumis/issue/ENG-1387)
-  </Accordion>
+**Linear:** [ENG-1574](https://linear.app/qumis/issue/ENG-1574)
 
-  <Accordion title="Improved Checklist Detection" icon="list-check">
-    Enhanced detection of nested lists and repeatable sections in insurance checklists.
+### Credits System Updates
 
-    **What this improves:**
-    - Better handling of complex insurance forms
-    - Accurate detection of numbered/nested items
-    - Smarter extraction of repeating sections
+<Tip>
+  Renamed "subscription reports" to "credits" with improved tracking and display throughout the app.
+</Tip>
 
-    **Linear:** [ENG-1484](https://linear.app/qumis/issue/ENG-1484)
-  </Accordion>
+- "Reports" renamed to "Credits" throughout the app
+- New trial end indicator for users approaching limits
+- Updated pricing display page
 
-  <Accordion title="Feature Flag System" icon="toggle-on">
-    Conditional UI rendering based on feature flags for controlled rollouts.
-
-    **What this enables:**
-    - Gradual rollout of new features
-    - A/B testing capabilities
-    - Quick enable/disable of features without deployment
-
-    **Linear:** [ENG-1574](https://linear.app/qumis/issue/ENG-1574)
-  </Accordion>
-
-  <Accordion title="Credits System Updates" icon="coins">
-    Renamed subscription reports to credits with configurable usage tracking.
-
-    **What changed:**
-    - "Reports" renamed to "Credits" throughout the app
-    - New trial end indicator for users
-    - Updated pricing display page
-
-    **Linear:** [ENG-1502](https://linear.app/qumis/issue/ENG-1502)
-  </Accordion>
-</AccordionGroup>
+**Linear:** [ENG-1502](https://linear.app/qumis/issue/ENG-1502)
 
 ---
 
