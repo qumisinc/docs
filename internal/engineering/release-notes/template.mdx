@@ -7,55 +7,98 @@ noindex: true
 
 <Note>
   **Template:** Copy this file to `release-notes/{YYYY}/{YYYY-MM-DD}.mdx` and fill in the details.
+
+  Delete any sections that don't apply. Remove this note when done.
 </Note>
 
+---
+
+{/* Copy everything below this line */}
+
 <Info>
-  **Deployment Date:** {Month Day, Year} at {HH:MM} UTC
+  **Deployment Date:** {Month Day, Year}
 
   **Deployed By:** {Name or Team}
-
-  **Linear Tickets:** [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX})
 </Info>
 
-## Summary
+## What's New
 
-{1-2 sentence overview of what this release includes.}
+{1-2 sentence overview of what this release includes, written for non-technical readers.}
 
-## Services Deployed
+<CardGroup cols={3}>
+  <Card title="{X} New Features" icon="sparkles" color="#10b981">
+    {Brief summary}
+  </Card>
+  <Card title="{X} Bug Fixes" icon="bug" color="#f59e0b">
+    {Brief summary}
+  </Card>
+  <Card title="{X} Improvements" icon="chart-line" color="#3b82f6">
+    {Brief summary}
+  </Card>
+</CardGroup>
 
-| Service | Commit | Environment | Status |
-|---------|--------|-------------|--------|
-| API | `{commit}` | Production | {Deployed/Skipped} |
-| Web | `{commit}` | Production | {Deployed/Skipped} |
-| LLM Service | `{commit}` | Production | {Deployed/Skipped} |
+---
+
+## Highlights
+
+{Write 2-3 highlights in plain language. Focus on what users will experience, not technical implementation.}
+
+### {Feature Name}
+
+<Tip>
+  {Plain-language description of what users will see or experience.}
+</Tip>
+
+- {Bullet point benefit}
+- {Bullet point benefit}
+
+---
 
 ## Features
 
 {Remove this section if no features.}
 
 <AccordionGroup>
-  <Accordion title="{Feature Title}" icon="sparkles">
-    {Feature description.}
+  <Accordion title="{Feature Title}" icon="{icon}">
+    {Feature description in plain language.}
+
+    **What users see:**
+    - {User-facing change}
+    - {User-facing change}
 
     **Linear:** [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX})
-
-    **Changes:**
-    - {Change 1}
-    - {Change 2}
   </Accordion>
 </AccordionGroup>
+
+---
 
 ## Bug Fixes
 
 {Remove this section if no bug fixes.}
 
-- {Bug fix description} ([ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}))
+<AccordionGroup>
+  <Accordion title="User-Facing Fixes" icon="user" defaultOpen>
+    | Issue | Description | Ticket |
+    |-------|-------------|--------|
+    | {Issue name} | {Plain-language description} | [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}) |
+  </Accordion>
+
+  <Accordion title="Backend Fixes" icon="server">
+    | Issue | Description | Ticket |
+    |-------|-------------|--------|
+    | {Issue name} | {Description} | [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}) |
+  </Accordion>
+</AccordionGroup>
+
+---
 
 ## Improvements
 
 {Remove this section if no improvements.}
 
-- {Improvement description}
+- **{Improvement name}** — {description} ([ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}))
+
+---
 
 ## Breaking Changes
 
@@ -64,7 +107,7 @@ noindex: true
 <Warning>
   **{Breaking Change Title}**
 
-  {Description of the breaking change.}
+  {Description of what changed and who is affected.}
 
   **Migration:**
   ```bash
@@ -72,39 +115,49 @@ noindex: true
   ```
 </Warning>
 
-## Infrastructure Changes
-
-{Remove this section if no infrastructure changes.}
-
-- {Infrastructure change description}
+---
 
 ## Deployment Notes
 
-{Remove this section if no special deployment notes.}
+{Remove this section if no special notes. Include any pre/post deployment steps, rollback instructions, or monitoring notes.}
 
 - {Note about deployment}
 
-## Rollback Plan
+---
 
-{Remove this section if standard rollback applies.}
+## Technical Details
 
-- {Rollback instructions if non-standard}
+<Accordion title="Services Deployed" icon="cloud">
+  | Service | Commit | Environment |
+  |---------|--------|-------------|
+  | API | `{commit}` | Production |
+  | Web | `{commit}` | Production |
+  | LLM Service | `{commit}` | Production |
 
-## Monitoring
+  **Previous deployment:** {Date of last deployment}
+</Accordion>
 
-{Remove this section if no special monitoring notes.}
+<Accordion title="Pull Requests" icon="code-pull-request">
+  **API ({X} PRs)**
+  | PR | Description |
+  |----|-------------|
+  | [#{XXX}](https://github.com/qumisinc/qumis-api/pull/{XXX}) | {Title} |
 
-- {Metrics or dashboards to watch}
+  **Web ({X} PRs)**
+  | PR | Description |
+  |----|-------------|
+  | [#{XXX}](https://github.com/qumisinc/qumis-web/pull/{XXX}) | {Title} |
 
-## Pull Requests
+  **LLM Service ({X} PRs)**
+  | PR | Description |
+  |----|-------------|
+  | [#{XXX}](https://github.com/qumisinc/qumis-llm-service/pull/{XXX}) | {Title} |
+</Accordion>
 
-| Repository | PR | Description |
-|------------|-----|-------------|
-| qumis-api | [#{XXX}](https://github.com/qumisinc/qumis-api/pull/{XXX}) | {PR title} |
-| qumis-web | [#{XXX}](https://github.com/qumisinc/qumis-web/pull/{XXX}) | {PR title} |
-| qumis-llm-service | [#{XXX}](https://github.com/qumisinc/qumis-llm-service/pull/{XXX}) | {PR title} |
+<Accordion title="Related Linear Tickets" icon="ticket">
+  **Major Features:**
+  - [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}) — {Description}
 
-## Related Links
-
-- **Linear Epic:** [{Epic Name}](https://linear.app/qumis/project/{project-slug})
-- **Previous Release:** [{YYYY-MM-DD}](/internal/engineering/release-notes/{YYYY}/{YYYY-MM-DD})
+  **Bug Fixes:**
+  - [ENG-{XXXX}](https://linear.app/qumis/issue/ENG-{XXXX}) — {Description}
+</Accordion>
