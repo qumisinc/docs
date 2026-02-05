@@ -1,6 +1,6 @@
 ---
 title: "Release 2026-02-04"
-description: "Production deployment - Onboarding v2, workflow progress tracking, legal citations option, Chameleon analytics, and docs authentication"
+description: "Production deployment - Workflow progress tracking, legal citations option, docs authentication, and feature flags"
 icon: "rocket"
 noindex: true
 ---
@@ -17,21 +17,18 @@ noindex: true
 
 ## What's New
 
-- **Onboarding v2** — guided walkthrough for new users with database-persisted progress
 - **Report progress tracking** — real-time status updates during report generation
 - **Legal citations option** — toggle legal references in Policy Fact Analysis reports
-- **Chameleon analytics** — product analytics for user behavior insights
 - **Docs authentication** — seamless OAuth access to docs.qumis.ai
 - **Feature flag system** — controlled rollouts without redeployment
 - **Improved checklist detection** — better nested list and hierarchy detection
-- **Credits system updates** — renamed billing labels and configurable credit charging
 - 10 bug fixes and 6 improvements
 
-This is a significant release spanning all three services. Users get a **completely redesigned onboarding experience** that guides new sign-ups through their first report, **real-time workflow progress tracking** so they can see exactly what's happening during report generation, and a **new legal citations option** for Policy Fact Analysis reports. Behind the scenes, we've added **Chameleon analytics** for product insights, **OAuth-based docs authentication** so users access documentation seamlessly, and a **feature flag system** for controlled rollouts.
+This is a significant release spanning all three services. Users get **real-time workflow progress tracking** so they can see exactly what's happening during report generation, and a **new legal citations option** for Policy Fact Analysis reports. Behind the scenes, we've added **OAuth-based docs authentication** so users access documentation seamlessly, and a **feature flag system** for controlled rollouts.
 
 <CardGroup cols={2}>
-  <Card title="7 New Features" icon="sparkles" color="#10b981" href="#features">
-    Onboarding, progress tracking, legal citations, analytics, docs auth, and more
+  <Card title="5 New Features" icon="sparkles" color="#10b981" href="#features">
+    Progress tracking, legal citations, docs auth, feature flags, and more
   </Card>
   <Card title="10 Bug Fixes" icon="bug" color="#f59e0b" href="#bug-fixes">
     Lambda timeouts, scrolling, PDF viewer, seat management, and bundling issues
@@ -48,9 +45,13 @@ This is a significant release spanning all three services. Users get a **complet
 
 ## Features
 
-<Accordion title="9 features" defaultOpen>
+<Accordion title="User-Facing (5)" icon="user" defaultOpen>
 
 ### Onboarding v2
+
+<Warning>
+  **WIP — Disabled on production.** This feature is deployed but not yet enabled for users.
+</Warning>
 
 New users now see a guided 7-step walkthrough when they first sign in, taking them from profile setup all the way through generating their first report — with a confetti celebration at the end.
 
@@ -94,16 +95,23 @@ Users can now choose whether to include legal citations when generating a Policy
 
 **Linear:** [ENG-1574](https://linear.app/qumis/issue/ENG-1574)
 
-### Chameleon Analytics Integration
+### Credits System Updates
 
-We've integrated Chameleon to better understand how users navigate the platform and identify friction points in workflows.
+<Warning>
+  **WIP — Disabled on production.** This feature is deployed but not yet enabled for users.
+</Warning>
 
-- Product analytics tracking for user behavior and navigation patterns
-- Chameleon user identification via hashed UIDs from the API
-- Controlled via feature flags — can be enabled/disabled per environment without deployment
-- Foundation for future in-app tours and product tours
+Subscription billing terminology has been updated from "reports" to "credits" throughout the app, with improved visibility and configurability.
 
-**Linear:** [ENG-1387](https://linear.app/qumis/issue/ENG-1387)
+- **Renamed labels** — "total reports accessible" is now "Subscribed Credits"; "monthly total reports" is now "monthly_total_credits"
+- **Trial end indicator** moved to a more prominent location near the notification bell
+- **Updated pricing page** with clearer monthly vs. yearly plan comparison
+
+**Linear:** [ENG-1502](https://linear.app/qumis/issue/ENG-1502)
+
+</Accordion>
+
+<Accordion title="Technical (3)" icon="server">
 
 ### Docs Authentication via OAuth
 
@@ -120,7 +128,7 @@ Users authenticated with the Qumis app now access docs.qumis.ai seamlessly — n
 
 New infrastructure for conditional UI rendering, enabling controlled rollouts of features to specific environments or user groups.
 
-- Beta feature flag system for toggling UI features (billing flow, signup flow, Chameleon) without redeployment
+- Beta feature flag system for toggling UI features (billing flow, signup flow) without redeployment
 - Flags defined in configuration and checked at render time
 - Foundation for gradual rollouts and A/B testing
 
@@ -138,25 +146,13 @@ The Coverage Table workflow now detects nested lists, repeatable sections, and c
 
 **Linear:** [ENG-1484](https://linear.app/qumis/issue/ENG-1484)
 
-### Credits System Updates
-
-Subscription billing terminology has been updated from "reports" to "credits" throughout the app, with improved visibility and configurability.
-
-- **Renamed labels** — "total reports accessible" is now "Subscribed Credits"; "monthly total reports" is now "monthly_total_credits"
-- **Trial end indicator** moved to a more prominent location near the notification bell
-- **Credit charging is now configurable** — can be toggled on/off via the `CREDIT_USAGE_ENABLED` environment variable (defaults to disabled)
-- **Database-backed credit config** — credit cost mapping moved from hardcoded service logic into the database for easier configurability
-- **Updated pricing page** with clearer monthly vs. yearly plan comparison
-
-**Linear:** [ENG-1502](https://linear.app/qumis/issue/ENG-1502)
-
 </Accordion>
 
 ---
 
 ## Bug Fixes
 
-<Accordion title="10 bug fixes" defaultOpen>
+<Accordion title="User-Facing (5)" icon="user" defaultOpen>
 
 ### Chat and Report Scrolling
 
@@ -185,6 +181,10 @@ Admin portal now shows the seat management UI even when an organization has 0 se
 Fixed "service unavailable" error when generating proposals.
 
 **Linear:** [ENG-1501](https://linear.app/qumis/issue/ENG-1501)
+
+</Accordion>
+
+<Accordion title="Technical (5)" icon="server">
 
 ### Lambda Function Timeouts
 
@@ -218,13 +218,25 @@ Fixed symbol/string key mismatches in callback data by adding `deep_stringify_ke
 
 ## Improvements
 
-<Accordion title="6 improvements" defaultOpen>
+<Accordion title="User-Facing (3)" icon="user" defaultOpen>
 
 ### Help Center Link
 
 All links to `help.qumis.ai` now redirect to `docs.qumis.ai` and open in a new tab.
 
 **Linear:** [ENG-1571](https://linear.app/qumis/issue/ENG-1571)
+
+### Chat Scrollbar UX
+
+Enhanced scrollbar visibility and smooth scrolling behavior in chat panels.
+
+### Report Loading Polish
+
+Improved font weights, spacing, and visual feedback during report generation loading states.
+
+</Accordion>
+
+<Accordion title="Technical (3)" icon="server">
 
 ### Configurable Credit Charging
 
@@ -238,21 +250,13 @@ New timing and performance tracking for report generation workflow steps, enabli
 
 API now logs warnings when callback request payloads exceed the 6MB Lambda response limit, helping catch data size issues before they cause failures.
 
-### Chat Scrollbar UX
-
-Enhanced scrollbar visibility and smooth scrolling behavior in chat panels.
-
-### Report Loading Polish
-
-Improved font weights, spacing, and visual feedback during report generation loading states.
-
 </Accordion>
 
 ---
 
 ## Technical Details
 
-<Accordion title="3 sections" defaultOpen>
+<Accordion title="Deployment details" icon="cloud" defaultOpen>
 
 ### Services Deployed
 
