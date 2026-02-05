@@ -240,71 +240,71 @@ Improved font weights, spacing, and visual feedback during report generation loa
 
 ## Technical Details
 
-<Accordion title="Services Deployed" icon="cloud">
-  | Service | Commit | Files | Lines Changed |
-  |---------|--------|-------|---------------|
-  | API | `b2cce9d` | 57 | +2,848 / -397 |
-  | Web | `ecace62` | 68 | +3,580 / -519 |
-  | LLM Service | `27ae3fb` | 58 | +48,153 / -901 |
+### Services Deployed
 
-  **Previous deployment:** January 29, 2026 (API/Web), January 15, 2026 (LLM Service)
+| Service | Commit | Files | Lines Changed |
+|---------|--------|-------|---------------|
+| API | `b2cce9d` | 57 | +2,848 / -397 |
+| Web | `ecace62` | 68 | +3,580 / -519 |
+| LLM Service | `27ae3fb` | 58 | +48,153 / -901 |
 
-  <Note>
-    LLM Service includes test fixtures and generated schema files, accounting for the high line count.
-  </Note>
-</Accordion>
+**Previous deployment:** January 29, 2026 (API/Web), January 15, 2026 (LLM Service)
 
-<Accordion title="Pull Requests (18 total)" icon="code-pull-request">
-  **API (5 PRs)**
-  | PR | Description |
-  |----|-------------|
-  | [#324](https://github.com/qumisinc/qumis-api/pull/324) | Make credit usage configurable via environment variable |
-  | [#320](https://github.com/qumisinc/qumis-api/pull/320) | Chameleon analytics integration with hashed UID |
-  | [#319](https://github.com/qumisinc/qumis-api/pull/319) | Stripe billing updates — rename fields, credit config to DB |
-  | [#317](https://github.com/qumisinc/qumis-api/pull/317) | Fix Lambda timeout — move callbacks to Sidekiq + add workflow steps API |
-  | [#311](https://github.com/qumisinc/qumis-api/pull/311) | Onboarding v2 — database persistence, step tracking, API endpoints |
+<Note>
+  LLM Service includes test fixtures and generated schema files, accounting for the high line count.
+</Note>
 
-  **Web (10 PRs)**
-  | PR | Description |
-  |----|-------------|
-  | [#461](https://github.com/qumisinc/qumis-web/pull/461) | Feature flag system for billing and signup flow toggles |
-  | [#460](https://github.com/qumisinc/qumis-web/pull/460) | Chat scrollbar visibility and smooth scrolling |
-  | [#459](https://github.com/qumisinc/qumis-web/pull/459) | Legal citations toggle for Policy Fact Analysis reports |
-  | [#457](https://github.com/qumisinc/qumis-web/pull/457) | Help center links redirected to docs.qumis.ai |
-  | [#453](https://github.com/qumisinc/qumis-web/pull/453) | Fix PDF.js worker config for vault document preview |
-  | [#451](https://github.com/qumisinc/qumis-web/pull/451) | Chameleon analytics integration |
-  | [#449](https://github.com/qumisinc/qumis-web/pull/449) | Fix Edge browser scroll issues on chat, history, and workflow pages |
-  | [#446](https://github.com/qumisinc/qumis-web/pull/446) | Field name hierarchy display and workflow progress UI |
-  | [#445](https://github.com/qumisinc/qumis-web/pull/445) | Stripe billing — rename labels, trial indicator, pricing page |
-  | [#444](https://github.com/qumisinc/qumis-web/pull/444) | Onboarding v2 — full guided flow with step persistence |
+### Pull Requests (18 total)
 
-  **LLM Service (3 PRs)**
-  | PR | Description |
-  |----|-------------|
-  | [#84](https://github.com/qumisinc/llm-service/pull/84) | Fix esbuild bundling — remove OpenTelemetry from externals |
-  | [#83](https://github.com/qumisinc/llm-service/pull/83) | Report type versioning for legal citations option |
-  | [#77](https://github.com/qumisinc/llm-service/pull/77) | Template schema detection — heuristic detection, recursive nesting, pre-distillation |
-</Accordion>
+**API (5 PRs)**
+| PR | Description |
+|----|-------------|
+| [#324](https://github.com/qumisinc/qumis-api/pull/324) | Make credit usage configurable via environment variable |
+| [#320](https://github.com/qumisinc/qumis-api/pull/320) | Chameleon analytics integration with hashed UID |
+| [#319](https://github.com/qumisinc/qumis-api/pull/319) | Stripe billing updates — rename fields, credit config to DB |
+| [#317](https://github.com/qumisinc/qumis-api/pull/317) | Fix Lambda timeout — move callbacks to Sidekiq + add workflow steps API |
+| [#311](https://github.com/qumisinc/qumis-api/pull/311) | Onboarding v2 — database persistence, step tracking, API endpoints |
 
-<Accordion title="Related Linear Tickets" icon="ticket">
-  **Major Features:**
-  - [ENG-1465](https://linear.app/qumis/issue/ENG-1465) — Onboarding v2: guided walkthrough with database persistence
-  - [ENG-1517](https://linear.app/qumis/issue/ENG-1517) — Workflow steps tracking from LLM Service to API
-  - [ENG-1518](https://linear.app/qumis/issue/ENG-1518) — Field name hierarchy display in checklist tables
-  - [ENG-1484](https://linear.app/qumis/issue/ENG-1484) — Template schema detection improvements for Coverage Table
-  - [ENG-1574](https://linear.app/qumis/issue/ENG-1574) — Legal citations option and feature flag system
-  - [ENG-1387](https://linear.app/qumis/issue/ENG-1387) — Chameleon analytics integration
-  - [ENG-1531](https://linear.app/qumis/issue/ENG-1531) — Docs OAuth authentication via Mintlify
-  - [ENG-1502](https://linear.app/qumis/issue/ENG-1502) — Credits system and Stripe billing updates
+**Web (10 PRs)**
+| PR | Description |
+|----|-------------|
+| [#461](https://github.com/qumisinc/qumis-web/pull/461) | Feature flag system for billing and signup flow toggles |
+| [#460](https://github.com/qumisinc/qumis-web/pull/460) | Chat scrollbar visibility and smooth scrolling |
+| [#459](https://github.com/qumisinc/qumis-web/pull/459) | Legal citations toggle for Policy Fact Analysis reports |
+| [#457](https://github.com/qumisinc/qumis-web/pull/457) | Help center links redirected to docs.qumis.ai |
+| [#453](https://github.com/qumisinc/qumis-web/pull/453) | Fix PDF.js worker config for vault document preview |
+| [#451](https://github.com/qumisinc/qumis-web/pull/451) | Chameleon analytics integration |
+| [#449](https://github.com/qumisinc/qumis-web/pull/449) | Fix Edge browser scroll issues on chat, history, and workflow pages |
+| [#446](https://github.com/qumisinc/qumis-web/pull/446) | Field name hierarchy display and workflow progress UI |
+| [#445](https://github.com/qumisinc/qumis-web/pull/445) | Stripe billing — rename labels, trial indicator, pricing page |
+| [#444](https://github.com/qumisinc/qumis-web/pull/444) | Onboarding v2 — full guided flow with step persistence |
 
-  **Bug Fixes:**
-  - [ENG-1579](https://linear.app/qumis/issue/ENG-1579) — Chat and report vertical scroll issues
-  - [ENG-1536](https://linear.app/qumis/issue/ENG-1536) — Vault eye icon / PDF.js worker fix
-  - [PSC-28](https://linear.app/qumis/issue/PSC-28) — Admin portal seat management when seats is 0
-  - [ENG-1493](https://linear.app/qumis/issue/ENG-1493) — Lambda function timeout on analysis callbacks
-  - [ENG-1501](https://linear.app/qumis/issue/ENG-1501) — Proposal generation service unavailable
-  - [ENG-1581](https://linear.app/qumis/issue/ENG-1581) — esbuild bundling crash from OpenTelemetry externals
+**LLM Service (3 PRs)**
+| PR | Description |
+|----|-------------|
+| [#84](https://github.com/qumisinc/llm-service/pull/84) | Fix esbuild bundling — remove OpenTelemetry from externals |
+| [#83](https://github.com/qumisinc/llm-service/pull/83) | Report type versioning for legal citations option |
+| [#77](https://github.com/qumisinc/llm-service/pull/77) | Template schema detection — heuristic detection, recursive nesting, pre-distillation |
 
-  **Improvements:**
-  - [ENG-1571](https://linear.app/qumis/issue/ENG-1571) — Help center link to docs.qumis.ai
-</Accordion>
+### Related Linear Tickets
+
+**Major Features:**
+- [ENG-1465](https://linear.app/qumis/issue/ENG-1465) — Onboarding v2: guided walkthrough with database persistence
+- [ENG-1517](https://linear.app/qumis/issue/ENG-1517) — Workflow steps tracking from LLM Service to API
+- [ENG-1518](https://linear.app/qumis/issue/ENG-1518) — Field name hierarchy display in checklist tables
+- [ENG-1484](https://linear.app/qumis/issue/ENG-1484) — Template schema detection improvements for Coverage Table
+- [ENG-1574](https://linear.app/qumis/issue/ENG-1574) — Legal citations option and feature flag system
+- [ENG-1387](https://linear.app/qumis/issue/ENG-1387) — Chameleon analytics integration
+- [ENG-1531](https://linear.app/qumis/issue/ENG-1531) — Docs OAuth authentication via Mintlify
+- [ENG-1502](https://linear.app/qumis/issue/ENG-1502) — Credits system and Stripe billing updates
+
+**Bug Fixes:**
+- [ENG-1579](https://linear.app/qumis/issue/ENG-1579) — Chat and report vertical scroll issues
+- [ENG-1536](https://linear.app/qumis/issue/ENG-1536) — Vault eye icon / PDF.js worker fix
+- [PSC-28](https://linear.app/qumis/issue/PSC-28) — Admin portal seat management when seats is 0
+- [ENG-1493](https://linear.app/qumis/issue/ENG-1493) — Lambda function timeout on analysis callbacks
+- [ENG-1501](https://linear.app/qumis/issue/ENG-1501) — Proposal generation service unavailable
+- [ENG-1581](https://linear.app/qumis/issue/ENG-1581) — esbuild bundling crash from OpenTelemetry externals
+
+**Improvements:**
+- [ENG-1571](https://linear.app/qumis/issue/ENG-1571) — Help center link to docs.qumis.ai
