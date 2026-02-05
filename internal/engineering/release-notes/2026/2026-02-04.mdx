@@ -45,7 +45,7 @@ This is a significant release spanning all three services. Users get **real-time
 
 ## Features
 
-<Accordion title="User-Facing (5)" icon="user" defaultOpen>
+<Accordion title="User-Facing (3)" icon="user" defaultOpen>
 
 ### Report Progress Tracking
 
@@ -80,38 +80,9 @@ Users can now choose whether to include legal citations when generating a Policy
 
 **Linear:** [ENG-1574](https://linear.app/qumis/issue/ENG-1574)
 
-### Onboarding v2
-
-<Warning>
-  **WIP — Disabled on production.** This feature is deployed but not yet enabled for users.
-</Warning>
-
-New users now see a guided 7-step walkthrough when they first sign in, taking them from profile setup all the way through generating their first report — with a confetti celebration at the end.
-
-- **Step-by-step guidance** through the platform: name entry, role selection, use case preferences, AI experience level, workflow selection, and document upload
-- **Database-persisted progress** — users can close the browser and resume exactly where they left off (previously stored in localStorage)
-- **Mandatory completion** — the app blocks access to other features until onboarding is finished, ensuring every new user understands the core workflow
-- **First report celebration** with confetti animation when the user views their first completed report
-
-**Linear:** [ENG-1465](https://linear.app/qumis/issue/ENG-1465)
-
-### Credits System Updates
-
-<Warning>
-  **WIP — Disabled on production.** This feature is deployed but not yet enabled for users.
-</Warning>
-
-Subscription billing terminology has been updated from "reports" to "credits" throughout the app, with improved visibility and configurability.
-
-- **Renamed labels** — "total reports accessible" is now "Subscribed Credits"; "monthly total reports" is now "monthly_total_credits"
-- **Trial end indicator** moved to a more prominent location near the notification bell
-- **Updated pricing page** with clearer monthly vs. yearly plan comparison
-
-**Linear:** [ENG-1502](https://linear.app/qumis/issue/ENG-1502)
-
 </Accordion>
 
-<Accordion title="Technical (4)" icon="server">
+<Accordion title="Technical (3)" icon="server">
 
 ### Docs Authentication via OAuth
 
@@ -145,20 +116,6 @@ The Coverage Table workflow now detects nested lists, repeatable sections, and c
 - Supports both annotated templates (with `[]` markers) and un-annotated templates (with numbered instances like "Location 1", "Building 1")
 
 **Linear:** [ENG-1484](https://linear.app/qumis/issue/ENG-1484)
-
-### Chameleon Analytics Integration
-
-<Warning>
-  **WIP — Disabled on production.** This feature is deployed but not yet enabled for users.
-</Warning>
-
-Product analytics integration for understanding how users navigate the platform and identifying friction points in workflows.
-
-- User behavior tracking and navigation pattern analytics
-- Event tracking for report generation, chat messages, and document uploads
-- Foundation for future in-app tours and product tours
-
-**Linear:** [ENG-1387](https://linear.app/qumis/issue/ENG-1387)
 
 </Accordion>
 
