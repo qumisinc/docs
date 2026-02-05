@@ -30,16 +30,16 @@ noindex: true
 This is a significant release spanning all three services. Users get a **completely redesigned onboarding experience** that guides new sign-ups through their first report, **real-time workflow progress tracking** so they can see exactly what's happening during report generation, and a **new legal citations option** for Policy Fact Analysis reports. Behind the scenes, we've added **Chameleon analytics** for product insights, **OAuth-based docs authentication** so users access documentation seamlessly, and a **feature flag system** for controlled rollouts.
 
 <CardGroup cols={2}>
-  <Card title="7 New Features" icon="sparkles" color="#10b981">
+  <Card title="7 New Features" icon="sparkles" color="#10b981" href="#features">
     Onboarding, progress tracking, legal citations, analytics, docs auth, and more
   </Card>
-  <Card title="10 Bug Fixes" icon="bug" color="#f59e0b">
+  <Card title="10 Bug Fixes" icon="bug" color="#f59e0b" href="#bug-fixes">
     Lambda timeouts, scrolling, PDF viewer, seat management, and bundling issues
   </Card>
-  <Card title="6 Improvements" icon="chart-line" color="#3b82f6">
+  <Card title="6 Improvements" icon="chart-line" color="#3b82f6" href="#improvements">
     Help center links, configurable credits, logging, and error handling
   </Card>
-  <Card title="183 Files Changed" icon="code" color="#8b5cf6">
+  <Card title="183 Files Changed" icon="code" color="#8b5cf6" href="#technical-details">
     <span style={{color: '#22c55e'}}>**+54,581**</span> / <span style={{color: '#ef4444'}}>**-1,817**</span> lines
   </Card>
 </CardGroup>
@@ -152,38 +152,89 @@ Subscription billing terminology has been updated from "reports" to "credits" th
 
 ## Bug Fixes
 
-<AccordionGroup>
-  <Accordion title="User-Facing Fixes (5)" icon="user" defaultOpen>
-    | Issue | Description | Ticket |
-    |-------|-------------|--------|
-    | Chat and report scrolling | Fixed vertical scroll not working properly in chat messages and report panels — content would get stuck or jump unexpectedly | [ENG-1579](https://linear.app/qumis/issue/ENG-1579) |
-    | Edge browser scrolling | Added manual scroll handling for Edge browser where default scroll events were not bubbling correctly on chat, history, and workflow pages | — |
-    | Vault document preview | Fixed eye icon click in the document vault not opening the preview — caused by PDF.js worker not being configured globally | [ENG-1536](https://linear.app/qumis/issue/ENG-1536) |
-    | Seat management in admin portal | Admin portal now shows the seat management UI even when an organization has 0 seats configured — previously the edit controls were hidden entirely | [PSC-28](https://linear.app/qumis/issue/PSC-28) |
-    | Proposal generation | Fixed "service unavailable" error when generating proposals | [ENG-1501](https://linear.app/qumis/issue/ENG-1501) |
-  </Accordion>
+### Chat and Report Scrolling
 
-  <Accordion title="Backend Fixes (5)" icon="server">
-    | Issue | Description | Ticket |
-    |-------|-------------|--------|
-    | Lambda function timeouts | Refactored the analysis callback endpoint to return 200 OK immediately and process data asynchronously via Sidekiq. Previously, long-running sync operations (Typesense indexing, ActionCable broadcasts, DB updates) caused the callback sender to time out after 5+ minutes | [ENG-1493](https://linear.app/qumis/issue/ENG-1493) |
-    | esbuild bundling crash | Removed `@opentelemetry/*` packages from the esbuild external list — they were not available in the Lambda runtime, causing `ERR_MODULE_NOT_FOUND` crashes during Lambda cold starts | [ENG-1581](https://linear.app/qumis/issue/ENG-1581) |
-    | Report type versioning | Fixed handling of different report type versions in the LLM Service to ensure the correct workflow is selected for policy fact analysis with and without legal citations | [ENG-1574](https://linear.app/qumis/issue/ENG-1574) |
-    | Search indexing memory | Added configurable text truncation for Typesense indexing (via `TRUNCATE_TYPESENSE` env var) to prevent OUT_OF_MEMORY errors on large documents | — |
-    | Callback data serialization | Fixed symbol/string key mismatches in callback data by adding `deep_stringify_keys` before enqueueing to Sidekiq | — |
-  </Accordion>
-</AccordionGroup>
+Fixed vertical scroll not working properly in chat messages and report panels — content would get stuck or jump unexpectedly.
+
+**Linear:** [ENG-1579](https://linear.app/qumis/issue/ENG-1579)
+
+### Edge Browser Scrolling
+
+Added manual scroll handling for Edge browser where default scroll events were not bubbling correctly on chat, history, and workflow pages.
+
+### Vault Document Preview
+
+Fixed eye icon click in the document vault not opening the preview — caused by PDF.js worker not being configured globally.
+
+**Linear:** [ENG-1536](https://linear.app/qumis/issue/ENG-1536)
+
+### Seat Management in Admin Portal
+
+Admin portal now shows the seat management UI even when an organization has 0 seats configured — previously the edit controls were hidden entirely.
+
+**Linear:** [PSC-28](https://linear.app/qumis/issue/PSC-28)
+
+### Proposal Generation
+
+Fixed "service unavailable" error when generating proposals.
+
+**Linear:** [ENG-1501](https://linear.app/qumis/issue/ENG-1501)
+
+### Lambda Function Timeouts
+
+Refactored the analysis callback endpoint to return 200 OK immediately and process data asynchronously via Sidekiq. Previously, long-running sync operations (Typesense indexing, ActionCable broadcasts, DB updates) caused the callback sender to time out after 5+ minutes.
+
+**Linear:** [ENG-1493](https://linear.app/qumis/issue/ENG-1493)
+
+### esbuild Bundling Crash
+
+Removed `@opentelemetry/*` packages from the esbuild external list — they were not available in the Lambda runtime, causing `ERR_MODULE_NOT_FOUND` crashes during Lambda cold starts.
+
+**Linear:** [ENG-1581](https://linear.app/qumis/issue/ENG-1581)
+
+### Report Type Versioning
+
+Fixed handling of different report type versions in the LLM Service to ensure the correct workflow is selected for policy fact analysis with and without legal citations.
+
+**Linear:** [ENG-1574](https://linear.app/qumis/issue/ENG-1574)
+
+### Search Indexing Memory
+
+Added configurable text truncation for Typesense indexing (via `TRUNCATE_TYPESENSE` env var) to prevent OUT_OF_MEMORY errors on large documents.
+
+### Callback Data Serialization
+
+Fixed symbol/string key mismatches in callback data by adding `deep_stringify_keys` before enqueueing to Sidekiq.
 
 ---
 
 ## Improvements
 
-- **Help Center link** — all links to `help.qumis.ai` now redirect to `docs.qumis.ai` and open in a new tab ([ENG-1571](https://linear.app/qumis/issue/ENG-1571))
-- **Configurable credit charging** — credit usage can be toggled via `CREDIT_USAGE_ENABLED` environment variable, defaulting to disabled for controlled rollout
-- **Workflow benchmarking** — new timing and performance tracking for report generation workflow steps, enabling monitoring of processing bottlenecks
-- **Large callback warnings** — API now logs warnings when callback request payloads exceed the 6MB Lambda response limit, helping catch data size issues before they cause failures
-- **Chat scrollbar UX** — enhanced scrollbar visibility and smooth scrolling behavior in chat panels
-- **Report loading polish** — improved font weights, spacing, and visual feedback during report generation loading states
+### Help Center Link
+
+All links to `help.qumis.ai` now redirect to `docs.qumis.ai` and open in a new tab.
+
+**Linear:** [ENG-1571](https://linear.app/qumis/issue/ENG-1571)
+
+### Configurable Credit Charging
+
+Credit usage can be toggled via `CREDIT_USAGE_ENABLED` environment variable, defaulting to disabled for controlled rollout.
+
+### Workflow Benchmarking
+
+New timing and performance tracking for report generation workflow steps, enabling monitoring of processing bottlenecks.
+
+### Large Callback Warnings
+
+API now logs warnings when callback request payloads exceed the 6MB Lambda response limit, helping catch data size issues before they cause failures.
+
+### Chat Scrollbar UX
+
+Enhanced scrollbar visibility and smooth scrolling behavior in chat panels.
+
+### Report Loading Polish
+
+Improved font weights, spacing, and visual feedback during report generation loading states.
 
 ---
 
