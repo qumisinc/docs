@@ -13,59 +13,13 @@ Internal release notes tracking production deployments for the Qumis platform. E
   **Related:** [Deployment Cheatsheet](/internal/engineering/deployment/deployment-cheatsheet) | [Production Deployment](/internal/engineering/deployment/production-deployment) | [Rollback Procedures](/internal/engineering/deployment/rollback-procedures)
 </Tip>
 
-## Recent Releases
+## Timeline
 
-<CardGroup cols={2}>
-  <Card
-    title="2026-02-04"
-    icon="rocket"
-    href="/internal/engineering/release-notes/2026/2026-02-04"
-  >
-    Onboarding v2, workflow progress, Chameleon analytics
-  </Card>
-  <Card
-    title="Template"
-    icon="file-lines"
-    href="/internal/engineering/release-notes/template"
-  >
-    Copy this template for new releases
-  </Card>
-</CardGroup>
+<Update label="2026-02-04" description="API, Web, LLM Service" tags={["Features", "Bug Fixes", "Improvements"]}>
+  Onboarding v2 with guided walkthrough, real-time report progress tracking, legal citations option for Policy Fact Analysis, Chameleon analytics, OAuth-based docs authentication, and feature flag system. Plus 10 bug fixes and 6 improvements.
 
-## Archive
-
-<AccordionGroup>
-  <Accordion title="2026" icon="calendar" defaultOpen>
-    | Date | Summary | Services |
-    |------|---------|----------|
-    | [2026-02-04](/internal/engineering/release-notes/2026/2026-02-04) | Onboarding v2, workflow progress, Chameleon | API, Web, LLM Service |
-  </Accordion>
-
-  <Accordion title="2025" icon="calendar">
-    _No archived releases yet._
-  </Accordion>
-</AccordionGroup>
-
-## Quick Reference
-
-### Categories
-
-| Category | Description | Icon |
-|----------|-------------|------|
-| Features | New functionality | `sparkles` |
-| Bug Fixes | Resolved issues | `bug` |
-| Improvements | Performance and enhancements | `chart-line` |
-| Breaking Changes | Requires migration | `triangle-exclamation` |
-| Infrastructure | Terraform/ECS/config changes | `server` |
-
-### Services
-
-| Service | Repository | Environment |
-|---------|------------|-------------|
-| API | qumis-api | ECS Fargate |
-| Web | qumis-web | ECS Fargate |
-| LLM Service | qumis-llm-service | Lambda |
-| Copilot API | qumis-copilot-api | ECS Fargate |
+  [View full release notes →](/internal/engineering/release-notes/2026/2026-02-04)
+</Update>
 
 ## Creating Release Notes
 
@@ -80,7 +34,7 @@ Internal release notes tracking production deployments for the Qumis platform. E
     Add the new file to `docs.json` under the appropriate year group
   </Step>
   <Step title="Update this hub">
-    Add a card to Recent Releases and update the Archive table
+    Add a new `<Update>` entry to the Timeline section above
   </Step>
 </Steps>
 

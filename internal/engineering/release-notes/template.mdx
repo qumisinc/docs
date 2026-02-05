@@ -11,6 +11,16 @@ noindex: true
   Delete any sections that don't apply. Remove this note when done.
 </Note>
 
+{/*
+  After creating the release page, add an <Update> entry to the hub page (index.mdx):
+
+  <Update label="YYYY-MM-DD" description="SERVICE_1, SERVICE_2" tags={["Features", "Bug Fixes", "Improvements"]}>
+    One-paragraph summary of the release.
+
+    [View full release notes →](/internal/engineering/release-notes/YYYY/YYYY-MM-DD)
+  </Update>
+*/}
+
 ---
 
 {/* Copy everything below this line */}
@@ -22,6 +32,10 @@ noindex: true
 
   **Previous Deployment:** DATE(S)_WITH_PER_SERVICE_INFO_IF_THEY_DIFFER
 </Info>
+
+<Badge color="blue" size="sm">API</Badge> <Badge color="green" size="sm">Web</Badge> <Badge color="purple" size="sm">LLM Service</Badge>
+
+{/* Remove badges for services not included in this release */}
 
 ## What's New
 
@@ -50,134 +64,126 @@ _Narrative paragraph summarizing the release for non-technical readers. Use **bo
 
 ---
 
-## Features
+<Tabs>
+  <Tab title="Features" icon="sparkles">
+    {/* Remove this tab if no features. Add one h3 per feature with a plain-language description paragraph. */}
 
-_Remove this section if no features. Add one h3 + Tip block per feature._
+    ### FEATURE_NAME
 
-### FEATURE_NAME
+    Plain-language description of what users will see or experience. 1-2 sentences explaining the value.
 
-<Tip>
-  Plain-language description of what users will see or experience. 1-2 sentences.
-</Tip>
+    - Benefit or change 1
+    - Benefit or change 2
+    - Benefit or change 3
 
-- Benefit or change 1
-- Benefit or change 2
-- Benefit or change 3
+    **Linear:** [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX)
 
-**Linear:** [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX)
+    ### FEATURE_NAME_2
 
-### FEATURE_NAME_2
+    Plain-language description.
 
-<Tip>
-  Plain-language description.
-</Tip>
+    - Benefit or change
 
-- Benefit or change
+    **Linear:** [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX)
+  </Tab>
 
-**Linear:** [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX)
+  <Tab title="Bug Fixes" icon="bug">
+    {/* Remove this tab if no bug fixes. */}
 
----
+    <AccordionGroup>
+      <Accordion title="User-Facing Fixes (X)" icon="user" defaultOpen>
+        | Issue | Description | Ticket |
+        |-------|-------------|--------|
+        | Issue name | Plain-language description | [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) |
+      </Accordion>
 
-## Bug Fixes
+      <Accordion title="Backend Fixes (X)" icon="server">
+        | Issue | Description | Ticket |
+        |-------|-------------|--------|
+        | Issue name | Description | [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) |
+      </Accordion>
+    </AccordionGroup>
+  </Tab>
 
-_Remove this section if no bug fixes._
+  <Tab title="Improvements" icon="chart-line">
+    {/* Remove this tab if no improvements. */}
 
-<AccordionGroup>
-  <Accordion title="User-Facing Fixes (X)" icon="user" defaultOpen>
-    | Issue | Description | Ticket |
-    |-------|-------------|--------|
-    | Issue name | Plain-language description | [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) |
-  </Accordion>
+    - **Improvement name** — description ([ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX))
+  </Tab>
 
-  <Accordion title="Backend Fixes (X)" icon="server">
-    | Issue | Description | Ticket |
-    |-------|-------------|--------|
-    | Issue name | Description | [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) |
-  </Accordion>
-</AccordionGroup>
+  <Tab title="Technical Details" icon="code">
+    <Accordion title="Services Deployed" icon="cloud">
+      | Service | Commit | Files | Lines Changed |
+      |---------|--------|-------|---------------|
+      | API | `COMMIT` | X | +X / -X |
+      | Web | `COMMIT` | X | +X / -X |
+      | LLM Service | `COMMIT` | X | +X / -X |
 
----
+      **Previous deployment:** DATE_OF_LAST_DEPLOYMENT
 
-## Improvements
+      {/* Optional: Add a <Note> to explain anomalies like unusually high line counts */}
+      {/* <Note>
+        Explanation of any anomalies, e.g., "LLM Service includes test fixtures and generated schema files, accounting for the high line count."
+      </Note> */}
 
-_Remove this section if no improvements._
+      {/* Get per-service stats:
+          cd apps/api && git diff --shortstat LAST_COMMIT..origin/release
+          cd apps/web && git diff --shortstat LAST_COMMIT..origin/release
+          cd apps/llm-service && git diff --shortstat LAST_COMMIT..origin/release
+      */}
+    </Accordion>
 
-- **Improvement name** — description ([ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX))
+    <Accordion title="Pull Requests (X total)" icon="code-pull-request">
+      **API (X PRs)**
+      | PR | Description |
+      |----|-------------|
+      | [#XXX](https://github.com/qumisinc/qumis-api/pull/XXX) | Title |
 
----
+      **Web (X PRs)**
+      | PR | Description |
+      |----|-------------|
+      | [#XXX](https://github.com/qumisinc/qumis-web/pull/XXX) | Title |
 
-## Breaking Changes
+      **LLM Service (X PRs)**
+      | PR | Description |
+      |----|-------------|
+      | [#XXX](https://github.com/qumisinc/qumis-llm-service/pull/XXX) | Title |
+    </Accordion>
 
-_Remove this section if no breaking changes._
+    <Accordion title="Related Linear Tickets" icon="ticket">
+      **Major Features:**
+      - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
 
-<Warning>
-  **BREAKING_CHANGE_TITLE**
+      **Bug Fixes:**
+      - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
 
-  Description of what changed and who is affected.
+      **Improvements:**
+      - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
+    </Accordion>
+  </Tab>
+</Tabs>
 
-  **Migration:**
-  ```bash
-  # Migration commands or steps
-  ```
-</Warning>
+{/*
+  Breaking Changes section — uncomment and add above the Tabs block if needed:
 
----
+  ## Breaking Changes
 
-## Deployment Notes
+  <Warning>
+    **BREAKING_CHANGE_TITLE**
 
-_Remove this section if no special notes. Include any pre/post deployment steps, rollback instructions, or monitoring notes._
+    Description of what changed and who is affected.
 
-- Note about deployment
+    **Migration:**
+    ```bash
+    # Migration commands or steps
+    ```
+  </Warning>
+*/}
 
----
+{/*
+  Deployment Notes section — uncomment and add above the Tabs block if needed:
 
-## Technical Details
+  ## Deployment Notes
 
-<Accordion title="Services Deployed" icon="cloud">
-  | Service | Commit | Files | Lines Changed |
-  |---------|--------|-------|---------------|
-  | API | `COMMIT` | X | +X / -X |
-  | Web | `COMMIT` | X | +X / -X |
-  | LLM Service | `COMMIT` | X | +X / -X |
-
-  **Previous deployment:** DATE_OF_LAST_DEPLOYMENT
-
-  {/* Optional: Add a <Note> to explain anomalies like unusually high line counts */}
-  {/* <Note>
-    Explanation of any anomalies, e.g., "LLM Service includes test fixtures and generated schema files, accounting for the high line count."
-  </Note> */}
-
-  {/* Get per-service stats:
-      cd apps/api && git diff --shortstat LAST_COMMIT..origin/release
-      cd apps/web && git diff --shortstat LAST_COMMIT..origin/release
-      cd apps/llm-service && git diff --shortstat LAST_COMMIT..origin/release
-  */}
-</Accordion>
-
-<Accordion title="Pull Requests (X total)" icon="code-pull-request">
-  **API (X PRs)**
-  | PR | Description |
-  |----|-------------|
-  | [#XXX](https://github.com/qumisinc/qumis-api/pull/XXX) | Title |
-
-  **Web (X PRs)**
-  | PR | Description |
-  |----|-------------|
-  | [#XXX](https://github.com/qumisinc/qumis-web/pull/XXX) | Title |
-
-  **LLM Service (X PRs)**
-  | PR | Description |
-  |----|-------------|
-  | [#XXX](https://github.com/qumisinc/qumis-llm-service/pull/XXX) | Title |
-</Accordion>
-
-<Accordion title="Related Linear Tickets" icon="ticket">
-  **Major Features:**
-  - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
-
-  **Bug Fixes:**
-  - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
-
-  **Improvements:**
-  - [ENG-XXXX](https://linear.app/qumis/issue/ENG-XXXX) — Description
-</Accordion>
+  - Note about deployment
+*/}
