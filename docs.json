@@ -132,6 +132,21 @@
             ]
           },
           {
+            "group": "Strategic Messaging",
+            "pages": [
+              "internal/messaging/index",
+              "internal/messaging/positioning",
+              "internal/messaging/audience-messaging",
+              "internal/messaging/persona-messaging",
+              "internal/messaging/competitive-differentiation",
+              "internal/messaging/proof-points",
+              "internal/messaging/language-guide",
+              "internal/messaging/objection-handling",
+              "internal/messaging/ascend-program",
+              "internal/messaging/data-privacy"
+            ]
+          },
+          {
             "group": "Engineering",
             "pages": [
               "internal/engineering/index",

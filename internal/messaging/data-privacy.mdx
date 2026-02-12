@@ -1,0 +1,104 @@
+---
+title: "Data & Privacy Messaging"
+description: "Data, AI, and customer privacy messaging guide with language discipline and red lines"
+icon: "lock"
+noindex: true
+---
+
+<Warning>
+This content is confidential and for internal use only. Do not share with prospects or external parties.
+</Warning>
+
+This section governs how Qumis talks about customer data and AI. Every claim must be accurate to the actual architecture and contractual commitments. The language is precise for a reason — imprecise data messaging either creates legal liability or forfeits competitive positioning.
+
+## The Core Tension
+
+Qumis's positioning depends on two commitments that sound contradictory:
+
+1. "Your data is never used to train large language models."
+2. "Qumis has proprietary intelligence built from thousands of commercial insurance programs."
+
+These are not contradictory. They describe different activities happening to different forms of data. The first refers to customer-identifiable data, which is always private and siloed. The second refers to de-identified, aggregated coverage intelligence — patterns, structures, benchmarks — that cannot be traced back to any customer. Your team must be able to explain this distinction clearly. When they can't, trust collapses.
+
+<Info>
+**The precise commitment:** Qumis does not use customer data to train general-purpose or foundational large language models. Qumis does build proprietary knowledge infrastructure and specialized domain capabilities from de-identified, aggregated coverage intelligence. These are architecturally and contractually distinct activities. The prohibition is specific. The permitted uses are specific. Both are in the MSA (Section 8.5 and Section 4.4).
+</Info>
+
+### What Your Team Needs to Understand
+
+- **Customer-identifiable data** — policies, analysis outputs, usage history — is logically segregated, never visible to other customers, never used to train any model, and deleted within 60 days of termination
+- **Third-party AI providers** process customer data for inference only. They are contractually prohibited from training on it
+- **De-identified, aggregated intelligence** — coverage language patterns, carrier behaviors, endorsement structures, market benchmarks — is derived from customer data but stripped of identifying information. It powers Qumis's market intelligence features and is used to improve the platform, including developing specialized domain capabilities like classifiers, quality scoring, and analytical tools. This is standard practice for vertical AI platforms and is analogous to how a credit bureau derives market benchmarks from individual account data
+- **User feedback signals** (thumbs up/down, corrections) inform product improvement. They are about output quality, not customer documents
+
+---
+
+## The Questions Your Team Will Get
+
+<AccordionGroup>
+  <Accordion title='"Do you use our data to train your AI?"'>
+    "We do not use your data to train large language models — not ours, not any third-party provider's. That's a contractual commitment. Separately, Qumis maintains a proprietary knowledge base built from de-identified coverage patterns across thousands of programs — that's what powers our market intelligence and benchmarking. But that's aggregated and de-identified. It doesn't contain anyone's specific policies."
+  </Accordion>
+
+  <Accordion title='"How can you have market intelligence if you don&#39;t use customer data?"'>
+    "We distinguish between customer data — always private, always siloed — and de-identified coverage intelligence derived from thousands of programs. The knowledge base captures patterns: how carriers structure exclusions, what coverage terms look like across industries. It never contains specific policies or identifying information. It's like how a credit bureau provides market benchmarks without exposing any individual's account."
+  </Accordion>
+
+  <Accordion title='"Is our data commingled with other customers&#39;?"'>
+    "No. Your data is logically segregated — no other customer can access or view it. Our market intelligence layer is a separate, de-identified knowledge base. Architecturally distinct from any customer's identifiable data."
+  </Accordion>
+
+  <Accordion title='"What third-party AI providers do you use?"'>
+    "Enterprise-grade providers that are contractually prohibited from training on your data. We don't disclose specific providers because those relationships may evolve. What matters is the contractual protection — that's in our MSA."
+  </Accordion>
+
+  <Accordion title='"Do you build your own AI models from customer data?"'>
+    "Qumis develops specialized coverage analysis capabilities — classification, quality scoring, extraction — using de-identified, aggregated intelligence from our knowledge base. No customer's identifiable data is used. This is how every serious vertical AI platform works — it's how we continuously improve accuracy while maintaining complete data privacy."
+  </Accordion>
+
+  <Accordion title='"What happens to our data if we leave?"'>
+    "All customer data is securely deleted within 60 days. Any de-identified intelligence derived from aggregated patterns during your time on the platform persists in the knowledge base — but by definition, that data doesn't identify you or contain your specific policies."
+  </Accordion>
+
+  <Accordion title='"Will you sign our AI data usage addendum?"'>
+    "Happy to review it. Our MSA Sections 8.5 and 4.4 already address data isolation, model training restrictions, third-party providers, and aggregated data. Let me share the relevant sections so your legal team can compare."
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Language Discipline
+
+| Use | Avoid | Why |
+| ----- | ----- | ----- |
+| "Never used to train large language models" | "Never used to train AI" / "never used for training" | The commitment is specific to foundational LLMs. Broader language forecloses domain-specific capabilities built on de-identified data |
+| "Logically segregated" | "Physically isolated" / "dedicated environment" | Logical segregation is what you provide. Physical isolation implies infrastructure you don't offer |
+| "De-identified, aggregated intelligence" | "Anonymized data" | More precise. "Anonymized" has specific legal definitions that may not match your process |
+| "Proprietary knowledge base" / "coverage intelligence layer" | "Our database of customer policies" | Positions the asset correctly — as derived intelligence, not collected documents |
+| "Specialized domain capabilities" | "Our AI models trained on data" | Describes the same thing without triggering the training fear response |
+| "Processed through AI models" | "Fed into AI" / "sent to AI" | "Processed" is clinical. "Fed" sounds careless |
+| "Contractually prohibited" | "We promise" / "we don't do that" | Contractual language is stronger than verbal assurances |
+| "Enterprise-grade AI providers" | Naming specific providers | Relationships may change. Naming invites comparison to consumer products |
+| "Derived data structures" | "Graph database" / "knowledge graph" (customer-facing) | Technically accurate, doesn't attract scrutiny |
+
+---
+
+## Red Lines: What Your Team Must Never Say
+
+<Warning>
+These statements create legal liability or destroy trust. Do not use under any circumstances.
+</Warning>
+
+- **"We never use your data for anything except your own analysis."** — Conflicts with MSA Section 4.4. If legal reads this statement and then reads the contract, trust collapses
+- **"We built our own large language model."** — You use third-party foundation models with a proprietary intelligence layer. This claim invites scrutiny you can't survive
+- **"Your data never leaves our servers."** — Customer data is processed through third-party providers for inference. This will be caught in any serious security review
+- **"We train our AI on customer data to make the platform better."** — Conflates multiple distinct activities into the single statement buyers fear most. Indefensible in a sales context even though elements are technically true for the de-identified layer
+- **"Our AI is 100% accurate" / "Our AI never hallucinates."** — Creates legal liability. Use citation-linked outputs and "I don't know" safeguards framing
+
+---
+
+## Internal Note
+
+<Info>
+The "large language models" qualifier throughout this section is deliberate and must not be softened to "any AI" or "any models." The MSA prohibits training "general-purpose or foundational" large language models on customer data. It does not prohibit building specialized domain capabilities from de-identified aggregated data under Section 4.4. This precise language preserves full product optionality — graph databases, classifiers, evaluators, scoring models, SLMs — while maintaining an honest, defensible commitment to customers. If a customer's legal team pushes to narrow the aggregated data or permitted uses provisions, escalate to Dan.
+</Info>
