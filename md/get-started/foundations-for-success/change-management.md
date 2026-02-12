@@ -1,0 +1,258 @@
+---
+title: "Change Management"
+---
+
+> **Info:** Implementing Qumis is not just about learning new technology — it's about transforming how your organization works.
+>
+> The insurance industry has a long history of established workflows and manual processes. Many professionals have developed expertise over decades, and they trust what's proven. However, the arrival of **Generative AI (GenAI)** is redefining what's possible. It can dramatically speed up policy analysis, improve accuracy, and reduce manual work — but only if your organization **manages the change thoughtfully**.
+>
+> This manual will teach you how to plan, guide, and sustain your Qumis implementation using the **ADKAR framework**, a proven model developed by Prosci to help people navigate change.
+
+---
+
+## What Is the ADKAR Framework?
+
+**ADKAR** stands for:
+
+1. **Awareness** – understanding why change is necessary
+2. **Desire** – building motivation to support the change
+3. **Knowledge** – learning how to make the change
+4. **Ability** – putting new skills and behaviors into practice
+5. **Reinforcement** – making the change stick
+
+Each stage represents a milestone your people must achieve before the change can truly take hold. You can't skip steps; they build on one another.
+
+---
+
+## Step 1: Build Awareness
+
+### What It Means
+
+Awareness is helping your team understand **why** the organization is implementing Qumis and **what's at stake** if they don't adapt.
+
+### Why It Matters
+
+Insurance professionals are often cautious about new tools. Many have refined their workflows over decades and may feel that manual review or offshore outsourcing "works just fine." Without a clear "why," they'll see Qumis as extra work instead of an enabler.
+
+### How to Build Awareness
+
+### Craft a clear message from leadership
+
+Communicate that Qumis isn't replacing expertise — it's **amplifying it**.
+
+Example message:
+
+> "We're implementing Qumis to reduce manual busywork so our teams can spend more time advising clients, not retyping policy details."
+
+### Show the problem
+
+Use data or examples:
+
+- How much time is spent comparing policies manually?
+- How often do errors occur due to manual entry or missed exclusions?
+
+### Use relatable examples
+
+Demonstrate real-life benefits:
+
+- A broker who used Qumis to compare quotes in 10 minutes instead of 3 hours.
+- A claims professional who used AI analysis to find coverage discrepancies others missed.
+
+### Hold awareness sessions
+
+- Host 30-minute "Why Qumis?" briefings for every department.
+- Use visual demos showing before-and-after workflows.
+- Encourage open discussion of fears or misconceptions.
+
+> **Tip:** Awareness must come from leadership **and** direct managers. Employees trust messages most when they come from their immediate supervisors.
+
+---
+
+## Step 2: Create Desire
+
+### What It Means
+
+Desire is when people **want** to participate in and support the change.
+
+### Why It Matters
+
+People won't change their habits unless they see personal value. In insurance, that often means **saving time**, **reducing rework**, or **looking more professional** in front of clients.
+
+### How to Build Desire
+
+### Make it personal
+
+Show how Qumis saves each role time and headaches.
+
+Example: "You'll spend less time checking endorsements and more time winning renewals."
+
+### Identify and engage champions
+
+Find early adopters (e.g., a tech-savvy producer or service team member) who can model success. Let them share real examples of how Qumis made their job easier.
+
+### Remove fears
+
+Clarify that Qumis is **not** replacing jobs but improving quality and reducing burnout. Emphasize: "AI will handle the repetitive work; you'll handle the expert judgment."
+
+### Incentivize adoption
+
+Recognize or reward teams who complete their first successful Qumis workflow. Create friendly competitions (e.g., "Fastest Policy Checker of the Month").
+
+---
+
+## Step 3: Build Knowledge
+
+### What It Means
+
+Knowledge is giving your team the **skills and understanding** to use Qumis confidently.
+
+### Why It Matters
+
+Even motivated employees can get frustrated without clear, practical training — especially those who aren't used to AI tools or modern software platforms.
+
+### How to Build Knowledge
+
+### Create a structured training plan
+
+Start with short sessions, not long lectures.
+
+- **Session 1:** Logging in, uploading documents, and using Chat with Documents.
+- **Session 2:** Comparing quotes and analyzing policies.
+- **Session 3:** Using prompt libraries and custom reports.
+
+### Use real examples
+
+Train using your team's actual documents (quotes, policies, claims files). Familiar content helps learning stick.
+
+### Record training sessions
+
+So employees can rewatch when needed — ideal for those less confident with technology.
+
+### Provide quick-reference guides
+
+Offer one-page cheat sheets showing:
+
+- How to upload and analyze a policy
+- How to compare two documents
+- How to use prompts effectively
+
+### Encourage peer learning
+
+- Pair less tech-savvy employees with "Qumis Champions."
+- Create a Slack or Teams channel for Qumis questions and tips.
+
+> **Tip:** Avoid information overload. People learn better through short, repeated exposure rather than one long session.
+
+---
+
+## Step 4: Develop Ability
+
+### What It Means
+
+Ability is when your team can **actually perform** the new behaviors — not just understand them.
+
+### Why It Matters
+
+Knowledge alone doesn't equal performance. You need to give people **practice, support, and feedback** until using Qumis becomes natural.
+
+### How to Build Ability
+
+### Start with low-risk tasks
+
+Have teams analyze sample policies or claims before using Qumis on live client work.
+
+### Set small goals
+
+- Week 1: Upload and analyze one policy.
+- Week 2: Compare two documents.
+- Week 3: Use Qumis to generate one client-facing report.
+
+### Provide on-the-job coaching
+
+Managers or Qumis Champions should review outputs together. Discuss what went well and what can be improved.
+
+### Encourage feedback
+
+Ask users: "What confused you?" "What saved you the most time?" Capture feedback in a shared document or form.
+
+### Celebrate early wins
+
+Share stories where Qumis helped a client or saved hours of work. Public success stories build confidence across teams.
+
+---
+
+## Step 5: Reinforce the Change
+
+### What It Means
+
+Reinforcement ensures that using Qumis becomes a **habit**, not a one-time project.
+
+### Why It Matters
+
+Without reinforcement, old habits will return — especially in insurance, where "we've always done it this way" is a common refrain.
+
+### How to Reinforce the Change
+
+### Track usage and results
+
+Use Qumis analytics (or internal tracking) to see how often features are used. Share metrics: "This month, Qumis saved our team 120 hours of manual work."
+
+### Recognize consistent users
+
+Highlight top adopters in company meetings or newsletters.
+
+### Refresh training regularly
+
+Offer quarterly "Qumis Refresher" sessions to introduce new features and address gaps.
+
+### Document success stories
+
+Turn real results into internal case studies (e.g., "How the Claims Team Reduced Review Time by 60%").
+
+### Update procedures
+
+Embed Qumis into standard operating procedures (SOPs) and checklists. Example: "Step 2 – Upload policies into Qumis for automated review."
+
+> **Tip:** Sustained reinforcement transforms AI from an "initiative" into part of your company culture.
+
+---
+
+## Putting It All Together
+
+| ADKAR Stage       | Goal                           | Key Actions                                   | Tools & Tips              |
+| ----------------- | ------------------------------ | --------------------------------------------- | ------------------------- |
+| **Awareness**     | Explain why Qumis is needed    | Host leadership briefings, show real examples | "Why Qumis?" session deck |
+| **Desire**        | Motivate people to participate | Identify champions, show personal benefits    | Rewards & peer sharing    |
+| **Knowledge**     | Teach people how               | Provide short, role-based training sessions   | Recordings, cheat sheets  |
+| **Ability**       | Enable performance             | Hands-on practice and coaching                | Team challenges           |
+| **Reinforcement** | Sustain adoption               | Track usage, celebrate wins, update SOPs      | Monthly metrics & stories |
+
+---
+
+## Common Challenges and How to Overcome Them
+
+| Challenge                                  | What's Happening                           | How to Address It                                                  |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------------------------------ |
+| **"We don't have time for this."**         | People are overloaded and fear extra work. | Start small — show how Qumis *saves* time on routine tasks.        |
+| **"I don't trust AI."**                    | Fear of inaccuracy or job loss.            | Emphasize human oversight: AI supports expertise, not replaces it. |
+| **"Our team's too set in our ways."**      | Long-standing habits are hard to break.    | Engage respected leaders early — their buy-in influences others.   |
+| **"This isn't how we've always done it."** | Cultural resistance to innovation.         | Reinforce results — once people see value, attitudes shift.        |
+
+---
+
+## Key Takeaways
+
+- Change management is as critical as the technology itself.
+- The ADKAR framework helps guide your people step-by-step through awareness, desire, knowledge, ability, and reinforcement.
+- Success comes from **communication, training, and leadership consistency** — not just software rollout.
+- Qumis is a tool for empowerment — helping your experts do their best work faster, smarter, and with confidence.
+
+---
+
+## Additional Resources
+
+- **Prosci:** https://www.prosci.com/methodology/adkar
+- **McKinsey:** *Leading Change in Traditional Industries* – https://www.mckinsey.com/business-functions/organization
+- **Qumis Help Center:** https://www.qumis.ai/help
+
+---

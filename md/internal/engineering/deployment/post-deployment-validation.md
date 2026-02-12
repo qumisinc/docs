@@ -1,0 +1,404 @@
+---
+title: "Post-Deployment Validation"
+description: "Comprehensive end-to-end smoke test checklist for production releases"
+icon: "flask-conical"
+noindex: true
+# groups: ["internal"]
+---
+
+This comprehensive smoke test checklist ensures all critical application functions work correctly after a production deployment. Execute these tests systematically to validate the release.
+
+> **Info:** **Time Required**: 30-45 minutes for full validation
+> **Prerequisites**: Test user account with Stytch SSO, sample PDFs (policy, binder, contract), access to monitoring tools
+
+## Preconditions
+
+Before starting validation, ensure you have:
+
+- \[ ] **Test user account** with Stytch SSO and organization access
+- \[ ] **Sample documents** ready:
+  - Small PDF policy document
+  - Binder or quote PDF
+  - Contract PDF
+- \[ ] **API endpoints** deployed and reachable
+- \[ ] **LLM services** operational
+- \[ ] **Monitoring access** to CloudWatch, Sentry, and FullStory
+
+## 1. Login, Home & Navigation
+
+### Initial Access
+
+- \[ ] **Home page loads** (https://app.qumis.ai/) → 200 OK
+- \[ ] **No console errors** (check browser developer tools)
+- \[ ] **All tiles visible**:
+  - Chat with Documents
+  - Compare Documents
+  - Claims
+  - Create Coverage Table
+  - Policy Analysis
+  - Documents Vault
+  - Contracts
+  - Custom Reporting
+  - Legal Search
+
+### Authentication
+
+- \[ ] **Stytch SSO login** successful
+- \[ ] **Session persistence** - refresh page, session maintained
+- \[ ] **Logout** redirects to login page correctly
+
+### Deep Links
+
+Verify all routes load without 404 errors:
+
+- \[ ] `/single-policy-analysis`
+- \[ ] `/policy-comparison`
+- \[ ] `/claim-coverage` (Coverage report)
+- \[ ] `/coverage-checklist`
+- \[ ] `/documents` (Vault)
+- \[ ] `/chat`
+
+## 2. Upload & Vault Operations
+
+### My Vault
+
+- \[ ] **Upload policy PDF** to My Vault
+- \[ ] **Document appears** in vault list
+- \[ ] **Viewer opens** document correctly
+- \[ ] **Download** works properly
+
+### Shared Vault
+
+- \[ ] **Switch to Shared Vault** tab
+- \[ ] **Upload binder PDF**
+- \[ ] **Document visible** to team members
+- \[ ] **Viewer functionality** works
+
+### Vault Management
+
+- \[ ] **Rename document** (if supported)
+- \[ ] **Tag document** (if supported)
+- \[ ] **Changes persist** after refresh
+- \[ ] **Delete/restore** functions correctly
+
+## 3. Search Functionality
+
+### Uploaded Document Search (Typesense)
+
+Test from the **Home search bar**:
+
+- \[ ] **Search keyword** from uploaded policy
+- \[ ] **Results include** the document
+- \[ ] **Filters work** (if available)
+- \[ ] **Pagination** functions correctly
+- \[ ] **Result opens** correct document
+
+### Vault Document Search
+
+Test from **/documents** page:
+
+- \[ ] **Search by filename** returns correct results
+- \[ ] **Search by metadata** works
+- \[ ] **Results open** in vault viewer
+- \[ ] **Non-indexed documents** are findable
+
+## 4. Single Policy Analysis
+
+Navigate to `/single-policy-analysis`:
+
+- \[ ] **Page loads** without errors
+- \[ ] **Select policy PDF** from My Vault
+- \[ ] **Generate button** clickable
+- \[ ] **Progress indicator** shows during processing
+- \[ ] **Job transitions** to Complete status
+- \[ ] **Report opens** successfully
+
+### Report Content
+
+- \[ ] **Executive summary** renders
+- \[ ] **Key findings** display correctly
+- \[ ] **Limits table** present
+- \[ ] **Endorsements** listed
+- \[ ] **Interactive charts** function (if applicable)
+- \[ ] **Download/Share** options work
+- \[ ] **Report appears** in Home → Recent
+
+## 5. Policy Comparison
+
+Navigate to `/policy-comparison`:
+
+- \[ ] **Page loads** correctly
+- \[ ] **Select two documents** (policy + binder)
+- \[ ] **Run comparison** starts processing
+- \[ ] **Status updates** to Complete
+- \[ ] **Results display**:
+  - Side-by-side tables
+  - Difference callouts
+  - Highlights render correctly
+- \[ ] **Export/Download** functions work
+
+## 6. Coverage Report
+
+Navigate to `/claim-coverage`:
+
+- \[ ] **Page loads** without errors
+- \[ ] **Select policy** and claim context
+- \[ ] **Generate report** processes successfully
+- \[ ] **Findings render** correctly
+- \[ ] **Recommendations** display
+- \[ ] **Save/Export** options work
+
+## 7. Coverage Checklist
+
+Navigate to `/coverage-checklist`:
+
+- \[ ] **Page loads** correctly
+- \[ ] **Select policies** (one or more)
+- \[ ] **Generate checklist**
+- \[ ] **Table builds** with expected columns:
+  - Limits
+  - Deductibles
+  - Carriers
+- \[ ] **Excel/CSV download** works
+
+## 8. Custom Reporting
+
+From Home tile:
+
+- \[ ] **Custom Reporting** opens
+- \[ ] **Template selection** works
+- \[ ] **Include uploaded document** in report
+- \[ ] **Generation starts** and shows progress
+- \[ ] **Status transitions** to Complete
+- \[ ] **Final report** opens with:
+  - Expected sections
+  - Artifacts present
+  - Proper formatting
+
+## 9. Chat Functionality
+
+### Global Chat (`/chat`)
+
+- \[ ] **Chat page** opens correctly
+- \[ ] **Ask question** referencing uploaded doc: "What is the general aggregate in policy.pdf?"
+- \[ ] **Response uses** document context
+- \[ ] **Citations/links** work (if featured)
+- \[ ] **Save chat** function works
+- \[ ] **Chat appears** in:
+  - Chats list
+  - Home → Recent (Chats toggle)
+
+### In-Report Chat
+
+From any report page:
+
+- \[ ] **Embedded chat** opens
+- \[ ] **Ask question**: "Summarize key exclusions in this report"
+- \[ ] **Response references** current report context
+- \[ ] **Links jump** to relevant sections
+
+## 10. Background Jobs & Reliability
+
+### Queue Testing
+
+- \[ ] **Queue 5 small jobs** (mix of uploads/reports)
+- \[ ] **All process** within expected timeframe
+- \[ ] **No stuck items** in queue/admin
+- \[ ] **Retry mechanism** works for failed jobs
+
+### Performance
+
+- \[ ] **Response times** acceptable
+- \[ ] **No timeout errors**
+- \[ ] **Memory usage** normal
+- \[ ] **CPU usage** within limits
+
+## 11. Integrations & Observability
+
+### Email Integration (Postmark)
+
+- \[ ] **Send report via email**
+- \[ ] **Postmark shows** Delivered status
+- \[ ] **Email received** correctly
+
+### Error Tracking (Sentry)
+
+- \[ ] **Trigger handled error** (e.g., invalid filter)
+- \[ ] **Event appears** in Sentry dashboard
+- \[ ] **Context captured** correctly
+
+### Session Recording (FullStory)
+
+- \[ ] **Session recording** present for test user
+- \[ ] **Events tracked** properly
+
+### Monitoring
+
+- \[ ] **CloudWatch metrics** show activity
+- \[ ] **API logs** clean (no stack traces)
+- \[ ] **LLM service logs** normal
+- \[ ] **Slack alerts** functioning (if triggered)
+
+## 12. Authentication & Permissions
+
+### API Protection
+
+- \[ ] **Unauthenticated request** → 401 response
+- \[ ] **Valid session request** → 200 response
+
+### Role-Based Access
+
+- \[ ] **Role restrictions** enforced correctly
+- \[ ] **Lower privilege user** blocked from restricted routes
+- \[ ] **Admin functions** available to admin users only
+
+### Session Management
+
+- \[ ] **Logout** clears session
+- \[ ] **Redirect to login** after logout
+- \[ ] **Session timeout** works (if applicable)
+
+## 13. Critical Failure Indicators
+
+> **Warning:** **Immediate Rollback Required** if any of these occur:
+>
+> - Any health endpoint returns 5xx errors
+> - Jobs enqueue but never complete
+> - Model provider errors from LLM service
+> - Search or storage services unavailable
+> - Authentication consistently fails
+> - Observability/alerts not functioning
+
+## Execution Record
+
+Track your validation progress:
+
+| Step | Status | Tester | Timestamp | Notes |
+|------|--------|--------|-----------|-------|
+| **1. Login & Home** | ⬜ | | | |
+| **2. Vault: My + Shared** | ⬜ | | | |
+| **3. Search (Typesense)** | ⬜ | | | |
+| **3. Search (Vault)** | ⬜ | | | |
+| **4. Single Policy Analysis** | ⬜ | | | |
+| **5. Policy Comparison** | ⬜ | | | |
+| **6. Coverage Report** | ⬜ | | | |
+| **7. Coverage Checklist** | ⬜ | | | |
+| **8. Custom Report** | ⬜ | | | |
+| **9. Chat (/chat)** | ⬜ | | | |
+| **9. Chat (in report)** | ⬜ | | | |
+| **10. Background Jobs** | ⬜ | | | |
+| **11. Integrations** | ⬜ | | | |
+| **12. Auth & Permissions** | ⬜ | | | |
+
+## Validation Scripts
+
+```bash quick-health-check.sh
+#!/bin/bash
+# quick-health-check.sh
+
+echo "🔍 Running quick health checks..."
+
+# Check main application
+echo -n "App Health: "
+if curl -f -s https://app.qumis.ai/health > /dev/null; then
+  echo "✅ OK"
+else
+  echo "❌ FAILED"
+fi
+
+# Check API
+echo -n "API Health: "
+if curl -f -s https://api.qumis.ai/health > /dev/null; then
+  echo "✅ OK"
+else
+  echo "❌ FAILED"
+fi
+
+# Check for recent errors
+echo "Recent Errors:"
+aws logs filter-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --start-time $(date -u -d '5 minutes ago' '+%s')000 \
+  --filter-pattern "ERROR" \
+  --max-items 5 \
+  --profile qumis_prod
+```
+
+```bash comprehensive-validation.sh
+#!/bin/bash
+# comprehensive-validation.sh
+
+echo "🧪 Starting comprehensive validation..."
+
+# Function to test endpoint
+test_endpoint() {
+  local url=$1
+  local name=$2
+
+  if curl -f -s "$url" > /dev/null; then
+    echo "✅ $name: OK"
+    return 0
+  else
+    echo "❌ $name: FAILED"
+    return 1
+  fi
+}
+
+# Test all critical endpoints
+test_endpoint "https://app.qumis.ai/" "Home Page"
+test_endpoint "https://app.qumis.ai/documents" "Documents Vault"
+test_endpoint "https://app.qumis.ai/chat" "Chat Interface"
+test_endpoint "https://api.qumis.ai/health" "API Health"
+
+# Check background jobs
+echo "Checking Sidekiq..."
+qumis services exec api \
+  --env prod \
+  --reason "Check Sidekiq status" \
+  --confirm "prod" \
+  -- rails runner "puts Sidekiq::Stats.new.to_h"
+
+echo "Validation complete!"
+```
+
+## Troubleshooting Common Issues
+
+### Login Issues
+
+- **Check** Stytch service status
+- **Verify** SSO configuration
+- **Review** CloudWatch logs for auth errors
+
+### Document Processing Failures
+
+- **Verify** S3 bucket accessibility
+- **Check** Lambda function logs
+- **Confirm** PDF processing service is running
+
+### Search Not Working
+
+- **Check** Typesense service health
+- **Verify** indexing jobs are running
+- **Review** search service logs
+
+### Report Generation Stuck
+
+- **Check** Sidekiq queue depth
+- **Verify** LLM service availability
+- **Review** background job logs
+- **Check** for rate limiting
+
+## Next Steps
+
+After successful validation:
+
+1. **Update deployment tracker** with completion status
+2. **Notify team** in #deployments channel
+3. **Monitor metrics** for 30 minutes post-deployment
+4. **Document any issues** encountered
+
+For issues or rollback:
+
+- See [Rollback Procedures](/internal/engineering/deployment/rollback-procedures)
+- Check [Common Issues](/internal/engineering/troubleshooting/common-issues)
+- Review [CloudWatch Monitoring](/internal/engineering/infrastructure/cloudwatch-monitoring)

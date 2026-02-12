@@ -1,0 +1,22 @@
+---
+title: "Playbook for Service Teams"
+description: "Operational workflows and best practices for service teams using Qumis AI to deliver efficient, accurate client support"
+---
+
+# Playbook for Service Teams
+
+> **Info:** This playbook provides service teams with practical workflows for leveraging Qumis AI to handle client requests efficiently, resolve issues quickly, and maintain high service quality.
+
+## Coming Soon
+
+This playbook is currently under development. It will include:
+
+- Certificate of insurance (COI) processing workflows
+- Policy change and endorsement procedures
+- Client inquiry response strategies
+- Document retrieval and management
+- Compliance verification processes
+- Service issue escalation protocols
+- Quality assurance best practices
+
+Check back soon for comprehensive guidance on maximizing Qumis AI for service operations.

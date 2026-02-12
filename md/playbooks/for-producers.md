@@ -1,0 +1,22 @@
+---
+title: "Playbook for Producers"
+description: "Sales-focused workflows and strategies for insurance producers using Qumis AI to accelerate the sales cycle and close more business"
+---
+
+# Playbook for Producers
+
+> **Info:** This playbook equips insurance producers with sales-focused workflows for leveraging Qumis AI to qualify prospects faster, create compelling proposals, and close more business efficiently.
+
+## Coming Soon
+
+This playbook is currently under development. It will include:
+
+- Prospecting and lead qualification workflows
+- Risk assessment and opportunity sizing
+- Proposal development strategies
+- Competitive positioning techniques
+- Pricing analysis and negotiation support
+- Objection handling with data-driven insights
+- Pipeline management best practices
+
+Check back soon for comprehensive guidance on maximizing Qumis AI for insurance sales.

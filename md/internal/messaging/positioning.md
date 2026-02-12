@@ -1,0 +1,87 @@
+---
+title: "Positioning & Value Propositions"
+description: "Qumis positioning statement and core value propositions"
+icon: "crosshair"
+noindex: true
+# groups: ["internal"]
+---
+
+> **Warning:** This content is confidential and for internal use only. Do not share with prospects or external parties.
+
+## Positioning Statement
+
+Qumis is the coverage intelligence platform for commercial P\&C insurance professionals. Built by a licensed coverage attorney and AI experts, Qumis combines legal-grade policy analysis with proprietary market intelligence drawn from thousands of commercial insurance programs — delivering not just what a policy says, but what it means in the context of the broader market. Unlike generic AI tools that process documents or workflow automation platforms that move them faster, Qumis understands the legal nuance of insurance contracts and benchmarks coverage against real market data, enabling brokers, carriers, and claims teams to interpret, evaluate, and position policies with the precision of experienced coverage counsel and the market context of a seasoned industry insider — at enterprise speed and scale.
+
+### Why this positioning works
+
+- **Category ownership:** "Coverage intelligence" anchors the category, encompassing both legal analysis and market intelligence — a broader, more defensible category definition that competitors can't follow into
+- **Credibility anchor:** Attorney-built credentials establish domain authority on the analysis side; the proprietary data asset ("thousands of commercial insurance programs") establishes authority on the market intelligence side — two moats, not one
+- **Dual value proposition:** "What a policy says" vs. "what it means in context" captures the full spectrum — from document-level analysis to market-level insight. This is the difference between a reading tool and an intelligence platform
+- **Clear contrast:** Separates from three competitors simultaneously: generic AI (no domain expertise), workflow automation (no coverage reasoning), and traditional consulting/law firms (no scale, no market data)
+- **Outcome focus:** "Interpret, evaluate, and position" maps to actual jobs-to-be-done across three user personas — claims professionals interpreting coverage, account teams evaluating adequacy, and producers positioning placements
+- **Data moat signaling:** Referencing proprietary market data signals this isn't just AI applied to documents — it's accumulated intelligence that gets more valuable over time
+
+## Core Value Propositions
+
+### Legal-Grade Accuracy from Attorney-Trained AI
+
+Qumis doesn't just read policies, it reasons about them. Our AI was developed by a licensed coverage attorney and trained on the interpretive frameworks that experienced counsel use to analyze coverage questions. Every output is citation-linked to source documents, with built-in safeguards that say "I don't know" when evidence is insufficient.
+
+**Proof Points:**
+
+- Founded by a licensed insurance coverage attorney with law firm and in-house experience
+- Multi-agent AI architecture mirrors actual legal review processes
+- Citation-linked outputs enable audit trails and defensible decisions
+- "I don't know" responses prevent AI hallucination on ambiguous coverage questions
+
+> **Tip:** **Messaging rationale:** This is our primary differentiator. Generic AI hallucinates on legal nuance; we're built for legal-grade precision.
+
+### Coverage Intelligence, Not Workflow Automation
+
+Competitors automate document shuffling. Qumis unlocks the intelligence inside the contract itself. We transform unstructured policy language into structured, queryable data that enables coverage reasoning at scale, turning illiquid contract intelligence into a strategic asset.
+
+**Proof Points:**
+
+- Proprietary insurance taxonomies understand clause roles (exclusions, conditions, endorsements)
+- Structured data extraction enables programmatic analysis across policy portfolios
+- Coverage comparison goes beyond differences to surface strategic implications
+- Legal Search (beta) connects policy questions to relevant case law
+
+> **Tip:** **Messaging rationale:** Draws clear contrast with FurtherAI and other workflow tools. We're not faster document processing; we're deeper document understanding.
+
+### Trusted by Enterprise Leaders
+
+Qumis is the platform of choice for the industry's most demanding users. Our enterprise-grade security, SOC 2 certification, and proven scalability have earned the trust of top-tier brokerages navigating their highest-stakes coverage decisions.
+
+**Proof Points:**
+
+- 5 of the top 15 U.S. insurance brokerages using Qumis
+- 127% net revenue retention demonstrates expansion within accounts
+- SOC 2 Type I certified with enterprise-grade data security
+- NFP deployment: expanded from pilot to 250+ seats in production
+
+> **Tip:** **Messaging rationale:** Enterprise logos provide credibility that no feature list can match. This signals we're a proven, enterprise-ready solution.
+
+### Built for How Insurance Actually Works
+
+Insurance professionals don't work in generic workflows. They navigate layered coverage programs, endorsement towers, and nuanced policy language. Qumis was purpose-built for these realities, not adapted from generic document processing tools.
+
+**Proof Points:**
+
+- Document Vault centralizes policy portfolios for cross-document analysis
+- Handles complex scenarios: endorsements, amendments, layered programs
+- Prompt Library enables team-wide consistency on coverage workflows
+- QumisScore provides proprietary accuracy metrics for comparison results
+
+> **Tip:** **Messaging rationale:** Signals deep domain expertise that generic tools can't match.
+
+### Market Intelligence Powered by Proprietary Data
+
+Qumis doesn't just analyze policies in isolation. Our platform draws on a proprietary database of thousands of commercial insurance programs to contextualize every analysis — surfacing how coverage compares to market norms, where gaps exist relative to industry benchmarks, and what best-in-class coverage looks like for a given risk class. This turns every policy review from a standalone reading exercise into a market-informed coverage evaluation.
+
+**Proof Points:**
+
+- Proprietary database of 10,000+ commercial insurance policies across major lines of business
+- QumisScore benchmarks coverage quality against market standards
+- Coverage gap detection informed by cross-portfolio pattern analysis
+- Market context enriches every report, comparison, and coverage opinion

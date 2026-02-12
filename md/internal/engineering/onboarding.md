@@ -1,0 +1,274 @@
+---
+title: "Engineering Onboarding"
+description: "New engineer setup guide for joining the Qumis team"
+icon: "user-plus"
+noindex: true
+# groups: ["internal"]
+---
+
+Welcome to the Qumis engineering team! This guide will help you get set up with all the tools and access you need.
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- GitHub account with access to Qumis repositories
+- AWS account setup (coordinate with team lead)
+- Slack access to the engineering channels
+
+> **Tip:** **AWS Console Access**: Once your AWS account is set up, you can access all environments through the AWS SSO portal:
+>
+> [**https://qumis.awsapps.com/start/#/?tab=accounts**](https://qumis.awsapps.com/start/#/?tab=accounts)
+>
+> Bookmark this URL for quick access to all AWS environments.
+
+## Day 1: Essential Setup
+
+### Install Development Tools
+
+Install the core development tools:
+
+```bash
+# Install Homebrew (macOS)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install essential tools
+brew install git gh tree
+brew install pygitup  # Highly recommended for git sync
+```
+
+### Install qumis-cli
+
+Clone and install our internal CLI tool:
+
+```bash
+git clone https://github.com/qumisinc/qumis-cli.git
+cd qumis-cli
+make deploy
+
+# Verify installation
+qumis --version
+```
+
+See [Tools Setup](/internal/engineering/tools-setup) for detailed instructions.
+
+### Configure AWS Access
+
+Set up AWS CLI and profiles:
+
+```bash
+# Install AWS CLI
+brew install awscli
+```
+
+**AWS SSO Portal Access**: [https://qumis.awsapps.com/start/#/?tab=accounts](https://qumis.awsapps.com/start/#/?tab=accounts)
+
+Create your `~/.aws/config` file with this quick-start template for CLI access:
+
+```ini
+# AWS SSO configuration
+[sso-session qumis_sso]
+sso_start_url = https://qumis.awsapps.com/start/
+sso_region = us-east-2
+sso_registration_scopes = sso:account:access
+
+[default]
+
+[profile qumis_dev]
+sso_session = qumis_sso
+sso_account_id = 080970846004
+sso_role_name = AdministratorAccess
+region = us-east-2
+output = json
+
+[profile qumis_qa]
+sso_session = qumis_sso
+sso_account_id = 340452546718
+sso_role_name = AdministratorAccess
+region = us-east-2
+output = json
+
+[profile qumis_uat]
+sso_session = qumis_sso
+sso_account_id = 499854674638
+sso_role_name = AdministratorAccess
+region = us-east-2
+output = json
+
+[profile qumis_prod]
+sso_session = qumis_sso
+sso_account_id = 729033428609
+sso_role_name = AdministratorAccess
+region = us-east-2
+output = json
+```
+
+> **Info:** For the **complete AWS configuration** with detailed comments and all profiles (including Shared Services), see [Tools Setup → AWS Configuration](/internal/engineering/tools-setup#aws-configuration).
+
+### Clone Core Repositories
+
+Clone the main repositories:
+
+```bash
+# API Repository
+git clone https://github.com/qumisinc/qumis-api.git
+
+# Web Application
+git clone https://github.com/qumisinc/qumis-web.git
+
+# Infrastructure
+git clone https://github.com/qumisinc/qumis-infra.git
+
+# Documentation
+git clone https://github.com/qumisinc/qumis-docs.git
+```
+
+## Day 2: Environment Configuration
+
+### Configure qumis-cli
+
+Set up your GitHub and Linear tokens:
+
+```bash
+# Generate GitHub token at: https://github.com/settings/tokens
+# Scopes needed: repo, workflow
+qumis config github.token <your-github-token>
+
+# Get Linear API key from: https://linear.app/settings/api
+qumis config linear.token <your-linear-api-key>
+
+# Verify configuration
+qumis doctor
+```
+
+### Set Up Local Development
+
+For API development:
+
+```bash
+cd qumis-api
+# Follow README.md for local setup
+bundle install
+rails db:setup
+```
+
+For web development:
+
+```bash
+cd qumis-web
+# Follow README.md for local setup
+npm install
+npm run dev
+```
+
+### Test AWS Access
+
+Verify your AWS access:
+
+```bash
+# Login to development environment
+qumis aws login dev
+
+# List Lambda functions
+qumis lambda list-functions --env dev
+
+# View CloudWatch logs (if you have access)
+aws logs tail /aws/lambda/qumis-api --profile qumis_dev
+```
+
+## Day 3-5: Learn the Workflow
+
+### Development Workflow
+
+### Create a feature branch
+
+```bash
+qumis feature my-feature --ticket ENG-123
+```
+
+### Keep your branch updated
+
+```bash
+qumis sync
+```
+
+### Create a pull request
+
+```bash
+qumis pr create --title "Add new feature"
+```
+
+### Deployment Process
+
+> **Warning:** Never deploy to production without:
+>
+> - Code review approval
+> - QA testing in UAT environment
+> - Team lead approval
+
+Learn about our deployment process:
+
+- [Production Deployment Guide](/internal/engineering/deployment/production-deployment)
+- [Deployment Checklist](/internal/engineering/deployment/deployment-checklist)
+
+### Monitoring & Debugging
+
+Get familiar with our monitoring tools:
+
+- [CloudWatch Monitoring](/internal/engineering/infrastructure/cloudwatch-monitoring)
+- [CloudWatch Alerts](/internal/engineering/infrastructure/cloudwatch-alerts)
+
+## Access Checklist
+
+Ensure you have access to:
+
+- \[ ] GitHub repositories (qumis org)
+- \[ ] AWS Console (at least dev environment)
+- \[ ] Linear (project management)
+- \[ ] Slack channels (#engineering, #deployments, #alerts)
+- \[ ] PagerDuty (for on-call rotation)
+- \[ ] 1Password (team vault)
+
+## Related Documentation
+
+Detailed qumis-cli and development tools installation
+
+Keep your feature branches in sync
+
+Deploy safely to production
+
+## Resources
+
+### Documentation
+
+- [qumis-cli Reference](/internal/engineering/operations/qumis-cli-reference)
+- [Git Branching Strategies](/internal/engineering/guides/git-branching-strategies)
+- [Rails Commands Guide](/internal/engineering/operations/rails-commands)
+
+### Key Repositories
+
+- [qumis-cli](https://github.com/qumisinc/qumis-cli) - Internal CLI tool
+- [qumis-api](https://github.com/qumisinc/qumis-api) - Rails API
+- [qumis-web](https://github.com/qumisinc/qumis-web) - Web application
+- [qumis-infra](https://github.com/qumisinc/qumis-infra) - Infrastructure code
+
+### Support Channels
+
+- **Slack**: #engineering for questions
+- **Wiki**: Internal wiki for detailed guides
+- **Mentor**: Your assigned onboarding buddy
+
+## First Week Goals
+
+By the end of your first week, you should:
+
+- ✅ Have all tools installed and configured
+- ✅ Successfully run the application locally
+- ✅ Deploy a change to the dev environment
+- ✅ Understand our Git workflow
+- ✅ Know how to monitor logs in CloudWatch
+- ✅ Be familiar with qumis-cli commands
+
+## Questions?
+
+Don't hesitate to ask questions in #engineering or reach out to your onboarding buddy. We're here to help you succeed!

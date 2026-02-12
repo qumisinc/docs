@@ -1,0 +1,250 @@
+---
+title: "Data Extraction List - Client Template Guide"
+description: "Define your custom extraction fields with our comprehensive template guide for insurance document analysis"
+---
+
+This guide helps you define your own data extraction template. Fill out the spreadsheet template below, and we'll configure your custom extraction list in Qumis.
+
+---
+
+## Quick Start
+
+### Download Template
+
+Download the template spreadsheet in CSV or Excel format
+
+### Define Fields
+
+Fill in one row per field you want to extract
+
+### Submit to Qumis
+
+Send the completed template to your Qumis representative
+
+---
+
+## Template Columns
+
+| Column | Required | Description |
+|--------|----------|-------------|
+| **key** | Yes | Unique identifier for this field (lowercase, underscores, no spaces) |
+| **label** | Yes | Display name shown in reports |
+| **instructions** | Yes | Detailed instructions for the AI on how to find and extract this value |
+| **example** | Yes | Example of the expected output format (see Value Types below) |
+| **mapping** | Yes | Value type: `1` (single), `M` (multiple), or `C` (complex) |
+| **category** | No | Optional grouping for organizing fields in reports |
+
+---
+
+## Value Types (Mapping)
+
+### Type `1` - Single Value
+
+Use for fields that have **exactly one value**.
+
+**When to use:**
+
+- Policy numbers, dates, names
+- Single amounts (premium, deductible)
+- Yes/No or single-choice fields
+
+**Example format:**
+
+```json
+{"field_key": "value"}
+```
+
+**Examples:**
+
+| Field | Example |
+|-------|---------|
+| Policy Number | `{"policy_number": "POL-2024-001"}` |
+| Effective Date | `{"effective_date": "2024-01-15"}` |
+| Premium Amount | `{"premium": 125000}` |
+| Insured Name | `{"insured_name": "Acme Construction Inc."}` |
+
+---
+
+### Type `M` - Multiple Values
+
+Use for fields that return a **list of simple values**.
+
+**When to use:**
+
+- Lists of items (perils, exclusions, locations)
+- Multiple selections
+- Tags or categories
+
+**Example format:**
+
+```json
+["value1", "value2", "value3"]
+```
+
+**Examples:**
+
+| Field | Example |
+|-------|---------|
+| Covered Perils | `["Fire", "Flood", "Windstorm", "Theft"]` |
+| Exclusions | `["War", "Nuclear", "Pollution"]` |
+| Named Insureds | `["ABC Corp", "XYZ Holdings", "Smith LLC"]` |
+| Locations | `["Toronto, ON", "Vancouver, BC"]` |
+
+---
+
+### Type `C` - Complex Object
+
+Use for fields that return **structured data with multiple properties**.
+
+**When to use:**
+
+- Tables or grids of data
+- Items with multiple attributes
+- Nested information
+
+**Example format:**
+
+```json
+[
+  {"property1": "value1", "property2": "value2"},
+  {"property1": "value3", "property2": "value4"}
+]
+```
+
+**Examples:**
+
+| Field | Example |
+|-------|---------|
+| Coverage Limits | `[{"coverage": "Property", "limit": 5000000}, {"coverage": "Liability", "limit": 2000000}]` |
+| Sublimits | `[{"peril": "Flood", "amount": 500000}, {"peril": "Earthquake", "amount": 250000}]` |
+| Named Insureds with Role | `[{"name": "ABC Corp", "role": "Primary"}, {"name": "XYZ Inc", "role": "Additional"}]` |
+
+---
+
+## Writing Good Instructions
+
+The **instructions** field tells the AI how to find and extract the value. Good instructions lead to accurate extractions.
+
+### Best Practices
+
+1. **Be specific** - Describe exactly what to look for
+2. **List alternative names** - Include different terms that might be used
+3. **Specify format** - Tell the AI how to format the output
+4. **Provide context** - Explain where to look in the document
+
+### Instruction Template
+
+> **Note:** Extract \[what to find]. \[Where to look]. \[Format instructions]. \[Alternative terms].
+
+### Examples
+
+| Field | Good Instruction |
+|-------|------------------|
+| **Policy Number** | "Extract the unique policy identifier. Look in the declarations page header or policy information section. This may be labeled as 'Policy Number', 'Policy No.', 'Certificate Number', or 'Policy ID'." |
+| **Effective Date** | "Extract the policy start date in ISO format (YYYY-MM-DD). Look for 'Effective Date', 'Policy Period From', 'Inception Date', or 'Coverage Begins'. If only month/year is shown, use the 1st of the month." |
+| **Deductible** | "Extract the per-occurrence deductible amount as a number without currency symbols. Look in the deductible schedule or declarations. May be labeled as 'Deductible', 'Retention', or 'Self-Insured Retention (SIR)'." |
+| **Covered Perils** | "Extract all perils explicitly covered by the policy as an array. Look in the 'Covered Causes of Loss' or 'Insured Perils' section. Include both named perils and any 'all-risk' designation." |
+
+---
+
+## Sample Template (CSV Format)
+
+Below is a complete sample template showing all required columns. You can use this as a starting point for your custom extraction list.
+
+| key | label | instructions | example | mapping | category |
+|-----|-------|--------------|---------|---------|----------|
+| `policy_number` | Policy Number | Extract the unique policy identifier. Look for 'Policy Number', 'Policy No.', or 'Certificate Number'. | `{"policy_number": "POL-2024-001"}` | `1` | Policy Info |
+| `effective_date` | Effective Date | Extract the policy start date in YYYY-MM-DD format. Look for 'Effective Date' or 'Policy Period From'. | `{"effective_date": "2024-01-15"}` | `1` | Policy Info |
+| `expiration_date` | Expiration Date | Extract the policy end date in YYYY-MM-DD format. Look for 'Expiration Date' or 'Policy Period To'. | `{"expiration_date": "2025-01-15"}` | `1` | Policy Info |
+| `insured_name` | Named Insured | Extract the primary named insured. This is the main policyholder shown in the declarations. | `{"insured_name": "ABC Corporation"}` | `1` | Policy Info |
+| `carrier_name` | Insurance Carrier | Extract the insurance company name. Look for 'Insurer', 'Carrier', or 'Underwriter'. | `{"carrier_name": "Great Northern Insurance"}` | `1` | Policy Info |
+| `premium` | Total Premium | Extract the total written premium as a number. Look for 'Premium', 'Total Premium', or 'Annual Premium'. | `{"premium": 125000}` | `1` | Financial |
+| `deductible` | Deductible Amount | Extract the per-occurrence deductible amount. Look for 'Deductible' or 'Retention'. | `{"deductible": 10000}` | `1` | Financial |
+| `coverage_limit` | Coverage Limit | Extract the total policy limit. Look for 'Limit of Liability' or 'Policy Limit'. | `{"coverage_limit": 5000000}` | `1` | Coverage |
+| `covered_perils` | Covered Perils | Extract all covered perils as a list. Look in 'Covered Causes of Loss' section. | `["Fire", "Windstorm", "Theft", "Water Damage"]` | `M` | Coverage |
+| `exclusions` | Key Exclusions | Extract notable exclusions as a list. Look in 'Exclusions' section. | `["War", "Nuclear", "Intentional Acts"]` | `M` | Coverage |
+| `sublimits` | Sublimits by Peril | Extract sublimits as objects with peril and amount. Look in sublimit schedule. | `[{"peril": "Flood", "amount": 500000}, {"peril": "Earthquake", "amount": 250000}]` | `C` | Coverage |
+| `additional_insureds` | Additional Insureds | Extract all additional insureds with their interest type. | `[{"name": "XYZ Bank", "interest": "Mortgagee"}, {"name": "City of Toronto", "interest": "Certificate Holder"}]` | `C` | Parties |
+
+---
+
+## Complete Field Reference Examples
+
+### Policy Information Fields
+
+| key | label | mapping | instructions | example |
+|-----|-------|---------|--------------|---------|
+| `policy_number` | Policy Number | `1` | Extract the unique policy identifier. Look for 'Policy Number', 'Policy No.', or 'Certificate Number'. | `{"policy_number": "POL-2024-001"}` |
+| `effective_date` | Effective Date | `1` | Extract the policy start date in YYYY-MM-DD format. | `{"effective_date": "2024-01-15"}` |
+| `expiration_date` | Expiration Date | `1` | Extract the policy end date in YYYY-MM-DD format. | `{"expiration_date": "2025-01-15"}` |
+| `policy_type` | Policy Type | `1` | Extract the line of business (e.g., 'General Liability', 'Property', 'Auto'). | `{"policy_type": "Commercial Property"}` |
+
+### Financial Fields
+
+| key | label | mapping | instructions | example |
+|-----|-------|---------|--------------|---------|
+| `premium` | Total Premium | `1` | Extract total premium as a number without currency symbols. | `{"premium": 125000}` |
+| `deductible` | Deductible | `1` | Extract per-occurrence deductible amount. | `{"deductible": 10000}` |
+| `fees` | Policy Fees | `1` | Extract any additional fees beyond premium. | `{"fees": 500}` |
+
+### Coverage Fields
+
+| key | label | mapping | instructions | example |
+|-----|-------|---------|--------------|---------|
+| `coverage_limit` | Policy Limit | `1` | Extract the total policy limit amount. | `{"coverage_limit": 5000000}` |
+| `aggregate_limit` | Aggregate Limit | `1` | Extract the maximum payable during policy period. | `{"aggregate_limit": 10000000}` |
+| `covered_perils` | Covered Perils | `M` | Extract all explicitly covered perils as a list. | `["Fire", "Wind", "Hail", "Theft"]` |
+| `exclusions` | Exclusions | `M` | Extract key exclusions as a list. | `["War", "Nuclear", "Pollution"]` |
+| `sublimits` | Sublimits | `C` | Extract peril-specific sublimits with amounts. | `[{"peril": "Flood", "amount": 500000}]` |
+| `coverage_breakdown` | Coverage Breakdown | `C` | Extract detailed limits by coverage type. | `[{"type": "Building", "limit": 3000000}, {"type": "Contents", "limit": 500000}]` |
+
+### Party Fields
+
+| key | label | mapping | instructions | example |
+|-----|-------|---------|--------------|---------|
+| `insured_name` | Named Insured | `1` | Extract primary named insured. | `{"insured_name": "ABC Corp"}` |
+| `carrier_name` | Carrier | `1` | Extract insurance company name. | `{"carrier_name": "Great Northern"}` |
+| `broker_name` | Broker | `1` | Extract broker or agent name. | `{"broker_name": "Smith Insurance Agency"}` |
+| `additional_insureds` | Additional Insureds | `C` | Extract all additional insureds with interest type. | `[{"name": "XYZ Bank", "interest": "Mortgagee"}]` |
+
+---
+
+## Common Mistakes to Avoid
+
+> **Warning:** Review these common pitfalls to ensure your template is configured correctly.
+
+| Mistake | Problem | Solution |
+|---------|---------|----------|
+| Using spaces in key | `policy number` | Use underscores: `policy_number` |
+| Vague instructions | "Get the limit" | Be specific: "Extract the per-occurrence limit of liability from the declarations page" |
+| Wrong mapping type | Using `1` for a list | Use `M` for lists, `C` for structured data |
+| Missing example | No example provided | Always provide a realistic example |
+| Inconsistent JSON | `{'key': 'value'}` | Use double quotes: `{"key": "value"}` |
+
+---
+
+## Validation Checklist
+
+Before submitting your template, verify:
+
+- \[ ] All `key` values are unique
+- \[ ] All `key` values use lowercase and underscores only
+- \[ ] All required columns are filled (key, label, instructions, example, mapping)
+- \[ ] Mapping values are only `1`, `M`, or `C`
+- \[ ] Examples use valid JSON format
+- \[ ] Instructions are detailed enough for accurate extraction
+
+---
+
+## Need Help?
+
+> **Info:** Contact your Qumis representative for assistance with:
+>
+> - Reviewing your template before submission
+> - Adding custom field types
+> - Complex extraction requirements
+> - Testing with sample documents
+
+Learn how to generate reports using your custom fields
+
+Upload and manage documents for extraction

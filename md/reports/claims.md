@@ -1,0 +1,324 @@
+---
+title: "Claims Analysis"
+---
+
+> **Info:** The **Claim Analysis Report** helps brokers, account managers, and claims professionals understand whether an insured's policy (or multiple policies) may respond to a particular claim. By analyzing both the policy language and the claim's fact pattern, Qumis identifies key coverage triggers, exclusions, and conditions—and provides a clear opinion on how the policy applies.
+
+---
+
+## What this report does
+
+When handling a claim, brokers and claims professionals often need to evaluate whether coverage applies and why. Qumis automates this analysis by:
+
+- Reading and interpreting all relevant policy documents
+- Reviewing the claim facts (e.g., FNOL, demand letter, lawsuit, or denial letter)
+- Identifying relevant clauses, exclusions, and coverage triggers
+- Explaining whether and why the claim should or shouldn't be covered
+- Providing specific reasoning backed by policy language
+
+You can also chat directly with the report to explore deeper coverage questions. Each chat is saved, and multiple threads can be maintained per report—making it especially valuable for complex claims and rebutting claim denials.
+
+---
+
+## Before you start
+
+> **Note:** **Prerequisites:**
+>
+> - Have the insured's policy or policies ready.
+> - Have claim documentation ready (FNOL, demand letter, lawsuit, ROR, claim denial letter, or other fact pattern).
+> - Know the general nature of the claim you're analyzing.
+> - Have 5-10 minutes to set up and generate the report.
+
+---
+
+## 1) Access the Claim Analysis tool
+
+### Navigate to Claims
+
+From the sidebar, click **Claims**. You'll see a list of your existing claim reports and the option to start a new one.
+
+### Start a new report
+
+Select **Generate Coverage Report** to begin.
+
+Each completed analysis is saved and can be revisited at any time.
+
+---
+
+## 2) Enter the claim number
+
+Start by giving your claim a reference number or name (e.g., "2025-004 Slip & Fall").
+
+A five-step workflow guides you through the analysis:
+
+- **Step 1: Claim Number**
+- **Step 2: Policy Documents**
+- **Step 3: Fact Patterns**
+- **Step 4: Additional Information**
+- **Step 5: Generate Report**
+
+### Enter claim identifier
+
+On **Step 1: Claim Number**, enter a claim number, file number, or any identifier you use to track this claim. This helps keep reports organized when managing multiple claims and will be used in your report title and saved analysis list.
+
+### Proceed to next step
+
+Click **Policy Documents** to proceed to Step 2.
+
+---
+
+## 3) Upload policy documents
+
+On **Step 2: Policy Documents**, add the insured's insurance policy or policies:
+
+### Add policy documents
+
+You can add documents in two ways:
+
+- Click **Search and Add Documents From Vault** to pull a previously uploaded policy from your Vault, or
+- Drag and drop files into the **Drop files here** area, or click to select files from your computer.
+
+### Verify document compatibility
+
+Supported file types include PDF, Word, Excel, and image formats (JPG, PNG, TIFF). You can include up to 1000 pages total across all documents.
+
+### Let Qumis process the documents
+
+Qumis automatically reads and indexes each policy section—including coverage parts, endorsements, and definitions.
+
+---
+
+## 4) Upload the claim fact pattern
+
+On **Step 3: Fact Patterns**, add documents describing the claim facts:
+
+### Upload claim documentation
+
+Add documents using the same methods as Step 2: search Vault or drag/drop from your computer.
+
+Examples of documents to upload:
+
+- First Notice of Loss (FNOL)
+- Complaint or lawsuit
+- Demand letter
+- Reservation of Rights (ROR) letter
+- Claim denial or response letter
+- Medical records or incident reports
+- Any other documentation describing the claim facts
+
+### Provide comprehensive details
+
+The more details you provide about the claim, the better Qumis can determine how specific policy provisions may apply or fail to apply.
+
+---
+
+## 5) Add additional context (optional)
+
+On **Step 4: Additional Information**, you can provide optional context about the claim or coverage questions:
+
+### Navigate to additional information
+
+Click **Additional Information** on the left or click the **Additional Information** button to proceed to Step 4.
+
+### Add coverage context
+
+In the text box, you can add context such as:
+
+- Specific coverage questions you want analyzed
+- Focus areas (e.g., "Analyze whether this claim would trigger the Cyber coverage")
+- Relevant policy provisions (e.g., "Focus on exclusions for professional services")
+- Definitions to clarify (e.g., "Compare this fact pattern to the policy's wrongful act definition")
+- Any coverage disputes or concerns
+
+Providing context ensures the analysis targets your key concerns.
+
+---
+
+## 6) Generate your report
+
+Once all required documents are uploaded and optional context is added:
+
+### Initiate report generation
+
+Click **Generate Coverage Report** at the bottom right. Qumis begins reading, correlating, and analyzing the policy language in light of the facts provided.
+
+### Monitor progress
+
+The process typically takes 5–10 minutes. You'll see a progress screen with status updates.
+
+### Wait for completion
+
+Qumis uses a multi-agent AI workflow to ensure reliability, context accuracy, and deep cross-referencing between policy and claim documents. You can leave the page and return later—the report will be ready when processing completes.
+
+---
+
+## 7) Review your completed report
+
+When the report is ready, Qumis provides a **Detailed Coverage Analysis** explaining:
+
+**Detailed Coverage Analysis**
+
+- Overview of the policy and the claim facts
+- Summary of the parties involved
+- Identification of relevant coverage provisions
+
+**Coverage Determination Analysis**
+
+- How the claim relates to the policy terms
+- Which clauses or exclusions are relevant
+- Whether coverage likely applies
+- Key reasoning behind each determination
+- Specific policy language supporting the analysis
+
+Each section references specific policy provisions, helping you understand how coverage (or denial) was reached.
+
+---
+
+## 8) Chat with your report
+
+Each claim report includes an interactive **Qumis Clerk** chat assistant that helps you explore coverage questions in more depth.
+
+You can ask follow-up questions such as:
+
+- "Does this claim trigger the policy's insuring agreement?"
+- "Which exclusions apply here?"
+- "Why did Qumis determine the claim is not covered?"
+- "Show me where 'wrongful act' is defined in the policy."
+- "What is the relevant exclusion and does it apply to these facts?"
+- "Help me rebut the carrier's denial."
+
+Chats are automatically saved, and you can maintain multiple chat threads per claim, allowing ongoing exploration and updates as the claim develops.
+
+---
+
+## 9) Use the report for coverage decisions and disputes
+
+Once you have your Claim Analysis Report, use it strategically:
+
+### For assessing complex claims
+
+- Quickly understand which policy provisions apply to the claim facts
+- Identify coverage triggers and any conditions the insured must meet
+- Understand how specific policy language relates to the claim
+
+### For rebutting claim denials
+
+- Analyze the carrier's denial reasoning against the policy language
+- Use the detailed analysis to support your Request for Reconsideration
+- Cite specific policy provisions and coverage analysis in your rebuttal
+- Provide the analysis to counsel if litigation is anticipated
+
+### For supporting insureds
+
+- Share the analysis to explain coverage (or lack of coverage) to the insured
+- Use the report to educate the insured about relevant policy provisions
+- Help the insured understand why coverage applies or doesn't apply
+
+### For team and client communication
+
+- Document your coverage reasoning and analysis
+- Reference specific policy provisions in communications with carriers
+- Provide professional, AI-backed coverage opinions to insureds and counsel
+
+---
+
+## 10) Access previous analyses
+
+Your previously generated Claim Analysis Reports are saved and listed on the Claims dashboard.
+
+### Navigate to Claims dashboard
+
+Go to **Claims** in the left sidebar.
+
+### View your reports
+
+You'll see a table of all your analyses showing:
+
+- NAME — Report name or claim identifier
+- FILES — The policy and claim documents analyzed
+- LAST MODIFIED — When the analysis was created or last accessed
+
+### Open a saved analysis
+
+Click any analysis to open it, review the coverage analysis, or add new chat questions.
+
+---
+
+## Best practices
+
+- **Be thorough with claim facts.** Upload all relevant documentation (complaint, ROR, denial letter, medical records, etc.) so Qumis has complete context.
+- **Include all relevant policies.** Upload all policies that might respond to the claim (primary, excess, umbrella, etc.).
+- **Use the claim number consistently.** Use the same claim number each time you reference this claim for easy tracking and organization.
+- **Add context about coverage questions.** If there's a specific coverage issue you want to focus on, mention it in Additional Information.
+- **Review high-impact provisions first.** Focus on the most important coverage provisions that determine whether the claim should be covered.
+- **Use chat for specific questions.** If coverage analysis is unclear, ask Qumis about specific policy language or how it applies to the facts.
+- **Save important conversations.** Keep chat threads that explain your coverage reasoning for file documentation.
+- **Document your analysis.** Use the report as documentation of your coverage analysis and reasoning.
+
+---
+
+## Time savings example
+
+**Traditional claim analysis (typical):**
+
+- Read and understand the policy: 30-60 minutes
+- Review claim documentation and facts: 30-60 minutes
+- Analyze policy provisions against claim facts: 1-2 hours
+- Identify relevant exclusions and conditions: 30-60 minutes
+- Form coverage opinion and document: 30-60 minutes
+- **Total: 3-5 hours per claim analysis**
+
+**With Qumis Claim Analysis Report:**
+
+- Enter claim number: 1 minute
+- Upload documents: 3 minutes
+- Add context: 2 minutes
+- Generate report: 5-10 minutes
+- Review analysis and ask clarifying questions: 5-10 minutes
+- **Total: 16-26 minutes per claim analysis**
+
+You can now complete multiple claim analyses in the time it would have taken to complete one manually.
+
+---
+
+## Troubleshooting
+
+### My report didn't generate
+
+Ensure you uploaded both policy and fact pattern documents. Both are required for analysis.
+
+### My report is taking too long to generate
+
+Average generation time is 5–10 minutes. If it exceeds 15 minutes, refresh the page or check that all documents uploaded successfully.
+
+### I uploaded a claim but didn't get a coverage determination
+
+Try providing more context under Additional Information—such as claim type, specific policy provisions to focus on, or coverage issues in dispute.
+
+### The analysis doesn't address my coverage question
+
+Use the chat feature to ask Qumis about specific coverage provisions or how they apply to your claim facts.
+
+### Can I analyze multiple claims for the same policy?
+
+Yes. Create separate reports for different claims using different claim numbers and different fact patterns.
+
+### Can I export the analysis?
+
+Yes. Use the Download button in the top-right corner of your completed report.
+
+### Where are my past analyses?
+
+All completed analyses appear on the **Claims dashboard**. Go to **Claims** in the left sidebar to access them.
+
+---
+
+## Where Claim Analysis Report fits in the Qumis platform
+
+The **Claim Analysis Report** is essential for claims professionals and coverage counsel. Use it alongside **Chats** for ad-hoc coverage questions, **Single Policy Analysis** for detailed individual policy review, and **Comparisons** for comparing multiple policies' responses to the same claim.
+
+---
+
+### Why use Claim Analysis Reports?
+
+Claims analysis and coverage opinions require detailed policy review and fact analysis—critical work that is time-consuming and complex. With Qumis, analyzing coverage for a complex claim takes minutes, not hours. You can quickly understand how a policy responds to specific fact patterns, identify the reasoning behind potential coverage or exclusions, and support insureds or internal advocacy with AI-backed coverage opinions. The result is faster claim resolution, better-informed coverage decisions, and stronger support for claim denials or rebuttal of coverage disputes.

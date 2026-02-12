@@ -1,0 +1,20 @@
+---
+title: "Custom Reports"
+description: "Generate tailored reports for your specific needs"
+---
+
+# Custom Reports
+
+Create customized reports tailored to your specific business needs.
+
+## Report Types
+
+Content coming soon.
+
+## Customization Options
+
+Content coming soon.
+
+## Export Formats
+
+Content coming soon.

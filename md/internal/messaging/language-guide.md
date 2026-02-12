@@ -1,0 +1,133 @@
+---
+title: "Language Guide"
+description: "Core vocabulary, terms to avoid, key phrases by context, tone principles, and regulatory guardrails"
+icon: "spell-check"
+noindex: true
+# groups: ["internal"]
+---
+
+> **Warning:** This content is confidential and for internal use only. Do not share with prospects or external parties.
+
+This section governs how Qumis talks about itself — in marketing copy, sales conversations, investor materials, customer communications, and internal documents. Language discipline is what turns positioning into brand. If a term isn't here, think twice before using it. If a term is in the "Avoid" list, don't use it regardless of context.
+
+## Core Vocabulary: Terms to Use
+
+| Term | Why It Works | Primary Context |
+| ----- | ----- | ----- |
+| **Coverage intelligence** | Category-defining. Positions Qumis above "automation" and "document processing." This is the term that should appear in every headline, every first paragraph, every elevator pitch. | All contexts — this is the category name |
+| **Legal-grade** | Signals precision and defensibility without claiming to be legal advice. The hyphen matters — it's a compound modifier, not a noun. Always "legal-grade analysis," never "legal analysis." | Marketing, sales, investor materials |
+| **Attorney-trained AI** | Credibility anchor. Differentiates from generic AI and workflow tools. Implies a specific person (Dan) built the reasoning frameworks, not just that lawyers were "consulted." | Marketing headlines, competitive positioning, first-meeting sales conversations |
+| **Citation-linked** | Demonstrates accountability. Directly addresses the hallucination concern that every informed buyer has. More specific and credible than "accurate" or "reliable." | Product descriptions, competitive differentiation vs. generic AI, IT/compliance conversations |
+| **Coverage reasoning** | Conveys analytical depth — Qumis doesn't just find text, it interprets meaning. Distinguishes from search/retrieval tools. | Product descriptions, technical conversations, persona messaging for coverage professionals |
+| **Market intelligence** | Signals the proprietary data asset — Qumis doesn't just analyze a single policy, it contextualizes coverage against thousands of real commercial programs. This is the term that ends competitive conversations. | Sales conversations (especially later-stage), competitive differentiation, investor materials |
+| **Proprietary data / Proprietary database** | Establishes the data moat. "Proprietary" signals that this asset cannot be replicated by competitors. Always pair with scale: "proprietary database of thousands of commercial insurance programs." | Competitive differentiation, investor materials, enterprise sales |
+| **Coverage benchmarking** | Translates the data moat into a buyer benefit. Practitioners understand benchmarking — it's how they already think about market positioning. | Producer messaging, account manager messaging, executive conversations |
+| **Enterprise-grade** | Signals security, scale, and seriousness. Use in IT/operations contexts. | IT buyer conversations, security documentation, RFP responses |
+| **Built by experts, for experts** | Establishes peer credibility with practitioners who are skeptical of "tech people" building insurance tools. | Marketing, first-meeting positioning, conference presentations |
+| **Coverage intelligence platform** | The full product descriptor. Use when you need to name what Qumis is (not just what it does). Replaces "AI platform for insurance" or "policy analysis tool." | Website, press releases, formal descriptions |
+| **Insurance-native** | Signals that Qumis was built specifically for insurance from the ground up — not a generic AI tool with an insurance skin. | Competitive differentiation, product descriptions |
+| **QumisScore** | Proprietary coverage quality scoring. Use when discussing the market intelligence capability specifically. Treat as a proper noun (capitalized, one word). | Product demos, account manager messaging, expansion conversations |
+
+## Terms to Avoid
+
+| Avoid | Why | Say Instead |
+| ----- | ----- | ----- |
+| "AI-powered" (alone) | Generic. Every company says this. It communicates nothing about what makes Qumis different. | "Attorney-trained AI" or "insurance-native AI" |
+| "Game-changer" | Marketing-speak. Let customers say it — and they do (see testimonials). When Qumis says it, it undermines credibility with skeptical insurance buyers. | Let the proof points speak. Or: "fundamentally different approach" |
+| "Automate" / "Automation" (as primary descriptor) | Cedes positioning to workflow tools. If Qumis is "automation," buyers compare you to FurtherAI and Fulcrum on their terms. | "Intelligence" or "analysis" as lead terms. Exception: acceptable to say "Qumis adds intelligence to your existing automation" in the complementary frame — but Qumis itself is never the automation |
+| "GPT" / "ChatGPT" (in Qumis descriptions) | Anchors to generic AI and invites direct comparison. Only reference ChatGPT in competitive differentiation contexts, never in Qumis product descriptions. | "Purpose-built AI" or "coverage reasoning engine" |
+| "Revolutionary" / "Disruptive" | Oversold. Insurance buyers have heard this from every vendor for 20 years. These words signal "startup that doesn't understand our industry." | Show, don't tell. Let the metrics and testimonials make the case. |
+| "Effortless" / "Seamless" | Undermines the expertise of your users. Coverage analysis is serious, consequential work. Calling it "effortless" disrespects the profession. | "Faster" or "more efficient" — acknowledge the work while showing how Qumis elevates it |
+| "Copilot" (unqualified) | Overused across every AI product. Diluted to meaninglessness. | If used at all, always qualify: "coverage copilot." But prefer "coverage intelligence platform." |
+| "Solution" | Empty corporate-speak. A "solution" could be anything. | Be specific: "platform," "analysis," "intelligence," or name the actual capability |
+| "Leverage" / "Utilize" | Corporate jargon that makes copy feel generic. | "Use," "apply," "deploy" — plain language is more credible with practitioners |
+| "End-to-end" | Implies workflow automation breadth, which is the competitor's positioning. Qumis wins on depth, not breadth. | Describe the specific capability: "from initial analysis through defensible documentation" |
+| "Policy analysis tool" | Undersells the platform. A "tool" is commoditized; a "platform" is infrastructure. "Analysis" alone misses the market intelligence dimension. | "Coverage intelligence platform" |
+
+---
+
+## Key Phrases by Context
+
+### Strategic Positioning Phrases
+
+*Use in marketing, investor materials, executive conversations*
+
+**"Understanding the policy is the hardest problem in insurance."** — This is the single most important strategic phrase in Qumis's vocabulary. It reframes the entire market conversation from workflow speed to analytical depth. Use it to open conversations, presentations, and anchor competitive discussions. When a buyer agrees with this statement, they've already self-selected into Qumis's value proposition.
+
+**"Coverage intelligence, not workflow automation."** — The category distinction in six words. Use when positioning against competitors or when a buyer tries to lump Qumis with workflow tools.
+
+**"Law-firm accuracy at enterprise scale."** — Concise, memorable, captures both the legal expertise and the scalability. Strong headline language.
+
+**"We deliver not just what a policy says, but what it means in the context of the broader market."** — The dual value proposition in one sentence. Use when explaining the positioning to someone for the first time.
+
+### Sales Conversation Phrases
+
+*Use in demos, discovery calls, follow-up emails*
+
+**"Like having a coverage attorney on every account."** — The evolved version of the first-year associate comparison. Works for brokerage executives and anyone who understands the cost of outside counsel. Implies scale (every account) and quality (attorney-level).
+
+**"Like having a first-year associate — only faster and more accurate."** — Tom Hanekamp's original framing. Most effective with claims professionals, coverage counsel, and anyone who has managed junior staff. Use when the audience has legal context.
+
+**"Your most experienced person has seen maybe a thousand programs in their career. Qumis has analyzed thousands — and brings that market context to every analysis."** — The market intelligence proof point. Use when differentiating against the status quo or when a buyer says "our people are good enough."
+
+**"Qumis is the intelligence layer that makes your entire technology stack smarter."** — The complementary positioning frame. Use when the buyer already has FurtherAI, Fulcrum, or another workflow tool and you need to position alongside rather than against.
+
+**"We built the 'I don't know' into the system on purpose."** — Use when addressing hallucination concerns. This flips a perceived AI weakness into a trust differentiator. Particularly effective with compliance-oriented buyers and IT decision-makers.
+
+### Competitive Phrases
+
+*Use when directly compared to alternatives*
+
+**"You wouldn't use ChatGPT for a legal opinion. Why would you trust it with legal contracts worth millions in coverage?"** — The generic AI soundbite. Strong opener, but be prepared for the follow-up objection: "We're not using it for legal opinions, just for faster document review." Response: "That's exactly the risk — when a tool doesn't know the difference between document review and coverage analysis, it can't tell you when the answer matters."
+
+**"Can their platform tell you how that exclusion compares to what carriers are writing across comparable programs?"** — The killer question that exposes the market intelligence gap. No workflow tool or generic AI can answer this.
+
+**"Who on their founding team is a licensed coverage attorney?"** — The credibility question. Most effective with senior coverage professionals. Use sparingly and strategically — it's a knockout punch, not a jab.
+
+**"Different problems, different solutions. Many of our customers use both."** — The complementary frame for workflow competitors. Neutralizes the "we already have X" objection.
+
+### Customer Success Phrases
+
+*Use in onboarding, QBRs, renewal conversations*
+
+**"The goal isn't to replace your judgment — it's to make sure every member of your team operates with the same analytical depth as your best people."** — The amplification frame for expansion conversations.
+
+**"How many coverage questions does your team handle that currently don't get a thorough analysis because there isn't enough time?"** — The unmet demand question. Reveals the addressable opportunity within the account and supports expansion.
+
+### Competitor Reference Language
+
+When referring to competitors in any context, use these category terms consistently:
+
+| Competitor | How to Reference (External) | How to Reference (Internal) |
+| ----- | ----- | ----- |
+| FurtherAI | "Workflow automation tools" | FurtherAI (by name, internal only) |
+| Fulcrum | "Workflow automation platforms" | Fulcrum (by name, internal only) |
+| ChatGPT / Copilot | "Generic AI" or "general-purpose AI" | ChatGPT, Copilot (by name) |
+| Internal builds | "Custom-built solutions" | "Build vs. buy" frame |
+| Outside counsel | "Outside counsel" or "coverage consultants" | Same |
+| Manual processes | "Current manual process" or "status quo" | Same |
+
+> **Warning:** **Rule:** Never reference a competitor by name to a prospect unless the prospect brings them up first. Always refer by category. If the prospect names a specific competitor, you may respond using the competitor's name — but redirect to category framing as quickly as possible.
+
+---
+
+## Regulatory & Legal Guardrails
+
+"Legal-grade" is Qumis's most powerful term. It is also the term most likely to create liability if misused. These guardrails are non-negotiable:
+
+- **Qumis does not provide legal advice.** "Legal-grade" refers to the quality, rigor, and methodology of the analysis — not to the legal authority of the output. Every external-facing description of Qumis should be reviewed to ensure it does not imply that Qumis output constitutes a legal opinion
+- **"Attorney-trained" means the platform's reasoning frameworks were built by a licensed coverage attorney.** It does not mean every output has been reviewed by an attorney
+- **All marketing copy, website pages, and sales collateral should include appropriate disclaimers** where Qumis capabilities are described in terms of legal analysis. Standard disclaimer language: "Qumis provides coverage intelligence and analysis tools. Qumis output does not constitute legal advice. Users should consult qualified legal counsel for formal legal opinions."
+- **In sales conversations**, if a prospect asks "Is this legal advice?" the answer is: "No — Qumis provides attorney-grade coverage analysis that supports your team's decision-making. For matters requiring a formal legal opinion, we recommend consulting qualified counsel. Many of our customers use Qumis to handle the 80% of coverage questions that don't require outside counsel, and to better prepare for the 20% that do."
+
+---
+
+## Tone Principles
+
+These govern *how* Qumis communicates, not just *what* it says:
+
+1. **Confident, not arrogant.** Qumis has earned the right to be assertive about its capabilities — real customers, real metrics, real differentiation. But insurance is a relationship business built on trust. Overconfident claims alienate the exact buyers you're targeting. Let proof points carry the weight
+2. **Precise, not technical.** Insurance professionals respect precision in language — it's literally their profession. Vague claims ("better," "smarter," "faster") without specifics feel like marketing. Specific claims ("8x faster policy review," "citation-linked to source policy language") feel like someone who understands the work
+3. **Respectful of the profession.** Insurance coverage professionals are experts. They've spent decades building judgment that AI cannot fully replicate. Qumis messaging should never imply their work is simple, rote, or easily automated. The frame is always amplification, not replacement
+4. **Domain-fluent.** Use insurance terminology correctly. "Insured," not "customer." "Exclusion," not "carve-out" (unless in the correct technical context). "Endorsement," not "rider" (unless discussing personal lines). Getting the language right signals that Qumis was built by someone who practiced in this space — because it was
+5. **Direct over clever.** Insurance professionals are skeptical of marketing polish. Plain, direct language outperforms clever copywriting every time

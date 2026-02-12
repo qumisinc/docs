@@ -1,0 +1,22 @@
+---
+title: "Playbook for Claims Professionals"
+description: "Strategic workflows and best practices for claims professionals using Qumis AI to accelerate investigations and improve outcomes"
+---
+
+# Playbook for Claims Professionals
+
+> **Info:** This playbook provides claims professionals with practical workflows for leveraging Qumis AI to conduct faster investigations, make better coverage determinations, and improve claim outcomes.
+
+## Coming Soon
+
+This playbook is currently under development. It will include:
+
+- First notice of loss (FNOL) analysis workflows
+- Coverage determination strategies
+- Investigation planning and execution
+- Legal research and case law analysis
+- Reserving and settlement evaluation
+- Subrogation opportunity identification
+- Communication and documentation best practices
+
+Check back soon for comprehensive guidance on maximizing Qumis AI for claims operations.

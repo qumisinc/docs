@@ -1,0 +1,653 @@
+---
+title: "Qumis Prompt Library"
+description: "Reusable prompts for Qumis documentation and operations"
+noindex: true
+# groups: ["internal"]
+---
+
+The Qumis Prompt Library is a curated collection of battle-tested prompts designed to accelerate your work with AI assistants like ChatGPT, Claude, and Cursor. Whether you're writing documentation, debugging code, or managing projects, these prompts help you get better results faster while maintaining consistency across the team.
+
+**Why use this library?** These prompts have been refined through real-world use at Qumis, incorporating best practices for prompt engineering, structured thinking, and domain-specific workflows. Instead of starting from scratch each time, you can leverage proven patterns that deliver high-quality results.
+
+**Who should use this?** Engineers, technical writers, product managers, and anyone working with AI tools at Qumis. Each prompt is designed to be flexible and customizable for your specific needs.
+
+**What's included?** 15+ prompts across 5 categories (Documentation, Engineering, Operations, Customer Support, and Meta-Prompting), plus 2 LLM context files to enhance AI understanding of Qumis systems.
+
+## Most Used Prompts
+
+Two-step process to improve AI outputs through comprehensive self-evaluation and iterative refinement
+
+Generate properly formatted PostgreSQL queries for Qumis Retool applications with correct naming conventions
+
+Convert code changes and commits into properly formatted Linear tickets for documentation
+
+## Getting Started
+
+### Browse the prompt categories
+
+Explore the [Documentation](#documentation-prompts), [Engineering](#engineering-prompts), [Operations](#operations-prompts), [Customer Support](#customer-support-prompts), and [Meta-Prompting](#meta-prompting-techniques) sections to find prompts that match your task.
+
+### Download LLM context files (recommended)
+
+For better results, download the [Qumis Overview](#qumis-overview) and [Qumis Design System](#qumis-design-system) context files and add them to your AI tool. This helps the AI understand Qumis-specific terminology and patterns. See the [How to Use This Library](#how-to-use-this-library) section below for details.
+
+### Copy and customize the prompt
+
+Each prompt includes placeholders like `<DESCRIPTION>` or `[target]` that you should replace with your specific details. Some prompts also include examples to guide you.
+
+### Iterate and refine
+
+Most prompts work best with iteration. Use the [Self-Review Process](#self-review) to improve outputs, or run prompts multiple times with refined inputs based on initial results.
+
+> **Tip:** **Pro Tip:** Many engineering prompts reference files like `schema.json`. Make sure to attach or reference the relevant project files when using these prompts for best results.
+
+## How to Use This Library
+
+### Quick Navigation
+
+Convert to Markdown, create summaries, generate llms-full.txt files
+
+Self-review, SQL queries, Linear backfilling, code analysis
+
+Alignment on objectives, chat dumps, infrastructure work
+
+Generate/evaluate methods, Lyra prompt optimizer
+
+### LLM Context Files
+
+> **Info:** Downloadable context files to enhance LLM understanding of Qumis systems and documentation.
+
+#### What are LLM Context Files?
+
+LLM context files (`.llms.txt` format) are specially formatted documents that provide comprehensive background information about Qumis to AI assistants. These files help LLMs understand our domain, terminology, architecture, and best practices when assisting with documentation, code generation, or analysis tasks.
+
+#### Available Context Files
+
+**Contents:**
+
+- Company mission and values
+- Product features and capabilities
+- Target audience and use cases
+- Industry context and terminology
+
+**File:** `qumis-overview.llms.txt` (9.5 KB)
+
+**Use when:** Working on product documentation, marketing content, or explaining Qumis to external audiences.
+
+**Contents:**
+
+- Brand guidelines and visual identity
+- Color system and typography
+- Component specifications
+- UI/UX patterns and conventions
+
+**File:** `qumis-design.llms.txt` (5.1 KB)
+
+**Use when:** Creating UI components, styling documentation, or maintaining design consistency.
+
+#### How to Use These Files
+
+### Download the relevant context file(s)
+
+Click on the cards above to download the `.llms.txt` files you need for your task.
+
+### Add to your AI tool
+
+**For ChatGPT:**
+
+- Upload the file directly in your conversation
+- Or paste the contents as context
+
+**For Claude:**
+
+- Upload via the attachment button
+- Or include in your project's knowledge base
+
+**For Cursor/GitHub Copilot:**
+
+- Add to your project root as `.cursorrules` or `.github/copilot-instructions.md`
+- Or reference in your workspace settings
+
+### Reference in your prompts
+
+When asking questions or generating content, reference the context:
+
+```
+"Using the Qumis context provided, create documentation for..."
+"Based on the Qumis design system, generate a component that..."
+```
+
+> **Tip:** **Keep Context Files Updated:** These files should be updated whenever there are significant changes to:
+>
+> - Product features or capabilities
+> - Design system or branding
+> - Company positioning or target audience
+> - Technical architecture or terminology
+
+> **Warning:** **Security Reminder:** These context files are for internal use only. Do not share them with external parties or upload to public AI services without authorization.
+
+#### Maintaining Context Files
+
+The LLM context files are stored in `/internal/assets/llms/` and should be updated quarterly or when significant changes occur. When updating:
+
+1. Maintain the structured format for optimal LLM parsing
+2. Keep file sizes under 15KB for better performance
+3. Include version dates in the file headers
+4. Test with multiple AI tools to ensure compatibility
+5. Notify the team of updates via Slack #engineering channel
+
+> **Note:** To suggest improvements or report issues with these context files, create a Linear issue tagged with `documentation` and `llm-context`.
+
+### Using Prompts Effectively
+
+> **Tip:** **Best Practices for Prompt Usage:**
+>
+> - **Keep prompts focused**: Each prompt should target a single, well-defined task
+> - **Customize placeholders**: Replace variables like `<DESCRIPTION>` or `[target]` with your specific details
+> - **Test and iterate**: Try prompts with sample data before using them on important work
+> - **Use context files**: Attach relevant Qumis context files for better, more accurate results
+> - **Document tool requirements**: Some prompts need specific files (like `schema.json`) - note these dependencies
+> - **Share improvements**: If you enhance a prompt, update it in the library and notify the team
+> - **Attribute sources**: When adding prompts from external resources, include proper attribution
+
+## Documentation Prompts
+
+> **Info:** Prompts for creating, reviewing, and transforming documentation.
+
+### Convert to Markdown
+
+Convert content to clean Markdown format with proper formatting and escaping.
+
+### Convert to Markdown Prompt
+
+````markdown
+Convert this to Markdown. Try to capture the original format as accurately as possible.
+
+Return this as Markdown in a code block (i.e., ```Markdown ...```). Escape any characters necessary. Make sure that any Markdown code block is escaped properly. Do not respond with anything but the code block.
+````
+
+### Summarization
+
+Create concise, audience-specific summaries of reports and documents.
+
+### Summarization Prompt
+
+> **Tip:** **Best For:** Executive summaries, technical reports, customer communications
+>
+> **Pro Tip:** Adjust word count based on audience - executives prefer 100-150 words, technical teams can handle 200-300 words
+
+```markdown
+Create a ~200 word summarization of the most important data from this report for <Tooltip tip="Examples: 'executives', 'technical team', 'customers', 'stakeholders', 'board members'">AUDIENCE</Tooltip>. Make it concise, extremely clear, and exceptionally readable.
+```
+
+**Usage Example:**
+
+```markdown
+Create a ~200 word summarization of the most important data from this report for executives. Make it concise, extremely clear, and exceptionally readable.
+```
+
+### Create llms-full.txt
+
+Generate comprehensive documentation files from codebases or documentation sites, optimized for LLM consumption.
+
+> **Info:** **Purpose:** Create LLM-optimized documentation files for AI assistants
+>
+> **Output:** Single Markdown file (≤100KB) with complete project information
+>
+> **Use Cases:** API documentation sites, code repositories, knowledge bases
+
+### Documentation Sites
+
+```markdown
+You will be creating a Markdown file named llms-full.txt that contains all essential information from an input file, converted to clean Markdown.
+
+Your task is to process this input and create a single Markdown file that follows these rules:
+
+1. Begin with "# <Project Name>" on its own line.
+2. Immediately follow with a concise 1-paragraph intro (no block-quote needed).
+3. Inline the full Markdown of every important page in logical order (e.g. Quick Start, Concepts, API Reference, Guides).
+4. Preserve headings (#–####), code fences, lists, tables, and images (![alt](url)). Strip any extraneous HTML, scripts, or navigation.
+5. Do not add external links — inline the content instead.
+6. Target ≤ 100 KB of output; summarise verbose or repetitive sections if needed, but keep code samples intact.
+
+Follow these steps to create the output:
+1. Identify the project name and create the top-level heading.
+2. Write a concise 1-paragraph introduction summarizing the project.
+3. Determine the logical order of important pages (e.g., Quick Start, Concepts, API Reference, Guides).
+4. For each important page:
+    a. Convert the content to clean Markdown.
+    b. Preserve headings, code fences, lists, tables, and images.
+    c. Remove any extraneous HTML, scripts, or navigation elements.
+    d. Inline any external links by including the relevant content directly.
+5. If the total content exceeds 100 KB, summarize verbose or repetitive sections while keeping code samples intact.
+
+Provide your output as Markdown. The content of these tags should be exactly what would be written to the /llms-full.txt file, with no additional commentary or explanation.
+```
+
+### Code Repositories
+
+```markdown
+You will be creating a Markdown file named llms-full.txt that contains all essential information from a code repository, converted to clean Markdown format optimized for LLM consumption and understanding, with strategic content extraction rather than complete file dumps.
+
+Your task is to process the repository input and create a single comprehensive Markdown file that follows these rules:
+
+1. Begin with "# <Project Name>" on its own line.
+2. Immediately follow with a concise 1-paragraph intro describing what the project does, its main purpose, and primary programming language(s) used.
+3. Include a **System Architecture Overview** explaining the application pattern, key components, and data flow.
+4. Add a **Module Dependencies Map** showing critical file relationships and import chains.
+5. Include a comprehensive file structure overview with file type indicators and role descriptions.
+6. Extract and present **key code segments** from important files in logical order following the priority hierarchy below.
+7. For each file, use appropriate code fences with language specification and semantic markers.
+8. Focus on **interfaces, signatures, core logic, and architectural patterns** rather than complete implementations.
+9. Apply smart filtering and extraction strategies for optimal LLM comprehension.
+10. Target ≤ 100 KB with dynamic adjustment, prioritizing understanding over completeness.
+
+**Enhanced File Priority Hierarchy (highest to lowest):**
+1. **Core Entry Points**: main.py, index.js, app.py, server.js, main.go, etc.
+2. **Primary Business Logic**: Core models, controllers, services, domain logic
+3. **Configuration Files**: package.json, requirements.txt, Cargo.toml, go.mod, tsconfig.json, webpack.config.js
+4. **Key Integration Points**: Database models, API interfaces, external service connectors
+5. **Infrastructure**: Dockerfile, docker-compose.yml, .github/workflows, deployment configs
+6. **Type Definitions**: .d.ts files, interface definitions, schema files
+7. **Critical Utilities**: Helper functions, shared libraries, middleware
+8. **Representative Tests**: Key unit tests, integration tests that demonstrate usage patterns
+9. **Documentation**: README.md, API documentation, architectural decisions
+
+[Full prompt continues with architecture overview, dependency mapping, extraction strategies, and quality assurance sections...]
+```
+
+## Engineering Prompts
+
+> **Info:** Prompts for code generation, review, debugging, and technical tasks.
+
+### Self-Review
+
+Perform comprehensive self-reviews to improve code quality and catch issues early. This two-step process helps LLMs evaluate and improve their own outputs.
+
+> **Tip:** **Why This Works:** LLMs are more performant at review/analysis than one-shot generation
+>
+> **Best For:** Code reviews, documentation improvements, complex problem-solving
+>
+> **Pro Tip:** Run 2-3 iterations for best results - each review compounds the improvements
+
+#### Step 1: Perform Self-Review
+
+```markdown Review Last Message
+Perform a comprehensive self-review of your LAST message and my message before that. First, describe the objective of what I had asked for and what you had replied with in your response. This process involves analyzing your response, evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
+```
+
+```markdown Review Modifications (General)
+Perform a comprehensive self-review. First, describe the objective of what I had asked for and what you had replied with in your response(s). This process involves analyzing your response(s), evaluating relevant attributes, and providing constructive feedback for improvement. Your goal is to produce a thorough, objective, and actionable self-review. Add scores (0.0-10.0) for each of your evaluations then a final overall score.
+```
+
+#### Step 2: Revise/Improve Output
+
+```markdown
+Review your previous analysis and apply the suggested improvements to the process described in the original content. Focus on enhancing the score for the attributes that you have scored, while maintaining the original intent and structure.
+```
+
+> **Note:** You can repeat the self-review process multiple times for iterative improvement. As noted by @Erik Nomitch: "Since LLMs are more performant at review/analysis than they are at one-shot generation, I find that doing this self-review process can drastically improve many types of outputs."
+
+### Create Retool SQL Queries
+
+Generate SQL queries specifically formatted for Qumis Retool applications with proper naming conventions and parameter syntax.
+
+### Retool SQL Query Generator
+
+> **Warning:** **Required Files:**
+>
+> - `schema.json` (available from Qumis engineering team)
+>
+> **Common Use Cases:**
+>
+> - Weekly/monthly aggregations
+> - User analytics and metrics
+> - Data validation queries
+> - Organization-level reporting
+
+Create a Retool query and name for: DESCRIPTION
+
+Review the database schema defined in `schema.json` and use it for context.
+
+You will return only the following:
+
+- A query name following this naming convention: `q_[description][timeframe/type][grouping]`
+- A PostgreSQL SQL statement, using Retool's `{{ }}` syntax for parameters
+- Use only tables, columns, and enums that exist in `schema.json`
+
+Examples of valid query names:
+
+- `q_chats_weekly_count_by_org`
+- `q_chats_weekly_count_by_user`
+- `q_chats_6week_count_by_org`
+- `q_chats_6week_count_by_user`
+- `q_chat_data_validation`
+
+**Format:**
+
+Return your answer in a single code block like this:
+
+```sql
+-- name: q_example_query_type_group
+SELECT * FROM example_table WHERE id = {{ id }};
+```
+
+Do not include any explanatory text—only the code block.
+
+**Instructions:**
+
+1. Add the `schema.json` file (available from the Qumis engineering team)
+2. Replace `<DESCRIPTION>` with your query requirement
+3. Run the prompt to generate the SQL query and name
+4. In Retool, go to "Edit App" → "Code"
+5. Duplicate an existing query
+6. Replace the SQL with your generated query and rename it
+7. Click Run to test
+
+**Example Descriptions:**
+
+- "The total number of chats, per organization, within the last 6 weeks"
+- "The average number of users per organization"
+
+### Backfilling Linear Issues
+
+Convert code changes and commits into properly formatted Linear tickets for documentation.
+
+#### Main Prompt
+
+```markdown
+# OBJECTIVE
+
+I'd like to backfill our Linear issues with new tickets that are already done and in the codebase but don't exist in Linear yet.
+
+Your objective is to review the code and data in the <CHANGES> tags and create Linear tickets (in Markdown format) from them.
+
+Here are some examples of Linear tickets in Markdown:
+
+[See examples below]
+
+<CHANGES>
+[Paste your code changes or commit history here]
+</CHANGES>
+```
+
+#### Example Linear Tickets
+
+```markdown Example 1: Upload Validation
+# Only allows users to upload appropriate document types
+
+Currently when a user goes to upload a document, the UI states only PDF format only however users are able to upload other types of documents such as .pngs that do not process correctly.
+
+Users should only be allowed to upload .pdf
+```
+
+```markdown Example 2: Environment Badges
+# Add persistent environment information badges
+
+Implement status badges for all non-customer facing environments. This is to limit mistakes and increase flow speed.
+
+Since we will all be switching deployment environments pretty frequently, we should have an indicator that we on a certain environment (unless it is production) in the header.
+
+I don't want one of us to accidentally do something to our production environment when we think we are on dev, qa, uat, etc.
+
+It should be persistent across all pages and and fixed with the top z-index.
+```
+
+## Operations Prompts
+
+> **Info:** Prompts for infrastructure management, monitoring, and operational workflows.
+
+### Alignment on Objective
+
+Identify gaps in understanding between user intent and AI interpretation to improve task alignment.
+
+### Alignment on Objective
+
+```markdown
+Review our interaction(s) so far. Think about the differences between:
+- My understanding of what I've asked/prompted you for (should usually be a high level since it's in my mental model)
+- Your understanding of my mental model transferred to you via chats and prompts.
+
+This is an inherently lossy process. Identify potential gaps in our understanding of the objective. How can we reach parity?
+
+First identify the potential differences in our understandings and anything that is ambiguous or unclear. Then come up with a list of questions for me which, if answered, will increase our likelihood of being aligned on what my true objective is. For each of the questions, add a score (0.0-1.0) of how much you think the answered question will improve our alignment on objective.
+```
+
+### Chat Dump
+
+Create a comprehensive backup of conversation data for knowledge transfer or session restoration.
+
+### Chat Dump
+
+```markdown
+Create a comprehensive JSON dump of all of the data so far in this conversation so that if given to you (or another LLM) in a new instance, you could "ingest" it and retain the knowledge from this entire conversation.
+```
+
+## Customer Support Prompts
+
+> **Info:** Prompts for customer communication, issue resolution, and support workflows.
+
+*Customer support prompts will be added as they are developed and tested with the Qumis support team.*
+
+## Meta-Prompting Techniques
+
+> **Info:** Advanced prompt engineering techniques for creating and optimizing prompts.
+
+### Generate/Evaluate Method
+
+A systematic approach to creating optimized prompts using the LLM's own capabilities to generate and evaluate prompts.
+
+### Generate/Evaluate Method
+
+> **Info:** **Best For:** Creating new prompts from scratch, optimizing existing prompts
+>
+> **Pro Tip:** Use the same model family as your target deployment for best results
+
+This method leverages the LLM's weights to influence prompt generation and evaluation, often producing better results than manually crafted prompts.
+
+**Process:**
+
+1. **Generate a prompt engineering guide:**
+
+   ```markdown
+   Generate a detailed prompt engineering guide. The audience is <role>.
+   ```
+
+   (Example roles: "book authors", "software developers", "customer support reps")
+2. **Provide few-shot examples:** Paste 5 examples of input/output pairs showing how you want the prompt to work
+3. **Generate the prompt:**
+
+   ```markdown
+   Generate a prompt that could have generated the examples' outputs, and include a better set of examples.
+   ```
+4. **In a new chat, generate evaluation guide:**
+
+   ```markdown
+   Generate a detailed prompt evaluation guide. The audience is <role>.
+   ```
+5. **Evaluate the prompt:** Paste the generated prompt and instruct:
+
+   ```markdown
+   Evaluate the prompt.
+   ```
+6. **Generate alternatives:**
+
+   ```markdown
+   Generate 3 improved alternative prompts.
+   ```
+7. **Select and refine:** Choose the best alternative and edit as necessary
+
+> **Tip:** Use a model from the same family as your target deployment for best results.
+
+### Lyra - AI Prompt Optimizer
+
+A master-level prompt optimization specialist that transforms any user input into precision-crafted prompts.
+
+```markdown
+You are Lyra, a master-level AI prompt optimization specialist. Your mission: transform any user input into precision-crafted prompts that unlock AI's full potential across all platforms.
+
+## THE 4-D METHODOLOGY
+
+### 1. DECONSTRUCT
+- Extract core intent, key entities, and context
+- Identify output requirements and constraints
+- Map what's provided vs. what's missing
+
+### 2. DIAGNOSE
+- Audit for clarity gaps and ambiguity
+- Check specificity and completeness
+- Assess structure and complexity needs
+
+### 3. DEVELOP
+- Select optimal techniques based on request type:
+  - **Creative** → Multi-perspective + tone emphasis
+  - **Technical** → Constraint-based + precision focus
+  - **Educational** → Few-shot examples + clear structure
+  - **Complex** → Chain-of-thought + systematic frameworks
+- Assign appropriate AI role/expertise
+- Enhance context and implement logical structure
+
+### 4. DELIVER
+- Construct optimized prompt
+- Format based on complexity
+- Provide implementation guidance
+
+## OPTIMIZATION TECHNIQUES
+
+**Foundation:** Role assignment, context layering, output specs, task decomposition
+
+**Advanced:** Chain-of-thought, few-shot learning, multi-perspective analysis, constraint optimization
+
+**Platform Notes:**
+- **ChatGPT/GPT-4:** Structured sections, conversation starters
+- **Claude:** Longer context, reasoning frameworks
+- **Gemini:** Creative tasks, comparative analysis
+- **Others:** Apply universal best practices
+
+## OPERATING MODES
+
+**DETAIL MODE:**
+- Gather context with smart defaults
+- Ask 2-3 targeted clarifying questions
+- Provide comprehensive optimization
+
+**BASIC MODE:**
+- Quick fix primary issues
+- Apply core techniques only
+- Deliver ready-to-use prompt
+
+## RESPONSE FORMATS
+
+**Simple Requests:**
+\`\`\`
+**Your Optimized Prompt:**
+[Improved prompt]
+
+**What Changed:** [Key improvements]
+\`\`\`
+
+**Complex Requests:**
+\`\`\`
+**Your Optimized Prompt:**
+[Improved prompt]
+
+**Key Improvements:**
+• [Primary changes and benefits]
+
+**Techniques Applied:** [Brief mention]
+
+**Pro Tip:** [Usage guidance]
+\`\`\`
+
+## WELCOME MESSAGE (REQUIRED)
+
+When activated, display EXACTLY:
+
+"Hello! I'm Lyra, your AI prompt optimizer. I transform vague requests into precise, effective prompts that deliver better results.
+
+**What I need to know:**
+- **Target AI:** ChatGPT, Claude, Gemini, or Other
+- **Prompt Style:** DETAIL (I'll ask clarifying questions first) or BASIC (quick optimization)
+
+**Examples:**
+- "DETAIL using ChatGPT — Write me a marketing email"
+- "BASIC using Claude — Help with my resume"
+
+Just share your rough prompt and I'll handle the optimization!"
+
+## PROCESSING FLOW
+
+1. Auto-detect complexity:
+   - Simple tasks → BASIC mode
+   - Complex/professional → DETAIL mode
+2. Inform user with override option
+3. Execute chosen mode protocol
+4. Deliver optimized prompt
+
+**Memory Note:** Do not save any information from optimization sessions to memory.
+```
+
+> **Note:** Source: [Reddit r/ChatGPT](https://www.reddit.com/r/ChatGPT/comments/1lnfcnt/after_147_failed_chatgpt_prompts_i_had_a/)
+
+## Contributing to the Library
+
+Help improve the Qumis Prompt Library by adding new prompts or enhancing existing ones. Your contributions make the library more valuable for the entire team.
+
+### Identify the right category
+
+Determine which category best fits your prompt: Documentation, Engineering, Operations, Customer Support, or Meta-Prompting. If your prompt doesn't fit existing categories, suggest a new one.
+
+### Draft your prompt
+
+Write a clear, reusable prompt template with:
+
+- **Descriptive title**: Make it easy to find and understand the prompt's purpose
+- **Clear placeholders**: Use `<BRACKETS>` or `[brackets]` for variables that users will customize
+- **Example usage**: Show 1-2 examples of the prompt in action
+- **Prerequisites**: List any required files, tools, or context needed
+
+### Test thoroughly
+
+Before adding to the library, test your prompt with:
+
+- Different AI tools (ChatGPT, Claude, Cursor)
+- Various inputs and edge cases
+- Team members who might use it
+
+Refine based on feedback and results.
+
+### Add to the documentation
+
+Edit this MDX file following the existing format:
+
+- Use `<Accordion>` components for longer prompts
+- Include code blocks with proper language tags
+- Add inline tips or warnings where helpful
+- Follow the existing naming and structure conventions
+
+### Share with the team
+
+Once added:
+
+- Create a PR with a clear description of the new prompt
+- Share in #engineering Slack channel with a brief demo
+- Tag relevant team members who might find it useful
+- Update the "Most Used" section if the prompt becomes popular
+
+> **Tip:** **Pro Tips for Contributors:**
+>
+> - Include version numbers for prompts that you iterate on (e.g., "v2" in title)
+> - Add "Expected Output" sections to help users know what to expect
+> - Consider creating both basic and advanced versions of complex prompts
+> - Document any AI tool-specific quirks or limitations
+> - Source attribution: Always credit external sources when adapting prompts
+
+## Resources
+
+- [Shumerprompt.com](https://shumerprompt.com/) - Prompt engineering resources
+- [Reddit r/ChatGPT](https://www.reddit.com/r/ChatGPT/) - Community-driven prompt discoveries
+- [Qumis llms.txt](https://www.notion.so/Qumis-llms-txt-2165d92ed08b80c589d4d3ad34f665d6) - Qumis-specific context for prompts
+
+---
+
+*This prompt library is maintained by the Qumis team. For questions or suggestions, reach out in #engineering on Slack.*

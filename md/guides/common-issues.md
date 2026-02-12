@@ -1,0 +1,359 @@
+---
+title: "Common Issues & Troubleshooting"
+description: "Solutions to frequently encountered issues in Qumis"
+---
+
+# Common Issues & Troubleshooting
+
+This guide provides solutions to common issues users encounter in Qumis. If you can't find a solution here, please [contact our support team](/guides/contact-support).
+
+## Login & Authentication Issues
+
+### Cannot Log Into Account
+
+### Incorrect Password
+
+**Problem**: Login fails with "incorrect password" error.
+
+**Solution**:
+
+1. Click "Forgot Password" on the login page
+2. Enter your email address
+3. Check your email for reset instructions
+4. Create a new password following security requirements
+5. Try logging in with your new password
+
+### Account Locked
+
+**Problem**: Account locked after multiple failed login attempts.
+
+**Solution**:
+
+- Wait 30 minutes for automatic unlock
+- Or contact your administrator for immediate unlock
+- Or use the "Forgot Password" option to reset
+
+### Two-Factor Authentication Issues
+
+**Problem**: Not receiving 2FA codes or codes not working.
+
+**Solution**:
+
+1. Verify your phone number or authenticator app is correctly configured
+2. Check time sync on your device (for authenticator apps)
+3. Try using backup codes if available
+4. Contact support to temporarily disable 2FA
+
+### Session Timeout
+
+**Problem**: Getting logged out frequently.
+
+**Solution**:
+
+- Check your organization's session timeout settings
+- Ensure cookies are enabled in your browser
+- Disable browser extensions that might interfere
+- Try using a different browser
+
+## Document Management Issues
+
+### Cannot Upload Documents
+
+> **Warning:** File upload limits: Maximum 100MB per file, supported formats: PDF, DOC, DOCX, XLS, XLSX, PNG, JPG
+
+| Issue | Possible Cause | Solution |
+|-------|---------------|----------|
+| Upload fails immediately | File too large | Compress or split large files |
+| "Unsupported format" error | Invalid file type | Convert to supported format |
+| Upload stalls at percentage | Network issues | Check internet connection, try smaller batches |
+| "Permission denied" | Insufficient privileges | Contact admin for upload permissions |
+
+### Document Search Not Working
+
+### Search Returns No Results
+
+**Solutions:**
+
+- Check spelling and try alternative keywords
+- Remove special characters from search terms
+- Ensure documents are indexed (may take 5-10 minutes after upload)
+- Try advanced search with filters
+
+### Search Is Slow
+
+**Solutions:**
+
+- Reduce the date range
+- Use more specific search terms
+- Clear browser cache
+- Try during off-peak hours
+
+### Wrong Documents Appearing
+
+**Solutions:**
+
+- Review and refine search filters
+- Check document metadata and tags
+- Use quotes for exact phrase matching
+- Exclude terms with minus sign (-)
+
+## Performance Issues
+
+### Slow Loading Times
+
+### Check System Status
+
+Visit status.qumis.com to check for known issues or maintenance
+
+### Clear Browser Cache
+
+- Chrome: Settings → Privacy → Clear browsing data
+- Firefox: Settings → Privacy → Clear Data
+- Safari: Develop → Empty Caches
+- Edge: Settings → Privacy → Choose what to clear
+
+### Disable Browser Extensions
+
+Temporarily disable extensions to identify conflicts:
+
+- Ad blockers may interfere with functionality
+- VPNs can slow connections
+- Password managers might cause form issues
+
+### Check Internet Connection
+
+- Run a speed test (minimum 10 Mbps recommended)
+- Try a wired connection if using WiFi
+- Contact IT if on corporate network
+
+### Optimize Browser
+
+- Update to latest browser version
+- Close unnecessary tabs
+- Restart browser periodically
+
+### Browser Compatibility
+
+Qumis supports the following browsers:
+
+> **Info:** For optimal performance, always use the latest version of your preferred browser.
+
+| Browser | Minimum Version | Recommended |
+|---------|----------------|-------------|
+| Chrome | 90+ | Latest |
+| Firefox | 88+ | Latest |
+| Safari | 14+ | Latest |
+| Edge | 90+ | Latest |
+
+**Not Supported**: Internet Explorer (all versions)
+
+## Data & Reporting Issues
+
+### Reports Not Generating
+
+### Report Times Out
+
+**Solution**:
+
+- Reduce date range or data scope
+- Apply more specific filters
+- Schedule report for off-peak generation
+- Export raw data and process externally for large datasets
+
+### Missing Data in Reports
+
+**Solution**:
+
+- Verify data permissions for your role
+- Check report filters and parameters
+- Ensure data sync is complete (may take up to 1 hour)
+- Confirm source data exists for selected period
+
+### Export Fails
+
+**Solution**:
+
+- Try different export format (CSV vs Excel)
+- Reduce number of columns or rows
+- Check available disk space
+- Disable popup blockers for downloads
+
+## Integration Issues
+
+### API Connection Problems
+
+```bash
+# Test API connectivity
+curl -X GET https://api.qumis.com/v1/health \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Common API errors:**
+
+| Error Code | Meaning | Solution |
+|------------|---------|----------|
+| 401 | Unauthorized | Check API key validity |
+| 403 | Forbidden | Verify permissions for endpoint |
+| 429 | Rate limited | Reduce request frequency |
+| 500 | Server error | Retry with exponential backoff |
+| 503 | Service unavailable | Check system status, try later |
+
+### Third-Party Integration Failures
+
+### OAuth Connection Issues
+
+- Re-authenticate the connection
+- Check if tokens have expired
+- Verify redirect URLs are whitelisted
+
+### Data Sync Problems
+
+- Check field mappings
+- Verify data formats match
+- Review sync logs for specific errors
+- Test with smaller data batch
+
+### Webhook Failures
+
+- Confirm endpoint is accessible
+- Check SSL certificate validity
+- Verify payload format
+- Monitor webhook logs
+
+## Mobile App Issues
+
+### App Crashes or Won't Open
+
+### iOS
+
+1. Force quit the app (swipe up and remove)
+2. Restart your device
+3. Check for app updates in App Store
+4. Ensure iOS is updated
+5. Reinstall app if issues persist
+
+### Android
+
+1. Force stop app in Settings → Apps
+2. Clear app cache and data
+3. Restart your device
+4. Update app from Google Play
+5. Reinstall if problems continue
+
+### Sync Issues on Mobile
+
+- Check internet connectivity (WiFi or cellular)
+- Pull down to manually refresh
+- Log out and log back in
+- Verify account has mobile access enabled
+- Check if offline mode is accidentally enabled
+
+## Email & Notification Issues
+
+### Not Receiving Emails
+
+### Check Spam Folder
+
+Emails might be filtered - add noreply@qumis.com to contacts
+
+### Verify Email Settings
+
+Go to Settings → Notifications → Email Preferences
+
+### Confirm Email Address
+
+Ensure correct email in account profile
+
+### Whitelist Qumis
+
+Ask IT to whitelist:
+
+- noreply@qumis.com
+- support@qumis.com
+- alerts@qumis.com
+
+## Permission & Access Issues
+
+### "Access Denied" Errors
+
+### Role Permissions
+
+- Contact admin to review your role
+- Request specific feature access
+- Check team membership
+
+### License Limitations
+
+- Verify your subscription includes the feature
+- Check if user limit reached
+- Review plan restrictions
+
+### Geographic Restrictions
+
+- Some features may be region-specific
+- VPN might trigger security blocks
+- IP whitelisting might be required
+
+## Data Recovery
+
+### Accidentally Deleted Items
+
+> **Info:** Most deleted items can be recovered within 30 days from the Recycle Bin.
+
+### Navigate to Recycle Bin
+
+Find **Recycle Bin** in the sidebar
+
+### Locate Deleted Item
+
+Use filters if needed to find the item you want to recover
+
+### Restore Item
+
+Select item and click **Restore**
+
+### Verify Recovery
+
+Item returns to original location
+
+> **Warning:** For items older than 30 days, contact support immediately.
+
+## Getting Additional Help
+
+If you couldn't resolve your issue:
+
+Check our comprehensive documentation
+
+Browse community solutions
+
+Get direct help from our team
+
+Check status.qumis.com for system issues
+
+> **Tip:** When contacting support, include:
+>
+> - Screenshot of the error
+> - Steps to reproduce
+> - Browser and version
+> - Time and date of issue
+> - Your account email
+
+## Preventive Measures
+
+To avoid common issues:
+
+- Keep browsers updated
+- Clear cache regularly
+- Use strong, unique passwords
+- Enable two-factor authentication
+- Regularly review permissions
+- Monitor system notifications
+- Backup important data
+- Stay informed about updates
+
+## Related Resources
+
+- [Contact Support](/guides/contact-support)
+- [System Requirements](/guides/system-requirements)
+- [Security Best Practices](/guides/security-best-practices)
+- [Managing Your Account](/guides/managing-your-account)

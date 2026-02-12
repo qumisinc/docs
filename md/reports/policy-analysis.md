@@ -1,0 +1,325 @@
+---
+title: "Single Policy Analysis"
+---
+
+> **Info:** The **Single Policy Analysis Report** helps producers and brokers quickly analyze a client or prospect's existing insurance policy. In just minutes, Qumis reads the policy, identifies key strengths and weaknesses, and highlights opportunities for you to negotiate better terms or win the account—a process that might otherwise take days.
+
+---
+
+## What this report does
+
+When a prospect sends you a copy of their current policy, Qumis automatically:
+
+- Reads and interprets the entire policy.
+- Produces an executive summary that highlights key coverages, exclusions, and gaps.
+- Pinpoints areas where you can provide better coverage or pricing.
+- Lets you chat with the report for deeper insights.
+
+All findings are organized into a professional, point-by-point report designed for quick review and client discussions.
+
+---
+
+## Before you start
+
+> **Info:** **Prerequisites for Single Policy Analysis:**
+>
+> - Have the prospect's policy document ready (PDF format works best)
+> - Know the prospect's business type or coverage needs (this helps add context)
+> - Have 5-10 minutes to set up and generate the report
+
+---
+
+## 1) Access the Single Policy Analysis tool
+
+### Open Single Policy
+
+Click **Single Policy** from the left sidebar.
+
+### View your analyses dashboard
+
+The dashboard lists all your previously created analyses showing the report name, associated policy file, and when it was last modified.
+
+### Start a new analysis
+
+To start a new analysis, click the **Single Policy Analysis** card at the top.
+
+Each analysis is automatically saved, so you can revisit past reports anytime.
+
+![Single Policy Analysis dashboard in Qumis showing recent reports](/images/screenshots/single-policy-dashboard.png)
+
+---
+
+## 2) Upload your policy document
+
+A three-step workflow guides you through creating your report:
+
+- **Step 1: Policy Documents**
+- **Step 2: Additional Information**
+- **Step 3: Generate Report**
+
+On **Step 1: Policy Documents**, add the prospect's policy:
+
+### Upload your file
+
+Drag and drop your file into the **Drop files here** area, or click to select a file from your computer.
+
+### Or select from Vault
+
+Alternatively, click **Search and Add Documents From Vault** to pull a previously uploaded policy from your Vault.
+
+### Verify file format
+
+Supported formats include PDF, Word, Excel, and images (JPG, PNG, TIFF).
+
+### Confirm upload
+
+Once uploaded, the file appears with a green checkmark and document name.
+
+Make sure you upload one policy document per analysis—this ensures accuracy and focus.
+
+![Uploading a policy document to Qumis Single Policy Analysis](/images/screenshots/single-policy-upload-document.png)
+
+---
+
+## 3) Add additional context (optional)
+
+On **Step 2: Additional Information**, you can provide optional context to help Qumis tailor the analysis.
+
+### Navigate to Additional Information
+
+Click **Additional Information** on the left sidebar or click the **Additional Information** button to proceed to Step 2.
+
+### Add relevant context
+
+In the text box labeled "Please describe any additional information relevant for the analysis," add context such as:
+
+- The prospect's industry or business type (e.g., "construction contractor," "healthcare facility")
+- Specific operations or concerns (e.g., "client recently expanded internationally," "they work with independent contractors")
+- What you'd like to focus on (e.g., "identify gaps in contractor coverage," "analyze exclusions")
+- Any known limitations of their current coverage
+
+Providing context can make your final report more tailored and insightful.
+
+![Adding additional information for Single Policy Analysis](/images/screenshots/single-policy-uploaded-documents.png)
+
+---
+
+## 4) Generate your report
+
+Once your document is uploaded and any optional context is added:
+
+### Start generation
+
+Click **Generate Single Policy Analysis** at the bottom right.
+
+### AI begins analysis
+
+Qumis begins reading and interpreting the policy.
+
+### Wait for processing
+
+The process takes approximately 5–10 minutes, depending on document length and complexity.
+
+### Monitor progress
+
+You'll see a progress screen with status updates such as "Compiling Insights" and "Validating Accuracy."
+
+### Return when ready
+
+You can leave the page and return later—the report will be ready when processing completes.
+
+Qumis uses a multi-agent AI system to ensure accuracy and context-aware insights across all policy sections.
+
+![Generating Single Policy Analysis report progress view](/images/screenshots/single-policy-additional-info.png)
+
+---
+
+## 5) Review your completed report
+
+When complete, you'll receive a structured report with clear, actionable insights organized into sections:
+
+- Overall assessment of the policy and carrier
+- Key strengths of the current coverage
+- Major concerns and weaknesses
+- Urgent attention needed items
+
+* Line-by-line policy analysis
+* Coverage limits and deductibles
+* Exclusions and limitations
+* Policy requirements and conditions
+
+- Endorsements and modifications
+- Opportunities for improvement and negotiation
+- Recommendations for better terms or broader protection
+
+Quickly identify where your firm can deliver better coverage, broader protection, or cost savings to win the account.
+
+![Completed Single Policy Analysis Report with Executive Summary and Chat](/images/screenshots/single-policy-generate-report.png)
+
+---
+
+## 6) Chat with your report
+
+Every policy report includes an interactive chat assistant—**Qumis Clerk**—that helps you dive deeper into the analysis.
+
+### Asking Questions
+
+You can ask questions like:
+
+- "Which exclusions limit coverage for subcontractors?"
+- "How do the policy limits compare to industry standards?"
+- "What are the renewal terms?"
+- "Does this policy cover X exposure?"
+
+Qumis answers based on the policy and provides specific citations and references.
+
+### Saving Chat Conversations
+
+- Chats are automatically saved within your report.
+- You can maintain multiple chat threads per report for different client scenarios or follow-up questions.
+- Access your saved chat conversations by clicking the chat history.
+- Reference saved conversations later when preparing your pitch or follow-up communications.
+
+![Chatting with Qumis Clerk about Single Policy Analysis report](/images/screenshots/single-policy-report-results.png)
+
+---
+
+## 7) Use the report for your pitch
+
+Once you have your Single Policy Analysis Report, use it to:
+
+- Reference specific weaknesses and gaps to show where current coverage is inadequate
+- Recommend coverage improvements based on Qumis's analysis
+- Highlight where you can negotiate better terms
+
+* Use specific policy sections and exclusions cited in the report
+* Show you've done your homework by referencing details from their existing policy
+* Demonstrate value by explaining what's missing or could be improved
+
+- The detailed analysis gives you credibility and expertise
+- Speak authoritatively about their coverage without lengthy manual review
+- Use the chat feature to answer follow-up questions before your pitch
+
+---
+
+## 8) Download or share
+
+### Export as PDF
+
+Click **Download** in the top right of the completed report to export it as a professional PDF.
+
+### Share with stakeholders
+
+Share insights with your team or clients for quick follow-up and discussion.
+
+Downloaded reports include your company name and Qumis analysis notes—ideal for client presentations.
+
+---
+
+## 9) Access previous reports
+
+Your previously generated Single Policy Analysis Reports are saved and listed on the Single Policy Analysis dashboard.
+
+### Navigate to Single Policy
+
+Go to **Single Policy** in the left sidebar.
+
+### Review your reports table
+
+You'll see a table of all your reports showing:
+
+- **NAME** — Report name
+- **FILES** — The policy file analyzed
+- **LAST MODIFIED** — When the report was created or last accessed
+
+### Open a saved report
+
+Click any report to open it, review the analysis, or add new chat questions.
+
+---
+
+## Best practices
+
+### Add context for better analysis
+
+The more detail you provide in "Additional Information," the more targeted Qumis's analysis will be. Include industry specifics, operational details, and focus areas.
+
+### Review before pitching
+
+Always review the full report before meeting with the prospect so you understand the nuances of their coverage and can speak confidently.
+
+### Use chat to prepare
+
+Ask Qumis clarifying questions about exclusions, limits, and terms before your pitch so you're fully prepared for client questions.
+
+### Highlight the wins
+
+Focus your pitch on opportunities where your firm can provide better coverage, more favorable terms, or cost savings. Use specific examples from the report.
+
+### Save your conversations
+
+Keep your chat threads with the report—they become part of your analysis file and help with consistency across multiple client touchpoints.
+
+### One policy per report
+
+Create separate analyses for each policy so reports stay organized and focused. For side-by-side comparisons, use the Comparisons feature.
+
+---
+
+## Time savings example
+
+**5-9 hours per policy**
+
+- Initial policy review: 1-2 hours
+- Detailed coverage analysis: 2-3 hours
+- Identifying gaps and opportunities: 1-2 hours
+- Preparing pitch materials: 1-2 hours
+
+**15-25 minutes per policy**
+
+- Upload policy: 2 minutes
+- Add context: 2 minutes
+- Generate report: 5-10 minutes
+- Review and ask clarifying questions: 5-10 minutes
+
+> **Tip:** **Dramatic efficiency gains:** You can now analyze multiple prospect policies in a single afternoon instead of days—giving you more time to focus on building relationships and winning accounts.
+
+---
+
+## Troubleshooting
+
+### My report is taking too long to generate
+
+Average generation time is 5–10 minutes. If it exceeds 15 minutes, refresh the page or re-upload your document. Complex or lengthy policies may take slightly longer.
+
+### I don't see my uploaded document
+
+Ensure you've added it in the "Policy Documents" section (Step 1) before clicking "Generate Report." Check that the file shows a green checkmark and document name after upload.
+
+### Can I analyze more than one policy at once?
+
+The Single Policy tool is designed for one document at a time to ensure accuracy and focus. For side-by-side comparisons, use the **Comparisons** feature instead.
+
+### Where are my past analyses?
+
+All completed reports appear on the **Single Policy Analysis dashboard**. Go to **Single Policy** in the left sidebar to access them. Reports show name, associated files, and last modified date.
+
+### Can I edit the report after it's generated?
+
+The report itself is generated by Qumis and cannot be directly edited, but you can add notes and chat questions. Use the chat feature to clarify specific points or ask for deeper analysis on any section.
+
+### I want to compare two policies
+
+Create separate Single Policy Analysis reports for each policy, then use the **Comparisons** tool to review them side-by-side with detailed variance analysis.
+
+---
+
+## Where Single Policy Analysis fits in the Qumis platform
+
+Single Policy Analysis is purpose-built for the broker/producer workflow of evaluating prospects' existing policies. Use it alongside **Chats** for ad-hoc questions, **Comparisons** for side-by-side policy reviews, and **Custom Reports** for tailored client deliverables.
+
+---
+
+### Why use Single Policy Analysis?
+
+Traditional policy analysis can take hours or days—reading, annotating, comparing, and summarizing dense legal documents. With Qumis, you can analyze a full policy in minutes, identify coverage gaps and negotiation opportunities instantly, and position your firm as a trusted advisor to win new business faster. What once took days now takes minutes, letting you focus on relationships, not paperwork.

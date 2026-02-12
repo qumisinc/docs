@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "build:md": "node scripts/compile-md.mjs"
+  },
+  "devDependencies": {
+    "glob": "^11",
+    "remark": "^15",
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx": "^3",
+    "remark-stringify": "^11",
+    "unist-util-visit": "^5"
+  }
+}

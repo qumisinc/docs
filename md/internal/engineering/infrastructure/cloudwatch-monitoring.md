@@ -1,0 +1,823 @@
+---
+title: "CloudWatch Monitoring"
+description: "Monitor logs and application metrics using AWS CloudWatch"
+icon: "chart-line"
+noindex: true
+# groups: ["internal"]
+---
+
+This guide covers how to use AWS CloudWatch to monitor our applications across all environments.
+
+## Quick Access
+
+### ECS Service Log Groups
+
+> **Warning:** **Blue/Green Deployment Pattern**: We currently only have **blue** clusters active. Log groups follow the pattern:
+> `ecs/blue/<environment>/<service>`
+>
+> Green clusters will be activated during blue/green deployments.
+
+| Environment | Service | Log Group | AWS Profile |
+|------------|---------|-----------|-------------|
+| Dev | API | `ecs/blue/dev/api` | `qumis_dev` |
+| Dev | Web | `ecs/blue/dev/web` | `qumis_dev` |
+| Dev | Sidekiq | `ecs/blue/dev/sidekiq` | `qumis_dev` |
+| QA | API | `ecs/blue/qa/api` | `qumis_qa` |
+| QA | Web | `ecs/blue/qa/web` | `qumis_qa` |
+| QA | Sidekiq | `ecs/blue/qa/sidekiq` | `qumis_qa` |
+| UAT | API | `ecs/blue/uat/api` | `qumis_uat` |
+| UAT | Web | `ecs/blue/uat/web` | `qumis_uat` |
+| UAT | Sidekiq | `ecs/blue/uat/sidekiq` | `qumis_uat` |
+| Production | API | `ecs/blue/prod/api` | `qumis_prod` |
+| Production | Web | `ecs/blue/prod/web` | `qumis_prod` |
+| Production | Sidekiq | `ecs/blue/prod/sidekiq` | `qumis_prod` |
+
+### Lambda Function Log Groups (if applicable)
+
+| Environment | Account ID | Log Group | AWS Profile |
+|------------|------------|-----------|-------------|
+| Dev | 080970846004 | `/aws/lambda/qumis-api-dev` | `qumis_dev` |
+| QA | 340452546718 | `/aws/lambda/qumis-api-qa` | `qumis_qa` |
+| UAT | 499854674638 | `/aws/lambda/qumis-api-uat` | `qumis_uat` |
+| Production | 729033428609 | `/aws/lambda/qumis-api-prod` | `qumis_prod` |
+
+### Quick Commands
+
+#### ECS Services
+
+```bash Tail Service Logs
+# Tail ECS service logs in real-time (blue cluster)
+aws logs tail ecs/blue/prod/api --profile qumis_prod --follow
+aws logs tail ecs/blue/prod/web --profile qumis_prod --follow
+aws logs tail ecs/blue/prod/sidekiq --profile qumis_prod --follow
+```
+
+```bash Search for Errors
+# Search for errors across all services
+for SERVICE in api web sidekiq; do
+  echo "=== $SERVICE errors ==="
+  aws logs filter-log-events \
+    --log-group-name ecs/blue/prod/$SERVICE \
+    --start-time $(date -u -d '1 hour ago' '+%s')000 \
+    --filter-pattern "ERROR" \
+    --profile qumis_prod \
+    --max-items 5
+done
+```
+
+```bash Monitor Sidekiq Jobs
+aws logs tail ecs/blue/prod/sidekiq \
+  --profile qumis_prod \
+  --follow \
+  --filter-pattern "perform"
+```
+
+```bash Helper Function
+# Quick function for any environment
+ecs_logs() {
+  ENV=$1
+  SERVICE=$2
+  aws logs tail ecs/blue/$ENV/$SERVICE --profile qumis_$ENV --follow
+}
+# Usage: ecs_logs prod api
+```
+
+#### Lambda Functions
+
+```bash Tail Lambda Logs
+aws logs tail /aws/lambda/qumis-api-prod --profile qumis_prod --follow
+```
+
+```bash Search for Errors
+aws logs filter-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --start-time $(date -u -d '1 hour ago' '+%s')000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod
+```
+
+## Accessing CloudWatch
+
+### Via AWS Console
+
+### Login to AWS
+
+```bash
+# Login via SSO
+qumis aws login prod
+
+# Or open console directly
+aws sso login --profile qumis_prod
+open https://console.aws.amazon.com/cloudwatch
+```
+
+### Navigate to Logs
+
+1. Select **CloudWatch** service
+2. Click **Logs → Log groups** in left navigation
+3. Search for `qumis` to find our log groups
+4. Click on a log group to view streams
+
+### View Log Streams
+
+1. Log streams are organized by date and instance
+2. Click on a stream to view logs
+3. Use the search bar to filter logs
+4. Adjust time range as needed
+
+### Via AWS CLI
+
+### Tail Logs
+
+```bash
+# Follow logs in real-time
+aws logs tail /aws/lambda/qumis-api-dev --profile qumis_dev --follow
+
+# Tail with filter
+aws logs tail /aws/lambda/qumis-api-prod \
+  --profile qumis_prod \
+  --follow \
+  --filter-pattern "ERROR"
+
+# Tail specific time window
+aws logs tail /aws/lambda/qumis-api-prod \
+  --profile qumis_prod \
+  --since 5m
+```
+
+### Search Logs
+
+```bash
+# Search for specific pattern
+aws logs filter-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --filter-pattern "Exception" \
+  --profile qumis_prod
+
+# Search with time range
+aws logs filter-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --start-time $(date -u -d '1 hour ago' '+%s')000 \
+  --end-time $(date -u '+%s')000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod
+```
+
+### Get Specific Logs
+
+```bash
+# List log streams
+aws logs describe-log-streams \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --order-by LastEventTime \
+  --descending \
+  --profile qumis_prod
+
+# Get logs from specific stream
+aws logs get-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --log-stream-name "2024/01/15/[$LATEST]abcd1234" \
+  --start-from-head \
+  --profile qumis_prod
+```
+
+## ECS-Specific Monitoring
+
+### ECS Service Logs
+
+### API Service
+
+```bash
+# Tail API logs (blue cluster)
+aws logs tail ecs/blue/prod/api --profile qumis_prod --follow
+
+# Search for specific endpoints
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/api \
+  --filter-pattern "POST /api/v1/users" \
+  --profile qumis_prod
+
+# Check Rails errors
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/api \
+  --filter-pattern "ActiveRecord::RecordNotFound" \
+  --profile qumis_prod
+
+# Monitor API response times
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/api \
+  --filter-pattern "[Completed]" \
+  --profile qumis_prod | grep -E "Completed [0-9]+ms"
+```
+
+### Web Service
+
+```bash
+# Tail web server logs (blue cluster)
+aws logs tail ecs/blue/prod/web --profile qumis_prod --follow
+
+# Check for JavaScript errors
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/web \
+  --filter-pattern "Error" \
+  --profile qumis_prod
+
+# Monitor Next.js build issues
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/web \
+  --filter-pattern "Build error" \
+  --profile qumis_prod
+
+# Check static asset serving
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/web \
+  --filter-pattern "404" \
+  --profile qumis_prod
+```
+
+### Sidekiq Service
+
+```bash
+# Monitor job processing (blue cluster)
+aws logs tail ecs/blue/prod/sidekiq --profile qumis_prod --follow
+
+# Check for failed jobs
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/sidekiq \
+  --filter-pattern "FAILED" \
+  --profile qumis_prod
+
+# Monitor specific job types
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/sidekiq \
+  --filter-pattern "EmailJob" \
+  --profile qumis_prod
+
+# Check job queue depths
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/sidekiq \
+  --filter-pattern "queue" \
+  --profile qumis_prod | grep -E "default|critical|low"
+
+# Monitor retries
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/sidekiq \
+  --filter-pattern "retry" \
+  --profile qumis_prod
+```
+
+### ECS Task Monitoring
+
+```bash
+# Get ECS task list (blue cluster)
+aws ecs list-tasks \
+  --cluster blue-prod \
+  --service-name api \
+  --profile qumis_prod
+
+# Describe a specific task
+TASK_ARN=$(aws ecs list-tasks --cluster blue-prod --service-name api --profile qumis_prod --query 'taskArns[0]' --output text)
+aws ecs describe-tasks \
+  --cluster blue-prod \
+  --tasks $TASK_ARN \
+  --profile qumis_prod
+
+# Get task logs by task ID
+TASK_ID=$(echo $TASK_ARN | grep -oE '[a-f0-9]{32}' | head -1)
+aws logs filter-log-events \
+  --log-group-name ecs/blue/prod/api \
+  --log-stream-name-prefix ecs/api/$TASK_ID \
+  --profile qumis_prod
+```
+
+### Container Health Monitoring
+
+```bash
+# Check container health status (blue cluster)
+aws ecs describe-services \
+  --cluster blue-prod \
+  --services api web sidekiq \
+  --profile qumis_prod \
+  --query 'services[*].[serviceName,healthCheckGracePeriodSeconds,deployments[0].runningCount]'
+
+# Monitor container restarts
+for SERVICE in api web sidekiq; do
+  echo "=== $SERVICE container events ==="
+  aws logs filter-log-events \
+    --log-group-name ecs/blue/prod/$SERVICE \
+    --filter-pattern "Container started" \
+    --start-time $(date -u -d '24 hours ago' '+%s')000 \
+    --profile qumis_prod \
+    --query 'events | length(@)'
+done
+```
+
+## Log Analysis
+
+### Common Search Patterns
+
+### Error Patterns
+
+```bash
+# All errors
+--filter-pattern "ERROR"
+
+# Specific error types
+--filter-pattern "ActiveRecord::RecordNotFound"
+--filter-pattern "NoMethodError"
+--filter-pattern "Timeout::Error"
+
+# Database errors
+--filter-pattern "[ERROR] [Database]"
+--filter-pattern "could not connect"
+
+# Authentication errors
+--filter-pattern "401"
+--filter-pattern "Unauthorized"
+```
+
+### Performance
+
+```bash
+# Slow queries
+--filter-pattern "[SLOW_QUERY]"
+--filter-pattern "duration > 1000"
+
+# Memory issues
+--filter-pattern "Cannot allocate memory"
+--filter-pattern "MemoryError"
+
+# Timeouts
+--filter-pattern "Timeout"
+--filter-pattern "Task timed out"
+```
+
+### User Activity
+
+```bash
+# User logins
+--filter-pattern "User logged in"
+--filter-pattern "[LOGIN]"
+
+# API calls
+--filter-pattern "POST /api"
+--filter-pattern "GET /api"
+
+# Specific user
+--filter-pattern "user_id=123"
+--filter-pattern "email=user@example.com"
+```
+
+### CloudWatch Insights Queries
+
+CloudWatch Insights provides powerful query capabilities:
+
+```sql
+-- Top 10 errors in last hour
+fields @timestamp, @message
+| filter @message like /ERROR/
+| sort @timestamp desc
+| limit 10
+
+-- Request duration statistics
+fields @duration, @requestId
+| filter @type = "REPORT"
+| stats avg(@duration), min(@duration), max(@duration) by bin(5m)
+
+-- Errors by type
+fields @message
+| filter @message like /ERROR/
+| parse @message /ERROR.*?(?<error_type>\w+Error)/
+| stats count() by error_type
+
+-- Memory usage over time
+fields @timestamp, @memorySize, @maxMemoryUsed
+| filter @type = "REPORT"
+| stats avg(@maxMemoryUsed/@memorySize*100) as memory_percent by bin(5m)
+```
+
+## Metrics Monitoring
+
+### Lambda Metrics
+
+### Access Metrics
+
+1. Navigate to CloudWatch → Metrics
+2. Select "Lambda" namespace
+3. Choose metric dimension (By Function Name)
+4. Select your function (e.g., `qumis-api-prod`)
+
+### Key Metrics
+
+- **Invocations**: Number of function executions
+- **Errors**: Number of failed executions
+- **Duration**: Execution time
+- **Throttles**: Rate-limited invocations
+- **Concurrent Executions**: Parallel executions
+
+### Create Dashboard
+
+```bash
+# Get metrics via CLI
+aws cloudwatch get-metric-statistics \
+  --namespace AWS/Lambda \
+  --metric-name Duration \
+  --dimensions Name=FunctionName,Value=qumis-api-prod \
+  --start-time $(date -u -d '1 hour ago' --iso-8601) \
+  --end-time $(date -u --iso-8601) \
+  --period 300 \
+  --statistics Average,Maximum \
+  --profile qumis_prod
+```
+
+### Custom Metrics
+
+Our application logs custom metrics:
+
+```bash
+# Application performance
+aws cloudwatch get-metric-statistics \
+  --namespace Qumis/API \
+  --metric-name ResponseTime \
+  --start-time $(date -u -d '1 hour ago' --iso-8601) \
+  --end-time $(date -u --iso-8601) \
+  --period 300 \
+  --statistics Average \
+  --profile qumis_prod
+
+# Business metrics
+aws cloudwatch get-metric-statistics \
+  --namespace Qumis/Business \
+  --metric-name ActiveUsers \
+  --start-time $(date -u -d '24 hours ago' --iso-8601) \
+  --end-time $(date -u --iso-8601) \
+  --period 3600 \
+  --statistics Sum \
+  --profile qumis_prod
+```
+
+## Real-time Monitoring
+
+### Live Tail
+
+```bash
+#!/bin/bash
+# live-monitor.sh
+
+LOG_GROUP="/aws/lambda/qumis-api-prod"
+PROFILE="qumis_prod"
+
+echo "Monitoring $LOG_GROUP..."
+
+# Color codes for different log levels
+aws logs tail $LOG_GROUP \
+  --profile $PROFILE \
+  --follow \
+  --format short \
+  --filter-pattern "" | while read line; do
+    if [[ $line == *"ERROR"* ]]; then
+      echo -e "\033[31m$line\033[0m"  # Red for errors
+    elif [[ $line == *"WARN"* ]]; then
+      echo -e "\033[33m$line\033[0m"  # Yellow for warnings
+    else
+      echo "$line"
+    fi
+done
+```
+
+### Multi-Environment Monitoring
+
+```bash
+#!/bin/bash
+# monitor-all-envs.sh
+
+ENVIRONMENTS=("dev" "qa" "uat" "prod")
+SEARCH_PATTERN="ERROR"
+
+for ENV in "${ENVIRONMENTS[@]}"; do
+  echo "=== Checking $ENV environment ==="
+
+  LOG_GROUP="/aws/lambda/qumis-api-$ENV"
+  PROFILE="qumis_$ENV"
+
+  ERROR_COUNT=$(aws logs filter-log-events \
+    --log-group-name $LOG_GROUP \
+    --start-time $(date -u -d '1 hour ago' '+%s')000 \
+    --filter-pattern "$SEARCH_PATTERN" \
+    --profile $PROFILE \
+    --query 'events | length(@)' \
+    --output text)
+
+  echo "$ENV: $ERROR_COUNT errors in last hour"
+done
+```
+
+## Log Export and Analysis
+
+### Export to S3
+
+```bash
+# Export logs to S3 for analysis
+aws logs create-export-task \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --from $(date -u -d '7 days ago' '+%s')000 \
+  --to $(date -u '+%s')000 \
+  --destination qumis-logs-export \
+  --destination-prefix production/$(date +%Y/%m/%d) \
+  --profile qumis_prod
+```
+
+### Download for Local Analysis
+
+```bash
+# Download recent logs
+aws logs filter-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --start-time $(date -u -d '1 hour ago' '+%s')000 \
+  --profile qumis_prod \
+  --output json > logs_$(date +%Y%m%d_%H%M%S).json
+
+# Parse with jq
+cat logs_*.json | jq '.events[].message' | grep ERROR
+```
+
+## Troubleshooting Patterns
+
+### Debugging Production Issues
+
+### Identify Error Pattern
+
+```bash
+# Get error summary
+aws logs filter-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --start-time $(date -u -d '30 minutes ago' '+%s')000 \
+  --filter-pattern "ERROR" \
+  --profile qumis_prod \
+  --query 'events[].message' \
+  --output text | sort | uniq -c | sort -rn
+```
+
+### Find Related Logs
+
+```bash
+# Get request ID from error
+REQUEST_ID="abc-123-def"
+
+# Find all logs for that request
+aws logs filter-log-events \
+  --log-group-name /aws/lambda/qumis-api-prod \
+  --filter-pattern "\"$REQUEST_ID\"" \
+  --profile qumis_prod
+```
+
+### Check Metrics
+
+```bash
+# Check error rate
+aws cloudwatch get-metric-statistics \
+  --namespace AWS/Lambda \
+  --metric-name Errors \
+  --dimensions Name=FunctionName,Value=qumis-api-prod \
+  --start-time $(date -u -d '1 hour ago' --iso-8601) \
+  --end-time $(date -u --iso-8601) \
+  --period 60 \
+  --statistics Sum \
+  --profile qumis_prod
+```
+
+### Common Issues
+
+### No logs appearing
+
+Check:
+
+- Lambda function is actually running
+- Correct log group name
+- IAM permissions for CloudWatch
+- Time range is correct
+
+### Logs delayed
+
+- CloudWatch has inherent delay (few seconds)
+- Use `--follow` flag for real-time
+- Check Lambda function isn't buffering logs
+
+### Can't find specific error
+
+- Use broader search pattern
+- Check different time ranges
+- Error might be in different log group
+- Try CloudWatch Insights for complex queries
+
+## Best Practices
+
+### Log Hygiene
+
+1. **Structured Logging**: Use JSON format for easier parsing
+2. **Log Levels**: Use appropriate levels (ERROR, WARN, INFO, DEBUG)
+3. **Correlation IDs**: Include request IDs for tracing
+4. **Sensitive Data**: Never log passwords, tokens, or PII
+5. **Performance**: Don't log in tight loops
+
+### Monitoring Strategy
+
+1. **Set up dashboards** for key metrics
+2. **Create saved queries** for common investigations
+3. **Export critical logs** for compliance
+4. **Regular review** of error patterns
+5. **Automate alerts** for critical issues
+
+### Cost Management
+
+1. **Set retention periods** appropriately:
+   - Dev: 7 days
+   - QA: 14 days
+   - UAT: 30 days
+   - Production: 90 days
+
+2. **Use log filters** to reduce storage:
+   ```bash
+   # Only store errors and warnings in long-term storage
+   aws logs put-retention-policy \
+     --log-group-name /aws/lambda/qumis-api-dev \
+     --retention-in-days 7 \
+     --profile qumis_dev
+   ```
+
+## Useful Scripts
+
+### ECS Service Monitor
+
+```bash
+#!/bin/bash
+# ecs-monitor.sh
+
+# Blue/Green deployment - currently only blue is active
+ENV="prod"  # Change to dev, qa, uat as needed
+CLUSTER="blue-${ENV}"
+PROFILE="qumis_${ENV}"
+SERVICES="api web sidekiq"
+
+echo "ECS Service Monitor - $(date)"
+echo "Cluster: $CLUSTER"
+echo "=========================="
+
+# Check service status
+echo -e "\nService Status:"
+aws ecs describe-services \
+  --cluster $CLUSTER \
+  --services $SERVICES \
+  --profile $PROFILE \
+  --query 'services[*].[serviceName,status,runningCount,desiredCount,pendingCount]' \
+  --output table
+
+# Check recent errors for each service
+echo -e "\nRecent Errors (last hour):"
+for SERVICE in $SERVICES; do
+  ERROR_COUNT=$(aws logs filter-log-events \
+    --log-group-name ecs/blue/$ENV/$SERVICE \
+    --start-time $(date -u -d '1 hour ago' '+%s')000 \
+    --filter-pattern "ERROR" \
+    --profile $PROFILE \
+    --query 'events | length(@)' \
+    --output text 2>/dev/null || echo "0")
+
+  echo "$SERVICE: $ERROR_COUNT errors"
+done
+
+# Check CPU and Memory utilization
+echo -e "\nResource Utilization (last 30 min avg):"
+for SERVICE in $SERVICES; do
+  CPU=$(aws cloudwatch get-metric-statistics \
+    --namespace AWS/ECS \
+    --metric-name CPUUtilization \
+    --dimensions Name=ServiceName,Value=$SERVICE Name=ClusterName,Value=$CLUSTER \
+    --start-time $(date -u -d '30 minutes ago' --iso-8601) \
+    --end-time $(date -u --iso-8601) \
+    --period 1800 \
+    --statistics Average \
+    --profile $PROFILE \
+    --query 'Datapoints[0].Average' \
+    --output text 2>/dev/null || echo "N/A")
+
+  MEM=$(aws cloudwatch get-metric-statistics \
+    --namespace AWS/ECS \
+    --metric-name MemoryUtilization \
+    --dimensions Name=ServiceName,Value=$SERVICE Name=ClusterName,Value=$CLUSTER \
+    --start-time $(date -u -d '30 minutes ago' --iso-8601) \
+    --end-time $(date -u --iso-8601) \
+    --period 1800 \
+    --statistics Average \
+    --profile $PROFILE \
+    --query 'Datapoints[0].Average' \
+    --output text 2>/dev/null || echo "N/A")
+
+  echo "$SERVICE - CPU: ${CPU}%, Memory: ${MEM}%"
+done
+
+# Check for recent task failures
+echo -e "\nRecent Task Failures:"
+for SERVICE in $SERVICES; do
+  STOPPED_TASKS=$(aws ecs list-tasks \
+    --cluster $CLUSTER \
+    --service-name $SERVICE \
+    --desired-status STOPPED \
+    --profile $PROFILE \
+    --query 'taskArns | length(@)' \
+    --output text)
+
+  echo "$SERVICE: $STOPPED_TASKS stopped tasks in history"
+done
+```
+
+### Sidekiq Queue Monitor
+
+```bash
+#!/bin/bash
+# sidekiq-monitor.sh
+
+echo "Sidekiq Queue Monitor"
+echo "===================="
+
+qumis services exec api \
+  --env prod \
+  --reason "Monitor Sidekiq queues" \
+  --confirm prod \
+  -- rails runner "
+    require 'sidekiq/api'
+
+    stats = Sidekiq::Stats.new
+    puts 'Overall Stats:'
+    puts '  Processed: ' + stats.processed.to_s
+    puts '  Failed: ' + stats.failed.to_s
+    puts '  Busy: ' + stats.workers_size.to_s
+    puts '  Enqueued: ' + stats.enqueued.to_s
+    puts '  Scheduled: ' + stats.scheduled_size.to_s
+    puts '  Retries: ' + stats.retry_size.to_s
+    puts '  Dead: ' + stats.dead_size.to_s
+
+    puts '\nQueue Breakdown:'
+    Sidekiq::Queue.all.each do |queue|
+      puts '  ' + queue.name + ': ' + queue.size.to_s
+
+      # Show oldest job if queue is backed up
+      if queue.size > 100
+        oldest = queue.first
+        if oldest
+          puts '    Oldest job: ' + oldest.klass + ' (enqueued ' + oldest.enqueued_at.to_s + ')'
+        end
+      end
+    end
+
+    # Check for stuck jobs
+    puts '\nWorkers:'
+    workers = Sidekiq::Workers.new
+    workers.each do |process_id, thread_id, work|
+      runtime = Time.now - Time.at(work['run_at'])
+      if runtime > 300  # Jobs running longer than 5 minutes
+        puts '  LONG RUNNING: ' + work['queue'] + ' - ' + work['payload']['class'] + ' (' + runtime.to_i.to_s + 's)'
+      end
+    end
+  "
+```
+
+## Useful Scripts
+
+### Daily Error Report
+
+```bash
+#!/bin/bash
+# daily-error-report.sh
+
+LOG_GROUP="/aws/lambda/qumis-api-prod"
+PROFILE="qumis_prod"
+
+echo "Daily Error Report - $(date)"
+echo "========================"
+
+# Error count by hour
+echo -e "\nErrors by Hour:"
+for i in {0..23}; do
+  START=$(date -u -d "$i hours ago" '+%s')000
+  END=$(date -u -d "$(($i-1)) hours ago" '+%s')000
+
+  COUNT=$(aws logs filter-log-events \
+    --log-group-name $LOG_GROUP \
+    --start-time $START \
+    --end-time $END \
+    --filter-pattern "ERROR" \
+    --profile $PROFILE \
+    --query 'events | length(@)' \
+    --output text)
+
+  echo "$(date -d "$i hours ago" '+%H:00'): $COUNT errors"
+done
+```
+
+## Additional Resources
+
+- [CloudWatch Alerts Setup](/internal/engineering/infrastructure/cloudwatch-alerts)
+- [AWS CloudWatch Documentation](https://docs.aws.amazon.com/cloudwatch/)
+- [Debugging Production Issues](/internal/engineering/troubleshooting/debugging-production)
+- [AWS Environments Guide](/internal/engineering/infrastructure/aws-environments)

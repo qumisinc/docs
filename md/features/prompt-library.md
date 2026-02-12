@@ -1,0 +1,345 @@
+---
+title: "Prompt Library"
+---
+
+> **Info:** The **Prompt Library** helps you create, save, and reuse structured AI instructions—called *prompts*—for faster and more consistent insurance document analysis. Whether you're drafting a detailed policy analysis or refining a question for Chat, the Prompt Library keeps your best prompts at your fingertips.
+
+---
+
+## What is a Prompt?
+
+A **prompt** is a reusable instruction you give to Qumis AI. For example:
+
+> **Note:** "Review this policy for exclusions related to subcontractor work and summarize findings for a contractor client."
+
+Unlike general AI tools, Qumis is purpose-built for insurance professionals. The insurance expertise and reasoning are already built in—you don't need to tell Qumis to "think like an expert" or give it a persona. Simply focus on what you want analyzed and how you want the output formatted.
+
+Prompts are great for:
+
+- Standardizing analysis across your team.
+- Quickly generating complex outputs (like coverage tables or policy comparisons).
+- Saving your coverage checklists and frequently used review workflows.
+- Reducing repetitive typing in Chats or Reports.
+
+Once created, you can reuse a saved prompt anywhere in Qumis—in **Chats** or **Reports**—by clicking the book icon and selecting it.
+
+---
+
+## Before you start
+
+- Have a sense of the types of questions or analyses you perform frequently.
+- Know whether you want to create a prompt from scratch or refine an existing question using Qumis's prompt enhancement tool.
+
+---
+
+## 1) Access the Prompt Library
+
+### Click Prompts from the left sidebar
+
+Navigate to the **Prompts** section from the left sidebar.
+
+### View the Prompt Library interface
+
+You'll see a searchable list of saved prompts on the left and a detail view on the right.
+
+### Search for prompts
+
+Use the **Search prompts...** bar to quickly find prompts by name or keyword.
+
+---
+
+## 2) Browse existing prompts
+
+The Prompt Library includes built-in and saved prompts. Each prompt shows:
+
+- A descriptive title (e.g., "Workers Comp Review," "Cyber Coverage Analysis")
+- A brief description of what the prompt does
+- Associated documents or context
+
+Click any prompt to view its full content and use it.
+
+---
+
+## 3) Create a new prompt
+
+### Click + Create New button
+
+Click the **+ Create New** button in the upper-right corner.
+
+### Fill in the prompt form
+
+A form appears with two fields:
+
+- **Prompt Name** — give your prompt a clear, descriptive title (e.g., "Extract All Coverage Limits" or "Commercial General Liability Checklist")
+- **Enter prompt content...** — type your instruction or question
+
+### Write your prompt in plain English
+
+Qumis will understand and execute it when used later. Focus on:
+
+- What task you want Qumis to perform
+- What information to extract or analyze
+- How you want the output formatted
+- Any specific focus areas
+
+Since Qumis is built specifically for insurance professionals, the expertise is already built in—just describe what you need analyzed and how you want it presented.
+
+```text Analysis Prompt
+Review this policy for exclusions related to subcontractor work. Summarize findings in a client-friendly format highlighting risks.
+```
+
+```text Coverage Checklist Prompt
+Using this Workers Compensation policy, verify coverage for the following: Employee classifications, state coverage, occupational disease coverage, employer's liability limits, and voluntary compensation. Flag any missing or inadequate coverages.
+```
+
+---
+
+## 4) Refine your prompt with the magic wand
+
+On the right side of the prompt editor, you'll see a **magic wand icon**. Clicking it activates Qumis's AI-powered refinement tool, which automatically improves your prompt for clarity, focus, and impact.
+
+The magic wand works best when your initial idea is broad—let Qumis rewrite it into a professional-grade prompt by:
+
+- Adding specific instructions
+- Clarifying the desired output format
+- Suggesting relevant data fields to extract
+- Improving structure and specificity
+
+You'll also find this magic wand in **Chats** and **Report creation** to polish ad-hoc questions into stronger prompts.
+
+> **Tip:** The wand works best with broad starting questions. The more general your initial prompt, the more value the enhancement will add.
+
+---
+
+## 5) Save your prompt
+
+### Click Save Prompt
+
+Once you're happy with the text, click **Save Prompt** at the bottom right.
+
+### Access your saved prompt
+
+Your new prompt now appears in the left panel list and can be reused at any time.
+
+### Use across modules
+
+Your prompt is stored securely in your Qumis account and is accessible in other modules.
+
+---
+
+## 6) View and manage saved prompts
+
+### Select a prompt from the list
+
+Click the prompt name in the left list.
+
+### View the prompt content
+
+Its content appears in the editor pane on the right.
+
+### Edit or delete the prompt
+
+You can:
+
+- Edit the name or text directly in the fields
+- Click the **edit icon** (pencil) to modify the prompt
+- Click the **delete icon** (trash) to remove it permanently
+
+---
+
+## 7) Example of a detailed prompt
+
+Here's what a professional insurance prompt might look like:
+
+**Example prompt content:**
+
+> **Note:** "Analyze the provided Builders Risk insurance policy to assess its adequacy for a general contractor performing construction services in the Southeastern US. Include:
+>
+> - Named Insureds list
+> - Coverage Territory with geographical focus
+> - Coverage Limits per building and per job site for each coverage type
+> - Additional Coverages available
+> - Policy Requirements and Conditions
+> - Key Exclusions and their impact on operations"
+
+---
+
+## 8) Use saved prompts in Chats
+
+Once you've created a prompt, you can access it directly in Chats:
+
+### Open Chats
+
+Go to **Chats** and open or create a chat with a document.
+
+### Click the book icon
+
+When typing a question, click the **book icon** next to the chat input area.
+
+### View your saved prompts
+
+A dropdown list of your **Saved Prompts** appears.
+
+### Select a prompt
+
+Select the prompt you want to use. Qumis inserts the prompt into the text box, ready to ask.
+
+### Run the prompt
+
+Click **Ask** to run the prompt against your document.
+
+Reusing prompts ensures consistency and saves time when running similar analyses.
+
+---
+
+## 9) Use saved prompts in Reports
+
+When generating a custom report, you can pull in saved prompts:
+
+### Open Custom Report
+
+Go to **Custom Report** or another report tool.
+
+### Access Saved Prompts
+
+Click the **book icon** to access your **Saved Prompts**.
+
+### Select a prompt
+
+Select a prompt to use as the basis for your report analysis.
+
+### Generate the report
+
+Qumis generates a structured report using that prompt.
+
+### Finalize for delivery
+
+Customize and finalize the report for client delivery.
+
+This ensures consistency across your reports and speeds up report generation.
+
+---
+
+## 10) Search and organize your prompts
+
+- Use the **search bar** at the top to filter by name or keyword.
+- Pagination controls at the bottom allow you to navigate through pages if you have many prompts.
+- Keep prompts organized with clear, descriptive titles for easy searching later.
+
+---
+
+## 11) Update or improve prompts
+
+### Select the prompt to update
+
+Click it in the left panel.
+
+### Make your edits
+
+Edit the text directly or click the **magic wand icon** to refine it further.
+
+### Save the changes
+
+Click **Save Prompt** again to overwrite the old version.
+
+> **Tip:** You can iterate on prompts over time, improving them based on results you get from using them.
+
+---
+
+## Best practices for creating prompts
+
+- **Save your coverage checklists.** Convert the coverage verification checklists you use repeatedly into Prompt Library items. This ensures consistent coverage audits across your team and clients.
+- **Document frequently asked questions.** Save common questions or analyses you perform (e.g., "Check for independent contractor coverage," "Summarize all exclusions").
+- **Start broad, then refine.** Write your idea plainly, then use the magic wand to make it stronger.
+- **Be descriptive with names.** Use clear, specific names like "WC Coverage Verification Checklist" or "Cyber Exclusions Audit" for easy searching.
+- **Write detailed instructions.** The more specific your prompt, the better Qumis's analysis. Include context about what you're evaluating and why.
+- **Specify output format.** Tell Qumis how you want results—table, list, narrative summary, checklist, etc.
+- **Include focus areas.** Mention what's most important (e.g., "Flag gaps in contractor coverage" or "Highlight non-standard terms").
+- **Group prompts by function.** Organize by use case: "Coverage Checklists," "Claims Analysis," "Quote Comparison," "Client Reports," etc.
+- **Test before sharing.** Use a prompt on a sample document first to make sure it works as intended.
+- **Reuse across tools.** A single prompt can power Chats, Reports, and document analyses.
+- **Iterate over time.** Improve prompts based on results. Use the magic wand to refine prompts that aren't working as expected.
+
+---
+
+## Example prompts to get you started
+
+### Coverage Checklists
+
+```text WC Coverage Verification
+Verify this Workers Comp policy includes employee classifications, state coverage, occupational disease coverage, employer's liability limits, and voluntary compensation. Flag any gaps.
+```
+
+```text General Liability Audit
+Review this GL policy and confirm: named insureds match our records, coverage territory is correct, coverage limits are adequate for the business, and no unusual exclusions apply.
+```
+
+```text Cyber Policy Coverage Check
+Confirm this cyber policy covers: first-party data breach response, third-party liability, regulatory fines, business interruption, and ransomware. Note any exclusions or sublimits.
+```
+
+### For Brokers
+
+```text Quote Comparison
+Compare this quote to the incumbent policy and identify 5 key differences that represent either better coverage or cost savings. Format for client presentation.
+```
+
+```text Premium Extraction
+Extract all premium, taxes, and fees in a table format for proposal presentation. Include comparisons to current policy if available.
+```
+
+### For Claims Professionals
+
+```text Coverage Determination
+Analyze this claim scenario against the policy and determine if coverage applies. Cite specific policy language supporting your conclusion.
+```
+
+```text Exclusions Analysis
+Identify all policy conditions, exclusions, and endorsements relevant to this type of claim. Flag any that may limit coverage.
+```
+
+### For Risk Professionals
+
+```text Limits Summary
+Summarize all coverage limits, sublimits, and deductibles by line of business in an easy-to-read table format.
+```
+
+```text Requirements Extraction
+Extract all policy requirements and obligations the insured must follow to maintain coverage. Highlight those most critical for ongoing compliance.
+```
+
+---
+
+## Troubleshooting
+
+### I don't see my saved prompt in Chats or Reports
+
+Make sure it was saved successfully in the Prompts Library. Refresh the page and look for it under the book icon menu.
+
+### The magic wand didn't change my prompt
+
+Try giving it a broader or more general starting point for better results.
+
+### I can't save a prompt
+
+Check that both the name and text fields are filled in.
+
+### I want to modify a prompt but don't want to lose the original
+
+Create a new version with a slightly different name (e.g., "Extract Limits" vs. "Extract Limits - Client Facing"). Both versions will be available.
+
+### My prompt returns different results on different policies
+
+This is normal—Qumis adapts responses based on document content. Refine your prompt to be more specific if you need more consistent output. Use the magic wand to add structure and clarity.
+
+---
+
+## Where Prompt Library fits in the Qumis platform
+
+The **Prompt Library** integrates with **Chats** and **Reports** to let you standardize your analysis workflows. Save time and improve consistency by reusing well-crafted prompts across your team's insurance analysis work.
+
+---
+
+### Why use Qumis Prompts?
+
+Qumis's Prompt Library gives you a fast, repeatable way to generate expert-level analyses. By combining reusable prompts with the AI refinement tool, teams can standardize how they evaluate coverage, analyze exclusions, and create client-ready summaries—saving time while maintaining consistency and quality.
