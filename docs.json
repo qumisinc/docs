@@ -128,7 +128,8 @@
             "pages": [
               "internal/documentation/writing-style-guide",
               "internal/documentation/prompt-library",
-              "internal/documentation/markdown-export"
+              "internal/documentation/markdown-export",
+              "internal/documentation/using-docs-with-llm"
             ]
           },
           {
