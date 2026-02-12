@@ -120,7 +120,8 @@
           {
             "group": "Overview",
             "pages": [
-              "internal/index"
+              "internal/index",
+              "internal/onboarding-playbook"
             ]
           },
           {
