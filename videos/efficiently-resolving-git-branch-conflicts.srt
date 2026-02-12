@@ -1,0 +1,767 @@
+1
+00:00:00,011 --> 00:00:04,659
+Okay, so I'm going to go through how I do an
+
+2
+00:00:05,342 --> 00:00:10,731
+efficient resolution
+
+3
+00:00:10,732 --> 00:00:14,255
+of, basically,
+
+4
+00:00:15,727 --> 00:00:20,375
+if we have a branch that is behind and has conflicts,
+
+5
+00:00:20,706 --> 00:00:24,075
+I'm going to do a little demo of how I do that.
+
+6
+00:00:24,076 --> 00:00:26,900
+You can do this in other ways, uhm,
+
+7
+00:00:26,911 --> 00:00:29,917
+I prefer this way, uhm,
+
+8
+00:00:29,928 --> 00:00:34,769
+so we're going to check out the main branch of Kumis Platform.
+
+9
+00:00:34,770 --> 00:00:39,119
+Now, I always run GitHub to make sure that everything is up to date,
+
+10
+00:00:39,120 --> 00:00:41,784
+so we have the latest main, you can do pull,
+
+11
+00:00:41,785 --> 00:00:44,236
+too, but GitHub is just easier. Uhm,
+
+12
+00:00:44,247 --> 00:00:47,046
+we have the latest main, and then I've already checked out Shiv's branch here,
+
+13
+00:00:47,077 --> 00:00:49,546
+which has, Thank you which is, uh,
+
+14
+00:00:49,557 --> 00:00:52,873
+is, as you can see here, uhm,
+
+15
+00:00:52,883 --> 00:00:54,889
+his branch is 30 commits,
+
+16
+00:00:54,890 --> 00:00:57,612
+31 commits ahead, and 3 commits behind of main.
+
+17
+00:00:57,613 --> 00:01:00,757
+Now, if I want to do a pull request, oops, if I want to
+
+18
+00:01:00,758 --> 00:01:02,950
+do a pull request with Shiv's branch,
+
+19
+00:01:04,503 --> 00:01:08,419
+you can say, you can see, cannot automatically merge,
+
+20
+00:01:08,672 --> 00:01:12,203
+right, because there's a conflict somewhere, so what do I do here?
+
+21
+00:01:12,204 --> 00:01:14,964
+Uhm, so, for me,
+
+22
+00:01:14,965 --> 00:01:17,379
+uh, the best way to do this,
+
+23
+00:01:17,380 --> 00:01:20,786
+and the cleanest way to do this, is to check out his branch locally,
+
+24
+00:01:20,787 --> 00:01:23,788
+uhm, and now every developer,
+
+25
+00:01:25,299 --> 00:01:28,995
+ideally, every developer should be doing this themselves on their own branches,
+
+26
+00:01:28,996 --> 00:01:31,277
+so, uhm, if we look here,
+
+27
+00:01:31,278 --> 00:01:34,262
+and we say, okay, we can get a little assessment,
+
+28
+00:01:34,263 --> 00:01:36,272
+uh, how far ahead, or like,
+
+29
+00:01:36,273 --> 00:01:41,163
+I'll do git branch here, how far ahead,
+
+30
+00:01:42,938 --> 00:01:47,526
+behind, is this branch versus
+
+31
+00:01:47,527 --> 00:01:50,948
+main, okay, so,
+
+32
+00:01:50,949 --> 00:01:53,489
+we can ask a little question here, but we already know it's,
+
+33
+00:01:53,579 --> 00:01:55,856
+you know, we already kind of know the answer,
+
+34
+00:01:56,191 --> 00:01:58,667
+but great, okay, it says 31 commits ahead,
+
+35
+00:01:58,668 --> 00:02:03,841
+3 commits behind main, now, we're if I do git rebase main,
+
+36
+00:02:05,606 --> 00:02:08,319
+I get a conflict, so,
+
+37
+00:02:10,020 --> 00:02:12,317
+now, I'm in a detached state, okay,
+
+38
+00:02:12,558 --> 00:02:15,388
+so, how do I resolve conflict, well, first of all, I could just abort,
+
+39
+00:02:15,500 --> 00:02:20,439
+git rebase abort, and now I'm where
+
+40
+00:02:20,440 --> 00:02:25,357
+I was before, but what I'll do here is I'll I will,
+
+41
+00:02:25,480 --> 00:02:27,508
+in Claude, say,
+
+42
+00:02:27,509 --> 00:02:31,197
+uhm,
+
+43
+00:02:31,208 --> 00:02:31,442
+New one.
+
+44
+00:02:56,018 --> 00:02:58,534
+Okay. Killed that, uh, Claude. Okay, so, uhm,
+
+45
+00:02:58,545 --> 00:03:01,402
+I'm gonna do the bang to say, to show the branches,
+
+46
+00:03:01,403 --> 00:03:04,025
+git branch, great. Now I'm gonna do the bang,
+
+47
+00:03:04,026 --> 00:03:07,333
+git rebase, main. It's gonna run to the same,
+
+48
+00:03:07,882 --> 00:03:12,523
+right, it's gonna start replaying the commits on top of main.
+
+49
+00:03:12,524 --> 00:03:15,305
+And, uh, it's gonna run and do the,
+
+50
+00:03:15,306 --> 00:03:18,515
+uhm, uh,
+
+51
+00:03:18,525 --> 00:03:20,668
+the conflict. Uhm,
+
+52
+00:03:20,679 --> 00:03:25,584
+can you help me resolve this rebase
+
+53
+00:03:25,585 --> 00:03:30,611
+and its conflicts? Ask me any questions
+
+54
+00:03:30,951 --> 00:03:33,623
+if you have, uh,
+
+55
+00:03:33,633 --> 00:03:36,587
+if, if,
+
+56
+00:03:36,588 --> 00:03:41,795
+there are unclear merge conflicts.
+
+57
+00:03:42,211 --> 00:03:46,790
+So we're just going to let Claude take care
+
+58
+00:03:46,791 --> 00:03:51,194
+of it. Uhm,
+
+59
+00:03:51,204 --> 00:03:51,652
+now.
+
+60
+00:04:00,651 --> 00:04:04,366
+So these are my two,
+
+61
+00:04:04,367 --> 00:04:07,667
+my, it says two behind or three behind.
+
+62
+00:04:08,081 --> 00:04:11,606
+So it played them. It's, this is where main is,
+
+63
+00:04:11,607 --> 00:04:13,962
+right? And then it started to play shifts,
+
+64
+00:04:13,963 --> 00:04:15,994
+commits on top of that.
+
+65
+00:04:17,250 --> 00:04:21,368
+So now what's our,
+
+66
+00:04:21,654 --> 00:04:24,033
+we, it looks like we have two conflicts.
+
+67
+00:04:24,543 --> 00:04:27,192
+So if you look at Claude,
+
+68
+00:04:27,344 --> 00:04:29,484
+Skills, Kumis,
+
+69
+00:04:30,052 --> 00:04:33,505
+Friend, Airlines,
+
+70
+00:04:33,506 --> 00:04:36,799
+Skill. Okay. So yeah, we'll see here.
+
+71
+00:04:40,757 --> 00:04:43,814
+We'll see here. We have, yeah,
+
+72
+00:04:45,662 --> 00:04:50,325
+a couple, a couple of conflicts. Now with what's interesting with this one is
+
+73
+00:04:50,326 --> 00:04:52,926
+that, um, we have,
+
+74
+00:04:52,927 --> 00:04:56,545
+uh, this, I changed my Claude.md and shift change hit.
+
+75
+00:04:56,546 --> 00:04:59,067
+So this is a real, a real actual, like, um,
+
+76
+00:04:59,078 --> 00:05:02,090
+if we look at Claude, um, we can look,
+
+77
+00:05:02,091 --> 00:05:05,208
+there are lots of diffs here.
+
+78
+00:05:06,223 --> 00:05:08,972
+So this would be a, a really nasty,
+
+79
+00:05:08,973 --> 00:05:12,843
+uh, uh,
+
+80
+00:05:12,844 --> 00:05:15,769
+even if you're doing a Gitmerge,
+
+81
+00:05:15,770 --> 00:05:18,179
+right? This would be a nasty one to do. You'd have to do them
+
+82
+00:05:18,180 --> 00:05:24,470
+individually. So, um,
+
+83
+00:05:24,471 --> 00:05:29,929
+uh, hopefully you'll ask me what should we do with Claude.md?
+
+84
+00:05:30,002 --> 00:05:31,672
+If not, maybe we'll figure it out.
+
+85
+00:05:36,896 --> 00:05:41,896
+Good.
+
+86
+00:05:51,528 --> 00:05:56,528
+So
+
+87
+00:05:57,381 --> 00:06:00,971
+it's looking at the conflicts. It's looking at what to do.
+
+88
+00:06:00,972 --> 00:06:05,971
+So
+
+89
+00:06:07,921 --> 00:06:10,547
+we're still in a detached state here.
+
+90
+00:06:16,887 --> 00:06:21,260
+I'll pause it until it's done. Okay.
+
+91
+00:06:21,261 --> 00:06:24,422
+It's still going, but I wanted to show this in the docs,
+
+92
+00:06:24,423 --> 00:06:28,288
+making rebates. It's easier. So if you do decide to do rebases,
+
+93
+00:06:29,180 --> 00:06:32,924
+which can be very easy, um,
+
+94
+00:06:32,935 --> 00:06:37,488
+make sure these are enabled in your Git config to
+
+95
+00:06:37,489 --> 00:06:39,807
+run these commands. So basically this re,
+
+96
+00:06:39,808 --> 00:06:44,013
+re, re command, very silly name, but what it does is it stash,
+
+97
+00:06:44,014 --> 00:06:48,582
+it saves resolutions with Git that
+
+98
+00:06:48,583 --> 00:06:53,145
+you've already created. So basically you don't have to always redo them
+
+99
+00:06:53,146 --> 00:06:56,407
+if you like abort a rebase and then restart a new one,
+
+100
+00:06:56,408 --> 00:07:00,272
+it'll know and use the previous one. Um,
+
+101
+00:07:00,283 --> 00:07:02,383
+then this autostash, basically,
+
+102
+00:07:02,565 --> 00:07:04,643
+yeah, this is if you have a diff,
+
+103
+00:07:04,740 --> 00:07:08,535
+it stashes before you start the rebase and unstashes at the end.
+
+104
+00:07:13,163 --> 00:07:16,265
+Okay.
+
+105
+00:07:16,266 --> 00:07:20,184
+So it's finished. Um, it had a ton of thinking on what to do
+
+106
+00:07:20,185 --> 00:07:25,179
+here. Um,
+
+107
+00:07:25,189 --> 00:07:29,891
+and so let's see,
+
+108
+00:07:29,892 --> 00:07:32,056
+I can see the whole picture. Here's my analysis. I mean,
+
+109
+00:07:32,057 --> 00:07:34,494
+which blah, blah, blah. Okay.
+
+110
+00:07:35,524 --> 00:07:37,797
+My resolution here. Keep, have, pads,
+
+111
+00:07:37,798 --> 00:07:42,723
+compact structure, so head in this case would
+
+112
+00:07:42,724 --> 00:07:45,430
+be, um, let's see, uh, the current rebased state,
+
+113
+00:07:50,475 --> 00:07:53,299
+or the current progress in the rebase.
+
+114
+00:07:53,311 --> 00:07:58,039
+So like, it could have commits that we haven't applied
+
+115
+00:07:58,040 --> 00:08:00,267
+yet. Um,
+
+116
+00:08:00,278 --> 00:08:01,291
+but it's somewhere in the middle of the rebase.
+
+117
+00:08:12,752 --> 00:08:13,904
+So, this is what it decided here, uh, so I don't know if I
+
+118
+00:08:13,905 --> 00:08:18,275
+like this, because it's, looks like it's removing a lot of what Shiv did
+
+119
+00:08:18,276 --> 00:08:20,360
+here. So,
+
+120
+00:08:20,361 --> 00:08:25,355
+I'm going to say, um, the, uh,
+
+121
+00:08:25,356 --> 00:08:30,723
+claw.md instructions
+
+122
+00:08:30,724 --> 00:08:33,199
+on shiv's branch.
+
+123
+00:08:33,200 --> 00:08:37,989
+Just interrupt
+
+124
+00:08:37,990 --> 00:08:42,041
+it really quickly. So, it's now, it should re- resolve these,
+
+125
+00:08:42,042 --> 00:08:45,442
+uh, conflicts with that in mind.
+
+126
+00:08:49,408 --> 00:08:54,408
+Okay,
+
+127
+00:09:00,210 --> 00:09:03,439
+so it understood that, uhm,
+
+128
+00:09:03,450 --> 00:09:07,587
+and now we have both files preserved with shiv's content.
+
+129
+00:09:07,588 --> 00:09:11,851
+Uhm,
+
+130
+00:09:11,862 --> 00:09:14,344
+now it's gonna, let's see what happened here.
+
+131
+00:09:15,394 --> 00:09:18,758
+Okay. No, no, no. Preserved
+
+132
+00:09:22,761 --> 00:09:23,417
+shiv's content,
+
+133
+00:09:28,519 --> 00:09:30,638
+added mine, resolved the commits,
+
+134
+00:09:30,639 --> 00:09:32,706
+or the merge complex.
+
+135
+00:09:32,707 --> 00:09:35,657
+Great. Oh, and it's done. So it did this skill as well.
+
+136
+00:09:35,694 --> 00:09:38,917
+So now if we look here, the rebase is done.
+
+137
+00:09:39,354 --> 00:09:41,438
+It's clean. Now, if we look,
+
+138
+00:09:41,439 --> 00:09:46,204
+uh, at our git log, we can see that we had
+
+139
+00:09:46,205 --> 00:09:49,461
+the three that I had my three commits off of main.
+
+140
+00:09:50,240 --> 00:09:52,959
+So it was three behind all of shiv's commits.
+
+141
+00:09:53,726 --> 00:09:56,989
+And now we have it cleanly rebased.
+
+142
+00:09:57,351 --> 00:10:01,611
+Okay. So, um,
+
+143
+00:10:01,612 --> 00:10:03,711
+now what we do,
+
+144
+00:10:03,712 --> 00:10:06,427
+and this is pretty important, git push.
+
+145
+00:10:06,656 --> 00:10:11,172
+If I just push, it'll reject it because it's now it's changed history,
+
+146
+00:10:11,294 --> 00:10:13,400
+right? That's what a rebase does.
+
+147
+00:10:13,778 --> 00:10:17,175
+So we're going to do a push force with lease.
+
+148
+00:10:17,478 --> 00:10:20,043
+This allows us to rewrite history,
+
+149
+00:10:20,218 --> 00:10:24,230
+but also allows us to recover it if we need to.
+
+150
+00:10:24,231 --> 00:10:26,780
+So it's a safe git push force. Push force, basically.
+
+151
+00:10:27,309 --> 00:10:29,861
+And now we're done. So I have,
+
+152
+00:10:30,476 --> 00:10:33,074
+if we go back to GitHub, um,
+
+153
+00:10:33,085 --> 00:10:37,122
+platform. So if we compare shiv's branch now,
+
+154
+00:10:37,715 --> 00:10:42,558
+which I've just pushed, always push to
+
+155
+00:10:42,559 --> 00:10:45,449
+able to merge. Perfect. Instead of here,
+
+156
+00:10:45,520 --> 00:10:48,235
+I'm going to do it here. And,
+
+157
+00:10:48,236 --> 00:10:52,836
+uh, actually here. I'm going to use my slash
+
+158
+00:10:52,837 --> 00:10:55,517
+PR command. Um,
+
+159
+00:10:55,528 --> 00:10:57,842
+I can say things like draft PR,
+
+160
+00:10:57,843 --> 00:10:59,974
+uh, or like, uh,
+
+161
+00:10:59,985 --> 00:11:02,512
+base branch release. I'll do,
+
+162
+00:11:02,513 --> 00:11:04,836
+I'll just do a normal PR slash PR command.
+
+163
+00:11:09,442 --> 00:11:12,406
+And what What this is going to do is it's going to look at
+
+164
+00:11:12,491 --> 00:11:17,033
+the difference between. All these commits difference between main and
+
+165
+00:11:17,034 --> 00:11:19,101
+shivs branch that we are,
+
+166
+00:11:19,102 --> 00:11:24,901
+that we now just resolve the conflicts on and
+
+167
+00:11:24,934 --> 00:11:29,492
+it's going to, uh, create a
+
+168
+00:11:29,493 --> 00:11:31,746
+nice PR for us. And this has worked,
+
+169
+00:11:31,843 --> 00:11:34,897
+this PR command has worked brilliantly for me,
+
+170
+00:11:34,898 --> 00:11:37,867
+actually. Um, I think it's a really good balance.
+
+171
+00:11:37,868 --> 00:11:42,803
+Of, of a mix,
+
+172
+00:11:42,804 --> 00:11:45,197
+it makes PRS that I would want to read basically.
+
+173
+00:11:45,198 --> 00:11:49,496
+Okay.
+
+174
+00:11:49,497 --> 00:12:01,931
+Force push, um,
+
+175
+00:12:01,932 --> 00:12:07,144
+it should, it
+
+176
+00:12:07,145 --> 00:12:11,766
+should, yeah. Everything up to date. I already pushed it. And now
+
+177
+00:12:11,767 --> 00:12:12,894
+if we go to pull requests,
+
+178
+00:12:25,984 --> 00:12:30,955
+Yeah,
+
+179
+00:12:30,956 --> 00:12:34,748
+see, so before I created the ER, since history was rewritten,
+
+180
+00:12:34,749 --> 00:12:37,014
+this needs a force push. Ah, it was going to use force.
+
+181
+00:12:37,015 --> 00:12:39,258
+Okay, good. Great, now we've got the PR.
+
+182
+00:12:39,259 --> 00:12:42,124
+We can open it. Beautiful.
+
+183
+00:12:43,141 --> 00:12:46,199
+So this is, no conflicts.
+
+184
+00:12:46,200 --> 00:12:50,059
+Uh.
+
+185
+00:12:50,060 --> 00:12:54,761
+Really good overview here. And we have all the commits and our history
+
+186
+00:12:54,762 --> 00:12:59,287
+is clean. We'll have co-pilot
+
+187
+00:12:59,288 --> 00:13:03,215
+review it, but, uh,
+
+188
+00:13:03,226 --> 00:13:07,763
+now I can merge this. Usually you would get someone
+
+189
+00:13:07,764 --> 00:13:11,217
+else to authorize it, but I know for this repo,
+
+190
+00:13:11,218 --> 00:13:14,123
+that it's fine. Um,
+
+191
+00:13:14,124 --> 00:13:18,629
+uh, I'm going to merge this into main and
+
+192
+00:13:18,630 --> 00:13:18,959
+we're done.

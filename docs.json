@@ -134,8 +134,8 @@
           {
             "group": "Engineering",
             "pages": [
-              "internal/engineering/guides",
               "internal/engineering/index",
+              "internal/engineering/guides",
               "internal/engineering/onboarding",
               "internal/engineering/tools-setup",
               "internal/engineering/git-branching-strategies"
