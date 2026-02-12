@@ -25,6 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## docs.json
 
 - Refer to the [docs.json schema](https://mintlify.com/docs.json) when building the docs.json file and site navigation
+- ALWAYS update docs.json navigation when adding or modifying pages to keep navigation in sync with content
 
 ## Frontmatter requirements for pages
 - title: Clear, descriptive page title
@@ -39,6 +40,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Language tags on all code blocks
 - Alt text on all images
 - Relative paths for internal links
+- After writing or modifying .mdx files, use the mdx-mintlify-converter agent to convert standard Markdown to Mintlify-specific components (callouts, CodeGroup, Steps, etc.)
 
 ## Git workflow
 - NEVER use --no-verify when committing
