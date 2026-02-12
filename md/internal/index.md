@@ -54,9 +54,17 @@ Use for: Product docs, marketing content, external communications
 
 Use for: UI components, styling, design consistency
 
-Give any LLM complete Qumis product context via the auto-generated `llms-full.txt` file
+**628 KB** · All 91 pages (external + internal)
 
-Use for: Product questions, writing docs, onboarding, marketing content
+Use for: Complete product context, onboarding, cross-team questions
+
+**280 KB** · 53 public-facing pages
+
+Use for: Product docs, marketing content, customer-facing work
+
+**348 KB** · 38 internal pages
+
+Use for: Engineering workflows, deployment, infrastructure
 
 ## Engineering Essentials
 

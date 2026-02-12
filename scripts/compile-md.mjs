@@ -18,7 +18,7 @@ import remarkStringify from "remark-stringify";
 import { visit, SKIP } from "unist-util-visit";
 
 const OUTPUT_DIR = "md";
-const FULL_TXT = path.join("md", "llms-full.txt.md");
+const FULL_TXT = path.join("md", "llms-full.txt");
 const EXCLUDE = ["snippets/**", "node_modules/**", `${OUTPUT_DIR}/**`];
 
 // Components whose title attribute becomes a heading, children kept
@@ -257,6 +257,13 @@ async function buildCombinedFile(filename, heading, slugs) {
 const externalSlugs = ordered.filter((s) => !s.startsWith("internal/"));
 const internalSlugs = ordered.filter((s) => s.startsWith("internal/"));
 
-await buildCombinedFile("llms-full.txt.md", docsJson.name, ordered);
-await buildCombinedFile("llms-external.txt.md", `${docsJson.name} — External`, externalSlugs);
-await buildCombinedFile("llms-internal.txt.md", `${docsJson.name} — Internal`, internalSlugs);
+await buildCombinedFile("llms-full.txt", docsJson.name, ordered);
+await buildCombinedFile("llms-external.txt", `${docsJson.name} — External`, externalSlugs);
+await buildCombinedFile("llms-internal.txt", `${docsJson.name} — Internal`, internalSlugs);
+
+// Copy combined files to assets so Mintlify serves them as downloadable static files
+const LLM_ASSETS_DIR = path.join("assets", "internal", "llms");
+for (const f of ["llms-full.txt", "llms-external.txt", "llms-internal.txt"]) {
+  await fs.copyFile(path.join(OUTPUT_DIR, f), path.join(LLM_ASSETS_DIR, f));
+}
+console.log(`Copied combined files to ${LLM_ASSETS_DIR}`);

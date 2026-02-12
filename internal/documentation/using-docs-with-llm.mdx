@@ -1,6 +1,6 @@
 ---
 title: "Using Docs with an LLM"
-description: "Give any LLM full context on Qumis by sharing the auto-generated llms-full.txt file"
+description: "Give any LLM full context on Qumis using the auto-generated documentation bundles"
 icon: "bot"
 noindex: true
 # groups: ["internal"]
@@ -8,21 +8,31 @@ noindex: true
 
 ## Overview
 
-Mintlify automatically generates a single text file containing all public Qumis documentation, optimized for LLM consumption. This file lives at a fixed URL and stays in sync with the docs site — no manual export required.
+The `build:md` script in this repository compiles every MDX page into clean Markdown and produces three combined bundles, each optimized for LLM consumption. The bundles are served as downloadable static assets — no manual export or copy-pasting required.
 
-Use it to give ChatGPT, Claude, Gemini, or any other LLM complete context on the Qumis product in one paste.
+| Bundle | Pages | Size | Contents |
+|--------|------:|-----:|----------|
+| [llms-full.txt](/assets/internal/llms/llms-full.txt) | 91 | 628 KB | All documentation (external + internal) |
+| [llms-external.txt](/assets/internal/llms/llms-external.txt) | 53 | 280 KB | Public-facing pages only |
+| [llms-internal.txt](/assets/internal/llms/llms-internal.txt) | 38 | 348 KB | Internal pages only |
 
 ## How to Use It
 
 <Steps>
-  <Step title="Open the URL">
-    Navigate to [docs.qumis.ai/llms-full.txt](https://docs.qumis.ai/llms-full.txt) in your browser.
+  <Step title="Pick the right bundle">
+    Choose the bundle that matches your task:
+
+    - **Full** — complete product + engineering context
+    - **External** — product docs, marketing, customer-facing work
+    - **Internal** — engineering workflows, deployment, infrastructure
   </Step>
-  <Step title="Copy the content">
-    Select all (<kbd>Cmd</kbd>+<kbd>A</kbd> on Mac, <kbd>Ctrl</kbd>+<kbd>A</kbd> on Windows) and copy (<kbd>Cmd</kbd>+<kbd>C</kbd> / <kbd>Ctrl</kbd>+<kbd>C</kbd>).
+  <Step title="Download or open the file">
+    Click a link above to download, or find the files at `assets/internal/llms/` in the repo.
   </Step>
-  <Step title="Paste into your LLM">
-    Start a new conversation in your LLM of choice and paste the content as context at the beginning.
+  <Step title="Add to your AI tool">
+    **ChatGPT / Claude** — Upload the file directly or paste its contents as context.
+
+    **Cursor / GitHub Copilot** — Place the file in your project root or reference it in workspace settings.
   </Step>
   <Step title="Ask your question">
     Reference the docs in your prompt. For example:
@@ -34,7 +44,7 @@ Use it to give ChatGPT, Claude, Gemini, or any other LLM complete context on the
 </Steps>
 
 <Tip>
-  **Public docs only.** The `llms-full.txt` file contains all public-facing documentation. For internal context like the company overview or design system, see the [Prompt Library](/internal/documentation/prompt-library#llm-context-files).
+  The bundles are regenerated every time `npm run build:md` runs (including on commit via the pre-commit hook), so they stay in sync with the docs site automatically.
 </Tip>
 
 ## When to Use This
@@ -44,6 +54,7 @@ Use it to give ChatGPT, Claude, Gemini, or any other LLM complete context on the
 - Creating marketing or sales content based on product capabilities
 - Onboarding new team members who want to explore the product
 - Building demos or presentations that reference specific features
+- Engineering tasks that need awareness of deployment or infrastructure docs
 
 ## Related Resources
 
@@ -53,7 +64,7 @@ Use it to give ChatGPT, Claude, Gemini, or any other LLM complete context on the
     icon="sparkles"
     href="/internal/documentation/prompt-library"
   >
-    Internal LLM context files (company overview, design system) and reusable prompts
+    LLM context files (company overview, design system) and reusable prompts
   </Card>
   <Card
     title="Markdown Export"

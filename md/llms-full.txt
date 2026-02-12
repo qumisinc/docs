@@ -4670,9 +4670,17 @@ Use for: Product docs, marketing content, external communications
 
 Use for: UI components, styling, design consistency
 
-Give any LLM complete Qumis product context via the auto-generated `llms-full.txt` file
+**628 KB** · All 91 pages (external + internal)
 
-Use for: Product questions, writing docs, onboarding, marketing content
+Use for: Complete product context, onboarding, cross-team questions
+
+**280 KB** · 53 public-facing pages
+
+Use for: Product docs, marketing content, customer-facing work
+
+**348 KB** · 38 internal pages
+
+Use for: Engineering workflows, deployment, infrastructure
 
 ## Engineering Essentials
 
@@ -5153,6 +5161,33 @@ LLM context files (`.llms.txt` format) are specially formatted documents that pr
 **File:** `qumis-design.llms.txt` (5.1 KB)
 
 **Use when:** Creating UI components, styling documentation, or maintaining design consistency.
+
+**Contents:**
+
+- All 91 documentation pages (external + internal)
+- Navigation-ordered, frontmatter stripped
+
+**File:** `llms-full.txt` (628 KB)
+
+**Use when:** You need complete Qumis context — product questions, onboarding, cross-team work.
+
+**Contents:**
+
+- 53 public-facing documentation pages
+- Product features, guides, workflows
+
+**File:** `llms-external.txt` (280 KB)
+
+**Use when:** Writing product docs, marketing content, or customer-facing communications.
+
+**Contents:**
+
+- 38 internal documentation pages
+- Engineering, deployment, infrastructure, operations
+
+**File:** `llms-internal.txt` (348 KB)
+
+**Use when:** Working on engineering tasks, deployment procedures, or infrastructure documentation.
 
 #### How to Use These Files
 
@@ -5834,23 +5869,33 @@ Source: internal/documentation/using-docs-with-llm
 
 ## Overview
 
-Mintlify automatically generates a single text file containing all public Qumis documentation, optimized for LLM consumption. This file lives at a fixed URL and stays in sync with the docs site — no manual export required.
+The `build:md` script in this repository compiles every MDX page into clean Markdown and produces three combined bundles, each optimized for LLM consumption. The bundles are served as downloadable static assets — no manual export or copy-pasting required.
 
-Use it to give ChatGPT, Claude, Gemini, or any other LLM complete context on the Qumis product in one paste.
+| Bundle | Pages | Size | Contents |
+|--------|------:|-----:|----------|
+| [llms-full.txt](/assets/internal/llms/llms-full.txt) | 91 | 628 KB | All documentation (external + internal) |
+| [llms-external.txt](/assets/internal/llms/llms-external.txt) | 53 | 280 KB | Public-facing pages only |
+| [llms-internal.txt](/assets/internal/llms/llms-internal.txt) | 38 | 348 KB | Internal pages only |
 
 ## How to Use It
 
-### Open the URL
+### Pick the right bundle
 
-Navigate to [docs.qumis.ai/llms-full.txt](https://docs.qumis.ai/llms-full.txt) in your browser.
+Choose the bundle that matches your task:
 
-### Copy the content
+- **Full** — complete product + engineering context
+- **External** — product docs, marketing, customer-facing work
+- **Internal** — engineering workflows, deployment, infrastructure
 
-Select all (Cmd+A on Mac, Ctrl+A on Windows) and copy (Cmd+C / Ctrl+C).
+### Download or open the file
 
-### Paste into your LLM
+Click a link above to download, or find the files at `assets/internal/llms/` in the repo.
 
-Start a new conversation in your LLM of choice and paste the content as context at the beginning.
+### Add to your AI tool
+
+**ChatGPT / Claude** — Upload the file directly or paste its contents as context.
+
+**Cursor / GitHub Copilot** — Place the file in your project root or reference it in workspace settings.
 
 ### Ask your question
 
@@ -5860,7 +5905,7 @@ Reference the docs in your prompt. For example:
 Based on the Qumis documentation above, how does the Document Vault feature work?
 ```
 
-> **Tip:** **Public docs only.** The `llms-full.txt` file contains all public-facing documentation. For internal context like the company overview or design system, see the [Prompt Library](/internal/documentation/prompt-library#llm-context-files).
+> **Tip:** The bundles are regenerated every time `npm run build:md` runs (including on commit via the pre-commit hook), so they stay in sync with the docs site automatically.
 
 ## When to Use This
 
@@ -5869,10 +5914,11 @@ Based on the Qumis documentation above, how does the Document Vault feature work
 - Creating marketing or sales content based on product capabilities
 - Onboarding new team members who want to explore the product
 - Building demos or presentations that reference specific features
+- Engineering tasks that need awareness of deployment or infrastructure docs
 
 ## Related Resources
 
-Internal LLM context files (company overview, design system) and reusable prompts
+LLM context files (company overview, design system) and reusable prompts
 
 Export individual documentation pages as clean Markdown
 

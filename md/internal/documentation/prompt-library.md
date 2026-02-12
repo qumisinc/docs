@@ -85,6 +85,33 @@ LLM context files (`.llms.txt` format) are specially formatted documents that pr
 
 **Use when:** Creating UI components, styling documentation, or maintaining design consistency.
 
+**Contents:**
+
+- All 91 documentation pages (external + internal)
+- Navigation-ordered, frontmatter stripped
+
+**File:** `llms-full.txt` (628 KB)
+
+**Use when:** You need complete Qumis context — product questions, onboarding, cross-team work.
+
+**Contents:**
+
+- 53 public-facing documentation pages
+- Product features, guides, workflows
+
+**File:** `llms-external.txt` (280 KB)
+
+**Use when:** Writing product docs, marketing content, or customer-facing communications.
+
+**Contents:**
+
+- 38 internal documentation pages
+- Engineering, deployment, infrastructure, operations
+
+**File:** `llms-internal.txt` (348 KB)
+
+**Use when:** Working on engineering tasks, deployment procedures, or infrastructure documentation.
+
 #### How to Use These Files
 
 ### Download the relevant context file(s)
