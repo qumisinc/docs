@@ -21,6 +21,25 @@
     "library": "lucide"
   },
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Qumis.ai",
+          "icon": "globe",
+          "href": "https://www.qumis.ai"
+        },
+        {
+          "anchor": "Request Demo",
+          "icon": "calendar",
+          "href": "https://calendly.com/qumis-dan/demo?background_color=f1f0ed&text_color=242423&primary_color=4c94fb"
+        },
+        {
+          "anchor": "Support",
+          "icon": "headset",
+          "href": "mailto:support@qumis.ai"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Documentation",
@@ -115,6 +134,7 @@
           {
             "group": "Engineering",
             "pages": [
+              "internal/engineering/guides",
               "internal/engineering/index",
               "internal/engineering/onboarding",
               "internal/engineering/tools-setup",
@@ -169,26 +189,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Qumis.ai",
-          "href": "https://www.qumis.ai",
-          "icon": "globe"
-        },
-        {
-          "anchor": "Request Demo",
-          "href": "https://calendly.com/qumis-dan/demo?background_color=f1f0ed&text_color=242423&primary_color=4c94fb",
-          "icon": "calendar"
-        },
-        {
-          "anchor": "Support",
-          "href": "mailto:support@qumis.ai",
-          "icon": "headset"
-        }
-      ]
-    }
+    ]
   },
   "navbar": {
     "links": [
