@@ -1,7 +1,11 @@
 {
   "private": true,
   "scripts": {
-    "build:md": "node scripts/compile-md.mjs"
+    "build:md": "node scripts/compile-md.mjs",
+    "prepare": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "git diff --cached --name-only --diff-filter=ACMR -- '*.mdx' 'docs.json' | grep -q . && npm run build:md --silent && git add md/ || true"
   },
   "devDependencies": {
     "glob": "^11",
@@ -9,6 +13,10 @@
     "remark-frontmatter": "^5.0.0",
     "remark-mdx": "^3",
     "remark-stringify": "^11",
+    "simple-git-hooks": "^2.13.1",
     "unist-util-visit": "^5"
+  },
+  "dependencies": {
+    "mint": "^4.2.342"
   }
 }
