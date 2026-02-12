@@ -13,6 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Format: MDX files with YAML frontmatter
 - Config: docs.json for navigation, theme, settings
 - Components: Mintlify components
+- Icons: Lucide only (`icons.library: "lucide"` in docs.json). NEVER use Font Awesome icon names. Browse valid icons at https://lucide.dev/icons/ and use kebab-case names (e.g., `shield-check`, `rotate-ccw`, `megaphone`)
 
 ## Content strategy
 - Document just enough for user success - not too much, not too little
