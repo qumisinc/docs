@@ -1153,7 +1153,7 @@
         }
       }
     },
-    "/internal/engineering/git-branching-strategies": {
+    "/internal/engineering/guides/git-branching-strategies": {
       "get": {
         "summary": "Get Git Branching Strategies Guide",
         "description": "Internal guide for Git workflow and branching strategies used at Qumis.",
