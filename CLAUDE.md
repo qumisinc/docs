@@ -27,6 +27,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Refer to the [docs.json schema](https://mintlify.com/docs.json) when building the docs.json file and site navigation
 - ALWAYS update docs.json navigation when adding or modifying pages to keep navigation in sync with content
 
+## Page cross-linking
+
+When creating or modifying a page, ensure it is properly linked from all relevant parent/index pages:
+- If adding a page under a section (e.g., `/internal/foo/bar`), check the section's index page (e.g., `/internal/foo/index.mdx`) and add a link using Mintlify components (`<Card>`, `<CardGroup>`, etc.) that match the existing pattern on that index page
+- If no index page exists for the section, check for any overview or landing page that serves as the entry point and add a link there
+- Also check for any other pages that reference related content and should cross-link to the new/modified page
+- Use `<Card>` with an appropriate `icon` and `href` for consistency with existing index pages
+- When renaming or moving a page, update all pages that link to it
+
 ## Frontmatter requirements for pages
 - title: Clear, descriptive page title
 - description: Concise summary for SEO/navigation
