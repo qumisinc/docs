@@ -66,6 +66,14 @@ Use for: Product docs, marketing content, customer-facing work
 
 Use for: Engineering workflows, deployment, infrastructure
 
+**185 KB** · 21 engineering pages (deployment, infrastructure, operations, troubleshooting)
+
+Use for: Deployment questions, infrastructure work, debugging
+
+**106 KB** · 10 messaging pages (positioning, competitive, proof points, language guide)
+
+Use for: Sales content, competitive analysis, positioning work
+
 ## Engineering Essentials
 
 ### Deployment
@@ -104,7 +112,7 @@ Safe debugging techniques for production
 
 Quick access to the most frequently used prompts from our [Prompt Library](/internal/documentation/prompt-library).
 
-Markdown conversion, summarization, llms-full.txt generation
+Markdown conversion, summarization, qumis-full.llms.txt generation
 
 Self-review, Retool SQL queries, Linear backfilling
 

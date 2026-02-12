@@ -54,7 +54,7 @@ The Qumis Prompt Library is a curated collection of battle-tested prompts design
 
 <CardGroup cols={2}>
   <Card title="Documentation Tasks" icon="book" href="#documentation-prompts">
-    Convert to Markdown, create summaries, generate llms-full.txt files
+    Convert to Markdown, create summaries, generate qumis-full.llms.txt files
   </Card>
   <Card title="Engineering Tasks" icon="code" href="#engineering-prompts">
     Self-review, SQL queries, Linear backfilling, code analysis
@@ -104,35 +104,55 @@ LLM context files (`.llms.txt` format) are specially formatted documents that pr
 
     **Use when:** Creating UI components, styling documentation, or maintaining design consistency.
   </Card>
-  <Card title="Full Docs Bundle" icon="book-open" href="/assets/internal/llms/llms-full.txt">
+  <Card title="Full Docs Bundle" icon="book-open" href="/assets/internal/llms/qumis-full.llms.txt">
     **Contents:**
 
     - All 91 documentation pages (external + internal)
     - Navigation-ordered, frontmatter stripped
 
-    **File:** `llms-full.txt` (628 KB)
+    **File:** `qumis-full.llms.txt` (628 KB)
 
     **Use when:** You need complete Qumis context — product questions, onboarding, cross-team work.
   </Card>
-  <Card title="External Docs Bundle" icon="globe" href="/assets/internal/llms/llms-external.txt">
+  <Card title="External Docs Bundle" icon="globe" href="/assets/internal/llms/qumis-external.llms.txt">
     **Contents:**
 
     - 53 public-facing documentation pages
     - Product features, guides, workflows
 
-    **File:** `llms-external.txt` (280 KB)
+    **File:** `qumis-external.llms.txt` (280 KB)
 
     **Use when:** Writing product docs, marketing content, or customer-facing communications.
   </Card>
-  <Card title="Internal Docs Bundle" icon="lock" href="/assets/internal/llms/llms-internal.txt">
+  <Card title="Internal Docs Bundle" icon="lock" href="/assets/internal/llms/qumis-internal.llms.txt">
     **Contents:**
 
     - 38 internal documentation pages
     - Engineering, deployment, infrastructure, operations
 
-    **File:** `llms-internal.txt` (348 KB)
+    **File:** `qumis-internal.llms.txt` (348 KB)
 
     **Use when:** Working on engineering tasks, deployment procedures, or infrastructure documentation.
+  </Card>
+  <Card title="Engineering Docs" icon="wrench" href="/assets/internal/llms/qumis-engineering.llms.txt">
+    **Contents:**
+
+    - Engineering pages only
+    - Deployment, infrastructure, operations, troubleshooting
+
+    **File:** `qumis-engineering.llms.txt` (185 KB)
+
+    **Use when:** Focused on deployment, infrastructure, or debugging — smaller and faster than the full internal bundle.
+  </Card>
+  <Card title="Messaging Docs" icon="megaphone" href="/assets/internal/llms/qumis-messaging.llms.txt">
+    **Contents:**
+
+    - Messaging pages only
+    - Positioning, competitive differentiation, proof points, language guide
+
+    **File:** `qumis-messaging.llms.txt` (106 KB)
+
+    **Use when:** Writing sales content, competitive analysis, or positioning materials.
   </Card>
 </CardGroup>
 

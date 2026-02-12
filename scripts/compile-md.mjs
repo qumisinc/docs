@@ -18,7 +18,7 @@ import remarkStringify from "remark-stringify";
 import { visit, SKIP } from "unist-util-visit";
 
 const OUTPUT_DIR = "md";
-const FULL_TXT = path.join("md", "llms-full.txt");
+const FULL_TXT = path.join("md", "qumis-full.llms.txt");
 const EXCLUDE = ["snippets/**", "node_modules/**", `${OUTPUT_DIR}/**`];
 
 // Components whose title attribute becomes a heading, children kept
@@ -183,7 +183,7 @@ for (const file of files) {
 console.log(`Done: ${success} compiled, ${errors} errors`);
 if (errors > 0) process.exit(1);
 
-// --- Build llms-full.txt: all pages concatenated in navigation order ---
+// --- Build qumis-*.llms.txt: all pages concatenated in navigation order ---
 
 /**
  * Recursively extract page slugs from docs.json navigation in order.
@@ -256,14 +256,21 @@ async function buildCombinedFile(filename, heading, slugs) {
 
 const externalSlugs = ordered.filter((s) => !s.startsWith("internal/"));
 const internalSlugs = ordered.filter((s) => s.startsWith("internal/"));
+const engineeringSlugs = ordered.filter((s) => s.startsWith("internal/engineering/"));
+const messagingSlugs = ordered.filter((s) => s.startsWith("internal/messaging/"));
 
-await buildCombinedFile("llms-full.txt", docsJson.name, ordered);
-await buildCombinedFile("llms-external.txt", `${docsJson.name} — External`, externalSlugs);
-await buildCombinedFile("llms-internal.txt", `${docsJson.name} — Internal`, internalSlugs);
+await buildCombinedFile("qumis-full.llms.txt", docsJson.name, ordered);
+await buildCombinedFile("qumis-external.llms.txt", `${docsJson.name} — External`, externalSlugs);
+await buildCombinedFile("qumis-internal.llms.txt", `${docsJson.name} — Internal`, internalSlugs);
+await buildCombinedFile("qumis-engineering.llms.txt", `${docsJson.name} — Engineering`, engineeringSlugs);
+await buildCombinedFile("qumis-messaging.llms.txt", `${docsJson.name} — Messaging`, messagingSlugs);
 
 // Copy combined files to assets so Mintlify serves them as downloadable static files
 const LLM_ASSETS_DIR = path.join("assets", "internal", "llms");
-for (const f of ["llms-full.txt", "llms-external.txt", "llms-internal.txt"]) {
+for (const f of [
+  "qumis-full.llms.txt", "qumis-external.llms.txt", "qumis-internal.llms.txt",
+  "qumis-engineering.llms.txt", "qumis-messaging.llms.txt",
+]) {
   await fs.copyFile(path.join(OUTPUT_DIR, f), path.join(LLM_ASSETS_DIR, f));
 }
 console.log(`Copied combined files to ${LLM_ASSETS_DIR}`);

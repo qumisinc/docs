@@ -45,7 +45,7 @@ Most prompts work best with iteration. Use the [Self-Review Process](#self-revie
 
 ### Quick Navigation
 
-Convert to Markdown, create summaries, generate llms-full.txt files
+Convert to Markdown, create summaries, generate qumis-full.llms.txt files
 
 Self-review, SQL queries, Linear backfilling, code analysis
 
@@ -90,7 +90,7 @@ LLM context files (`.llms.txt` format) are specially formatted documents that pr
 - All 91 documentation pages (external + internal)
 - Navigation-ordered, frontmatter stripped
 
-**File:** `llms-full.txt` (628 KB)
+**File:** `qumis-full.llms.txt` (628 KB)
 
 **Use when:** You need complete Qumis context — product questions, onboarding, cross-team work.
 
@@ -99,7 +99,7 @@ LLM context files (`.llms.txt` format) are specially formatted documents that pr
 - 53 public-facing documentation pages
 - Product features, guides, workflows
 
-**File:** `llms-external.txt` (280 KB)
+**File:** `qumis-external.llms.txt` (280 KB)
 
 **Use when:** Writing product docs, marketing content, or customer-facing communications.
 
@@ -108,9 +108,27 @@ LLM context files (`.llms.txt` format) are specially formatted documents that pr
 - 38 internal documentation pages
 - Engineering, deployment, infrastructure, operations
 
-**File:** `llms-internal.txt` (348 KB)
+**File:** `qumis-internal.llms.txt` (348 KB)
 
 **Use when:** Working on engineering tasks, deployment procedures, or infrastructure documentation.
+
+**Contents:**
+
+- Engineering pages only
+- Deployment, infrastructure, operations, troubleshooting
+
+**File:** `qumis-engineering.llms.txt` (185 KB)
+
+**Use when:** Focused on deployment, infrastructure, or debugging — smaller and faster than the full internal bundle.
+
+**Contents:**
+
+- Messaging pages only
+- Positioning, competitive differentiation, proof points, language guide
+
+**File:** `qumis-messaging.llms.txt` (106 KB)
+
+**Use when:** Writing sales content, competitive analysis, or positioning materials.
 
 #### How to Use These Files
 

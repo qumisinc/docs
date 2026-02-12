@@ -8,13 +8,15 @@ noindex: true
 
 ## Overview
 
-The `build:md` script in this repository compiles every MDX page into clean Markdown and produces three combined bundles, each optimized for LLM consumption. The bundles are served as downloadable static assets — no manual export or copy-pasting required.
+The `build:md` script in this repository compiles every MDX page into clean Markdown and produces five combined bundles, each optimized for LLM consumption. The bundles are served as downloadable static assets — no manual export or copy-pasting required.
 
 | Bundle | Pages | Size | Contents |
 |--------|------:|-----:|----------|
-| [llms-full.txt](/assets/internal/llms/llms-full.txt) | 91 | 628 KB | All documentation (external + internal) |
-| [llms-external.txt](/assets/internal/llms/llms-external.txt) | 53 | 280 KB | Public-facing pages only |
-| [llms-internal.txt](/assets/internal/llms/llms-internal.txt) | 38 | 348 KB | Internal pages only |
+| [qumis-full.llms.txt](/assets/internal/llms/qumis-full.llms.txt) | 91 | 628 KB | All documentation (external + internal) |
+| [qumis-external.llms.txt](/assets/internal/llms/qumis-external.llms.txt) | 53 | 280 KB | Public-facing pages only |
+| [qumis-internal.llms.txt](/assets/internal/llms/qumis-internal.llms.txt) | 38 | 348 KB | Internal pages only |
+| [qumis-engineering.llms.txt](/assets/internal/llms/qumis-engineering.llms.txt) | 21 | 185 KB | Engineering pages only |
+| [qumis-messaging.llms.txt](/assets/internal/llms/qumis-messaging.llms.txt) | 10 | 106 KB | Messaging pages only |
 
 ## How to Use It
 
@@ -25,6 +27,8 @@ Choose the bundle that matches your task:
 - **Full** — complete product + engineering context
 - **External** — product docs, marketing, customer-facing work
 - **Internal** — engineering workflows, deployment, infrastructure
+- **Engineering** — deployment, infrastructure, operations only (subset of Internal)
+- **Messaging** — positioning, competitive, proof points only (subset of Internal)
 
 ### Download or open the file
 
