@@ -208,6 +208,12 @@
               "internal/engineering/troubleshooting/common-issues",
               "internal/engineering/troubleshooting/debugging-production"
             ]
+          },
+          {
+            "group": "Surveys",
+            "pages": [
+              "internal/surveys/index"
+            ]
           }
         ]
       }
