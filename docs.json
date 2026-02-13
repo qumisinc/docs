@@ -121,7 +121,8 @@
             "group": "Overview",
             "pages": [
               "internal/index",
-              "internal/onboarding-playbook"
+              "internal/onboarding-playbook",
+              "internal/international"
             ]
           },
           {
