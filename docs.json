@@ -118,6 +118,17 @@
         "hidden": true,
         "groups": [
           {
+            "group": "Company Overview",
+            "pages": [
+              "internal/company-overview",
+              "internal/about-qumis",
+              "internal/team-directory",
+              "internal/company-ethos",
+              "internal/policies",
+              "internal/tools-resources"
+            ]
+          },
+          {
             "group": "Overview",
             "pages": [
               "internal/index",
