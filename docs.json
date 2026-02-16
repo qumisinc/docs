@@ -114,6 +114,23 @@
         ]
       },
       {
+        "tab": "Company Overview",
+        "hidden": true,
+        "groups": [
+          {
+            "group": "Company Overview",
+            "pages": [
+              "company-overview/index",
+              "company-overview/about-qumis",
+              "company-overview/team-directory",
+              "company-overview/company-ethos",
+              "company-overview/policies",
+              "company-overview/tools-resources"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Internal",
         "hidden": true,
         "groups": [
