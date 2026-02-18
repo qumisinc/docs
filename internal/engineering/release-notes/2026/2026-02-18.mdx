@@ -1,0 +1,138 @@
+---
+title: "Release 2026-02-18"
+description: "Production deployment - Landing page CRO, Terms of Service, SEO & OG image, report scroll fix"
+icon: "rocket"
+noindex: true
+# groups: ["internal"]
+---
+
+<Info>
+  **Deployment Date:** February 18, 2026
+
+  **Deployed By:** Engineering Team
+
+  **Previous Deployment:** February 4, 2026
+</Info>
+
+<Badge color="green" size="sm">Web</Badge>
+
+## What's New
+
+- **Landing page CRO overhaul** — FAQ section, sticky CTA, trust badges, typography, and visual polish
+- **Terms of Service** — new legal modal accessible from signup flow
+- **OG share image** — branded Open Graph image for social/messaging link previews
+- **SEO meta fix** — corrected domain and description in index.html
+- [1 bug fix](#bug-fixes) and [2 improvements](#improvements)
+
+This is a marketing-focused release. The landing page gets a **full CRO pass** with a new FAQ section, sticky call-to-action button, SOC 2 trust badges, and improved typography. Users signing up now see a **Terms of Service** alongside the Privacy Policy. Link previews across social and messaging platforms now show a **branded OG image**, and SEO meta tags have been corrected.
+
+<CardGroup cols={2}>
+  <Card title="3 New Features" icon="sparkles" color="#10b981" href="#features">
+    Landing CRO, Terms of Service, OG image
+  </Card>
+  <Card title="1 Bug Fix" icon="bug" color="#f59e0b" href="#bug-fixes">
+    Report key findings scroll
+  </Card>
+  <Card title="2 Improvements" icon="chart-line" color="#3b82f6" href="#improvements">
+    SEO meta, signup styling
+  </Card>
+  <Card title="13 Files Changed" icon="code" color="#8b5cf6" href="#technical-details">
+    <span style={{color: '#22c55e'}}>**+1,699**</span> / <span style={{color: '#ef4444'}}>**-510**</span> lines
+  </Card>
+</CardGroup>
+
+---
+
+## Features
+
+### Landing Page CRO Overhaul
+
+Comprehensive conversion rate optimization pass on the landing page to improve engagement and signup rates.
+
+- **FAQ section** added and centered on the landing page
+- **Sticky CTA button** — persistent call-to-action visible while scrolling
+- **SOC 2 trust badges** added to the hero section and trial signup card
+- **Typography improvements** — increased body font sizes for readability
+- **Visual polish** — refined CTA button styling, gradient effects, fixed navigation border flash on page load
+- **Hero and animation fixes** — smoother transitions and layout refinements
+
+**Linear:** [ENG-1647](https://linear.app/qumis/issue/ENG-1647)
+
+### Terms of Service
+
+Users signing up now agree to both the Privacy Policy and a new Terms of Service — accessible via a modal in the signup flow.
+
+- New `LegalDocumentModal` component for rendering legal markdown content
+- Full Terms of Service content authored in markdown
+- Signup agreement text updated to reference both documents
+
+**Linear:** [ENG-1661](https://linear.app/qumis/issue/ENG-1661)
+
+### OG Share Image
+
+Branded Open Graph image for social media and messaging link previews, ensuring Qumis links look professional when shared.
+
+- New `qumis-og-image.png` and `@2x` retina variant
+- OG meta tags added to `index.html`
+- Custom HTML template for image generation
+
+**Linear:** [ENG-1647](https://linear.app/qumis/issue/ENG-1647)
+
+---
+
+## Bug Fixes
+
+<AccordionGroup>
+  <Accordion title="User-Facing (1)" icon="user" defaultOpen>
+    | Issue | Description | Ticket |
+    |-------|-------------|--------|
+    | Report key findings scroll | Fixed scrolling issues in the key findings area of generated reports | [ENG-1641](https://linear.app/qumis/issue/ENG-1641) |
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Improvements
+
+- **SEO meta tags** — corrected domain and description in `index.html` for accurate search engine indexing and link previews ([ENG-1666](https://linear.app/qumis/issue/ENG-1666))
+- **Signup page styling** — aligned trial signup page colors, backgrounds, and gradients with the updated landing page brand identity ([ENG-1647](https://linear.app/qumis/issue/ENG-1647))
+
+---
+
+## Technical Details
+
+<Accordion title="Deployment details" icon="cloud" defaultOpen>
+
+### Services Deployed
+
+| Service | Commit | Files | Lines Changed |
+|---------|--------|-------|---------------|
+| Web | `71c948a6` | 13 | +1,699 / -510 |
+
+**Previous deployment:** February 4, 2026
+
+### Pull Requests (5 total)
+
+**Web (5 PRs)**
+| PR | Description |
+|----|-------------|
+| [#494](https://github.com/qumisinc/qumis-web/pull/494) | Fix index.html SEO meta for correct domain and description |
+| [#493](https://github.com/qumisinc/qumis-web/pull/493) | Fix scrolling issues on the key findings area of the report |
+| [#492](https://github.com/qumisinc/qumis-web/pull/492) | Landing page CRO fixes — FAQ, sticky CTA, SOC 2 badges, OG image, typography |
+| [#491](https://github.com/qumisinc/qumis-web/pull/491) | Add Terms of Service modal and update agreement text |
+| [#489](https://github.com/qumisinc/qumis-web/pull/489) | Landing PLG fixes — Privacy Policy modal positioning |
+
+### Related Linear Tickets
+
+**Major Features:**
+- [ENG-1647](https://linear.app/qumis/issue/ENG-1647) — Landing page CRO batch: FAQ, sticky CTA, SEO, trust badges
+- [ENG-1661](https://linear.app/qumis/issue/ENG-1661) — Terms of Service modal in signup flow
+
+**Bug Fixes:**
+- [ENG-1641](https://linear.app/qumis/issue/ENG-1641) — Report key findings area scroll issues
+
+**Improvements:**
+- [ENG-1666](https://linear.app/qumis/issue/ENG-1666) — Fix index.html SEO meta tags
+- [ENG-1642](https://linear.app/qumis/issue/ENG-1642) — Landing PLG fixes
+
+</Accordion>
