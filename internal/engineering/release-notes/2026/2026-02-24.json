@@ -1,0 +1,157 @@
+{
+  "date": "2026-02-24",
+  "deployedBy": "Engineering Team",
+  "previousDeployment": "February 18, 2026 (Web), February 4, 2026 (API/LLM Service)",
+  "services": {
+    "api": {
+      "repo": "qumisinc/qumis-api",
+      "from": "b2cce9d",
+      "to": "2718a83",
+      "files": 41,
+      "insertions": 2501,
+      "deletions": 262
+    },
+    "web": {
+      "repo": "qumisinc/qumis-web",
+      "from": "71c948a6",
+      "to": "11b8ed06",
+      "files": 17,
+      "insertions": 851,
+      "deletions": 329
+    },
+    "llm-service": {
+      "repo": "qumisinc/llm-service",
+      "from": "27ae3fb",
+      "to": "3190fd0",
+      "files": 75,
+      "insertions": 10217,
+      "deletions": 342
+    }
+  },
+  "pullRequests": {
+    "api": [
+      { "number": 325, "title": "Extend document presenter with ocr_status and ext_chrome chat type", "url": "https://github.com/qumisinc/qumis-api/pull/325", "mergedAt": "2026-02-21T22:00:54Z" },
+      { "number": 326, "title": "Stripe prod confirmed options — signup flow, email verification, PostHog", "url": "https://github.com/qumisinc/qumis-api/pull/326", "mergedAt": "2026-02-08T20:35:50Z" },
+      { "number": 327, "title": "New logic for proposal generation", "url": "https://github.com/qumisinc/qumis-api/pull/327", "mergedAt": "2026-02-09T17:29:37Z" },
+      { "number": 328, "title": "feat: add Mevan data extraction list support", "url": "https://github.com/qumisinc/qumis-api/pull/328", "mergedAt": "2026-02-07T14:54:18Z" },
+      { "number": 329, "title": "feat: add rake task to seed Cyber Liability proposal template", "url": "https://github.com/qumisinc/qumis-api/pull/329", "mergedAt": "2026-02-09T21:32:22Z" },
+      { "number": 330, "title": "Proposal generation — documents metadata", "url": "https://github.com/qumisinc/qumis-api/pull/330", "mergedAt": "2026-02-10T03:47:31Z" },
+      { "number": 331, "title": "Stripe prod — PostHog analytics, email verification refinements", "url": "https://github.com/qumisinc/qumis-api/pull/331", "mergedAt": "2026-02-11T17:31:59Z" },
+      { "number": 332, "title": "feat: extract trial end date from Stripe webhook", "url": "https://github.com/qumisinc/qumis-api/pull/332", "mergedAt": "2026-02-12T15:37:33Z" },
+      { "number": 333, "title": "fix: route sign-up Slack notifications to correct channel", "url": "https://github.com/qumisinc/qumis-api/pull/333", "mergedAt": "2026-02-12T23:56:11Z" },
+      { "number": 334, "title": "fix: remove unnecessary presence check for org name during creation", "url": "https://github.com/qumisinc/qumis-api/pull/334", "mergedAt": "2026-02-13T19:36:29Z" },
+      { "number": 335, "title": "docs: add Chameleon setup video guide", "url": "https://github.com/qumisinc/qumis-api/pull/335", "mergedAt": "2026-02-16T11:53:10Z" },
+      { "number": 336, "title": "fix: update Chameleon sync to use profiles webhook endpoint", "url": "https://github.com/qumisinc/qumis-api/pull/336", "mergedAt": "2026-02-16T12:19:12Z" },
+      { "number": 337, "title": "fix: backfill first_report_complete in usage stats", "url": "https://github.com/qumisinc/qumis-api/pull/337", "mergedAt": "2026-02-16T12:52:07Z" },
+      { "number": 341, "title": "Add classification_intent column and reclassify_all rake task", "url": "https://github.com/qumisinc/qumis-api/pull/341", "mergedAt": "2026-02-21T21:25:46Z" }
+    ],
+    "web": [
+      { "number": 490, "title": "ENG-1629 — Fix overscroll & scroll CSS architecture", "url": "https://github.com/qumisinc/qumis-web/pull/490", "mergedAt": "2026-02-18T18:31:12Z" },
+      { "number": 462, "title": "Chrome extension — parsing doc IDs from URL params", "url": "https://github.com/qumisinc/qumis-web/pull/462", "mergedAt": "2026-02-21T22:16:06Z" },
+      { "number": 497, "title": "Pass through classification_intent in chat message flow", "url": "https://github.com/qumisinc/qumis-web/pull/497", "mergedAt": "2026-02-21T21:14:06Z" },
+      { "number": 499, "title": "fix: prevent UploadModal from dismissing on drag-and-drop in chat", "url": "https://github.com/qumisinc/qumis-web/pull/499", "mergedAt": "2026-02-23T15:42:13Z" },
+      { "number": 500, "title": "style: fix bottom alignment of chat box footer", "url": "https://github.com/qumisinc/qumis-web/pull/500", "mergedAt": "2026-02-23T19:50:38Z" },
+      { "number": 501, "title": "ENG-1719 — Detect corrupt documents on upload", "url": "https://github.com/qumisinc/qumis-web/pull/501", "mergedAt": "2026-02-24T22:41:43Z" }
+    ],
+    "llm-service": [
+      { "number": 87, "title": "New logic for proposal generation", "url": "https://github.com/qumisinc/llm-service/pull/87", "mergedAt": "2026-02-10T02:42:04Z" },
+      { "number": 88, "title": "Add classification_intent and expand taxonomy to 17 categories", "url": "https://github.com/qumisinc/llm-service/pull/88", "mergedAt": "2026-02-21T21:25:30Z" }
+    ]
+  },
+  "tickets": ["ENG-1582", "ENG-1591", "ENG-1595", "ENG-1598", "ENG-1629", "ENG-1674", "ENG-1719"],
+  "features": [
+    {
+      "title": "Production Signup & Billing Flow",
+      "description": "Complete self-service signup with Stripe billing, email verification, domain-based organization matching, and manual approval for personal email addresses.",
+      "details": [
+        "Self-service Stripe billing integration with trial period tracking",
+        "Email verification flow with Postmark templates",
+        "Domain-based organization matching — users from known domains are routed to their existing org",
+        "Manual approval workflow for personal email signups (Gmail, Outlook, Yahoo)",
+        "PostHog analytics integration for user identification and subscription event tracking",
+        "Slack notifications for new signups and existing-org matches"
+      ],
+      "ticket": "ENG-1582",
+      "service": "api"
+    },
+    {
+      "title": "Proposal Generation V3",
+      "description": "Completely reworked proposal generation engine with document metadata support and a new Cyber Liability template.",
+      "details": [
+        "New generation logic with document metadata extraction across API and LLM services",
+        "Cyber Liability proposal template seeded via rake task",
+        "Improved document context passed to LLM for more accurate proposals"
+      ],
+      "ticket": "ENG-1591",
+      "service": "api+llm"
+    },
+    {
+      "title": "Chrome Extension Support",
+      "description": "Backend and frontend support for the Qumis Chrome extension, enabling users to interact with Qumis directly from their browser.",
+      "details": [
+        "New ext_chrome chat message source type for extension-originated conversations",
+        "OCR status field exposed in document API responses",
+        "URL-based document ID parsing for extension deep links"
+      ],
+      "ticket": null,
+      "service": "api+web"
+    },
+    {
+      "title": "Chat Intent Classification",
+      "description": "Automatically categorizes user chat messages into 17 intent categories for analytics and future routing improvements.",
+      "details": [
+        "New classification_intent column on chat messages with migration and backfill rake task",
+        "17-category taxonomy covering policy analysis, claims, compliance, and more",
+        "Intent passed through the full stack from LLM classification to frontend display"
+      ],
+      "ticket": null,
+      "service": "api+web+llm"
+    },
+    {
+      "title": "Corrupt Document Detection",
+      "description": "Validates document integrity on upload, catching corrupt PDFs and other damaged files before they enter the processing pipeline.",
+      "details": [
+        "Client-side file integrity validation with magic byte checks for PDF, DOCX, XLSX, and images",
+        "PDF structural parse and page render validation using pdf.js",
+        "Clear user-facing error messages for corrupt, invalid, or password-protected files",
+        "Prevents 12+ minutes of silent failure from corrupt files entering OCR pipeline"
+      ],
+      "ticket": "ENG-1719",
+      "service": "web"
+    },
+    {
+      "title": "Mevan Data Extraction List",
+      "description": "Support for Mevan data extraction list format, expanding the range of structured data the platform can process.",
+      "details": [
+        "New data extraction list type in the API"
+      ],
+      "ticket": "ENG-1595",
+      "service": "api"
+    }
+  ],
+  "bugFixes": {
+    "userFacing": [
+      { "issue": "Scroll CSS architecture", "description": "Fixed quadruple overflow-hidden nesting and global overscroll-behavior that caused broken scroll behavior in chat, layout, and nested containers", "ticket": "ENG-1629" },
+      { "issue": "Upload modal drag-and-drop", "description": "Fixed UploadModal dismissing when dragging files or switching windows in chat — stabilized React component identity and prevented Radix Dialog premature dismissal", "ticket": "ENG-1674" },
+      { "issue": "Chat box footer alignment", "description": "Fixed bottom alignment of the chat input footer", "ticket": null }
+    ],
+    "backend": [
+      { "issue": "Slack signup notification routing", "description": "Sign-up notifications now route to the correct channel with a new alert for existing-org matches", "ticket": null },
+      { "issue": "Organization creation name check", "description": "Removed unnecessary presence check for organization name during creation that could block signups", "ticket": "ENG-1582" },
+      { "issue": "Chameleon webhook endpoint", "description": "Fixed Chameleon sync to use the profiles webhook endpoint instead of identify", "ticket": null }
+    ]
+  },
+  "improvements": [
+    { "title": "Chameleon setup documentation", "description": "Added video guide and setup instructions for Chameleon analytics integration", "ticket": null },
+    { "title": "Usage stats backfill", "description": "Added first_report_complete backfill to usage stats rake task for accurate onboarding metrics", "ticket": null }
+  ],
+  "breakingChanges": [],
+  "stats": {
+    "features": 6,
+    "bugFixes": 6,
+    "improvements": 2,
+    "filesChanged": 133,
+    "insertions": 13569,
+    "deletions": 933
+  }
+}

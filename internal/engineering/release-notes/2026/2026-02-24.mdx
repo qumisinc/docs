@@ -1,0 +1,200 @@
+---
+title: "Release 2026-02-24"
+description: "Production deployment - Signup & billing flow, proposal generation V3, Chrome extension, chat classification, corrupt document detection"
+icon: "rocket"
+noindex: true
+# groups: ["internal"]
+---
+
+<Info>
+  **Deployment Date:** February 24, 2026
+
+  **Deployed By:** Engineering Team
+
+  **Previous Deployment:** February 18, 2026 (Web), February 4, 2026 (API/LLM Service)
+</Info>
+
+<Badge color="blue" size="sm">API</Badge> <Badge color="green" size="sm">Web</Badge> <Badge color="purple" size="sm">LLM Service</Badge>
+
+## What's New
+
+- **Production Signup & Billing Flow** — self-service Stripe billing with email verification and org matching
+- **Proposal Generation V3** — reworked engine with document metadata and Cyber Liability template
+- **Chrome Extension Support** — backend and frontend integration for the Qumis browser extension
+- **Chat Intent Classification** — 17-category taxonomy for analytics and routing
+- **Corrupt Document Detection** — client-side validation catches damaged files before upload
+- **Mevan Data Extraction** — new structured data extraction format
+- 6 bug fixes and 2 improvements
+
+Users signing up now go through a **complete self-service flow** with Stripe billing, email verification, and automatic organization matching by email domain. The **proposal generation engine has been rebuilt** with document metadata support and a new Cyber Liability template. A new **Chrome extension integration** lets users interact with Qumis directly from their browser, and **chat messages are now automatically classified** into 17 intent categories for analytics. On the reliability side, **corrupt document detection** catches damaged PDFs on upload instantly instead of failing silently after 12+ minutes in the OCR pipeline.
+
+<CardGroup cols={2}>
+  <Card title="6 New Features" icon="sparkles" color="#10b981" href="#features">
+    Signup flow, proposals V3, Chrome extension, chat classification, corrupt detection, Mevan
+  </Card>
+  <Card title="6 Bug Fixes" icon="bug" color="#f59e0b" href="#bug-fixes">
+    Scroll architecture, upload modal, chat footer, notifications, org creation, Chameleon
+  </Card>
+  <Card title="2 Improvements" icon="chart-line" color="#3b82f6" href="#improvements">
+    Chameleon docs, usage stats backfill
+  </Card>
+  <Card title="133 Files Changed" icon="code" color="#8b5cf6" href="#technical-details">
+    <span style={{color: '#22c55e'}}>**+13,569**</span> / <span style={{color: '#ef4444'}}>**-933**</span> lines
+  </Card>
+</CardGroup>
+
+---
+
+## Features
+
+### Production Signup & Billing Flow
+
+Complete self-service signup with Stripe billing, email verification, domain-based organization matching, and manual approval for personal email addresses.
+
+- **Self-service Stripe billing** — integrated trial period tracking with trial end date extraction from webhooks
+- **Email verification flow** — new Postmark templates for verification and invitation emails
+- **Domain-based org matching** — users from known domains are automatically routed to their existing organization
+- **Personal email approval** — manual approval workflow for Gmail, Outlook, and Yahoo signups
+- **PostHog analytics** — user identification and subscription event tracking across the signup lifecycle
+- **Slack notifications** — alerts for new signups, existing-org matches, and completed registrations
+
+**Linear:** [ENG-1582](https://linear.app/qumis/issue/ENG-1582)
+
+### Proposal Generation V3
+
+Completely reworked proposal generation engine with document metadata support and a new Cyber Liability template.
+
+- **New generation logic** — rebuilt across API and LLM services for more accurate proposals
+- **Document metadata extraction** — improved context passed to the LLM for better coverage analysis
+- **Cyber Liability template** — new proposal template seeded via rake task
+
+**Linear:** [ENG-1591](https://linear.app/qumis/issue/ENG-1591), [ENG-1598](https://linear.app/qumis/issue/ENG-1598)
+
+### Chrome Extension Support
+
+Backend and frontend support for the Qumis Chrome extension, enabling users to interact with Qumis directly from their browser.
+
+- **New chat source type** — `ext_chrome` for extension-originated conversations
+- **OCR status in API** — document responses now include OCR processing status
+- **URL-based document parsing** — extension deep links resolve document IDs from URL parameters
+
+### Chat Intent Classification
+
+Automatically categorizes user chat messages into 17 intent categories for analytics and future routing improvements.
+
+- **17-category taxonomy** — covering policy analysis, claims, compliance, comparisons, and more
+- **Full-stack integration** — classification flows from LLM through API to frontend
+- **Backfill rake task** — reclassify existing messages with the new taxonomy
+
+### Corrupt Document Detection
+
+Validates document integrity on upload, catching corrupt PDFs and other damaged files before they enter the processing pipeline.
+
+- **Client-side validation** — magic byte checks for PDF, DOCX, XLSX, and image formats
+- **PDF structural verification** — parse and render validation using pdf.js catches corrupt content streams
+- **Clear error messages** — specific feedback for corrupt, invalid, or password-protected files
+- **Prevents silent failure** — eliminates 12+ minutes of wasted OCR processing on damaged files
+
+**Linear:** [ENG-1719](https://linear.app/qumis/issue/ENG-1719)
+
+### Mevan Data Extraction List
+
+Support for Mevan data extraction list format, expanding the range of structured data the platform can process.
+
+**Linear:** [ENG-1595](https://linear.app/qumis/issue/ENG-1595)
+
+---
+
+## Bug Fixes
+
+<AccordionGroup>
+  <Accordion title="User-Facing Fixes (3)" icon="user" defaultOpen>
+    | Issue | Description | Ticket |
+    |-------|-------------|--------|
+    | Scroll CSS architecture | Fixed quadruple overflow-hidden nesting and global overscroll-behavior causing broken scroll in chat, layout, and nested containers | [ENG-1629](https://linear.app/qumis/issue/ENG-1629) |
+    | Upload modal drag-and-drop | Fixed UploadModal dismissing when dragging files or switching windows in chat — stabilized React component identity and prevented Radix Dialog premature dismissal | [ENG-1674](https://linear.app/qumis/issue/ENG-1674) |
+    | Chat box footer alignment | Fixed bottom alignment of the chat input footer | — |
+  </Accordion>
+
+  <Accordion title="Backend Fixes (3)" icon="server">
+    | Issue | Description | Ticket |
+    |-------|-------------|--------|
+    | Slack signup notification routing | Sign-up notifications now route to the correct channel with a new alert for existing-org matches | — |
+    | Organization creation name check | Removed unnecessary presence check for organization name during creation that could block signups | [ENG-1582](https://linear.app/qumis/issue/ENG-1582) |
+    | Chameleon webhook endpoint | Fixed Chameleon sync to use the profiles webhook endpoint instead of identify | — |
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Improvements
+
+- **Chameleon setup documentation** — added video guide and setup instructions for Chameleon analytics integration
+- **Usage stats backfill** — added first_report_complete backfill to usage stats rake task for accurate onboarding metrics
+
+---
+
+## Technical Details
+
+<Accordion title="Services Deployed" icon="cloud">
+  | Service | Commit | Files | Lines Changed |
+  |---------|--------|-------|---------------|
+  | API | `2718a83` | 41 | +2,501 / -262 |
+  | Web | `11b8ed06` | 17 | +851 / -329 |
+  | LLM Service | `3190fd0` | 75 | +10,217 / -342 |
+
+  **Previous deployment:** February 18, 2026 (Web), February 4, 2026 (API/LLM Service)
+
+  <Note>
+    LLM Service includes proposal generation templates and configuration files, accounting for the high line count.
+  </Note>
+</Accordion>
+
+<Accordion title="Pull Requests (22 total)" icon="code-pull-request">
+  **API (14 PRs)**
+  | PR | Description |
+  |----|-------------|
+  | [#341](https://github.com/qumisinc/qumis-api/pull/341) | Add classification_intent column and reclassify_all rake task |
+  | [#337](https://github.com/qumisinc/qumis-api/pull/337) | fix: backfill first_report_complete in usage stats |
+  | [#336](https://github.com/qumisinc/qumis-api/pull/336) | fix: update Chameleon sync to use profiles webhook endpoint |
+  | [#335](https://github.com/qumisinc/qumis-api/pull/335) | docs: add Chameleon setup video guide |
+  | [#334](https://github.com/qumisinc/qumis-api/pull/334) | fix: remove unnecessary presence check for org name during creation |
+  | [#333](https://github.com/qumisinc/qumis-api/pull/333) | fix: route sign-up Slack notifications to correct channel |
+  | [#332](https://github.com/qumisinc/qumis-api/pull/332) | feat: extract trial end date from Stripe webhook |
+  | [#331](https://github.com/qumisinc/qumis-api/pull/331) | Stripe prod — PostHog analytics, email verification refinements |
+  | [#330](https://github.com/qumisinc/qumis-api/pull/330) | Proposal generation — documents metadata |
+  | [#329](https://github.com/qumisinc/qumis-api/pull/329) | feat: add rake task to seed Cyber Liability proposal template |
+  | [#328](https://github.com/qumisinc/qumis-api/pull/328) | feat: add Mevan data extraction list support |
+  | [#327](https://github.com/qumisinc/qumis-api/pull/327) | New logic for proposal generation |
+  | [#326](https://github.com/qumisinc/qumis-api/pull/326) | Stripe prod confirmed options — signup flow, email verification, PostHog |
+  | [#325](https://github.com/qumisinc/qumis-api/pull/325) | Extend document presenter with ocr_status and ext_chrome chat type |
+
+  **Web (6 PRs)**
+  | PR | Description |
+  |----|-------------|
+  | [#501](https://github.com/qumisinc/qumis-web/pull/501) | ENG-1719 — Detect corrupt documents on upload |
+  | [#500](https://github.com/qumisinc/qumis-web/pull/500) | style: fix bottom alignment of chat box footer |
+  | [#499](https://github.com/qumisinc/qumis-web/pull/499) | fix: prevent UploadModal from dismissing on drag-and-drop in chat |
+  | [#497](https://github.com/qumisinc/qumis-web/pull/497) | Pass through classification_intent in chat message flow |
+  | [#490](https://github.com/qumisinc/qumis-web/pull/490) | ENG-1629 — Fix overscroll and scroll CSS architecture |
+  | [#462](https://github.com/qumisinc/qumis-web/pull/462) | Chrome extension — parsing doc IDs from URL params |
+
+  **LLM Service (2 PRs)**
+  | PR | Description |
+  |----|-------------|
+  | [#88](https://github.com/qumisinc/llm-service/pull/88) | Add classification_intent and expand taxonomy to 17 categories |
+  | [#87](https://github.com/qumisinc/llm-service/pull/87) | New logic for proposal generation |
+</Accordion>
+
+<Accordion title="Related Linear Tickets" icon="ticket">
+  **Major Features:**
+  - [ENG-1582](https://linear.app/qumis/issue/ENG-1582) — Stripe prod confirmed options: self-service signup and billing
+  - [ENG-1591](https://linear.app/qumis/issue/ENG-1591) — New logic for proposal generation
+  - [ENG-1595](https://linear.app/qumis/issue/ENG-1595) — Mevan data extraction list
+  - [ENG-1598](https://linear.app/qumis/issue/ENG-1598) — Create rake task for Cyber Liability proposal template
+  - [ENG-1719](https://linear.app/qumis/issue/ENG-1719) — Detect corrupt documents on upload
+
+  **Bug Fixes:**
+  - [ENG-1629](https://linear.app/qumis/issue/ENG-1629) — Fix overscroll and scroll CSS architecture issues
+  - [ENG-1674](https://linear.app/qumis/issue/ENG-1674) — Fix UploadModal dismissing on drag-and-drop in chat
+</Accordion>
