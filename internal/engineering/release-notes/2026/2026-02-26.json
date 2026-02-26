@@ -1,0 +1,74 @@
+{
+  "date": "2026-02-26",
+  "type": "minor",
+  "deployedBy": "Engineering Team",
+  "previousDeployment": "February 24, 2026",
+  "services": {
+    "api": {
+      "repo": "qumisinc/qumis-api",
+      "from": "2718a83",
+      "to": "0238d7c",
+      "files": 26,
+      "insertions": 1298,
+      "deletions": 341
+    },
+    "web": {
+      "repo": "qumisinc/qumis-web",
+      "from": "11b8ed06",
+      "to": "11b8ed06",
+      "files": 0,
+      "insertions": 0,
+      "deletions": 0
+    },
+    "llm-service": {
+      "repo": "qumisinc/llm-service",
+      "from": "3190fd0",
+      "to": "3190fd0",
+      "files": 0,
+      "insertions": 0,
+      "deletions": 0
+    }
+  },
+  "pullRequests": {
+    "api": [
+      { "number": 344, "title": "ENG-1725 - Automatic report retry with email notifications", "url": "https://github.com/qumisinc/qumis-api/pull/344", "mergedAt": "2026-02-26T19:26:31Z" },
+      { "number": 345, "title": "Allow Qumis.ai Domain Users to Sign Up Without Approval or Slack Notifications", "url": "https://github.com/qumisinc/qumis-api/pull/345", "mergedAt": "2026-02-26T15:54:44Z" },
+      { "number": 343, "title": "fix: seed localdev user as exempt with verified email to bypass pricing page", "url": "https://github.com/qumisinc/qumis-api/pull/343", "mergedAt": "2026-02-26T16:40:30Z" }
+    ],
+    "web": [],
+    "llm-service": []
+  },
+  "tickets": ["ENG-1725", "ENG-1727", "ENG-1728", "ENG-1729"],
+  "features": [
+    {
+      "title": "Automatic Report Retry with Email Notifications",
+      "description": "Failed reports are now automatically retried up to 3 times with configurable delays. Users receive branded email notifications when their report is ready or when it permanently fails after all retries.",
+      "details": [
+        "Automatic retry of failed reports with exponential backoff via Sidekiq scheduled jobs",
+        "New TemplateMailer system for branded, API-stored email templates with HTML and plain-text variants",
+        "Report-ready and report-failed email notifications sent to the requesting user",
+        "Original error message tracking on job_report_email_requests for debugging",
+        "support@qumis.ai CC'd on all template emails by default"
+      ],
+      "ticket": "ENG-1725",
+      "service": "api"
+    }
+  ],
+  "bugFixes": {
+    "userFacing": [],
+    "backend": []
+  },
+  "improvements": [
+    { "title": "Qumis domain signup bypass", "description": "Users with @qumis.ai email addresses can now sign up without manual approval or Slack notifications, streamlining internal onboarding", "ticket": null },
+    { "title": "Dev seed improvements", "description": "Local development seed user is now set as exempt with verified email to bypass the pricing page during development", "ticket": null }
+  ],
+  "breakingChanges": [],
+  "stats": {
+    "features": 1,
+    "bugFixes": 0,
+    "improvements": 2,
+    "filesChanged": 26,
+    "insertions": 1298,
+    "deletions": 341
+  }
+}

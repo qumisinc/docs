@@ -9,12 +9,18 @@ noindex: true
 Internal release notes tracking production deployments for the Qumis platform. Each release documents features, bug fixes, breaking changes, and deployment details.
 
 <Tip>
-  **Latest Release:** [2026-02-24](/internal/engineering/release-notes/2026/2026-02-24) | **Template:** [Release Notes Template](/internal/engineering/release-notes/template)
+  **Latest Release:** [2026-02-26](/internal/engineering/release-notes/2026/2026-02-26) | **Template:** [Release Notes Template](/internal/engineering/release-notes/template)
 
   **Related:** [Deployment Cheatsheet](/internal/engineering/deployment/deployment-cheatsheet) | [Production Deployment](/internal/engineering/deployment/production-deployment) | [Rollback Procedures](/internal/engineering/deployment/rollback-procedures)
 </Tip>
 
 ## Timeline
+
+<Update label="2026-02-26 (minor)" description="API" tags={["Features", "Improvements"]}>
+  Minor API-only release: automatic report retry with email notifications — failed reports are retried up to 3 times with branded email notifications for success or failure. Plus Qumis domain signup bypass and dev seed improvements.
+
+  [View full release notes →](/internal/engineering/release-notes/2026/2026-02-26)
+</Update>
 
 <Update label="2026-02-24" description="API, Web, LLM Service" tags={["Features", "Bug Fixes", "Improvements"]}>
   Production signup and billing flow with Stripe, proposal generation V3 with Cyber Liability template, Chrome extension support, chat intent classification with 17-category taxonomy, corrupt document detection on upload, and Mevan data extraction. Plus 6 bug fixes including scroll CSS architecture overhaul and upload modal drag-and-drop fix.

@@ -1,0 +1,100 @@
+---
+title: "Release 2026-02-26"
+description: "Minor release - Automatic report retry with email notifications"
+icon: "rocket"
+noindex: true
+# groups: ["internal"]
+---
+
+<Info>
+  **Deployment Date:** February 26, 2026
+
+  **Deployed By:** Engineering Team
+
+  **Previous Deployment:** February 24, 2026
+
+  **Release Type:** Minor
+</Info>
+
+<Badge color="blue" size="sm">API</Badge>
+
+## What's New
+
+- **Automatic Report Retry** — failed reports are now retried automatically with email notifications
+- 2 improvements
+
+This is a minor, API-only release focused on reliability. **Failed reports are now automatically retried** up to 3 times with exponential backoff, and users receive **branded email notifications** when their report is ready or when it permanently fails. A new **TemplateMailer system** powers the emails with both HTML and plain-text variants.
+
+<CardGroup cols={2}>
+  <Card title="1 New Feature" icon="sparkles" color="#10b981" href="#features">
+    Automatic report retry with email notifications
+  </Card>
+  <Card title="0 Bug Fixes" icon="bug" color="#f59e0b">
+    No bug fixes in this release
+  </Card>
+  <Card title="2 Improvements" icon="chart-line" color="#3b82f6" href="#improvements">
+    Qumis domain signup bypass, dev seed fixes
+  </Card>
+  <Card title="26 Files Changed" icon="code" color="#8b5cf6" href="#technical-details">
+    <span style={{color: '#22c55e'}}>**+1,298**</span> / <span style={{color: '#ef4444'}}>**-341**</span> lines
+  </Card>
+</CardGroup>
+
+---
+
+## Features
+
+### Automatic Report Retry with Email Notifications
+
+Failed reports are now automatically retried up to 3 times with configurable delays. Users receive branded email notifications when their report is ready or when it permanently fails after all retries.
+
+- **Automatic retry with backoff** — failed reports are re-queued via Sidekiq scheduled jobs with exponential delays
+- **Report-ready emails** — users are notified as soon as their report completes successfully
+- **Report-failed emails** — if all retries are exhausted, users receive a clear failure notification
+- **TemplateMailer system** — new email infrastructure using API-stored templates with HTML and plain-text variants
+- **Error tracking** — original error messages are now stored on job_report_email_requests for debugging
+- **Support CC** — support@qumis.ai is CC'd on all template emails by default
+
+**Linear:** [ENG-1725](https://linear.app/qumis/issue/ENG-1725), [ENG-1727](https://linear.app/qumis/issue/ENG-1727), [ENG-1728](https://linear.app/qumis/issue/ENG-1728), [ENG-1729](https://linear.app/qumis/issue/ENG-1729)
+
+---
+
+## Improvements
+
+- **Qumis domain signup bypass** — users with @qumis.ai email addresses can now sign up without manual approval or Slack notifications, streamlining internal onboarding
+- **Dev seed improvements** — local development seed user is now set as exempt with verified email to bypass the pricing page during development
+
+---
+
+## Technical Details
+
+<Accordion title="Services Deployed" icon="cloud">
+  | Service | Commit | Files | Lines Changed |
+  |---------|--------|-------|---------------|
+  | API | `0238d7c` | 26 | +1,298 / -341 |
+  | Web | — | — | no changes |
+  | LLM Service | — | — | no changes |
+
+  **Previous deployment:** February 24, 2026
+
+  <Note>
+    The raw git diff shows ~274K deleted lines due to removing coverage artifacts from git tracking. The meaningful code changes are +1,298 / -341 across 26 application files.
+  </Note>
+</Accordion>
+
+<Accordion title="Pull Requests (3 total)" icon="code-pull-request">
+  **API (3 PRs)**
+  | PR | Description |
+  |----|-------------|
+  | [#344](https://github.com/qumisinc/qumis-api/pull/344) | ENG-1725 - Automatic report retry with email notifications |
+  | [#345](https://github.com/qumisinc/qumis-api/pull/345) | Allow Qumis.ai domain users to sign up without approval or Slack notifications |
+  | [#343](https://github.com/qumisinc/qumis-api/pull/343) | fix: seed localdev user as exempt with verified email to bypass pricing page |
+</Accordion>
+
+<Accordion title="Related Linear Tickets" icon="ticket">
+  **Major Features:**
+  - [ENG-1725](https://linear.app/qumis/issue/ENG-1725) — Automatic report retry
+  - [ENG-1727](https://linear.app/qumis/issue/ENG-1727) — TemplateMailer for API-stored email templates
+  - [ENG-1728](https://linear.app/qumis/issue/ENG-1728) — Original error message tracking on job_report_email_requests
+  - [ENG-1729](https://linear.app/qumis/issue/ENG-1729) — Report retry with email notifications implementation
+</Accordion>
